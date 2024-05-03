@@ -1,5 +1,7 @@
 package controller;
 
+import model.User;
+
 import java.util.regex.Matcher;
 
 public class ProfileMenuController{
@@ -13,9 +15,6 @@ public class ProfileMenuController{
         return null;
     }
     public static String changeEmail(Matcher matcher){
-        return null;
-    }
-    public static User getUsernameWithUsername(Matcher matcher){
         return null;
     }
     public static String showUserInfo(){

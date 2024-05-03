@@ -1,4 +1,5 @@
 package model;
 
-public enum Card {
+public abstract class Card {
+    
 }
