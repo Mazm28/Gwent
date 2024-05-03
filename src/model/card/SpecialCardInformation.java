@@ -1,7 +1,6 @@
 package model.card;
 
-import model.Action;
-
+import java.lang.reflect.Method;
 import java.util.function.Function;
 
 public enum SpecialCardInformation {
@@ -11,8 +10,11 @@ public enum SpecialCardInformation {
     int power;
     int countInGame;
     int type;
-    Function ability;
-    SpecialCardInformation(String name, int power, int countInGame, int type, Function ability) {
-
+    String ability;
+    SpecialCardInformation(String name, int power, int countInGame, int type, String ability) {
+        this.name = name;
+        this.power = power;
+        this.countInGame = countInGame;
+        this.ability = ability;
     }
 }

@@ -1,19 +1,17 @@
 package model.card;
 
-import model.Faction;
-
-import java.util.function.Function;
+import java.lang.reflect.Method;
 
 public class LeaderCards extends Card{
     private String name;
-    private Faction faction;
-    private String ability;
+    private String faction;
+    private Method ability;
     private boolean actionUsed;
 
-    public LeaderCards(String name, Faction faction, String ability) {
-        this.name = name;
-        this.faction = faction;
-        this.ability = ability;
+    public LeaderCards(LeaderCardInformation leaderCardInformation) {
+        this.name = leaderCardInformation.name;
+        this.faction = leaderCardInformation.faction;
+        this.ability = leaderCardInformation.ability;
     }
 
     public boolean isActionUsed() {

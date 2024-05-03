@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Player extends User{
     private boolean passed;
-    private Faction faction;
+    private String faction;
     private Card leader;
     private ArrayList<Card> deck;
     private ArrayList<Card> hand;
@@ -32,11 +32,11 @@ public class Player extends User{
         this.passed = passed;
     }
 
-    public Faction getFaction() {
+    public String getFaction() {
         return faction;
     }
 
-    public void setFaction(Faction faction) {
+    public void setFaction(String faction) {
         this.faction = faction;
     }
 

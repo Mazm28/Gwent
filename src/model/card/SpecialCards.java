@@ -10,7 +10,7 @@ public class SpecialCards extends Card{
     private int type;
     private int power;
     private int countInGame;
-    private Method ability;
+    private String ability;
 
 
     public SpecialCards(SpecialCardInformation specialCardInformation) {
@@ -19,6 +19,5 @@ public class SpecialCards extends Card{
         this.power = specialCardInformation.power;
         this.countInGame = specialCardInformation.countInGame;
         this.ability = specialCardInformation.ability;
-        ability.invoke()
     }
 }

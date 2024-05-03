@@ -1,25 +1,23 @@
 package model.card;
 
-import model.Faction;
-
-import java.util.function.Function;
+import java.lang.reflect.Method;
 
 public class RegularCards extends Card {
     private String name;
     private int power;
     private int countInGame;
     private int type;
-    private Function ability;
+    private Method ability;
     private boolean hero;
-    private Faction faction;
+    private String faction;
 
-    public RegularCards(String name, int power, int countInGame, int type, Function ability, boolean hero, Faction faction) {
-        this.name = name;
-        this.power = power;
-        this.countInGame = countInGame;
-        this.type = type;
-        this.ability = ability;
-        this.hero = hero;
-        this.faction = faction;
+    public RegularCards(RegularCardInformation regularCardInformation) {
+        this.name = regularCardInformation.name;
+        this.power = regularCardInformation.power;
+        this.countInGame = regularCardInformation.countInGame;
+        this.type = regularCardInformation.type;
+        this.ability = regularCardInformation.ability;
+        this.hero = regularCardInformation.hero;
+        this.faction = regularCardInformation.faction;
     }
 }
