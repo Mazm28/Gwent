@@ -1,6 +1,9 @@
-package model;
+package controller;
 
-public interface Action {
+import model.Game;
+import model.card.Card;
+
+public class ActionController {
     public static void executeCommanderHorn(Game game, int row) {
 
     }
@@ -59,4 +62,5 @@ public interface Action {
     public static void executeTorrentialRain(Game game) {
 
     }
+
 }
