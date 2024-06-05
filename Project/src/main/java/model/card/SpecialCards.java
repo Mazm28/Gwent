@@ -10,7 +10,7 @@ public class SpecialCards extends Card{
     private int type;
     private int power;
     private int countInGame;
-    private String ability;
+    private Runnable ability;
 
 
     public SpecialCards(SpecialCardInformation specialCardInformation) {

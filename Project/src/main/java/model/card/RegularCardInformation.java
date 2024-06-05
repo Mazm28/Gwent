@@ -8,10 +8,10 @@ public enum RegularCardInformation {
     int power;
     int countInGame;
     int type;
-    Method ability;
+    Runnable ability;
     boolean hero;
     String faction;
-    RegularCardInformation(String name, int power, int countInGame, int type, Method ability, boolean hero , String faction) {
+    RegularCardInformation(String name, int power, int countInGame, int type, Runnable ability, boolean hero , String faction) {
         this.name = name;
         this.power = power;
         this.countInGame = countInGame;

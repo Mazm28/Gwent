@@ -10,8 +10,8 @@ public enum SpecialCardInformation {
     int power;
     int countInGame;
     int type;
-    String ability;
-    SpecialCardInformation(String name, int power, int countInGame, int type, String ability) {
+    Runnable ability;
+    SpecialCardInformation(String name, int power, int countInGame, int type, Runnable ability) {
         this.name = name;
         this.power = power;
         this.countInGame = countInGame;

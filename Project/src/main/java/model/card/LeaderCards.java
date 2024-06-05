@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 public class LeaderCards extends Card{
     private String name;
     private String faction;
-    private Method ability;
+    private Runnable ability;
     private boolean actionUsed;
 
     public LeaderCards(LeaderCardInformation leaderCardInformation) {
