@@ -143,8 +143,13 @@ public class ActionController {
 
     }
 
-    public static void executeCrachanCraite(Game game) {
+    public static Runnable executeCrachanCraite(Game game) {
+        return new Runnable() {
+            @Override
+            public void run() {
 
+            }
+        };
     }
 
     public static void executeKingBran(Game game) {

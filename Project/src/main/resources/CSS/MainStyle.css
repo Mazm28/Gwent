@@ -1,0 +1,47 @@
+.parent{
+    -fx-background-color: transparent;
+}
+
+.pane{
+    -fx-background-color: #A91D3A;
+}
+
+.button-52 {
+    -fx-font-size: 16px;
+    -fx-font-weight: 200;
+    /*-fx-padding: 13px 20px;*/
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-background-color: transparent;
+}
+
+.button-52:hover {
+    -fx-background-color: #C73659;
+    -fx-position: absolute;
+    -fx-transition: top 0.5s, left 0.5s;
+    -fx-top: 20px;
+    -fx-left: 20px;
+}
+
+.button-52:hover:hover {
+    -fx-top: 20px;
+    -fx-left: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .button-52 {
+        -fx-padding: 13px 50px;
+    }
+}
+
+.tf_box{
+    -fx-background-color: transparent;
+    -fx-border-color: #DEDEE4;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-text-fill: #ffffff;
+}
+
+.login-menu-vbox {
+    -fx-background-color: #FFFFFF;
+    -fx-opacity: 10%;
+}

@@ -1,4 +1,4 @@
-module Project {
+module project {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.media;

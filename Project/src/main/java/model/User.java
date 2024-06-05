@@ -21,6 +21,15 @@ public class User {
         users.add(this);
     }
 
+    public static User getUserByUsername(String username) {
+        for (User user : users) {
+            if (user.username.equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     public static User getLoggedInUser() {
         return loggedInUser;
     }

@@ -1,5 +1,7 @@
 package model.card;
 
+import controller.ActionController;
+
 import java.lang.reflect.Method;
 
 public enum LeaderCardInformation {
