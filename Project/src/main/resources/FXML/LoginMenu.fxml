@@ -31,13 +31,13 @@
                   <Font size="17.0" />
                </font>
             </PasswordField>
-            <Button fx:id="signIn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Sign In">
+            <Button fx:id="signIn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Sign In" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
             </Button>
-            <Button fx:id="signUp" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Sign Up" onMouseClicked="#signUp"/>
-            <Button fx:id="forgotPassword" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Forget Password"/>
+            <Button fx:id="signUp" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Sign Up" textFill="WHITE" />
+            <Button fx:id="forgotPassword" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Forget Password" textFill="WHITE" onMouseClicked="#forgetPassword"/>
          </children>
       </VBox>
    </children>

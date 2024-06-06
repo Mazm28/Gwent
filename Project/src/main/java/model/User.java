@@ -1,5 +1,7 @@
 package model;
 
+import Regexes.SelectQuestionTexts;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,7 +13,8 @@ public class User {
     private String password;
     private String email;
     private String nickname;
-    private HashMap<Integer, String> securityQuestion = new HashMap<>();
+    private SelectQuestionTexts selectQuestionTexts;
+    private String answer;
 
     public User(String username, String password, String email, String nickname) {
         this.username = username;
@@ -62,10 +65,6 @@ public class User {
         return users;
     }
 
-    public void addToSecurityQuestions(int qNumber, String answer) {
-        securityQuestion.put(qNumber, answer);
-    }
-
     public void addToGameRecords(GameRecords gameRecords){
         this.gameRecords.add(gameRecords);
     }
@@ -86,7 +85,19 @@ public class User {
         return nickname;
     }
 
-    public HashMap<Integer, String> getSecurityQuestion() {
-        return securityQuestion;
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setSelectQuestionTexts(SelectQuestionTexts selectQuestionTexts) {
+        this.selectQuestionTexts = selectQuestionTexts;
+    }
+
+    public SelectQuestionTexts getSelectQuestionTexts() {
+        return selectQuestionTexts;
     }
 }

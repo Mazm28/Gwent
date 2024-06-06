@@ -43,6 +43,8 @@ public class RegisterMenu{
         String nicknameString = nickname.getText();
         if (!RegisterRegexes.getMatcher(usernameString, RegisterRegexes.USERNAME).matches()) {
             error.setText("Invalid Username");
+        } else if (!RegisterRegexes.getMatcher(nicknameString, RegisterRegexes.USERNAME).matches()) {
+            error.setText("Invalid nickname format");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD_WEAKNESS1).matches()) {
             error.setText("where is uppercase bro?");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD_WEAKNESS2).matches()) {

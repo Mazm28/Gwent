@@ -35,4 +35,16 @@ public class LoginMenu {
             e.printStackTrace();
         }
     }
+
+    public void forgetPassword() {
+        User user = User.getUserByUsername(username.getText());
+        if (user == null) error.setText("write your real username");
+        else {
+            try {
+                Launcher.changeScene("/FXML/AnswerQuestion.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
