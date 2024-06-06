@@ -22,7 +22,7 @@ public class ChoosingOpponent {
     public void confirm(MouseEvent mouseEvent){
         if(User.getUserByUsername(username.getText()) == null)
             error.setText("No such user!");
-        else if(User.getUserByUsername(username.getText()) == User.getLoggedInUser())
+        else if(username.getText().equals(User.getLoggedInUser().getUsername()))
             error.setText("You cannot play with yourself!");
         else{
             String player1Username = User.getLoggedInUser().getUsername();

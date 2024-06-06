@@ -7,14 +7,14 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenu">
     <children>
-        <ImageView fitHeight="407.0" fitWidth="724.0">
+        <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
                 <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
             </image>
         </ImageView>
-        <VBox layoutX="178.0" layoutY="36.0" prefHeight="335.0" prefWidth="369.0" styleClass="login-menu-vbox" />
-        <VBox alignment="CENTER" layoutX="193.0" layoutY="32.0" prefHeight="327.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
-            <children>
+        <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
+        <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
+        <children>
                 <Button fx:id="newGameButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="New Game" textFill="WHITE" onMouseClicked="#newGame">
                     <font>
                         <Font size="10.0" />

@@ -28,7 +28,7 @@ public class PreGameMenu {
 
     @FXML
     void initialize(){
-        turn.setText(User.getLoggedInUser().getUsername() + "'s turn");
+        turn.setText(player1.getUsername() + "'s turn\n\n" + player1.getUsername() + " is not ready\n" + player2.getUsername() + " is not ready");
     }
     public static Player getPlayer1() {
         return player1;
@@ -56,15 +56,21 @@ public class PreGameMenu {
 
     public void ready(MouseEvent mouseEvent){
         if(!player1Turn){
-            try {
-                Launcher.changeScene("/FXML/GameMenu.fxml");
-            } catch (IOException e) {
-                e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Are you sure you want to start the game?");
+            Optional<ButtonType> buttonType = alert.showAndWait();
+            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
+                try {
+                    Launcher.changeScene("/FXML/GameMenu.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         else {
             player1Turn = false;
-            turn.setText(player2.getUsername() + "'s turn");
+            turn.setText(player2.getUsername() + "'s turn\n\n" + player1.getUsername() + " is ready\n" + player2.getUsername() + " is not ready");
+
         }
 
     }
