@@ -18,7 +18,7 @@ public class MainMenu{
 
     public void newGame(MouseEvent mouseEvent) {
         try {
-            Launcher.changeScene("/FXML/PreGameMenu.fxml");
+            Launcher.changeScene("/FXML/ChoosingOpponent.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +28,7 @@ public class MainMenu{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("do you want to logout?");
         Optional<ButtonType> buttonType = alert.showAndWait();
-        if (buttonType.isPresent() && buttonType.get().equals(ButtonType.YES)) {
+        if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
             User.setLoggedInUser(null);
             try {
                 Launcher.changeScene("/FXML/LoginMenu.fxml");

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChoosingOpponent">
+    <children>
+        <ImageView fitHeight="407.0" fitWidth="724.0">
+            <image>
+                <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
+            </image>
+        </ImageView>
+        <VBox layoutX="178.0" layoutY="36.0" prefHeight="335.0" prefWidth="369.0" styleClass="login-menu-vbox" />
+        <VBox alignment="CENTER" layoutX="193.0" layoutY="32.0" prefHeight="327.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
+            <children>
+                <Label fx:id="error" styleClass="tf_box" textFill="#a91d3a" />
+                <Label styleClass="tf_box" text="Enter your opponent's username" />
+                <TextField fx:id="username" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="username" styleClass="tf_box">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </TextField>
+                <Button fx:id="confirmButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Confirm" textFill="WHITE" onMouseClicked="#confirm">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="profileMenuButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#mainMenu" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

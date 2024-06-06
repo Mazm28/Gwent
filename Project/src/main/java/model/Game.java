@@ -37,5 +37,19 @@ public class Game {
         return roundNumber;
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 
+    public Player getOpponent() {
+        return opponent;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public void setOpponent(Player opponent) {
+        this.opponent = opponent;
+    }
 }

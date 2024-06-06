@@ -17,6 +17,7 @@ public class Player extends User{
     public Player(String username, String password, String email, String nickname) {
         super(username, password, email, nickname);
     }
+
     public void addToDeck(Card card){
         this.deck.add(card);
     }
