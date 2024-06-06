@@ -2,6 +2,7 @@ package view;
 
 import Regexes.FXMLAddresses;
 import Regexes.RegisterRegexes;
+import controller.SaveUsersController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.App;
@@ -43,25 +44,25 @@ public class RegisterMenu{
         String emailString = email.getText();
         String nicknameString = nickname.getText();
         if (!RegisterRegexes.getMatcher(usernameString, RegisterRegexes.USERNAME).matches()) {
-            error.setText("Invalid Username");
+            error.setText("Invalid Username format!");
         } else if (!RegisterRegexes.getMatcher(nicknameString, RegisterRegexes.USERNAME).matches()) {
-            error.setText("Invalid nickname format");
+            error.setText("Invalid nickname format!");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD_WEAKNESS1).matches()) {
-            error.setText("where is uppercase bro?");
+            error.setText("Your password must contain an uppercase letter!");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD_WEAKNESS2).matches()) {
-            error.setText("where is special letter?");
+            error.setText("Your password must contain a special letter!");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD_WEAKNESS3).matches()) {
-            error.setText("where is number?");
+            error.setText("Your password must contain a number!");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD_WEAKNESS4).matches()) {
-            error.setText("where is lowercase letter?");
+            error.setText("Your password must contain a lowercase letter!");
         } else if (passwordString.length() < 8) {
             error.setText("Your password is too short!");
         } else if (!RegisterRegexes.getMatcher(emailString, RegisterRegexes.EMAIL).matches()) {
             error.setText("Wrong email format!");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD).matches()) {
-            error.setText("Invalid password format");
+            error.setText("Invalid password format!");
         } else if (User.getUserByUsername(usernameString) != null) {
-            error.setText("There is a user with given username");
+            error.setText("There is a user with given username!");
             String newUsername = usernameString + App.getRandom().nextInt();
             while (User.getUserByUsername(newUsername) != null) {
                 newUsername = usernameString + App.getRandom().nextInt();
@@ -71,7 +72,10 @@ public class RegisterMenu{
             Optional<ButtonType> buttonType = alert.showAndWait();
             if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
                 User user = new User(newUsername, passwordString, emailString, nicknameString);
-                User.setLoggedInUser(user);
+                ArrayList<User> users = SaveUsersController.getUsers();
+                users.add(user);
+                SaveUsersController.SaveUsers(users);
+                User.setTempUser(user);
                 try {
                     Launcher.changeScene(FXMLAddresses.SELECTQUESTION.getAddress());
                 } catch (IOException e) {
@@ -79,8 +83,11 @@ public class RegisterMenu{
                 }
             }
         } else {
+            ArrayList<User> users = SaveUsersController.getUsers();
             User user = new User(usernameString, passwordString, emailString, nicknameString);
-            User.setLoggedInUser(user);
+            users.add(user);
+            SaveUsersController.SaveUsers(users);
+            User.setTempUser(user);
             try {
                 Launcher.changeScene(FXMLAddresses.SELECTQUESTION.getAddress());
             } catch (IOException e) {
@@ -95,7 +102,6 @@ public class RegisterMenu{
         passwordString.add(LOWERCASE.charAt(random.nextInt(LOWERCASE.length())));
         passwordString.add(DIGITS.charAt(random.nextInt(DIGITS.length())));
         passwordString.add(SPECIAL_CHARACTERS.charAt(random.nextInt(SPECIAL_CHARACTERS.length())));
-
         String allCharacters = UPPERCASE + LOWERCASE + DIGITS + SPECIAL_CHARACTERS;
         for (int i = 4; i < 8; i++) {
             passwordString.add(allCharacters.charAt(random.nextInt(allCharacters.length())));

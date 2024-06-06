@@ -1,5 +1,6 @@
 package view;
 
+import Regexes.FXMLAddresses;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -12,6 +13,8 @@ import java.util.ResourceBundle;
 
 public class AnswerQuestion implements Initializable {
     @FXML
+    private TextField username;
+    @FXML
     private Label error;
     @FXML
     private Label question;
@@ -19,23 +22,24 @@ public class AnswerQuestion implements Initializable {
     private TextField answer;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        question.setText(User.getLoggedInUser().getSelectQuestionTexts().getText());
+        question.setText(User.getTempUser().getSelectQuestionTexts().getText());
     }
 
     public void checkAnswer() {
-        User user = User.getLoggedInUser();
+        User user = User.getTempUser();
         if (user.getAnswer().equals(answer.getText())) {
             try {
+                User.setLoggedInUser(user);
                 Launcher.changeScene("/FXML/MainMenu.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else error.setText("wrong answer!");
+        } else error.setText("Wrong answer!");
     }
 
     public void back() {
         try {
-            Launcher.changeScene("/FXML/LoginMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.LOGINMENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }

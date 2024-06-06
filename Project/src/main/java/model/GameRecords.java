@@ -2,10 +2,11 @@ package model;
 
 import model.card.RegularCardInformation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class GameRecords {
+public class GameRecords implements Serializable {
     private int[][] pointsInEachRound = new int[2][3];
     private int[] finalPoints = new int[2];
     private Date date;

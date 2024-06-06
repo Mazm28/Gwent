@@ -18,10 +18,11 @@ public class LoginMenu {
     private Label error;
     public void signIn() {
         User user = User.getUserByUsername(username.getText());
-        if (user == null) error.setText("Who??");
-        else if (!user.getPassword().equals(password.getText())) error.setText("Liar!");
+        if (user == null) error.setText("No such user exists!");
+        else if (!user.getPassword().equals(password.getText())) error.setText("Wrong Password!");
         else {
             try {
+                User.setLoggedInUser(user);
                 Launcher.changeScene(FXMLAddresses.MAINMENU.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -39,9 +40,10 @@ public class LoginMenu {
 
     public void forgetPassword() {
         User user = User.getUserByUsername(username.getText());
-        if (user == null) error.setText("write your real username");
+        if (user == null) error.setText("No such user exists");
         else {
             try {
+                User.setTempUser(user);
                 Launcher.changeScene(FXMLAddresses.ANSWERQUESTION.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();

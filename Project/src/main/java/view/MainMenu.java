@@ -1,5 +1,6 @@
 package view;
 
+import Regexes.FXMLAddresses;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -31,7 +32,7 @@ public class MainMenu{
         if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
             User.setLoggedInUser(null);
             try {
-                Launcher.changeScene("/FXML/LoginMenu.fxml");
+                Launcher.changeScene(FXMLAddresses.LOGINMENU.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }

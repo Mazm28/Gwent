@@ -1,6 +1,8 @@
 package Regexes;
 
-public enum SelectQuestionTexts {
+import java.io.Serializable;
+
+public enum SelectQuestionTexts implements Serializable {
     QUESTION1("Your favorite football player?"),
     QUESTION2("Your favorite video game?"),
     QUESTION3("Your favorite movie?");

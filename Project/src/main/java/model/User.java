@@ -1,13 +1,14 @@
 package model;
 
 import Regexes.SelectQuestionTexts;
+import controller.SaveUsersController;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class User {
+public class User implements Serializable {
     private static User loggedInUser;
-    private static ArrayList<User> users = new ArrayList<>();
     private ArrayList<GameRecords> gameRecords = new ArrayList<>();
     private String username;
     private String password;
@@ -15,17 +16,31 @@ public class User {
     private String nickname;
     private SelectQuestionTexts selectQuestionTexts;
     private String answer;
+    private int id;
+    private static User tempUser;
+
+    public static User getTempUser() {
+        return tempUser;
+    }
+
+    public static void setTempUser(User tempUser) {
+        User.tempUser = tempUser;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public User(String username, String password, String email, String nickname) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.nickname = nickname;
-        users.add(this);
+        this.id = SaveUsersController.getUsers().size();
     }
 
     public static User getUserByUsername(String username) {
-        for (User user : users) {
+        for (User user : SaveUsersController.getUsers()) {
             if (user.username.equals(username)) {
                 return user;
             }
@@ -55,14 +70,6 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    public static User getUserWithUsername(String username) {
-        return null;
-    }
-
-    public static ArrayList<User> getUsers() {
-        return users;
     }
 
     public void addToGameRecords(GameRecords gameRecords){
