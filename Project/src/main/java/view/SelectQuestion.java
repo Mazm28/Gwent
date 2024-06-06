@@ -1,6 +1,8 @@
 package view;
 
+import Regexes.FXMLAddresses;
 import Regexes.SelectQuestionTexts;
+import controller.SaveUsersController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.User;
@@ -24,11 +26,12 @@ public class SelectQuestion {
     }
 
     private void setQuestion(SelectQuestionTexts selectQuestionTexts) {
-        User user = User.getLoggedInUser();
+        User user = User.getTempUser();
         user.setSelectQuestionTexts(selectQuestionTexts);
         user.setAnswer(answer.getText());
+        SaveUsersController.SaveInfo(user);
         try {
-            Launcher.changeScene("/FXML/MainMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.LOGINMENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
