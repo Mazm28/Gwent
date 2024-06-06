@@ -1,5 +1,6 @@
 package view;
 
+import Regexes.FXMLAddresses;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +24,7 @@ public class Launcher extends Application{
         primaryStage = stage;
         stage.setResizable(false);
 //        TODO: set icon
-        URL url = getClass().getResource("/FXML/LoginMenu.fxml");
+        URL url = getClass().getResource(FXMLAddresses.LOGINMENU.getAddress());
         assert url != null;
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);

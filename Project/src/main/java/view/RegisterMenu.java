@@ -1,5 +1,6 @@
 package view;
 
+import Regexes.FXMLAddresses;
 import Regexes.RegisterRegexes;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -30,7 +31,7 @@ public class RegisterMenu{
     private static final SecureRandom random = new SecureRandom();
     public void signIn() {
         try {
-            Launcher.changeScene("/FXML/LoginMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.LOGINMENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,6 +54,8 @@ public class RegisterMenu{
             error.setText("where is number?");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD_WEAKNESS4).matches()) {
             error.setText("where is lowercase letter?");
+        } else if (passwordString.length() < 8) {
+            error.setText("Your password is too short!");
         } else if (!RegisterRegexes.getMatcher(emailString, RegisterRegexes.EMAIL).matches()) {
             error.setText("Wrong email format!");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD).matches()) {
@@ -70,7 +73,7 @@ public class RegisterMenu{
                 User user = new User(newUsername, passwordString, emailString, nicknameString);
                 User.setLoggedInUser(user);
                 try {
-                    Launcher.changeScene("/FXML/SelectQuestion.fxml");
+                    Launcher.changeScene(FXMLAddresses.SELECTQUESTION.getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -79,7 +82,7 @@ public class RegisterMenu{
             User user = new User(usernameString, passwordString, emailString, nicknameString);
             User.setLoggedInUser(user);
             try {
-                Launcher.changeScene("/FXML/SelectQuestion.fxml");
+                Launcher.changeScene(FXMLAddresses.SELECTQUESTION.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -92,6 +95,11 @@ public class RegisterMenu{
         passwordString.add(LOWERCASE.charAt(random.nextInt(LOWERCASE.length())));
         passwordString.add(DIGITS.charAt(random.nextInt(DIGITS.length())));
         passwordString.add(SPECIAL_CHARACTERS.charAt(random.nextInt(SPECIAL_CHARACTERS.length())));
+
+        String allCharacters = UPPERCASE + LOWERCASE + DIGITS + SPECIAL_CHARACTERS;
+        for (int i = 4; i < 8; i++) {
+            passwordString.add(allCharacters.charAt(random.nextInt(allCharacters.length())));
+        }
         Collections.shuffle(passwordString);
 
         StringBuilder passwordBuilder = new StringBuilder();
