@@ -1,5 +1,6 @@
 package view;
 
+import Regexes.FXMLAddresses;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -21,7 +22,7 @@ public class LoginMenu {
         else if (!user.getPassword().equals(password.getText())) error.setText("Liar!");
         else {
             try {
-                Launcher.changeScene("/FXML/MainMenu.fxml");
+                Launcher.changeScene(FXMLAddresses.MAINMENU.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -30,7 +31,7 @@ public class LoginMenu {
 
     public void signUp() {
         try {
-            Launcher.changeScene("/FXML/RegisterMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.REGISTERMENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,7 +42,7 @@ public class LoginMenu {
         if (user == null) error.setText("write your real username");
         else {
             try {
-                Launcher.changeScene("/FXML/AnswerQuestion.fxml");
+                Launcher.changeScene(FXMLAddresses.ANSWERQUESTION.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
