@@ -29,6 +29,8 @@ public class RegisterMenu{
     private TextField nickname;
     @FXML
     private TextField password;
+    @FXML
+    private TextField repeatPassword;
     private static final SecureRandom random = new SecureRandom();
     public void signIn() {
         try {
@@ -43,6 +45,7 @@ public class RegisterMenu{
         String usernameString = username.getText();
         String emailString = email.getText();
         String nicknameString = nickname.getText();
+        String repeatPasswordString = repeatPassword.getText();
         if (!RegisterRegexes.getMatcher(usernameString, RegisterRegexes.USERNAME).matches()) {
             error.setText("Invalid Username format!");
         } else if (!RegisterRegexes.getMatcher(nicknameString, RegisterRegexes.USERNAME).matches()) {
@@ -61,6 +64,8 @@ public class RegisterMenu{
             error.setText("Wrong email format!");
         } else if (!RegisterRegexes.getMatcher(passwordString, RegisterRegexes.PASSWORD).matches()) {
             error.setText("Invalid password format!");
+        } else if (!repeatPasswordString.equals(passwordString)) {
+            error.setText("Repeat your password correctly!");
         } else if (User.getUserByUsername(usernameString) != null) {
             error.setText("There is a user with given username!");
             String newUsername = usernameString + App.getRandom().nextInt();

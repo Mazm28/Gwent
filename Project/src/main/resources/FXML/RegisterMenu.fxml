@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="view.RegisterMenu">
    <children>
       <ImageView fitHeight="700" fitWidth="1000">
          <image>
@@ -32,6 +36,11 @@
                </font>
             </TextField>
             <TextField fx:id="password" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="password" styleClass="tf_box">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="repeatPassword" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="repeat password" styleClass="tf_box">
                <font>
                   <Font size="17.0" />
                </font>
