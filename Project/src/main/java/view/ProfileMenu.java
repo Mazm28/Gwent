@@ -59,7 +59,11 @@ public class ProfileMenu{
     }
 
     public void mainMenu() {
-        MainMenuController.lunchMainMenu();
+        try {
+            Launcher.changeScene(FXMLAddresses.MAINMENU.getAddress());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showGameHistory(MouseEvent mouseEvent) {

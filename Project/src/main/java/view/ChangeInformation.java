@@ -38,6 +38,9 @@ public class ChangeInformation {
                 if (!RegisterRegexes.getMatcher(newInfo.getText(), RegisterRegexes.USERNAME).matches()) {
                     error.setText("Invalid Username format!");
                     return;
+                } else if (User.getLoggedInUser().getUsername().equals(newInfo.getText())) {
+                    error.setText("Same Username");
+                    return;
                 }
                 if (User.getUserByUsername(newInfo.getText()) != null) {
                     error.setText("There is a user with given username!");
@@ -49,6 +52,9 @@ public class ChangeInformation {
                 if (!RegisterRegexes.getMatcher(newInfo.getText(), RegisterRegexes.EMAIL).matches()) {
                     error.setText("Wrong email format!");
                     return;
+                } else if (User.getLoggedInUser().getEmail().equals(newInfo.getText())) {
+                    error.setText("Same Email");
+                    return;
                 }
                 User.getLoggedInUser().setEmail(newInfo.getText());
                 break;
@@ -56,11 +62,14 @@ public class ChangeInformation {
                 if (!RegisterRegexes.getMatcher(newInfo.getText(), RegisterRegexes.USERNAME).matches()) {
                     error.setText("Invalid nickname format!");
                     return;
+                } else if (User.getLoggedInUser().getNickname().equals(newInfo.getText())) {
+                    error.setText("Same nickname");
+                    return;
                 }
                 User.getLoggedInUser().setNickname(newInfo.getText());
                 break;
             case "Password":
-                if (!User.getLoggedInUser().getPassword().equals(newInfo.getText())) {
+                if (!User.getLoggedInUser().getPassword().equals(oldPassword.getText())) {
                     error.setText("Wrong Old Password!");
                     return;
                 } else if (!RegisterRegexes.getMatcher(newInfo.getText(), RegisterRegexes.PASSWORD_WEAKNESS1).matches()) {
@@ -83,6 +92,9 @@ public class ChangeInformation {
                     return;
                 } else if (!reenterNewPassword.getText().equals(newInfo.getText())) {
                     error.setText("Repeat your password correctly!");
+                    return;
+                } else if (User.getLoggedInUser().getPassword().equals(newInfo.getText())) {
+                    error.setText("Same Password!");
                     return;
                 }
                 User.getLoggedInUser().setPassword(newInfo.getText());
