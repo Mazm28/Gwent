@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import model.User;
 
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class LoginMenu {
         else {
             try {
                 User.setLoggedInUser(user);
-                Launcher.changeScene(FXMLAddresses.MAINMENU.getAddress());
+                Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -32,7 +34,7 @@ public class LoginMenu {
 
     public void signUp() {
         try {
-            Launcher.changeScene(FXMLAddresses.REGISTERMENU.getAddress());
+            Launcher.changeScene(FXMLAddresses.REGISTER_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,10 +46,14 @@ public class LoginMenu {
         else {
             try {
                 User.setTempUser(user);
-                Launcher.changeScene(FXMLAddresses.ANSWERQUESTION.getAddress());
+                Launcher.changeScene(FXMLAddresses.ANSWER_QUESTION.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void signIn2(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)) signIn();
     }
 }

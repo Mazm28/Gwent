@@ -31,7 +31,7 @@ public class SelectQuestion {
         user.setAnswer(answer.getText());
         SaveUsersController.SaveInfo(user);
         try {
-            Launcher.changeScene(FXMLAddresses.LOGINMENU.getAddress());
+            Launcher.changeScene(FXMLAddresses.LOGIN_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }

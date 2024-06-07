@@ -40,7 +40,7 @@
                   <Font size="17.0" />
                </font>
             </TextField>
-            <TextField fx:id="repeatPassword" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="repeat password" styleClass="tf_box">
+            <TextField fx:id="repeatPassword" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="repeat password" styleClass="tf_box" onKeyPressed="#signUp2">
                <font>
                   <Font size="17.0" />
                </font>

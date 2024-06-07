@@ -60,7 +60,7 @@ public class ProfileMenu{
 
     public void mainMenu() {
         try {
-            Launcher.changeScene(FXMLAddresses.MAINMENU.getAddress());
+            Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,7 +68,7 @@ public class ProfileMenu{
 
     public void showGameHistory(MouseEvent mouseEvent) {
         try {
-            Launcher.changeScene(FXMLAddresses.GAME_HISTORY.getAddress());
+            Launcher.changeScene(FXMLAddresses.SHOW_GAME_HISTORY.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }

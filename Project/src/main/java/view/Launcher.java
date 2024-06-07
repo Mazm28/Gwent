@@ -40,7 +40,7 @@ public class Launcher extends Application{
         stage.setHeight(App.getHEIGHT());
         stage.setResizable(false);
         stage.getIcons().add(new Image(Objects.requireNonNull(Launcher.class.getResource(ImageAddresses.ICON.getAddress())).toExternalForm()));
-        URL url = getClass().getResource(FXMLAddresses.LOGINMENU.getAddress());
+        URL url = getClass().getResource(FXMLAddresses.LOGIN_MENU.getAddress());
         assert url != null;
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);

@@ -19,7 +19,7 @@ public class MainMenu{
 
     public void newGame(MouseEvent mouseEvent) {
         try {
-            Launcher.changeScene("/FXML/ChoosingOpponent.fxml");
+            Launcher.changeScene(FXMLAddresses.CHOOSE_OPPONENT.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,7 +32,7 @@ public class MainMenu{
         if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
             User.setLoggedInUser(null);
             try {
-                Launcher.changeScene(FXMLAddresses.LOGINMENU.getAddress());
+                Launcher.changeScene(FXMLAddresses.LOGIN_MENU.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -41,7 +41,7 @@ public class MainMenu{
 
     public void profileMenu(MouseEvent mouseEvent) {
         try {
-            Launcher.changeScene("/FXML/ProfileMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.PROFILE_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }

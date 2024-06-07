@@ -13,8 +13,12 @@
             </image>
         </ImageView>
         <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
-        <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
+        <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="30.0" stylesheets="@../CSS/MainStyle.css">
             <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="136.0" prefWidth="226.0" styleClass="tf_box" text="Gwent">
+               <font>
+                  <Font name="DejaVu Serif Condensed Bold" size="58.0" />
+               </font></Label>
                 <Button fx:id="newGameButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#newGame" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="New Game" textFill="WHITE">
                     <font>
                         <Font size="10.0" />

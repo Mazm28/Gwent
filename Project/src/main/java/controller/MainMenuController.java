@@ -1,5 +1,6 @@
 package controller;
 
+import Regexes.FXMLAddresses;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import view.Launcher;
@@ -14,7 +15,7 @@ public class MainMenuController {
         Optional<ButtonType> buttonType = alert.showAndWait();
         if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
             try {
-                Launcher.changeScene("/FXML/MainMenu.fxml");
+                Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -12,7 +12,7 @@ public class Game {
     private Round round1;
     private Round round2;
     private Round round3;
-    public Round getRound(int roundNumber){
+    public Round round(int roundNumber){
         return switch (roundNumber) {
             case 1 -> round1;
             case 2 -> round2;

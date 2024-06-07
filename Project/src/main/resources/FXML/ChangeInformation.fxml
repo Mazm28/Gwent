@@ -21,12 +21,12 @@
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="newInfo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="email" styleClass="tf_box">
+                <TextField fx:id="newInfo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="email" styleClass="tf_box" onKeyPressed="#change">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="reenterNewPassword" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="nickname" styleClass="tf_box">
+                <TextField fx:id="reenterNewPassword" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="nickname" onKeyPressed="#change" styleClass="tf_box">
                     <font>
                         <Font size="17.0" />
                     </font>

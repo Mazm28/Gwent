@@ -1,5 +1,6 @@
 package view;
 
+import Regexes.FXMLAddresses;
 import controller.MainMenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -7,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import model.App;
 import model.Game;
 import model.Player;
 import model.User;
@@ -69,7 +71,9 @@ public class PreGameMenu {
             Optional<ButtonType> buttonType = alert.showAndWait();
             if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
                 try {
-                    Launcher.changeScene("/FXML/GameMenu.fxml");
+                    Game game = new Game(player1,player2);
+                    App.setGame(game);
+                    Launcher.changeScene(FXMLAddresses.GAME_MENU.getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -84,7 +88,7 @@ public class PreGameMenu {
 
     public void showFactions(){
         try {
-            Launcher.changeScene("/FXML/FactionsMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.FACTION_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,7 +96,7 @@ public class PreGameMenu {
 
     public void showCards(MouseEvent mouseEvent){
         try {
-            Launcher.changeScene("/FXML/CardsMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.CARDS_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +104,7 @@ public class PreGameMenu {
 
     public void showDeck(MouseEvent mouseEvent) {
         try {
-            Launcher.changeScene("/FXML/DeckMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.DECK_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -108,7 +112,7 @@ public class PreGameMenu {
 
     public void showLeaders(MouseEvent mouseEvent) {
         try {
-            Launcher.changeScene("/FXML/LeadersMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.LEADER_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }

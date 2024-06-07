@@ -12,7 +12,7 @@
                 <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
             </image>
         </ImageView>
-        <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="368.0" styleClass="login-menu-vbox" />
+        <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="368.0" style="-fx-background-radius: 20;" styleClass="login-menu-vbox" />
         <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
             <children>
             <Label fx:id="error" alignment="CENTER" prefHeight="18.0" prefWidth="328.0" textAlignment="CENTER" textFill="#a91d3a" />
@@ -20,7 +20,7 @@
                <font>
                   <Font size="21.0" />
                </font></Label>
-                <TextField fx:id="answer" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="Answer" styleClass="tf_box">
+                <TextField onKeyPressed="#answer" fx:id="answer" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="Answer" styleClass="tf_box">
                     <font>
                         <Font size="17.0" />
                     </font>

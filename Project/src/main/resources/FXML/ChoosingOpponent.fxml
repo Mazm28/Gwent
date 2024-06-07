@@ -17,7 +17,7 @@
         <children>
                 <Label fx:id="error" styleClass="tf_box" textFill="#a91d3a" />
                 <Label styleClass="tf_box" text="Enter your opponent's username" />
-                <TextField fx:id="username" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="username" styleClass="tf_box">
+                <TextField onKeyPressed="#confirm2" fx:id="username" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="username" styleClass="tf_box">
                     <font>
                         <Font size="17.0" />
                     </font>

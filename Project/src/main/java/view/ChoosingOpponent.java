@@ -1,10 +1,13 @@
 package view;
 
+import Regexes.FXMLAddresses;
 import controller.GameMenuController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Game;
 import model.Player;
@@ -19,7 +22,7 @@ public class ChoosingOpponent {
     public TextField username;
     public Label error;
 
-    public void confirm(MouseEvent mouseEvent){
+    public void confirm(){
         if(User.getUserByUsername(username.getText()) == null)
             error.setText("No such user!");
         else if(username.getText().equals(User.getLoggedInUser().getUsername()))
@@ -36,7 +39,7 @@ public class ChoosingOpponent {
             PreGameMenu.setPlayer1(new Player(player1Username, player1Password, player1Email, player1Nickname));
             PreGameMenu.setPlayer2(new Player(player2Username, player2Password, player2Email, player2Nickname));
             try {
-                Launcher.changeScene("/FXML/PreGameMenu.fxml");
+                Launcher.changeScene(FXMLAddresses.PRE_GAME_MENU.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -44,9 +47,13 @@ public class ChoosingOpponent {
     }
     public void mainMenu(MouseEvent mouseEvent){
         try {
-            Launcher.changeScene("/FXML/MainMenu.fxml");
+            Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void confirm2(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)) confirm();
     }
 }

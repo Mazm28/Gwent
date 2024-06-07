@@ -8,16 +8,19 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import model.GameRecord;
 import model.User;
+import view.ShowInformation;
 
 import java.util.Timer;
 
 public class ShowInfoController {
-    public void showBox(VBox box) {
+    public void showBox(VBox box, Label label) {
+        box.setScaleY(0);
         Timeline timeline = new Timeline();
         KeyValue keyValue = new KeyValue(box.scaleYProperty(),1);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(3),keyValue);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1),keyValue);
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
+        timeline.setOnFinished(event -> setLabel(label));
     }
 
     public void setLabel(Label label) {

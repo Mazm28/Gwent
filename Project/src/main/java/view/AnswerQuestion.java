@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import model.User;
 
 import java.io.IOException;
@@ -30,7 +32,7 @@ public class AnswerQuestion implements Initializable {
         if (user.getAnswer().equals(answer.getText())) {
             try {
                 User.setLoggedInUser(user);
-                Launcher.changeScene("/FXML/MainMenu.fxml");
+                Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -39,9 +41,13 @@ public class AnswerQuestion implements Initializable {
 
     public void back() {
         try {
-            Launcher.changeScene(FXMLAddresses.LOGINMENU.getAddress());
+            Launcher.changeScene(FXMLAddresses.LOGIN_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void answer(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)) checkAnswer();
     }
 }

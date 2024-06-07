@@ -15,10 +15,10 @@ public class ShowInformation {
     private Label label;
     @FXML
     private VBox box;
+
     private final ShowInfoController showInfoController = new ShowInfoController();
     public void initialize(){
-        showInfoController.showBox(box);
-        showInfoController.setLabel(label);
+        showInfoController.showBox(box,label);
     }
 
     public void profileMenu() {

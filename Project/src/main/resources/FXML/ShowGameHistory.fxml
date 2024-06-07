@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameHistory">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShowGameHistory">
     <children>
         <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
@@ -18,6 +18,7 @@
                 <Font name="DejaVu Serif Condensed Bold" size="20.0" />
             </font></Label>
         <Button alignment="TOP_CENTER" layoutX="421.0" layoutY="536.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#profileMenu" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" />
-      <TextField fx:id="number" alignment="CENTER" layoutX="340.0" layoutY="93.0" onKeyPressed="#show" prefHeight="26.0" prefWidth="321.0" promptText="Enter game number..." styleClass="tf_box" />
+      <TextField fx:id="number" alignment="CENTER" layoutX="340.0" layoutY="93.0" onKeyPressed="#show" prefHeight="27.0" prefWidth="209.0" promptText="Enter game number" styleClass="tf_box" />
+      <Button layoutX="577.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#show2" styleClass="button-52" text="Show" textFill="WHITE" />
     </children>
 </AnchorPane>

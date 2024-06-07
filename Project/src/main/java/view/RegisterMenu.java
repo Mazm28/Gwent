@@ -5,6 +5,8 @@ import Regexes.RegisterRegexes;
 import controller.SaveUsersController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import model.App;
 import model.User;
 
@@ -34,7 +36,7 @@ public class RegisterMenu{
     private static final SecureRandom random = new SecureRandom();
     public void signIn() {
         try {
-            Launcher.changeScene(FXMLAddresses.LOGINMENU.getAddress());
+            Launcher.changeScene(FXMLAddresses.LOGIN_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,7 +48,9 @@ public class RegisterMenu{
         String emailString = email.getText();
         String nicknameString = nickname.getText();
         String repeatPasswordString = repeatPassword.getText();
-        if (!RegisterRegexes.getMatcher(usernameString, RegisterRegexes.USERNAME).matches()) {
+        if(passwordString.isEmpty() || usernameString.isEmpty() || emailString.isEmpty() || nicknameString.isEmpty()){
+            error.setText("You should fill all of the fields!");
+        } else if (!RegisterRegexes.getMatcher(usernameString, RegisterRegexes.USERNAME).matches()) {
             error.setText("Invalid Username format!");
         } else if (!RegisterRegexes.getMatcher(nicknameString, RegisterRegexes.USERNAME).matches()) {
             error.setText("Invalid nickname format!");
@@ -82,7 +86,7 @@ public class RegisterMenu{
                 SaveUsersController.SaveUsers(users);
                 User.setTempUser(user);
                 try {
-                    Launcher.changeScene(FXMLAddresses.SELECTQUESTION.getAddress());
+                    Launcher.changeScene(FXMLAddresses.SELECT_QUESTION.getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -94,7 +98,7 @@ public class RegisterMenu{
             SaveUsersController.SaveUsers(users);
             User.setTempUser(user);
             try {
-                Launcher.changeScene(FXMLAddresses.SELECTQUESTION.getAddress());
+                Launcher.changeScene(FXMLAddresses.SELECT_QUESTION.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -118,5 +122,9 @@ public class RegisterMenu{
             passwordBuilder.append(ch);
         }
         password.setText(passwordBuilder.toString());
+    }
+
+    public void signUp2(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)) signUp();
     }
 }
