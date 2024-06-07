@@ -21,7 +21,7 @@
                     </font>
                 </Button>
                 <Button alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#setQuestion2" prefHeight="35.0" prefWidth="250.0" styleClass="button-52" text="Your favorite video game?" textFill="WHITE" />
-                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#setQuestion3" prefHeight="35.0" prefWidth="250.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Your favorite movie?" textFill="WHITE">
+                <Button alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#setQuestion3" prefHeight="35.0" prefWidth="250.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Your favorite movie?" textFill="WHITE">
                     <font>
                         <Font size="10.0" />
                     </font>
