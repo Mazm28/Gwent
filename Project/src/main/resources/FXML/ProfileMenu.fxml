@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileMenu">
     <children>
         <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
@@ -14,15 +14,19 @@
         </ImageView>
         <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
         <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
-        <children>
-                <Button fx:id="newGameButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="New Game" textFill="WHITE" onMouseClicked="#newGame">
+            <children>
+                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Change Username" textFill="WHITE" onMouseClicked="#changeUsername">
                     <font>
                         <Font size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="profileMenuButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#profileMenu" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Profile Menu" textFill="WHITE" />
-                <Button fx:id="logoutButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Logout" textFill="WHITE" onMouseClicked="#logout"/>
+                <Button alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#changeEmail" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Change Email" textFill="WHITE" />
+                <Button alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Change Nickname" textFill="WHITE" onMouseClicked="#changeNickname"/>
+                <Button alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Change Password" textFill="WHITE" onMouseClicked="#changePassword"/>
+                <Button alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="My Profile" textFill="WHITE" onMouseClicked="#showInfo"/>
+                <Button alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Game History" textFill="WHITE" onMouseClicked="#showGameHistory"/>
+                <Button alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" onMouseClicked="#mainMenu"/>
             </children>
         </VBox>
-            </children>
+    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package view;
 
+import controller.MainMenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -18,13 +19,20 @@ public class PreGameMenu {
     private static Player player1;
     private static Player player2;
     private static boolean player1Turn = true;
-    public Button readyButton;
-    public Button showFactionsButton;
-    public Button showCardsButton;
-    public Button showDeckButton;
-    public Button showLeadersButton;
-    public Label turn = new Label();
-    public Button backButton;
+    @FXML
+    private Button readyButton;
+    @FXML
+    private Button showFactionsButton;
+    @FXML
+    private Button showCardsButton;
+    @FXML
+    private Button showDeckButton;
+    @FXML
+    private Button showLeadersButton;
+    @FXML
+    private Label turn = new Label();
+    @FXML
+    private Button backButton;
 
     @FXML
     void initialize(){
@@ -72,10 +80,9 @@ public class PreGameMenu {
             turn.setText(player2.getUsername() + "'s turn\n\n" + player1.getUsername() + " is ready\n" + player2.getUsername() + " is not ready");
 
         }
-
     }
 
-    public void showFactions(MouseEvent mouseEvent){
+    public void showFactions(){
         try {
             Launcher.changeScene("/FXML/FactionsMenu.fxml");
         } catch (IOException e) {
@@ -109,15 +116,6 @@ public class PreGameMenu {
 
 
     public void mainMenu(MouseEvent mouseEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("Are you sure?");
-        Optional<ButtonType> buttonType = alert.showAndWait();
-        if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
-            try {
-                Launcher.changeScene("/FXML/MainMenu.fxml");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        MainMenuController.lunchMainMenu();
     }
 }

@@ -1,27 +1,19 @@
 package controller;
 
 import model.User;
+import view.ProfileMenu;
 
 import java.util.regex.Matcher;
 
 public class ProfileMenuController{
-    public static String changeUsername(Matcher matcher){
-        return null;
+    private static String whatToChange;
+
+    public static String getWhatToChange() {
+        return whatToChange;
     }
-    public static String changePassword(Matcher matcher){
-        return null;
-    }
-    public static String changeNickname(Matcher matcher){
-        return null;
-    }
-    public static String changeEmail(Matcher matcher){
-        return null;
-    }
-    public static String showUserInfo(){
-        return null;
-    }
-    public static String gemaHistory(){
-        return null;
+
+    public static void setWhatToChange(String whatToChange) {
+        ProfileMenuController.whatToChange = whatToChange;
     }
 
 

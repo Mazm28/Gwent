@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class User implements Serializable {
     private static User loggedInUser;
-    private ArrayList<GameRecords> gameRecords = new ArrayList<>();
+    private ArrayList<GameRecord> gameRecords = new ArrayList<>();
     private String username;
     private String password;
     private String email;
@@ -18,6 +18,14 @@ public class User implements Serializable {
     private String answer;
     private int id;
     private static User tempUser;
+
+    public int getHighestScore(){
+        int point = 0;
+        for(GameRecord gameRecord: gameRecords){
+            if(gameRecord.getFinalPoints()[0] > point) point = gameRecord.getFinalPoints()[0];
+        }
+        return point;
+    }
 
     public static User getTempUser() {
         return tempUser;
@@ -72,8 +80,8 @@ public class User implements Serializable {
         this.nickname = nickname;
     }
 
-    public void addToGameRecords(GameRecords gameRecords){
-        this.gameRecords.add(gameRecords);
+    public void addToGameRecords(GameRecord gameRecord){
+        this.gameRecords.add(gameRecord);
     }
 
     public String getUsername() {
@@ -106,5 +114,13 @@ public class User implements Serializable {
 
     public SelectQuestionTexts getSelectQuestionTexts() {
         return selectQuestionTexts;
+    }
+
+    public int getRank() {
+        return 0;
+    }
+
+    public ArrayList<GameRecord> getGameRecords() {
+        return gameRecords;
     }
 }

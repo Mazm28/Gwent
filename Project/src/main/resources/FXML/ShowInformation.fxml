@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ShowInformation">
+    <children>
+        <ImageView fitHeight="700.0" fitWidth="1000.0">
+            <image>
+                <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
+            </image>
+        </ImageView>
+        <VBox fx:id="box" layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
+        <Label fx:id="label" alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" styleClass="tf_box" textFill="#7c2222">
+         <font>
+            <Font name="DejaVu Serif Condensed Bold" size="20.0" />
+         </font></Label>
+        <Button alignment="TOP_CENTER" layoutX="421.0" layoutY="536.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#profileMenu" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" />
+    </children>
+</AnchorPane>
