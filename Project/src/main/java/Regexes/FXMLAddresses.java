@@ -17,6 +17,7 @@ public enum FXMLAddresses {
     LEADER_MENU("/FXML/LeadersMenu.fxml"),
     PRE_GAME_MENU("/FXML/PreGameMenu.fxml"),
     GAME_MENU("/FXML/GameMenu.fxml"),
+    SHOW_PASSWORD("/FXML/ShowPassword.fxml"),
     ;
     String address;
 

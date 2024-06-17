@@ -1,6 +1,7 @@
 package view;
 
 import Regexes.FXMLAddresses;
+import controller.SaveUsersController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -30,6 +31,8 @@ public class MainMenu{
         alert.setContentText("do you want to logout?");
         Optional<ButtonType> buttonType = alert.showAndWait();
         if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
+            User.getLoggedInUser().setRemembered(false);
+            SaveUsersController.SaveInfo(User.getLoggedInUser());
             User.setLoggedInUser(null);
             try {
                 Launcher.changeScene(FXMLAddresses.LOGIN_MENU.getAddress());

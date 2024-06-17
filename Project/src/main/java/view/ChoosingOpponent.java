@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Game;
 import model.Player;
+import model.PreGame;
 import model.User;
 
 import java.io.IOException;
@@ -28,16 +29,10 @@ public class ChoosingOpponent {
         else if(username.getText().equals(User.getLoggedInUser().getUsername()))
             error.setText("You cannot play with yourself!");
         else{
-            String player1Username = User.getLoggedInUser().getUsername();
-            String player1Password = User.getLoggedInUser().getPassword();
-            String player1Nickname = User.getLoggedInUser().getNickname();
-            String player1Email = User.getLoggedInUser().getEmail();
-            String player2Username = User.getUserByUsername(username.getText()).getUsername();
-            String player2Password = User.getUserByUsername(username.getText()).getPassword();
-            String player2Nickname = User.getUserByUsername(username.getText()).getPassword();
-            String player2Email = User.getUserByUsername(username.getText()).getEmail();
-            PreGameMenu.setPlayer1(new Player(player1Username, player1Password, player1Email, player1Nickname));
-            PreGameMenu.setPlayer2(new Player(player2Username, player2Password, player2Email, player2Nickname));
+            User user = User.getLoggedInUser();
+            User opponent = User.getUserByUsername(username.getText());
+            PreGame.setPlayer1(new Player(user));
+            PreGame.setPlayer2(new Player(opponent));
             try {
                 Launcher.changeScene(FXMLAddresses.PRE_GAME_MENU.getAddress());
             } catch (IOException e) {

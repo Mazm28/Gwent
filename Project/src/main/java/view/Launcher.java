@@ -3,6 +3,7 @@ package view;
 import Regexes.FXMLAddresses;
 import Regexes.ImageAddresses;
 import Regexes.MusicAddresses;
+import controller.SaveUsersController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.App;
+import model.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +42,13 @@ public class Launcher extends Application{
         stage.setHeight(App.getHEIGHT());
         stage.setResizable(false);
         stage.getIcons().add(new Image(Objects.requireNonNull(Launcher.class.getResource(ImageAddresses.ICON.getAddress())).toExternalForm()));
-        URL url = getClass().getResource(FXMLAddresses.LOGIN_MENU.getAddress());
+        User user = SaveUsersController.isAnyRemembered();
+        URL url;
+        if (user != null) {
+            User.setLoggedInUser(user);
+            url = getClass().getResource(FXMLAddresses.MAIN_MENU.getAddress());
+        }
+        else url = getClass().getResource(FXMLAddresses.LOGIN_MENU.getAddress());
         assert url != null;
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);

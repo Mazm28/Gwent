@@ -11,16 +11,12 @@ import javafx.scene.input.MouseEvent;
 import model.App;
 import model.Game;
 import model.Player;
-import model.User;
+import model.PreGame;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class PreGameMenu {
-    private static Game game;
-    private static Player player1;
-    private static Player player2;
-    private static boolean player1Turn = true;
     @FXML
     private Button readyButton;
     @FXML
@@ -32,61 +28,42 @@ public class PreGameMenu {
     @FXML
     private Button showLeadersButton;
     @FXML
-    private Label turn = new Label();
+    private Label turnText = new Label();
     @FXML
     private Button backButton;
 
     @FXML
-    void initialize(){
-        turn.setText(player1.getUsername() + "'s turn\n\n" + player1.getUsername() + " is not ready\n" + player2.getUsername() + " is not ready");
-    }
-    public static Player getPlayer1() {
-        return player1;
-    }
-
-    public static Player getPlayer2() {
-        return player2;
-    }
-
-    public static Game getGame() {
-        return game;
+    void initialize() {
+        if (PreGame.getTurn().equals(PreGame.getPlayer1()))
+            turnText.setText(PreGame.getPlayer1().getUsername() + "'s turn\n\n" + PreGame.getPlayer1().getUsername() + " is not ready\n" + PreGame.getPlayer2().getUsername() + " is not ready");
+        else
+            turnText.setText(PreGame.getPlayer2().getUsername() + "'s turn\n\n" + PreGame.getPlayer1().getUsername() + " is ready\n" + PreGame.getPlayer2().getUsername() + " is not ready");
+        if(PreGame.getTurn().getFaction() != null) showLeadersButton.setDisable(false);
+        if(PreGame.getTurn().getLeader() != null) showCardsButton.setDisable(false);
+        if(PreGame.getTurn().getDeck().size() == 22) readyButton.setDisable(false);
     }
 
-    public static void setPlayer1(Player player1) {
-        PreGameMenu.player1 = player1;
-    }
-
-    public static void setPlayer2(Player player2) {
-        PreGameMenu.player2 = player2;
-    }
-
-    public static void setGame(Game game) {
-        PreGameMenu.game = game;
-    }
-
-    public void ready(MouseEvent mouseEvent){
-        if(!player1Turn){
+    public void ready(MouseEvent mouseEvent) {
+        if (PreGame.getTurn().equals(PreGame.getPlayer2())) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Are you sure you want to start the game?");
             Optional<ButtonType> buttonType = alert.showAndWait();
             if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
                 try {
-                    Game game = new Game(player1,player2);
+                    Game game = new Game(PreGame.getPlayer1(), PreGame.getPlayer2());
                     App.setGame(game);
                     Launcher.changeScene(FXMLAddresses.GAME_MENU.getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }
-        else {
-            player1Turn = false;
-            turn.setText(player2.getUsername() + "'s turn\n\n" + player1.getUsername() + " is ready\n" + player2.getUsername() + " is not ready");
-
+        } else {
+            PreGame.setTurn(PreGame.getPlayer2());
+            turnText.setText(PreGame.getPlayer2().getUsername() + "'s turn\n\n" + PreGame.getPlayer1().getUsername() + " is ready\n" + PreGame.getPlayer2().getUsername() + " is not ready");
         }
     }
 
-    public void showFactions(){
+    public void showFactions() {
         try {
             Launcher.changeScene(FXMLAddresses.FACTION_MENU.getAddress());
         } catch (IOException e) {
@@ -94,7 +71,7 @@ public class PreGameMenu {
         }
     }
 
-    public void showCards(MouseEvent mouseEvent){
+    public void showCards(MouseEvent mouseEvent) {
         try {
             Launcher.changeScene(FXMLAddresses.CARDS_MENU.getAddress());
         } catch (IOException e) {

@@ -54,6 +54,13 @@ public class SaveUsersController {
         }
     }
 
+    public static User isAnyRemembered () {
+        for(User user: getUsers()){
+            if(user.isRemembered()) return user;
+        }
+        return null;
+    }
+
     public static void DeleteAccount(User user) {
         ArrayList<User> users = getUsers();
         for (User user1 : users) {

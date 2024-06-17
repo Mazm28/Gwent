@@ -9,13 +9,35 @@ public class Player extends User{
     private String faction;
     private Card leader;
     private ArrayList<Card> deck;
-    private ArrayList<Card> hand;
+    private ArrayList<Card> inGameHand;
     private int totalPoints;
     private int[] points = new int[3];
     private ArrayList<Card> burnedCards;
     private Row[] rows = new Row[3];
-    public Player(String username, String password, String email, String nickname) {
-        super(username, password, email, nickname);
+    private boolean ready = false;
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
+
+    public ArrayList<Card> getBurnedCards() {
+        return burnedCards;
+    }
+
+    public Row[] getRows() {
+        return rows;
+    }
+
+    public void setReady(){
+        ready = true;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public Player(User user) {
+        super(user);
     }
 
     public void addToDeck(Card card){
@@ -65,8 +87,7 @@ public class Player extends User{
         this.points[round] = points;
     }
 
-    public int getCountOfCardsInHand(){
-        return hand.size();
+    public ArrayList<Card> getInGameHand() {
+        return inGameHand;
     }
-
 }

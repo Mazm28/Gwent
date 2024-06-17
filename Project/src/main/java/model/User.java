@@ -2,6 +2,7 @@ package model;
 
 import Regexes.SelectQuestionTexts;
 import controller.SaveUsersController;
+import model.card.Card;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,12 +13,33 @@ public class User implements Serializable {
     private ArrayList<GameRecord> gameRecords = new ArrayList<>();
     private String username;
     private String password;
+    private ArrayList<ArrayList<Card>> decks = new ArrayList<>();
     private String email;
     private String nickname;
     private SelectQuestionTexts selectQuestionTexts;
     private String answer;
     private int id;
     private static User tempUser;
+    private boolean remembered = false;
+    public void addToDecks(ArrayList<Card> cards){
+        decks.add(cards);
+    }
+
+    public User(User user) {
+        this.username = user.username;
+        this.password = user.password;
+        this.email = user.email;
+        this.nickname = user.nickname;
+        this.id = user.id;
+    }
+
+    public boolean isRemembered() {
+        return remembered;
+    }
+
+    public void setRemembered(boolean remembered) {
+        this.remembered = remembered;
+    }
 
     public int getHighestScore(){
         int point = 0;

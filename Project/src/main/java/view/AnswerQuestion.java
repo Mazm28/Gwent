@@ -31,8 +31,8 @@ public class AnswerQuestion implements Initializable {
         User user = User.getTempUser();
         if (user.getAnswer().equals(answer.getText())) {
             try {
-                User.setLoggedInUser(user);
-                Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
+                User.setTempUser(user);
+                Launcher.changeScene(FXMLAddresses.SHOW_PASSWORD.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
