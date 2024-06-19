@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -14,9 +13,9 @@
          </image>
       </ImageView>
       <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="368.0" styleClass="login-menu-vbox" />
-      <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
+      <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="10.0" stylesheets="@../CSS/MainStyle.css">
          <children>
-            <Label fx:id="error" alignment="CENTER" prefHeight="19.0" prefWidth="182.0" textAlignment="CENTER" textFill="#a91d3a" />
+            <Label fx:id="error" alignment="CENTER" prefHeight="19.0" prefWidth="284.0" textAlignment="CENTER" textFill="#9e0008" />
             <TextField fx:id="username" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="username" styleClass="tf_box">
                <font>
                   <Font size="17.0" />
@@ -27,12 +26,9 @@
                   <Font size="17.0" />
                </font>
             </PasswordField>
-            <CheckBox fx:id="rememberMe" alignment="TOP_CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="18.0" prefWidth="136.0" text="Remember Me" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+            <CheckBox fx:id="rememberMe" alignment="TOP_CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="24.0" prefWidth="170.0" styleClass="check-box" text="Stay Signed In" textFill="WHITE">
             </CheckBox>
-            <Button fx:id="signIn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#signIn" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Sign In" textFill="WHITE">
+            <Button fx:id="signIn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#signIn" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" text="Sign In" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>

@@ -2,9 +2,9 @@ package view;
 
 import Regexes.FXMLAddresses;
 import Regexes.SelectQuestionTexts;
-import controller.SaveUsersController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import model.App;
 import model.User;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class SelectQuestion {
         User user = User.getTempUser();
         user.setSelectQuestionTexts(selectQuestionTexts);
         user.setAnswer(answer.getText());
-        SaveUsersController.SaveInfo(user);
+        App.SaveInfo(user);
         try {
             Launcher.changeScene(FXMLAddresses.LOGIN_MENU.getAddress());
         } catch (IOException e) {

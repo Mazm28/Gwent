@@ -2,7 +2,6 @@ package view;
 
 import Regexes.FXMLAddresses;
 import Regexes.RegisterRegexes;
-import controller.SaveUsersController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -81,9 +80,9 @@ public class RegisterMenu{
             Optional<ButtonType> buttonType = alert.showAndWait();
             if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
                 User user = new User(newUsername, passwordString, emailString, nicknameString);
-                ArrayList<User> users = SaveUsersController.getUsers();
+                ArrayList<User> users = App.getUsers();
                 users.add(user);
-                SaveUsersController.SaveUsers(users);
+                App.SaveUsers(users);
                 User.setTempUser(user);
                 try {
                     Launcher.changeScene(FXMLAddresses.SELECT_QUESTION.getAddress());
@@ -91,11 +90,14 @@ public class RegisterMenu{
                     e.printStackTrace();
                 }
             }
+        } else if (passwordExists(passwordString) != null) {
+            User user = passwordExists(passwordString);
+            error.setText("So funny that user: " + user.getUsername() + " uses exactly this password!");
         } else {
-            ArrayList<User> users = SaveUsersController.getUsers();
+            ArrayList<User> users = App.getUsers();
             User user = new User(usernameString, passwordString, emailString, nicknameString);
             users.add(user);
-            SaveUsersController.SaveUsers(users);
+            App.SaveUsers(users);
             User.setTempUser(user);
             try {
                 Launcher.changeScene(FXMLAddresses.SELECT_QUESTION.getAddress());
@@ -103,6 +105,13 @@ public class RegisterMenu{
                 e.printStackTrace();
             }
         }
+    }
+
+    private User passwordExists(String password) {
+        for(User user: App.getUsers()){
+            if(user.getPassword().equals(password)) return user;
+        }
+        return null;
     }
 
     public void makePassword() {
@@ -122,6 +131,7 @@ public class RegisterMenu{
             passwordBuilder.append(ch);
         }
         password.setText(passwordBuilder.toString());
+        repeatPassword.setText(password.getText());
     }
 
     public void signUp2(KeyEvent keyEvent) {

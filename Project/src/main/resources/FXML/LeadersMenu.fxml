@@ -15,7 +15,7 @@
         <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
         <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
         <children>
-                <Label fx:id="turn" styleClass="tf_box"/>
+                <Label fx:id="turnText" styleClass="tf_box"/>
                 <Button fx:id="readyButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="ready" textFill="WHITE" onMouseClicked="#ready">
                     <font>
                         <Font size="10.0" />

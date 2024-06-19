@@ -6,7 +6,7 @@ public class PreGame {
     private static Game game;
     private static Player player1;
     private static Player player2;
-    private static Player turn = player1;
+    private static Player turn;
     public static Player getPlayer1() {
         return player1;
     }

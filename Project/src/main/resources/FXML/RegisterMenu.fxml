@@ -20,7 +20,7 @@
       <VBox layoutX="330.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
       <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
          <children>
-            <Label fx:id="error" styleClass="tf_box" textFill="#a91d3a" />
+            <Label fx:id="error" textFill="#9e0008" />
             <TextField fx:id="username" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="username" styleClass="tf_box">
                <font>
                   <Font size="17.0" />

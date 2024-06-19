@@ -1,12 +1,10 @@
 package model;
 
 import Regexes.SelectQuestionTexts;
-import controller.SaveUsersController;
 import model.card.Card;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class User implements Serializable {
     private static User loggedInUser;
@@ -66,11 +64,11 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
         this.nickname = nickname;
-        this.id = SaveUsersController.getUsers().size();
+        this.id = App.getUsers().size();
     }
 
     public static User getUserByUsername(String username) {
-        for (User user : SaveUsersController.getUsers()) {
+        for (User user : App.getUsers()) {
             if (user.username.equals(username)) {
                 return user;
             }

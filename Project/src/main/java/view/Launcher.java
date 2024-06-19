@@ -3,7 +3,6 @@ package view;
 import Regexes.FXMLAddresses;
 import Regexes.ImageAddresses;
 import Regexes.MusicAddresses;
-import controller.SaveUsersController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,7 +41,7 @@ public class Launcher extends Application{
         stage.setHeight(App.getHEIGHT());
         stage.setResizable(false);
         stage.getIcons().add(new Image(Objects.requireNonNull(Launcher.class.getResource(ImageAddresses.ICON.getAddress())).toExternalForm()));
-        User user = SaveUsersController.isAnyRemembered();
+        User user = App.isAnyRemembered();
         URL url;
         if (user != null) {
             User.setLoggedInUser(user);

@@ -3,12 +3,12 @@ package view;
 import Regexes.FXMLAddresses;
 import Regexes.RegisterRegexes;
 import controller.ProfileMenuController;
-import controller.SaveUsersController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import model.App;
 import model.User;
 
 import java.io.IOException;
@@ -102,7 +102,7 @@ public class ChangeInformation {
                 User.getLoggedInUser().setPassword(newInfo.getText());
                 break;
         }
-        SaveUsersController.SaveInfo(User.getLoggedInUser());
+        App.SaveInfo(User.getLoggedInUser());
         try {
             Launcher.changeScene(FXMLAddresses.PROFILE_MENU.getAddress());
         } catch (IOException e) {

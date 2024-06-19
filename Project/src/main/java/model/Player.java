@@ -8,8 +8,8 @@ public class Player extends User{
     private boolean passed;
     private String faction;
     private Card leader;
-    private ArrayList<Card> deck;
-    private ArrayList<Card> inGameHand;
+    private ArrayList<Card> deck = new ArrayList<>();
+    private ArrayList<Card> inGameHand = new ArrayList<>();
     private int totalPoints;
     private int[] points = new int[3];
     private ArrayList<Card> burnedCards;

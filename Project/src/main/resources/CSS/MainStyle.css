@@ -1,3 +1,4 @@
+
 .parent{
     -fx-background-color: transparent;
 }
@@ -48,4 +49,37 @@
     -fx-background-color: #000000;
     -fx-opacity: 50%;
     -fx-background-radius: 60;
+}
+
+.check-box .box {
+    -fx-border-radius:7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: transparent;
+    -fx-border-color:white;
+
+
+}
+.check-box .box:hover{
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: "HAND";
+    -fx-background-color: transparent;
+    -fx-border-color:white;
+
+
+}
+
+.check-box:selected .mark {
+    -fx-border-radius:7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: "HAND";
+    -fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+    -fx-border-radius:7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: "HAND";
+    -fx-background-color: #C73659;
 }
