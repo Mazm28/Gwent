@@ -21,6 +21,10 @@ import java.util.Objects;
 
 public class LoginMenu {
     @FXML
+    private TextField username1;
+    @FXML
+    private Ellipse showCircle;
+    @FXML
     private CheckBox rememberMe;
     @FXML
     private TextField username;
@@ -68,8 +72,31 @@ public class LoginMenu {
             }
         }
     }
-
+    public void initialize(){
+        showCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.SHOW.getAddress())))));
+    }
     public void signIn2(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)) signIn();
+    }
+
+    public void showPassword() {
+        showPassword(password,username1,showCircle);
+    }
+    public void showPassword(PasswordField password, TextField username1, Ellipse showCircle){
+        if(!password.isDisable()){
+            username1.setVisible(true);
+            username1.setDisable(false);
+            password.setVisible(false);
+            password.setDisable(true);
+            username1.setText(password.getText());
+            showCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.HIDE.getAddress())))));
+        } else {
+            password.setVisible(true);
+            password.setDisable(false);
+            username1.setVisible(false);
+            username1.setDisable(true);
+            password.setText(username1.getText());
+            showCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.SHOW.getAddress())))));
+        }
     }
 }

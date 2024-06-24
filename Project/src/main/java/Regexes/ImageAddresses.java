@@ -2,8 +2,8 @@ package Regexes;
 
 public enum ImageAddresses {
     ICON("/IMAGES/icon.png"),
-    SHOW("/IMAGES/closeEye.png"),
-    HIDE("/IMAGES/openEye.png"),
+    SHOW("/IMAGES/show.png"),
+    HIDE("/IMAGES/hide.png"),
 
     ;
     String address;

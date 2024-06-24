@@ -1,11 +1,16 @@
 package view;
 
 import Regexes.FXMLAddresses;
+import Regexes.ImageAddresses;
 import Regexes.RegisterRegexes;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Ellipse;
 import model.App;
 import model.User;
 
@@ -13,6 +18,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Optional;
 
 public class RegisterMenu{
@@ -20,6 +26,10 @@ public class RegisterMenu{
     private static final String LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
     private static final String DIGITS = "0123456789";
     private static final String SPECIAL_CHARACTERS = "!@#$&";
+    @FXML
+    private TextField username1;
+    @FXML
+    private Ellipse showCircle;
     @FXML
     private Label error;
     @FXML
@@ -29,7 +39,7 @@ public class RegisterMenu{
     @FXML
     private TextField nickname;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
     private TextField repeatPassword;
     private static final SecureRandom random = new SecureRandom();
@@ -133,7 +143,12 @@ public class RegisterMenu{
         password.setText(passwordBuilder.toString());
         repeatPassword.setText(password.getText());
     }
-
+    public void initialize(){
+        showCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.SHOW.getAddress())))));
+    }
+    public void showPassword(MouseEvent mouseEvent){
+        (new LoginMenu()).showPassword(password,username1,showCircle);
+    }
     public void signUp2(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)) signUp();
     }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenu">
@@ -21,11 +23,25 @@
                   <Font size="17.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#signIn2" prefHeight="35.0" prefWidth="290.0" promptText="password" styleClass="tf_box">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </PasswordField>
+            <Pane prefHeight="43.0" prefWidth="339.0">
+               <children>
+                  <PasswordField fx:id="password" alignment="CENTER" layoutX="25.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#signIn2" prefHeight="35.0" prefWidth="290.0" promptText="password" styleClass="tf_box">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField fx:id="username1" alignment="CENTER" disable="true" layoutX="25.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="290.0" promptText="password" styleClass="tf_box" visible="false">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Ellipse fx:id="showCircle" fill="#1f93ff00" layoutX="301.0" layoutY="22.0" onMouseClicked="#showPassword" radiusX="14.0" radiusY="12.0" stroke="TRANSPARENT" strokeType="INSIDE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Ellipse>
+               </children>
+            </Pane>
             <CheckBox fx:id="rememberMe" alignment="TOP_CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="24.0" prefWidth="170.0" styleClass="check-box" text="Stay Signed In" textFill="WHITE">
             </CheckBox>
             <Button fx:id="signIn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#signIn" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" text="Sign In" textFill="WHITE">
