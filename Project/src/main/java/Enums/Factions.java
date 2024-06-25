@@ -1,4 +1,4 @@
-package Regexes;
+package Enums;
 
 public enum Factions {
 }

@@ -13,7 +13,7 @@
             </image>
         </ImageView>
         <VBox fx:id="box" layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
-        <Label fx:id="label" alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" styleClass="tf_box">
+        <Label fx:id="label" alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" textFill="WHITE">
             <font>
                 <Font name="DejaVu Serif Condensed Bold" size="20.0" />
             </font></Label>

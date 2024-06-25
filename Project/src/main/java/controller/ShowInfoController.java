@@ -14,13 +14,18 @@ import java.util.Timer;
 
 public class ShowInfoController {
     public void showBox(VBox box, Label label) {
+        Timeline timeline = startVBox(box);
+        timeline.setOnFinished(event -> setLabel(label));
+    }
+
+    static Timeline startVBox(VBox box) {
         box.setScaleY(0);
         Timeline timeline = new Timeline();
         KeyValue keyValue = new KeyValue(box.scaleYProperty(),1);
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(1),keyValue);
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
-        timeline.setOnFinished(event -> setLabel(label));
+        return timeline;
     }
 
     public void setLabel(Label label) {

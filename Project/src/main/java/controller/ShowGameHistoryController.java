@@ -10,12 +10,8 @@ import model.User;
 
 public class ShowGameHistoryController {
     public void showBox(VBox box) {
-        box.setScaleY(0);
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(box.scaleYProperty(),1);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1),keyValue);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.play();
+        Timeline timeline = ShowInfoController.startVBox(box);
+
     }
 
     public void setLabel(Label label, int index) {

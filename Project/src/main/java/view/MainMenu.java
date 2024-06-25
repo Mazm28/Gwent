@@ -1,6 +1,6 @@
 package view;
 
-import Regexes.FXMLAddresses;
+import Enums.FXMLAddresses;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;

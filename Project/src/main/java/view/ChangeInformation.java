@@ -1,7 +1,7 @@
 package view;
 
-import Regexes.FXMLAddresses;
-import Regexes.RegisterRegexes;
+import Enums.FXMLAddresses;
+import Enums.RegisterRegexes;
 import controller.ProfileMenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

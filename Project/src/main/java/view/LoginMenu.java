@@ -1,7 +1,7 @@
 package view;
 
-import Regexes.FXMLAddresses;
-import Regexes.ImageAddresses;
+import Enums.FXMLAddresses;
+import Enums.ImageAddresses;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -10,9 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import model.App;
 import model.User;

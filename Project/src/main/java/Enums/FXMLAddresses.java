@@ -1,4 +1,4 @@
-package Regexes;
+package Enums;
 
 public enum FXMLAddresses {
     LOGIN_MENU("/FXML/LoginMenu.fxml"),
@@ -19,7 +19,7 @@ public enum FXMLAddresses {
     GAME_MENU("/FXML/GameMenu.fxml"),
     SHOW_PASSWORD("/FXML/ShowPassword.fxml"),
     ;
-    String address;
+    private final String address;
 
     FXMLAddresses(String address) {
         this.address = address;

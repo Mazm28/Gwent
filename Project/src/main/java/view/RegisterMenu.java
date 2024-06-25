@@ -1,8 +1,8 @@
 package view;
 
-import Regexes.FXMLAddresses;
-import Regexes.ImageAddresses;
-import Regexes.RegisterRegexes;
+import Enums.FXMLAddresses;
+import Enums.ImageAddresses;
+import Enums.RegisterRegexes;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;

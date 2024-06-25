@@ -1,6 +1,6 @@
 package view;
 
-import Regexes.FXMLAddresses;
+import Enums.FXMLAddresses;
 import controller.ProfileMenuController;
 import javafx.scene.input.MouseEvent;
 

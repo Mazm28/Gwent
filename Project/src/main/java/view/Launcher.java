@@ -1,8 +1,8 @@
 package view;
 
-import Regexes.FXMLAddresses;
-import Regexes.ImageAddresses;
-import Regexes.MusicAddresses;
+import Enums.FXMLAddresses;
+import Enums.ImageAddresses;
+import Enums.MusicAddresses;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

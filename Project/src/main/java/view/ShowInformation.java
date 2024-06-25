@@ -1,6 +1,6 @@
 package view;
 
-import Regexes.FXMLAddresses;
+import Enums.FXMLAddresses;
 import controller.ShowInfoController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

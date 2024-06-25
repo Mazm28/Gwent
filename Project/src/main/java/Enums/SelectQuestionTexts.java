@@ -1,4 +1,4 @@
-package Regexes;
+package Enums;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ public enum SelectQuestionTexts implements Serializable {
     QUESTION2("Your favorite video game?"),
     QUESTION3("Your favorite movie?");
 
-    String text;
+    private final String text;
 
     SelectQuestionTexts(String text) {
         this.text = text;

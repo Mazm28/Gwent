@@ -1,7 +1,7 @@
 package view;
 
-import Regexes.FXMLAddresses;
-import Regexes.SelectQuestionTexts;
+import Enums.FXMLAddresses;
+import Enums.SelectQuestionTexts;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.App;
