@@ -1,4 +1,4 @@
-package Regexes;
+package Enums;
 
 public enum ImageAddresses {
     ICON("/IMAGES/icon.png"),
@@ -6,7 +6,7 @@ public enum ImageAddresses {
     HIDE("/IMAGES/hide.png"),
 
     ;
-    String address;
+    private final String address;
     ImageAddresses(String address) {
         this.address = address;
     }

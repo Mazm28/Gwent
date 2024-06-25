@@ -1,6 +1,6 @@
 package view;
 
-import Regexes.FXMLAddresses;
+import Enums.FXMLAddresses;
 import controller.MainMenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.App;
 import model.Game;
-import model.Player;
 import model.PreGame;
 
 import java.io.IOException;

@@ -1,13 +1,12 @@
 package view;
 
-import Regexes.FXMLAddresses;
+import Enums.FXMLAddresses;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.User;
 
 import java.io.IOException;
-import java.util.function.LongUnaryOperator;
 
 public class ShowPassword {
     @FXML

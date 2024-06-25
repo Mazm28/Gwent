@@ -1,15 +1,12 @@
 package view;
 
-import Regexes.FXMLAddresses;
-import controller.GameMenuController;
-import javafx.scene.control.Alert;
+import Enums.FXMLAddresses;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import model.Game;
 import model.Player;
 import model.PreGame;
 import model.User;

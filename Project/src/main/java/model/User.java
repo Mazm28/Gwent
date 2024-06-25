@@ -1,6 +1,6 @@
 package model;
 
-import Regexes.SelectQuestionTexts;
+import Enums.SelectQuestionTexts;
 import model.card.Card;
 
 import java.io.Serializable;
@@ -19,6 +19,7 @@ public class User implements Serializable {
     private int id;
     private static User tempUser;
     private boolean remembered = false;
+
     public void addToDecks(ArrayList<Card> cards){
         decks.add(cards);
     }
