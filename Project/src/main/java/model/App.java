@@ -1,6 +1,7 @@
 package model;
 
 
+import javafx.scene.Parent;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class App {
+    private static Parent root;
     private static Stage stage;
     private static Game game;
     private static final Random random = new Random();
@@ -118,4 +120,11 @@ public class App {
         SaveUsers(users);
     }
 
+    public static Parent getRoot() {
+        return root;
+    }
+
+    public static void setRoot(Parent root) {
+        App.root = root;
+    }
 }

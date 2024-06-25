@@ -6,11 +6,9 @@ import java.lang.reflect.Method;
 import java.util.function.Function;
 
 public class SpecialCards extends Card{
-    private String name;
     private int type;
     private int power;
     private int countInGame;
-    private Runnable ability;
 
 
     public SpecialCards(SpecialCardInformation specialCardInformation) {

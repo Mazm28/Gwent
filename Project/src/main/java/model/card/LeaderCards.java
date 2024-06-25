@@ -3,9 +3,7 @@ package model.card;
 import java.lang.reflect.Method;
 
 public class LeaderCards extends Card{
-    private String name;
     private String faction;
-    private Runnable ability;
     private boolean actionUsed;
 
     public LeaderCards(LeaderCardInformation leaderCardInformation) {

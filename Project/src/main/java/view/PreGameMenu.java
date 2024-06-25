@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.App;
 import model.Game;
-import model.Player;
 import model.PreGame;
 
 import java.io.IOException;

@@ -3,11 +3,9 @@ package model.card;
 import java.lang.reflect.Method;
 
 public class RegularCards extends Card {
-    private String name;
     private int power;
     private int countInGame;
     private int type;
-    private Runnable ability;
     private boolean hero;
     private String faction;
 
