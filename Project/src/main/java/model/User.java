@@ -37,10 +37,10 @@ public class User implements Serializable {
         this.remembered = remembered;
     }
 
-    public int getHighestScore(){
+    public int getHighestScore() {
         int point = 0;
-        for(GameRecord gameRecord: gameRecords){
-            if(gameRecord.getFinalPoints()[0] > point) point = gameRecord.getFinalPoints()[0];
+        for (GameRecord gameRecord : gameRecords) {
+            if (gameRecord.getFinalPoints()[0] > point) point = gameRecord.getFinalPoints()[0];
         }
         return point;
     }
@@ -98,7 +98,7 @@ public class User implements Serializable {
         this.nickname = nickname;
     }
 
-    public void addToGameRecords(GameRecord gameRecord){
+    public void addToGameRecords(GameRecord gameRecord) {
         this.gameRecords.add(gameRecord);
     }
 
@@ -140,5 +140,18 @@ public class User implements Serializable {
 
     public ArrayList<GameRecord> getGameRecords() {
         return gameRecords;
+    }
+
+    public void addToDeck(Deck deck) {
+        this.decks.add(deck);
+    }
+
+    public Deck getDeckByName(String deckName) {
+        for (Deck deck : decks) {
+            if (deck.getName().equals(deckName)) {
+                return deck;
+            }
+        }
+        return null;
     }
 }

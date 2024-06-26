@@ -1,13 +1,15 @@
 package model;
 
+import Enums.Faction;
 import model.card.Card;
+import model.card.LeaderCard;
 
 import java.util.ArrayList;
 
 public class Player extends User{
     private boolean passed;
-    private String faction;
-    private Card leader;
+    private Faction faction;
+    private LeaderCard leader;
     private Deck deck;
     private ArrayList<Card> inGameHand = new ArrayList<>();
     private int totalPoints;
@@ -44,7 +46,7 @@ public class Player extends User{
     }
 
     public void addToDeck(Card card){
-        this.deck.add(card);
+        this.deck.addToCards(card);
     }
     public void setHand(){
         return;
@@ -58,11 +60,11 @@ public class Player extends User{
         this.passed = passed;
     }
 
-    public String getFaction() {
+    public Faction getFaction() {
         return faction;
     }
 
-    public void setFaction(String faction) {
+    public void setFaction(Faction faction) {
         this.faction = faction;
     }
 
@@ -70,7 +72,7 @@ public class Player extends User{
         return leader;
     }
 
-    public void setLeader(Card leader) {
+    public void setLeader(LeaderCard leader) {
         this.leader = leader;
     }
 
@@ -92,5 +94,9 @@ public class Player extends User{
 
     public ArrayList<Card> getInGameHand() {
         return inGameHand;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 }
