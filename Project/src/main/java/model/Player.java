@@ -8,7 +8,7 @@ public class Player extends User{
     private boolean passed;
     private String faction;
     private Card leader;
-    private ArrayList<Card> deck = new ArrayList<>();
+    private Deck deck;
     private ArrayList<Card> inGameHand = new ArrayList<>();
     private int totalPoints;
     private int[] points = new int[3];
@@ -16,7 +16,10 @@ public class Player extends User{
     private Row[] rows = new Row[3];
     private boolean ready = false;
 
-    public ArrayList<Card> getDeck() {
+    public Deck getDeck() {
+        if (deck == null) {
+            deck = new Deck();
+        }
         return deck;
     }
 

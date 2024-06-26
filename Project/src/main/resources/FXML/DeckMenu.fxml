@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,17 +15,15 @@
                 <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
             </image>
         </ImageView>
-      <VBox fx:id="mainBox" layoutX="331.0" layoutY="147.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
-        <VBox alignment="CENTER" layoutX="331.0" layoutY="453.0" prefHeight="154.0" prefWidth="369.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
+      <VBox fx:id="mainBox" layoutX="32.0" layoutY="59.0" prefHeight="612.0" prefWidth="511.0" />
+        <VBox alignment="CENTER" layoutX="651.0" layoutY="228.0" prefHeight="255.0" prefWidth="235.0" spacing="15.0" styleClass="login-menu-vbox" stylesheets="@../CSS/MainStyle.css">
         <children>
-                <Button fx:id="removeCard" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#removeCard" prefHeight="35.0" prefWidth="90.0" styleClass="button-52" text="Remove" textFill="WHITE" />
-            <Button fx:id="backButton1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#preGameMenu" prefHeight="35.0" prefWidth="90.0" styleClass="button-52" text="Back" textFill="WHITE" />
+            <Label fx:id="error" styleClass="tf_box" />
+            <TextField fx:id="deckName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="164.0" promptText="Deck name" styleClass="tf_box" />
+            <Button fx:id="saveDeck" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#saveDeck" prefHeight="35.0" prefWidth="130.0" styleClass="button-52" text="Save Deck" textFill="WHITE" />
+            <Button fx:id="loadDeck" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#loadDeck" prefHeight="35.0" prefWidth="130.0" styleClass="button-52" text="Load Deck" textFill="WHITE" />
+            <Button fx:id="backButton1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#preGameMenu" prefHeight="35.0" prefWidth="130.0" styleClass="button-52" text="Back" textFill="WHITE" />
             </children>
         </VBox>
-      <VBox alignment="CENTER" layoutX="331.0" layoutY="159.0" prefHeight="76.0" prefWidth="369.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
-         <children>
-            <Label fx:id="error" styleClass="tf_box" />
-         </children>
-      </VBox>
     </children>
 </AnchorPane>

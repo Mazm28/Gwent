@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -21,18 +22,21 @@ import java.util.ResourceBundle;
 
 public class DeckMenu implements Initializable {
     @FXML
+    TextField deckName;
+    @FXML
     Label error;
     @FXML
     VBox mainBox;
-    private ScrollPane scrollPane;
-    private HashMap<ImageView, Card> images = new HashMap<>();
+    VBox vBox;
+    private final HashMap<ImageView, Card> images = new HashMap<>();
     private Card selectedCard;
+    private ImageView selectedImage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        scrollPane = new ScrollPane();
-        VBox vBox = new VBox();
-        for (Card card : PreGame.getTurn().getDeck()) {
+        ScrollPane scrollPane = new ScrollPane();
+        vBox = new VBox();
+        for (Card card : PreGame.getTurn().getDeck().getCards()) {
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
             ImageView imageView = new ImageView(image);
             imageView.setOnMouseClicked(selectCard(imageView));
@@ -40,12 +44,14 @@ public class DeckMenu implements Initializable {
             vBox.getChildren().add(imageView);
         }
         scrollPane.setContent(vBox);
-        scrollPane.setPrefSize(200, 330);
+        scrollPane.setPrefSize(511, 555);
+        scrollPane.setOpacity(0.4);
         mainBox.getChildren().add(scrollPane);
     }
 
     private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
         selectedCard = images.get(imageView);
+        selectedImage = imageView;
         return null;
     }
 
@@ -57,15 +63,13 @@ public class DeckMenu implements Initializable {
         }
     }
 
-    public void removeCard() {
-        if (selectedCard != null) {
-            PreGame.getTurn().getDeck().remove(selectedCard);
-        } else error.setText("No card selected!");
+    public void saveDeck() {
+        String deckNameString = deckName.getText();
+        if (deckNameString.isEmpty()) {
+            error.setText("Please enter a deck name");
+        }
     }
 
     public void loadDeck() {
-    }
-
-    public void saveDeck() {
     }
 }
