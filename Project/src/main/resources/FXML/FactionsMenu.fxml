@@ -1,32 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PreGameMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FactionsMenu">
     <children>
         <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
                 <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
             </image>
+            <effect>
+                <GaussianBlur radius="25" />
+            </effect>
         </ImageView>
-        <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
-        <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
-        <children>
-                <Label fx:id="turn" styleClass="tf_box"/>
-                <Button fx:id="readyButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="ready" textFill="WHITE" onMouseClicked="#ready">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Button>
-                <Button fx:id="showFactionsButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showFactions" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Factions" textFill="WHITE" />
-                <Button fx:id="showCardsButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Cards" textFill="WHITE" onMouseClicked="#showCards"/>
-                <Button fx:id="showDeckButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show My Deck" textFill="WHITE" onMouseClicked="#showDeck"/>
-                <Button fx:id="showLeadersButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Leaders" textFill="WHITE" onMouseClicked="#showLeaders"/>
-                <Button fx:id="backButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" onMouseClicked="#mainMenu"/>
-            </children>
-        </VBox>
+        <ImageView fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#monsters" styleClass="button-image">
+            <Image url="@../IMAGES/factions/Monsters.jpg" />
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </ImageView>
+        <ImageView fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#scoiatael" styleClass="button-image">
+            <Image url="@../IMAGES/factions/Scoiatael.jpg" />
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </ImageView>
+        <ImageView fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#skellige" styleClass="button-image">
+            <Image url="@../IMAGES/factions/Skellige.jpg" />
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </ImageView>
+        <ImageView fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="350.0" onMouseClicked="#syndicate" styleClass="button-image">
+            <Image url="@../IMAGES/factions/Syndicate.jpg" />
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </ImageView>
+        <ImageView fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="350.0" onMouseClicked="#norhernRealms" styleClass="button-image">
+            <Image url="@../IMAGES/factions/NorthernRealms.jpg" />
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </ImageView>
+        <ImageView fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="350.0" onMouseClicked="#nilfgaard" styleClass="button-image">
+            <Image url="@../IMAGES/factions/Nilfgaard.jpg" />
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </ImageView>
+        <Label fx:id="notify" alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="198.0" prefHeight="23.0" prefWidth="340.0" styleClass="tf_box" textFill="#a91d3a">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Button fx:id="back" layoutX="412.0" layoutY="498.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#back" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Back" textFill="WHITE">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>
