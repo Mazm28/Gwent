@@ -41,7 +41,7 @@ public class RegisterMenu{
     @FXML
     private PasswordField password;
     @FXML
-    private TextField repeatPassword;
+    private PasswordField repeatPassword;
     private static final SecureRandom random = new SecureRandom();
     public void signIn() {
         try {
@@ -100,9 +100,6 @@ public class RegisterMenu{
                     e.printStackTrace();
                 }
             }
-        } else if (passwordExists(passwordString) != null) {
-            User user = passwordExists(passwordString);
-            error.setText("So funny that user: " + user.getUsername() + " uses exactly this password!");
         } else {
             ArrayList<User> users = App.getUsers();
             User user = new User(usernameString, passwordString, emailString, nicknameString);

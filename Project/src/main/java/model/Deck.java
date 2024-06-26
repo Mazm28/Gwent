@@ -1,16 +1,29 @@
 package model;
 
+import Enums.Faction;
 import model.card.Card;
+import model.card.LeaderCard;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
-public class Deck {
-    private String faction;
+public class Deck implements Serializable {
     private ArrayList<Card> cards = new ArrayList<>();
     private String name = null;
+    private Faction Faction;
+    private LeaderCard leaderCard;
 
     public ArrayList<Card> getCards() {
         return cards;
+    }
+
+    public void addToCards(Card card){
+        cards.add(card);
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
     }
 
     public String getName() {
@@ -21,7 +34,19 @@ public class Deck {
         this.name = name;
     }
 
-    public void add(Card card) {
-        cards.add(card);
+    public Faction getFaction() {
+        return Faction;
+    }
+
+    public void setFaction(Faction faction) {
+        Faction = faction;
+    }
+
+    public LeaderCard getLeaderCard() {
+        return leaderCard;
+    }
+
+    public void setLeaderCard(LeaderCard leaderCard) {
+        this.leaderCard = leaderCard;
     }
 }

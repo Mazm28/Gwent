@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class User implements Serializable {
     private static User loggedInUser;
-    private final ArrayList<GameRecord> gameRecords = new ArrayList<>();
+    private ArrayList<GameRecord> gameRecords = new ArrayList<>();
     private String username;
     private String password;
-    private final ArrayList<Deck> decks = new ArrayList<>();
+    private ArrayList<Deck> decks = new ArrayList<>();
     private String email;
     private String nickname;
     private SelectQuestionTexts selectQuestionTexts;
@@ -19,6 +19,7 @@ public class User implements Serializable {
     private int id;
     private static User tempUser;
     private boolean remembered = false;
+
 
     public User(User user) {
         this.username = user.username;
