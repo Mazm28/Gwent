@@ -49,8 +49,9 @@ public class Launcher extends Application{
         }
         else url = getClass().getResource(FXMLAddresses.LOGIN_MENU.getAddress());
         assert url != null;
-        App.setRoot(FXMLLoader.load(url));
-        Scene scene = new Scene(App.getRoot());
+        Parent root = FXMLLoader.load(url);
+        App.setRoot(root);
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         stage.show();
