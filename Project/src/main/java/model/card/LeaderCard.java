@@ -1,12 +1,12 @@
 package model.card;
 
-import java.lang.reflect.Method;
+import Enums.Faction;
 
-public class LeaderCards extends Card{
-    private String faction;
+public class LeaderCard extends Card{
+    private Faction faction;
     private boolean actionUsed;
 
-    public LeaderCards(LeaderCardInformation leaderCardInformation) {
+    public LeaderCard(LeaderCardInformation leaderCardInformation) {
         this.name = leaderCardInformation.name;
         this.faction = leaderCardInformation.faction;
         this.ability = leaderCardInformation.ability;

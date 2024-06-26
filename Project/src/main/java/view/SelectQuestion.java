@@ -13,6 +13,10 @@ public class SelectQuestion {
     @FXML
     private TextField answer;
 
+    public void initialize(){
+        answer.requestFocus();
+    }
+
     public void setQuestion1() {
         setQuestion(SelectQuestionTexts.QUESTION1);
     }

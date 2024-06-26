@@ -11,7 +11,7 @@ public class User implements Serializable {
     private ArrayList<GameRecord> gameRecords = new ArrayList<>();
     private String username;
     private String password;
-    private ArrayList<ArrayList<Card>> decks = new ArrayList<>();
+    private ArrayList<Deck> decks = new ArrayList<>();
     private String email;
     private String nickname;
     private SelectQuestionTexts selectQuestionTexts;
@@ -20,9 +20,6 @@ public class User implements Serializable {
     private static User tempUser;
     private boolean remembered = false;
 
-    public void addToDecks(ArrayList<Card> cards){
-        decks.add(cards);
-    }
 
     public User(User user) {
         this.username = user.username;

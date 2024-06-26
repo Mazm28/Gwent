@@ -51,11 +51,11 @@
                      </cursor></Ellipse>
                </children>
             </Pane>
-            <TextField fx:id="repeatPassword" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#signUp2" prefHeight="35.0" prefWidth="290.0" promptText="repeat password" styleClass="tf_box">
+            <PasswordField fx:id="repeatPassword" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#signUp2" prefHeight="35.0" prefWidth="290.0" promptText="repeat password" styleClass="tf_box">
                <font>
                   <Font size="17.0" />
                </font>
-            </TextField>
+            </PasswordField>
             <Button fx:id="signIn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#signIn" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Sign In" textFill="WHITE">
                <font>
                   <Font size="10.0" />

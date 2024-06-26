@@ -1,15 +1,15 @@
 package model.card;
 
-import java.lang.reflect.Method;
+import Enums.Faction;
 
-public class RegularCards extends Card {
+public class RegularCard extends Card {
     private int power;
     private int countInGame;
     private int type;
     private boolean hero;
-    private String faction;
+    private Faction faction;
 
-    public RegularCards(RegularCardInformation regularCardInformation) {
+    public RegularCard(RegularCardInformation regularCardInformation) {
         this.name = regularCardInformation.name;
         this.power = regularCardInformation.power;
         this.countInGame = regularCardInformation.countInGame;

@@ -1,6 +1,6 @@
 package Enums;
 
-public enum Factions {
+public enum Faction {
     MONSTERS("Monsters"),
     NILFGAARD("Nilfgaard"),
     NORTHERN_REALMS("NorthernRealms"),
@@ -10,7 +10,7 @@ public enum Factions {
 
     String name;
 
-    Factions(String name) {
+    Faction(String name) {
         this.name = name;
     }
 
