@@ -29,8 +29,17 @@ public enum RegularCardInformation {
     FIRE_ELEMENTAL("Fire Elemental",6,1,"Siege",null,false,Faction.MONSTERS,""),
     FOGLET("Foglet",2,1,"Close",null,false,Faction.MONSTERS,""),
     FORKTAIL("Forktail",5,1,"Close",null,false,Faction.MONSTERS,""),
-    
-    Ballista("Ballista", 6, 2, 2, null, false, Faction.MONSTERS, null),
+    FRIGHTENER("Frightener",5,1,"Close",null,false,Faction.MONSTERS,""),
+    GARGOYLE("Gargoyle",5,1,"Ranged",null,false,Faction.MONSTERS,""),
+    GRAVE_HAG("Grave Hag",5,1,"Ranged",null,false,Faction.MONSTERS,""),
+    GRIFFIN("Griffin",5,1,"Close",null,false,Faction.MONSTERS,""),
+    HARPY("Harpy",2,1,"Agile",null,false,Faction.MONSTERS,""),
+    ICE_GIANT("Ice Giant",5,1,"Siege",null,false,Faction.MONSTERS,""),
+    IMLERITH("Imlerith",10,1,"Close",null,true,Faction.MONSTERS,""),
+    LESHEN("Leshen",10,1,"Close",null,true,Faction.MONSTERS,""),
+    PLAGUE_MAIDEN("Plague Maiden",5,1,"Close",null,false,Faction.MONSTERS,""),
+    WEREWOLF("Were Wolf",5,1,"Close",null,false,Faction.MONSTERS,""),
+    WYVERN("Wyvern",2,1,"Ranged",null,false,Faction.MONSTERS,""),
     ;
     final String name;
     final int power;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class RegularCard extends Card {
     private int power;
     private int countInGame;
-    private int type;
+    private String type;
     private boolean hero;
     private Faction faction;
     private static ArrayList<RegularCard> allCards = new ArrayList<>();
@@ -59,11 +59,11 @@ public class RegularCard extends Card {
         this.countInGame = countInGame;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
