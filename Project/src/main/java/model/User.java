@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String nickname;
     private SelectQuestionTexts selectQuestionTexts;
     private String answer;
-    private int id;
+    private final int id;
     private static User tempUser;
     private boolean remembered = false;
 

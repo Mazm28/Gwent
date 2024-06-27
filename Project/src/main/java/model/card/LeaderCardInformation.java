@@ -7,10 +7,10 @@ import java.lang.reflect.Method;
 
 public enum LeaderCardInformation {
     The_Siegemaster("The Siegemaster",Faction.MONSTERS, null, null);
-    String name;
-    Faction faction;
-    Runnable ability;
-    String imageAddress;
+    final String name;
+    final Faction faction;
+    final Runnable ability;
+    final String imageAddress;
 
     LeaderCardInformation(String name, Faction faction, Runnable ability, String imageAddress) {
         this.name = name;

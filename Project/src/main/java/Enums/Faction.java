@@ -1,17 +1,22 @@
 package Enums;
 
-public enum Faction {
-    MONSTERS("Monsters"),
-    NILFGAARD("Nilfgaard"),
-    NORTHERN_REALMS("NorthernRealms"),
-    SCOIATAEL("Scoiatael"),
-    SKELLIGE("Skellige"),
-    SYNDICATE("Syndicate");
+import java.io.Serializable;
 
-    String name;
+public enum Faction implements Serializable {
+    MONSTERS("Monsters","/IMAGES/Monsters.jpg"),
+    NILFGAARD("Nilfgaard", "/IMAGES/Nilfgaard.jpg"),
+    NORTHERN_REALMS("NorthernRealms", "/IMAGES/NorthernRealms.jpg"),
+    SCOIATAEL("Scoiatael", "/IMAGES/Scoiatael.jpg"),
+    SKELLIGE("Skellige", "/IMAGES/Skellige.jpg"),
+    ;
 
-    Faction(String name) {
+    final String name;
+    final String address;
+
+    Faction(String name, String address) {
         this.name = name;
+        this.address = address;
+
     }
 
     public String getName() {
