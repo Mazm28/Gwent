@@ -1,150 +1,149 @@
 package controller;
 
-import model.Game;
 import model.card.Card;
 
 public class ActionController {
-    public static void CommanderHorn(Game game, int row) {
+    public static Runnable CommanderHorn() {
 
     }
 
-    public static void Decoy(Game game, Card targetCard) {
+    public static Runnable Decoy() {
 
     }
 
-    public static void Medic(Game game, Card card) {
+    public static Runnable Medic() {
 
     }
 
-    public static void MoralBoost(Game game, int row) {
+    public static Runnable MoralBoost( ) {
 
     }
 
-    public static void Muster(Game game) {
+    public static Runnable Muster( ) {
 
     }
 
-    public static void Spy(Game game) {
+    public static Runnable Spy( ) {
 
     }
 
-    public static void TightBond(Game game, int row) {
+    public static Runnable TightBond() {
 
     }
 
-    public static void ScorchCard(Game game) {
+    public static Runnable ScorchCard( ) {
         //for Scorch card itself this method applies for whole board
     }
 
-    public static void Scorch(Game game) {
+    public static Runnable Scorch( ) {
         //for other cards with this ability it applies for enemy's rows
     }
 
-    public static void Berserker(Game game) {
+    public static Runnable Berserker( ) {
 
     }
 
-    public static void Mardroeme(Game game, int row) {
+    public static Runnable Mardroeme() {
 
     }
 
-    public static void Transformers(Game game) {
+    public static Runnable Transformers( ) {
 
     }
 
-    public static void BitingFrost(Game game) {
+    public static Runnable BitingFrost( ) {
 
     }
 
-    public static void Impenetrablefog(Game game) {
+    public static Runnable Impenetrablefog( ) {
 
     }
 
-    public static void TorrentialRain(Game game) {
+    public static Runnable TorrentialRain( ) {
 
     }
 
-    public static void Siegemaster(Game game) {
+    public static Runnable Siegemaster( ) {
 
     }
 
-    public static void SteelForged(Game game) {
+    public static Runnable SteelForged( ) {
 
     }
 
-    public static void KingofTemeria(Game game) {
+    public static Runnable KingofTemeria( ) {
 
     }
 
-    public static void LordCommanderoftheNorth(Game game) {
+    public static Runnable LordCommanderoftheNorth( ) {
 
     }
 
-    public static void SonOfMedell(Game game) {
+    public static Runnable SonOfMedell( ) {
 
     }
 
-    public static void WhiteFlame(Game game) {
+    public static Runnable WhiteFlame( ) {
 
     }
 
-    public static void HisImperialMajesty(Game game) {
+    public static Runnable HisImperialMajesty( ) {
 
     }
 
-    public static void EmperorOfNilfgaard(Game game) {
+    public static Runnable EmperorOfNilfgaard( ) {
 
     }
 
-    public static void Relentless(Game game, Card card) {
+    public static Runnable Relentless() {
 
     }
 
-    public static void InvaderoftheNorth(Game game) {
+    public static Runnable InvaderoftheNorth( ) {
 
     }
 
-    public static void BringerOfDeath(Game game) {
+    public static Runnable BringerOfDeath( ) {
 
     }
 
-    public static void KingOfthewildHunt(Game game, Card card) {
+    public static Runnable KingOfthewildHunt() {
 
     }
 
-    public static void DestroyerOfWorlds(Game game, Card card1, Card card2, Card rescuedCard) {
+    public static Runnable DestroyerOfWorlds() {
 
     }
 
-    public static void CommanderOfTheRedRiders(Game game, Card card) {
+    public static Runnable CommanderOfTheRedRiders() {
 
     }
 
-    public static void Treacherous(Game game) {
+    public static Runnable Treacherous( ) {
 
     }
 
-    public static void QueenOfDolBlathanna(Game game) {
+    public static Runnable QueenOfDolBlathanna( ) {
 
     }
 
-    public static void Beautiful(Game game) {
+    public static Runnable Beautiful( ) {
 
     }
 
-    public static void DaisyOfTheValley(Game game) {
+    public static Runnable DaisyOfTheValley( ) {
 
     }
 
-    public static void PurebloodElf(Game game) {
+    public static Runnable PurebloodElf( ) {
 
     }
 
-    public static void HopeOfTheAenSeidhe(Game game) {
+    public static Runnable HopeOfTheAenSeidhe( ) {
 
     }
 
-    public static Runnable CrachanCraite(Game game) {
+    public static Runnable CrachanCraite( ) {
         return new Runnable() {
             @Override
             public void run() {
@@ -153,7 +152,7 @@ public class ActionController {
         };
     }
 
-    public static Runnable KingBran(Game game) {
+    public static Runnable KingBran( ) {
         return new Runnable() {
             @Override
             public void run() {
@@ -162,7 +161,7 @@ public class ActionController {
         };
     }
 
-    public static void Monsters() {
+    public static Runnable Monsters() {
 
     }
 

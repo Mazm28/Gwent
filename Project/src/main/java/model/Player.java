@@ -43,6 +43,7 @@ public class Player extends User{
 
     public Player(User user) {
         super(user);
+        this.faction = Faction.MONSTERS;
     }
 
     public void addToDeck(Card card){

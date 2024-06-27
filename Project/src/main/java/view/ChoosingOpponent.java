@@ -1,6 +1,7 @@
 package view;
 
 import Enums.FXMLAddresses;
+import Enums.Faction;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -28,10 +29,11 @@ public class ChoosingOpponent {
         else{
             User user = User.getLoggedInUser();
             User opponent = User.getUserByUsername(username.getText());
-            Player player = new Player(user);
-            PreGame.setPlayer1(player);
-            PreGame.setTurn(player);
-            PreGame.setPlayer2(new Player(opponent));
+            Player player1 = new Player(user);
+            PreGame.setPlayer1(player1);
+            PreGame.setTurn(player1);
+            Player player2 = new Player(opponent);
+            PreGame.setPlayer2(player2);
             try {
                 Launcher.changeScene(FXMLAddresses.PRE_GAME_MENU.getAddress());
             } catch (IOException e) {

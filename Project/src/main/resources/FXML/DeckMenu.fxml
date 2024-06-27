@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DeckMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DeckMenu">
     <children>
         <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
                 <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
             </image>
+            <effect>
+                <GaussianBlur radius="25" />
+            </effect>
         </ImageView>
-      <VBox fx:id="mainBox" layoutX="32.0" layoutY="59.0" prefHeight="612.0" prefWidth="511.0">
+      <VBox fx:id="mainBox" alignment="TOP_CENTER" layoutX="33.0" layoutY="22.0" prefHeight="612.0" prefWidth="511.0">
          <children>
             <HBox alignment="CENTER" prefHeight="167.0" prefWidth="511.0" spacing="20.0">
                <children>
                   <ImageView fx:id="faction" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="leader" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="leader" fitHeight="201.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
          </children></VBox>
-      <VBox layoutX="651.0" layoutY="228.0" prefHeight="255.0" prefWidth="235.0" styleClass="login-menu-vbox" />
-        <VBox alignment="CENTER" layoutX="651.0" layoutY="228.0" prefHeight="255.0" prefWidth="235.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
+      <VBox layoutX="651.0" layoutY="200.0" prefHeight="255.0" prefWidth="235.0" styleClass="login-menu-vbox" />
+        <VBox alignment="CENTER" layoutX="651.0" layoutY="200.0" prefHeight="255.0" prefWidth="235.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
         <children>
             <Label fx:id="error" styleClass="tf_box" />
             <TextField fx:id="deckName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="164.0" promptText="Deck name" styleClass="tf_box" />

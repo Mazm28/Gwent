@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import model.App;
 import model.Deck;
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class DeckMenu implements Initializable {
+public class DeckMenu {
     @FXML
     ImageView leader;
     @FXML
@@ -38,16 +39,14 @@ public class DeckMenu implements Initializable {
     private Card selectedCard;
     private ImageView selectedImage;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
         error.setText("Please enter a deck name");
-        ScrollPane scrollPane = new ScrollPane();
         vBox = new VBox();
         showFactionAndLeader();
         showDeck();
-        scrollPane.setContent(vBox);
-        scrollPane.setPrefSize(511, 555);
-        scrollPane.setOpacity(0.4);
+        ScrollPane scrollPane = new ScrollPane(vBox);
+        scrollPane.getStyleClass().add("scroll-pane");
+        scrollPane.setPrefSize(510, 620);
         mainBox.getChildren().add(scrollPane);
     }
 

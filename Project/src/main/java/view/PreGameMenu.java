@@ -38,7 +38,8 @@ public class PreGameMenu {
         else
             turnText.setText(PreGame.getPlayer2().getUsername() + "'s turn\n\n" + PreGame.getPlayer1().getUsername() + " is ready\n" + PreGame.getPlayer2().getUsername() + " is not ready");
         if(PreGame.getTurn().getFaction() != null) showLeadersButton.setDisable(false);
-        if(PreGame.getTurn().getLeader() != null) showCardsButton.setDisable(false);
+//        if(PreGame.getTurn().getLeader() != null)
+            showCardsButton.setDisable(false);
         if(PreGame.getTurn().getDeck().getCards().size() == 22) readyButton.setDisable(false);
     }
 
