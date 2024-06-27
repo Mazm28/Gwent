@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
 
 public class FactionsMenu implements Initializable {
     @FXML
+    private Label hoverLabel;
+    @FXML
     private Label notify;
     @FXML
     private Button back;
@@ -26,8 +28,6 @@ public class FactionsMenu implements Initializable {
     private ImageView scoiatael;
     @FXML
     private ImageView skellige;
-    @FXML
-    private ImageView syndicate;
     @FXML
     private ImageView northernRealms;
     @FXML
@@ -87,13 +87,11 @@ public class FactionsMenu implements Initializable {
         Tooltip monstersTooltip = new Tooltip("Monsters");
         Tooltip scoiataelTooltip = new Tooltip("Scoia'tael");
         Tooltip skelligeTooltip = new Tooltip("Skellige");
-        Tooltip syndicateTooltip = new Tooltip("Syndicate");
         Tooltip northernRealmsTooltip = new Tooltip("Northern Realms");
         Tooltip nilfgaardTooltip = new Tooltip("Nilfgaard");
         Tooltip.install(monsters, monstersTooltip);
         Tooltip.install(scoiatael, scoiataelTooltip);
         Tooltip.install(skellige, skelligeTooltip);
-        Tooltip.install(syndicate , syndicateTooltip);
         Tooltip.install(northernRealms, northernRealmsTooltip);
         Tooltip.install(nilfgaard, nilfgaardTooltip);
     }

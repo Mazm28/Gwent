@@ -6,6 +6,14 @@ public abstract class Card {
     protected String imageAddress;
 
     public String getImageAddress() {
-        return imageAddress;
+        return this.imageAddress;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Runnable getAbility() {
+        return ability;
     }
 }

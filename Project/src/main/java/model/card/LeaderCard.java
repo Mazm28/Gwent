@@ -13,6 +13,14 @@ public class LeaderCard extends Card{
         this.imageAddress = leaderCardInformation.imageAddress;
     }
 
+    public Faction getFaction() {
+        return faction;
+    }
+
+    public void setFaction(Faction faction) {
+        this.faction = faction;
+    }
+
     public boolean isActionUsed() {
         return actionUsed;
     }

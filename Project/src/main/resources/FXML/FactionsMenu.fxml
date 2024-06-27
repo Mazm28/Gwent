@@ -17,32 +17,32 @@
                 <GaussianBlur radius="25" />
             </effect>
         </ImageView>
-        <ImageView fx:id="monsters" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#monsters" styleClass="button-image">
+        <ImageView fx:id="monsters" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#monsters" onMouseEntered="#monstersLabel" onMouseExited="#labelInvisible" onMouseMoved="#mouseMoved" styleClass="button-image">
             <Image url="@../IMAGES/factions/Monsters.jpg" />
 
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
         </ImageView>
-        <ImageView fx:id="scoiatael" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#scoiatael" styleClass="button-image">
+        <ImageView fx:id="scoiatael" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#scoiatael" onMouseEntered="#scoiataelLabel" onMouseExited="#labelInvisible" onMouseMoved="#mouseMoved" styleClass="button-image">
             <Image url="@../IMAGES/factions/Scoiatael.jpg" />
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
         </ImageView>
-        <ImageView fx:id="skellige" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#skellige" styleClass="button-image">
+        <ImageView fx:id="skellige" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#skellige" onMouseEntered="#skelligeLabel" onMouseExited="#labelInvisible" onMouseMoved="#mouseMoved" styleClass="button-image">
             <Image url="@../IMAGES/factions/Skellige.jpg" />
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
         </ImageView>
-        <ImageView fx:id="northernRealms" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#norhernRealms" styleClass="button-image">
+        <ImageView fx:id="northernRealms" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#norhernRealms" onMouseEntered="#northernRealmsLabel" onMouseExited="#labelInvisible" onMouseMoved="#mouseMoved" styleClass="button-image">
             <Image url="@../IMAGES/factions/NorthernRealms.jpg" />
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
         </ImageView>
-        <ImageView fx:id="nilfgaard" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#nilfgaard" styleClass="button-image">
+        <ImageView fx:id="nilfgaard" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#nilfgaard" onMouseEntered="#nilfgaardLabel" onMouseExited="#labelInvisible" onMouseMoved="#mouseMoved" styleClass="button-image">
             <Image url="@../IMAGES/factions/Nilfgaard.jpg" />
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -58,5 +58,10 @@
                 <Font size="10.0" />
             </font>
         </Button>
+      <Label fx:id="hoverLabel" alignment="CENTER" contentDisplay="CENTER" opacity="0.41" prefHeight="23.0" prefWidth="126.0" style="-fx-background-color: BLACK; -fx-background-radius: 30;" textFill="WHITE" visible="false">
+         <font>
+            <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
