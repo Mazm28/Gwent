@@ -12,5 +12,6 @@ public class SpecialCard extends Card{
         this.power = specialCardInformation.power;
         this.countInGame = specialCardInformation.countInGame;
         this.ability = specialCardInformation.ability;
+        this.imageAddress = specialCardInformation.imageAddress;
     }
 }

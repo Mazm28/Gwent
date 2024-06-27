@@ -36,50 +36,42 @@ public class FactionsMenu implements Initializable {
     public void monsters(MouseEvent mouseEvent) {
         notify.setText("You chose \"Monsters\" as your faction");
         if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.MONSTERS.getName());
+            PreGame.getPlayer1().setFaction(Faction.MONSTERS);
         else
-            PreGame.getPlayer2().setFaction(Faction.MONSTERS.getName());
+            PreGame.getPlayer2().setFaction(Faction.MONSTERS);
     }
 
     public void scoiatael(MouseEvent mouseEvent) {
         notify.setText("You chose \"Scoia'tael\" as your faction");
         if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.SCOIATAEL.getName());
+            PreGame.getPlayer1().setFaction(Faction.SCOIATAEL);
         else
-            PreGame.getPlayer2().setFaction(Faction.SCOIATAEL.getName());
+            PreGame.getPlayer2().setFaction(Faction.SCOIATAEL);
 
     }
 
     public void skellige(MouseEvent mouseEvent) {
         notify.setText("You chose \"Skellige\" as your faction");
         if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.SKELLIGE.getName());
+            PreGame.getPlayer1().setFaction(Faction.SKELLIGE);
         else
-            PreGame.getPlayer2().setFaction(Faction.SKELLIGE.getName());
-    }
-
-    public void syndicate(MouseEvent mouseEvent) {
-        notify.setText("You chose \"Syndicate\" as your faction");
-        if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.SYNDICATE.getName());
-        else
-            PreGame.getPlayer2().setFaction(Faction.SYNDICATE.getName());
+            PreGame.getPlayer2().setFaction(Faction.SKELLIGE);
     }
 
     public void norhernRealms(MouseEvent mouseEvent) {
         notify.setText("You chose \"Northern Realms\" as your faction");
         if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.NORTHERN_REALMS.getName());
+            PreGame.getPlayer1().setFaction(Faction.NORTHERN_REALMS);
         else
-            PreGame.getPlayer2().setFaction(Faction.NORTHERN_REALMS.getName());
+            PreGame.getPlayer2().setFaction(Faction.NORTHERN_REALMS);
     }
 
     public void nilfgaard(MouseEvent mouseEvent) {
         notify.setText("You chose \"Nilfgaard\" as your faction");
         if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.NILFGAARD.getName());
+            PreGame.getPlayer1().setFaction(Faction.NILFGAARD);
         else
-            PreGame.getPlayer2().setFaction(Faction.NILFGAARD.getName());
+            PreGame.getPlayer2().setFaction(Faction.NILFGAARD);
     }
 
     public void back(MouseEvent mouseEvent) {

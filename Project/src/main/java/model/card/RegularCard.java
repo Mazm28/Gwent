@@ -17,5 +17,6 @@ public class RegularCard extends Card {
         this.ability = regularCardInformation.ability;
         this.hero = regularCardInformation.hero;
         this.faction = regularCardInformation.faction;
+        this.imageAddress = regularCardInformation.imageAddress;
     }
 }

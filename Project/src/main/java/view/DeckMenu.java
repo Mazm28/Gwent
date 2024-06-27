@@ -37,6 +37,7 @@ public class DeckMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        error.setText("Please enter a deck name");
         ScrollPane scrollPane = new ScrollPane();
         vBox = new VBox();
         showDeck();
@@ -68,6 +69,7 @@ public class DeckMenu implements Initializable {
             PreGame.getTurn().getDeck().setName(deckNameString);
             PreGame.getTurn().addToDeck(PreGame.getTurn().getDeck());
             App.SaveInfo(PreGame.getTurn());
+            error.setText("Deck saved successfully!");
         }
     }
 

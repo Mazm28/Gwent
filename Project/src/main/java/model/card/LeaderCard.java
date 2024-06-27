@@ -10,6 +10,7 @@ public class LeaderCard extends Card{
         this.name = leaderCardInformation.name;
         this.faction = leaderCardInformation.faction;
         this.ability = leaderCardInformation.ability;
+        this.imageAddress = leaderCardInformation.imageAddress;
     }
 
     public boolean isActionUsed() {
