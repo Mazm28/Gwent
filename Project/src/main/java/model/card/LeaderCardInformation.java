@@ -18,4 +18,8 @@ public enum LeaderCardInformation {
         this.ability = ability;
         this.imageAddress = imageAddress;
     }
+
+    public String getImageAddress() {
+        return imageAddress;
+    }
 }

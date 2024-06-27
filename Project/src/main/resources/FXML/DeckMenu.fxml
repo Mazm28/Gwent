@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DeckMenu">
@@ -15,7 +16,15 @@
                 <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
             </image>
         </ImageView>
-      <VBox fx:id="mainBox" layoutX="32.0" layoutY="59.0" prefHeight="612.0" prefWidth="511.0" />
+      <VBox fx:id="mainBox" layoutX="32.0" layoutY="59.0" prefHeight="612.0" prefWidth="511.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="167.0" prefWidth="511.0" spacing="20.0">
+               <children>
+                  <ImageView fx:id="faction" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="leader" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+         </children></VBox>
       <VBox layoutX="651.0" layoutY="228.0" prefHeight="255.0" prefWidth="235.0" styleClass="login-menu-vbox" />
         <VBox alignment="CENTER" layoutX="651.0" layoutY="228.0" prefHeight="255.0" prefWidth="235.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
         <children>

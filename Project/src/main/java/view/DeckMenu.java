@@ -14,7 +14,6 @@ import javafx.scene.layout.VBox;
 import model.App;
 import model.Deck;
 import model.PreGame;
-import model.User;
 import model.card.Card;
 
 import java.io.IOException;
@@ -24,6 +23,10 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DeckMenu implements Initializable {
+    @FXML
+    ImageView leader;
+    @FXML
+    ImageView faction;
     @FXML
     TextField deckName;
     @FXML
@@ -40,11 +43,23 @@ public class DeckMenu implements Initializable {
         error.setText("Please enter a deck name");
         ScrollPane scrollPane = new ScrollPane();
         vBox = new VBox();
+        showFactionAndLeader();
         showDeck();
         scrollPane.setContent(vBox);
         scrollPane.setPrefSize(511, 555);
         scrollPane.setOpacity(0.4);
         mainBox.getChildren().add(scrollPane);
+    }
+
+    private void showFactionAndLeader() {
+        try {
+            Image factionImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(PreGame.getTurn().getFaction().getAddress())));
+            faction.setImage(factionImage);
+        } catch (NullPointerException e) {}
+        try {
+            Image leaderImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(PreGame.getTurn().getLeader().getImageAddress())));
+            leader.setImage(leaderImage);
+        } catch (NullPointerException e) {}
     }
 
     private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
