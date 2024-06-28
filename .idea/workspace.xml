@@ -5,44 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97f97f72-6862-42a1-9f68-bc761669172c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/GwentInfoTable.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/src/main/java/view/CardMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/src/main/resources/INFORMATIONS" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/FXMLAddresses.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/Enums/FXMLAddresses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/Factions.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/Enums/Factions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/GameMenuRegexes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/ImageAddresses.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/Enums/ImageAddresses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/MainMenuRegexes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/MusicAddresses.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/Enums/MusicAddresses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/PreGameMenuRegexes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/ProfileMenuRegexes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/RegisterMenuRegexes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/RegisterRegexes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/Enums/RegisterRegexes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/Regexes/SelectQuestionTexts.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/Enums/SelectQuestionTexts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/controller/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/controller/ShowGameHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/controller/ShowGameHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/controller/ShowInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/controller/ShowInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/AnswerQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/AnswerQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/ChangeInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/ChangeInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/ChoosingOpponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/ChoosingOpponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/LoginMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/PreGameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/PreGameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/ProfileMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/RegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/SelectQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/SelectQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/ShowGameHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/ShowGameHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/ShowInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/ShowInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/ShowPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/ShowPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/CSS/12499722.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/CSS/4740895.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/FXML/CardsMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/FXML/CardsMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/FXML/PreGameMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/FXML/PreGameMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/FXML/ShowGameHistory.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/FXML/ShowGameHistory.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/FXML/ShowInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/FXML/ShowInformation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,9 +42,9 @@
     "Application.Launcher.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Asus/Desktop/project/Group-05",
+    "last_opened_file_path": "C:/Users/USER/Desktop/Ap/Group05/Group-05",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -111,14 +75,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -133,6 +89,7 @@
       <workItem from="1718886238973" duration="1095000" />
       <workItem from="1718965495617" duration="26000" />
       <workItem from="1719239566359" duration="10391000" />
+      <workItem from="1719593038929" duration="28000" />
     </task>
     <servers />
   </component>

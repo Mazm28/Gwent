@@ -1,32 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PreGameMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LeadersMenu">
     <children>
         <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
                 <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
             </image>
+            <effect>
+                <GaussianBlur radius="25" />
+            </effect>
         </ImageView>
-        <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
-        <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
-        <children>
-                <Label fx:id="turnText" styleClass="tf_box"/>
-                <Button fx:id="readyButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="ready" textFill="WHITE" onMouseClicked="#ready">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Button>
-                <Button fx:id="showFactionsButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showFactions" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Factions" textFill="WHITE" />
-                <Button fx:id="showCardsButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Cards" textFill="WHITE" onMouseClicked="#showCards"/>
-                <Button fx:id="showDeckButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show My Deck" textFill="WHITE" onMouseClicked="#showDeck"/>
-                <Button fx:id="showLeadersButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Leaders" textFill="WHITE" onMouseClicked="#showLeaders"/>
-                <Button fx:id="backButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" onMouseClicked="#mainMenu"/>
-            </children>
-        </VBox>
+        <Label fx:id="notify" alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="198.0" prefHeight="23.0" prefWidth="340.0" styleClass="tf_box" textFill="#a91d3a">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Button fx:id="back" layoutX="412.0" layoutY="498.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#back" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Back" textFill="WHITE">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </Button>
+        <!--        MonstersLeaders-->
+        <ImageView fx:id="bringerOfDeath" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#bringerOfDeath" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/monsters/BringerOfDeath.jpg" />
+
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="kingOfTheWildHunt" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#kingOfTheWildHunt" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/monsters/KingOfTheWildHunt.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="destroyerOfWorlds" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#destroyerOfWorlds" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/monsters/DestroyerOfWorlds.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="commanderOfTheRedRiders" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#commanderOfTheRedRiders" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/monsters/CommanderOfTheRedRiders.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="theTracherous" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#theTracherous" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/monsters/TheTracherous.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <!--        ScoiataelLeaders-->
+        <ImageView fx:id="theBeautiful" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#theBeautiful" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/scoiatael/TheBeautiful.jpg" />
+
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="daisyOfTheValley" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#daisyOfTheValley" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/scoiatael/DaisyOfTheValley.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="hopeOfTheAenSeidhe" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#hopeOfTheAenSeidhe" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/scoiatael/HopeOfTheAenSeidhe.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="queenOfDolBlathanna" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#queenOfDolBlathanna" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/scoiatael/QueenOfDolBlathanna.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="pureBloodElf" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#pureBloodElf" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/scoiatael/PurebloodElf.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <!--        NilfgaardLeaders-->
+        <ImageView fx:id="theRelentless" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#theRelentless" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/nilfgaard/TheRelentless.jpg" />
+
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="theWhiteFlame" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#theWhiteFlame" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/nilfgaard/TheWhiteFlame.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="invaderOfTheNorth" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#invaderOfTheNorth" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/nilfgaard/InvaderOfTheNorth.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="emperorOfNilfgaard" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#emperorOfNilfgaard" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/nilfgaard/EmperorOfNilfgaard.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="hisImperialMajesty" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#hisImperialMajesty" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/nilfgaard/HisImperialMajesty.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <!--        NorthernRealmsLeaders-->
+        <ImageView fx:id="sonOfMedell" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#sonOfMedell" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/northernRealms/SonOfMedell.jpg" />
+
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="theSiegmaster" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#theSiegmaster" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/northernRealms/TheSiegemaster.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="theSteelForged" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#theSteelForged" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/northernRealms/TheSteelForged.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="lordCommanderOfTheNorth" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#lordCommanderOfTheNorth" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/northernRealms/LordCommanderOfTheNorth.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="kingOfTemeria" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#kingOfTemeria" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/northernRealms/KingOfTemeria.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <!--        SkelligeLeaders-->
+        <ImageView fx:id="kingBran" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="295.0" onMouseClicked="#kingBran" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/skellige/KingBran.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="crachAnCraite" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="295.0" onMouseClicked="#crachAnCraite" styleClass="button-image">
+            <Image url="@../IMAGES/leaders/skellige/CrachAnCraite.jpg" />
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
     </children>
 </AnchorPane>
