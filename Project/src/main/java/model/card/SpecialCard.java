@@ -3,7 +3,7 @@ package model.card;
 import java.util.ArrayList;
 
 public class SpecialCard extends Card{
-    private int type;
+    private String type;
     private int power;
     private int countInGame;
     private static ArrayList<Card> allCards = new ArrayList<>();
