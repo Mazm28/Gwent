@@ -69,7 +69,33 @@ public enum RegularCardInformation {
     Siege_Technician("Siege_Technician", 0, 1, "Siege", ActionController.Medic(), false, Faction.NILFGAARD, ""),
     Sweers("Sweers", 2, 1, "Ranged", null, false, Faction.NILFGAARD, ""),
     Vanhemar("Vanhemar", 4, 1, "Ranged", null, false, Faction.NILFGAARD, ""),
-    Vreemde("Vreemde", 2, 1, "Close", null, false, Faction.NILFGAARD, "");
+    Vreemde("Vreemde", 2, 1, "Close", null, false, Faction.NILFGAARD, ""),
+    Ballista("Ballista", 6, 2, "Siege", null, false, Faction.NORTHERN_REALMS, ""),
+    Blue_Stripes_Commando("Blue_Stripes_Commando", 4, 3, "Close", ActionController.TightBond(), false, Faction.NORTHERN_REALMS, ""),
+    Catapult("Catapult", 8, 2, "Siege", ActionController.TightBond(), false, Faction.NORTHERN_REALMS, ""),
+    Dragon_Hunter("Dragon_Hunter", 5, 2, "Ranged", ActionController.TightBond(), false, Faction.NORTHERN_REALMS, ""),
+    Dethmold("Dethmold", 6, 1, "Ranged", null, false, Faction.NORTHERN_REALMS, ""),
+    Dun_Banner_Medic("Dun_Banner_Medic", 5, 1, "Siege", ActionController.Medic(), false, Faction.NORTHERN_REALMS, ""),
+    Esterad_Thyssen("Esterad_Thyssen", 10, 1, "Close", null, true, Faction.NORTHERN_REALMS, ""),
+    John_Natalis("John_Natalis", 10, 1, "Close", null, true, Faction.NORTHERN_REALMS, ""),
+    Kaedweni_Siege_Expert("Kaedweni_Siege_Expert", 1, 3, "Siege", ActionController.MoralBoost(), false, Faction.NORTHERN_REALMS, ""),
+    Keira_Metz("Keira_Metz", 5, 1, "Ranged", null, false, Faction.NORTHERN_REALMS, ""),
+    Philippa_Eilhart("Philippa_Eilhart", 10, 1, "Ranged", null, true, Faction.NORTHERN_REALMS, ""),
+    Poor_Infantry("Poor_Infantry", 1, 4, "Close", ActionController.TightBond(), false, Faction.NORTHERN_REALMS, ""),
+    Prince_Stennis("Prince_Stennis", 5, 1, "Close", ActionController.Spy(), false, Faction.NORTHERN_REALMS, ""),
+    Redanian_Foot_Soldier("Redanian_Foot_Soldier", 1, 2, "Close", null, false, Faction.NORTHERN_REALMS, ""),
+    Sabrina_Glevissing("Sabrina_Glevissing", 4, 1, "Ranged", null, false, Faction.NORTHERN_REALMS, ""),
+    Sheldon_Skaggs("Sheldon_Skaggs", 4, 1, "Ranged", null, false, Faction.NORTHERN_REALMS, ""),
+    Siege_Tower("Siege_Tower", 6, 1, "Siege", null, false, Faction.NORTHERN_REALMS, ""),
+    Siegfried_Of_Denesle("Siegfried_Of_Denesle", 5, 1, "Close", null, false, Faction.NORTHERN_REALMS, ""),
+    Sigismund_Dijkstra("Sigismund_Dijkstra", 4, 1, "Close", ActionController.Spy(), false, Faction.NORTHERN_REALMS, ""),
+    Sile_De_Tansarville("Síle_De_Tansarville", 5, 1, "Ranged", null, false, Faction.NORTHERN_REALMS, ""),
+    Thaler("Thaler", 1, 1, "Siege", ActionController.Spy(), false, Faction.NORTHERN_REALMS, ""),
+    Trebuchet("Trebuchet", 6, 2, "Siege", null, false, Faction.NORTHERN_REALMS, ""),
+    Vernon_Roche("Vernon_Roche", 10, 1, "Close", null, true, Faction.NORTHERN_REALMS, ""),
+    Ves("Ves", 5, 1, "Close", null, false, Faction.NORTHERN_REALMS, ""),
+    Yarpen_Zirgrin("Yarpen_Zirgrin", 2, 1, "Close", null, false, Faction.NORTHERN_REALMS, "")
+    ;
     final String name;
     final int power;
     final int countInGame;
