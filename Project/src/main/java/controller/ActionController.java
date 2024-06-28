@@ -15,15 +15,15 @@ public class ActionController {
 
     }
 
-    public static Runnable MoralBoost( ) {
+    public static Runnable MoralBoost() {
 
     }
 
-    public static Runnable Muster( ) {
+    public static Runnable Muster() {
 
     }
 
-    public static Runnable Spy( ) {
+    public static Runnable Spy() {
 
     }
 
@@ -31,15 +31,15 @@ public class ActionController {
 
     }
 
-    public static Runnable ScorchCard( ) {
+    public static Runnable ScorchCard() {
         //for Scorch card itself this method applies for whole board
     }
 
-    public static Runnable Scorch( ) {
+    public static Runnable Scorch() {
         //for other cards with this ability it applies for enemy's rows
     }
 
-    public static Runnable Berserker( ) {
+    public static Runnable Berserker() {
 
     }
 
@@ -47,51 +47,59 @@ public class ActionController {
 
     }
 
-    public static Runnable Transformers( ) {
+    public static Runnable Transformers() {
 
     }
 
-    public static Runnable BitingFrost( ) {
+    public static Runnable BitingFrost() {
 
     }
 
-    public static Runnable Impenetrablefog( ) {
+    public static Runnable Impenetrablefog() {
 
     }
 
-    public static Runnable TorrentialRain( ) {
+    public static Runnable TorrentialRain() {
 
     }
 
-    public static Runnable Siegemaster( ) {
+    public static Runnable SkelligeStorm() {
 
     }
 
-    public static Runnable SteelForged( ) {
+    public static Runnable ClearWeather() {
 
     }
 
-    public static Runnable KingofTemeria( ) {
+    public static Runnable Siegemaster() {
 
     }
 
-    public static Runnable LordCommanderoftheNorth( ) {
+    public static Runnable SteelForged() {
 
     }
 
-    public static Runnable SonOfMedell( ) {
+    public static Runnable KingofTemeria() {
 
     }
 
-    public static Runnable WhiteFlame( ) {
+    public static Runnable SonOfMedell() {
 
     }
 
-    public static Runnable HisImperialMajesty( ) {
+    public static Runnable WhiteFlame() {
 
     }
 
-    public static Runnable EmperorOfNilfgaard( ) {
+    public static Runnable HisImperialMajesty() {
+
+    }
+
+    public static Runnable LordCommanderoftheNorth() {
+
+    }
+
+    public static Runnable EmperorOfNilfgaard() {
 
     }
 
@@ -99,11 +107,11 @@ public class ActionController {
 
     }
 
-    public static Runnable InvaderoftheNorth( ) {
+    public static Runnable InvaderoftheNorth() {
 
     }
 
-    public static Runnable BringerOfDeath( ) {
+    public static Runnable BringerOfDeath() {
 
     }
 
@@ -119,31 +127,31 @@ public class ActionController {
 
     }
 
-    public static Runnable Treacherous( ) {
+    public static Runnable Treacherous() {
 
     }
 
-    public static Runnable QueenOfDolBlathanna( ) {
+    public static Runnable QueenOfDolBlathanna() {
 
     }
 
-    public static Runnable Beautiful( ) {
+    public static Runnable Beautiful() {
 
     }
 
-    public static Runnable DaisyOfTheValley( ) {
+    public static Runnable DaisyOfTheValley() {
 
     }
 
-    public static Runnable PurebloodElf( ) {
+    public static Runnable PurebloodElf() {
 
     }
 
-    public static Runnable HopeOfTheAenSeidhe( ) {
+    public static Runnable HopeOfTheAenSeidhe() {
 
     }
 
-    public static Runnable CrachanCraite( ) {
+    public static Runnable CrachanCraite() {
         return new Runnable() {
             @Override
             public void run() {
@@ -152,7 +160,7 @@ public class ActionController {
         };
     }
 
-    public static Runnable KingBran( ) {
+    public static Runnable KingBran() {
         return new Runnable() {
             @Override
             public void run() {
