@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.App;
 import model.Deck;
@@ -31,9 +32,11 @@ public class DeckMenu {
     @FXML
     VBox mainBox;
     VBox vBox;
+    HBox hBox;
     private final HashMap<ImageView, Card> images = new HashMap<>();
     private Card selectedCard;
     private ImageView selectedImage;
+    private int cardsInRow = 0;
 
     public void initialize() {
         error.setText("Please enter a deck name");
@@ -103,11 +106,13 @@ public class DeckMenu {
 
     public void showDeck() {
         for (Card card : PreGame.getTurn().getDeck().getCards()) {
+            cardsInRow++;
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
             ImageView imageView = new ImageView(image);
             imageView.setOnMouseClicked(selectCard(imageView));
             images.put(imageView, card);
-            vBox.getChildren().add(imageView);
+            hBox.getChildren().add(imageView);
+            if (cardsInRow % 3 == 0) vBox.getChildren().add(hBox);
         }
     }
 }
