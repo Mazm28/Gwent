@@ -3,11 +3,11 @@ package Enums;
 import java.io.Serializable;
 
 public enum Faction implements Serializable {
-    MONSTERS("Monsters","/IMAGES/Monsters.jpg"),
-    NILFGAARD("Nilfgaard", "/IMAGES/Nilfgaard.jpg"),
-    NORTHERN_REALMS("NorthernRealms", "/IMAGES/NorthernRealms.jpg"),
-    SCOIATAEL("Scoiatael", "/IMAGES/Scoiatael.jpg"),
-    SKELLIGE("Skellige", "/IMAGES/Skellige.jpg"),
+    MONSTERS("Monsters","/IMAGES/factions/Monsters.jpg"),
+    NILFGAARD("Nilfgaard", "/IMAGES/factions/Nilfgaard.jpg"),
+    NORTHERN_REALMS("NorthernRealms", "/IMAGES/factions/NorthernRealms.jpg"),
+    SCOIATAEL("Scoiatael", "/IMAGES/factions/Scoiatael.jpg"),
+    SKELLIGE("Skellige", "/IMAGES/factions/Skellige.jpg"),
     ;
 
     final String name;

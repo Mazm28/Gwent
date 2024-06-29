@@ -3,11 +3,11 @@ package model.card;
 import Enums.Faction;
 import controller.ActionController;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 
-public enum LeaderCardInformation {
+public enum LeaderCardInformation implements Serializable {
     The_Siegemaster("The Siegemaster",Faction.MONSTERS, null, null);
-
     final String name;
     final Faction faction;
     final Runnable ability;

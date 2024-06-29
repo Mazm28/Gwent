@@ -2,25 +2,28 @@ package model.card;
 
 import Enums.Faction;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LeaderCard extends Card{
+public class LeaderCard extends Card {
     private Faction faction;
     private boolean actionUsed;
-    private static ArrayList<LeaderCard> allCards = new ArrayList<>();
 
     public LeaderCard(LeaderCardInformation leaderCardInformation) {
         this.name = leaderCardInformation.name;
         this.faction = leaderCardInformation.faction;
         this.ability = leaderCardInformation.ability;
         this.imageAddress = leaderCardInformation.imageAddress;
-        allCards.add(this);
+        this.cardType = "Leader";
     }
 
-    public static void makeCards(){
+
+    public static ArrayList<Card> makeCards(){
+        ArrayList<Card> allCards = new ArrayList<>();
         for(LeaderCardInformation leaderCardInformation: LeaderCardInformation.values()){
-            LeaderCard leaderCard = new LeaderCard(leaderCardInformation);
+            allCards.add(new LeaderCard(leaderCardInformation));
         }
+        return allCards;
     }
 
     public Faction getFaction() {

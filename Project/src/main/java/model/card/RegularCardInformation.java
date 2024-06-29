@@ -4,7 +4,9 @@ import Enums.Faction;
 import controller.ActionController;
 import model.App;
 
-public enum RegularCardInformation {
+import java.io.Serializable;
+
+public enum RegularCardInformation implements Serializable {
     KAYRAN("Kayran",8,1,"Agile", ActionController.MoralBoost(),true,Faction.MONSTERS,"/IMAGES/sm/monsters_kayran.png"),
     ARACHAS("Arachas",4,3,"Close",ActionController.Muster(),false,Faction.MONSTERS,"/IMAGES/sm/monsters_arachas_2.png"),
     ARACHAS_BEHEMOTH("Arachas Behemoth",6,1,"Siege",ActionController.Muster(),false,Faction.MONSTERS,"/IMAGES/sm/monsters_arachas_behemoth.png"),

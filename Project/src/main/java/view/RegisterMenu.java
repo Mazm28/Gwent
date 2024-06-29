@@ -13,6 +13,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
 import model.App;
 import model.User;
+import model.card.LeaderCard;
+import model.card.RegularCard;
+import model.card.SpecialCard;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -89,7 +92,7 @@ public class RegisterMenu{
             alert.setContentText("do you want " + newUsername);
             Optional<ButtonType> buttonType = alert.showAndWait();
             if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
-                User user = new User(newUsername, passwordString, emailString, nicknameString);
+                User user = new User(usernameString, passwordString, emailString, nicknameString);
                 ArrayList<User> users = App.getUsers();
                 users.add(user);
                 App.SaveUsers(users);
@@ -113,6 +116,7 @@ public class RegisterMenu{
             }
         }
     }
+
 
     private User passwordExists(String password) {
         for(User user: App.getUsers()){

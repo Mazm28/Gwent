@@ -21,19 +21,16 @@ import java.util.Objects;
 
 public class DeckMenu {
     @FXML
-    ImageView leader;
+    private ImageView leader;
     @FXML
-    ImageView faction;
+    private ImageView faction;
     @FXML
-    TextField deckName;
+    private TextField deckName;
     @FXML
-    Label error;
+    private Label error;
     @FXML
-    VBox mainBox;
-    VBox vBox;
-    private final HashMap<ImageView, Card> images = new HashMap<>();
-    private Card selectedCard;
-    private ImageView selectedImage;
+    private VBox mainBox;
+    private VBox vBox;
 
     public void initialize() {
         error.setText("Please enter a deck name");
@@ -55,12 +52,6 @@ public class DeckMenu {
             Image leaderImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(PreGame.getTurn().getLeader().getImageAddress())));
             leader.setImage(leaderImage);
         } catch (NullPointerException e) {}
-    }
-
-    private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
-        selectedCard = images.get(imageView);
-        selectedImage = imageView;
-        return null;
     }
 
     public void preGameMenu() {
@@ -105,8 +96,6 @@ public class DeckMenu {
         for (Card card : PreGame.getTurn().getDeck().getCards()) {
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
             ImageView imageView = new ImageView(image);
-            imageView.setOnMouseClicked(selectCard(imageView));
-            images.put(imageView, card);
             vBox.getChildren().add(imageView);
         }
     }

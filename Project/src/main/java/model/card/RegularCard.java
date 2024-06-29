@@ -1,6 +1,7 @@
 package model.card;
 
 import Enums.Faction;
+import model.User;
 
 import java.util.ArrayList;
 
@@ -10,27 +11,7 @@ public class RegularCard extends Card {
     private String type;
     private boolean hero;
     private Faction faction;
-    private static ArrayList<RegularCard> allCards = new ArrayList<>();
 
-    public static ArrayList<RegularCard> getAllCards() {
-        return allCards;
-    }
-
-    public static void makeCards(){
-        for(RegularCardInformation regularCardInformation: RegularCardInformation.values()){
-            RegularCard regularCard = new RegularCard(regularCardInformation);
-        }
-    }
-
-    public static ArrayList<Card> getCardsFromFaction(Faction faction){
-        ArrayList<Card> regularCards = new ArrayList<>();
-        for(RegularCard regularCard: allCards){
-            if(regularCard.faction.equals(faction)){
-                regularCards.add(regularCard);
-            }
-        }
-        return regularCards;
-    }
     public RegularCard(RegularCardInformation regularCardInformation) {
         this.name = regularCardInformation.name;
         this.power = regularCardInformation.power;
@@ -40,7 +21,16 @@ public class RegularCard extends Card {
         this.hero = regularCardInformation.hero;
         this.faction = regularCardInformation.faction;
         this.imageAddress = regularCardInformation.imageAddress;
-        allCards.add(this);
+        this.cardType = "Regular";
+    }
+
+    public static ArrayList<Card> makeCards() {
+        ArrayList<Card> allCards = new ArrayList<>();
+        for (RegularCardInformation regularCardInformation : RegularCardInformation.values()) {
+            for (int i = 0; i < regularCardInformation.countInGame; i++)
+                allCards.add(new RegularCard(regularCardInformation));
+        }
+        return allCards;
     }
 
     public int getPower() {

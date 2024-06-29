@@ -1,7 +1,11 @@
 package model;
 
+import Enums.Faction;
 import Enums.SelectQuestionTexts;
 import model.card.Card;
+import model.card.LeaderCard;
+import model.card.RegularCard;
+import model.card.SpecialCard;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +23,10 @@ public class User implements Serializable {
     private final int id;
     private static User tempUser;
     private boolean remembered = false;
-
+    private ArrayList<Card> allCards = new ArrayList<>();
+    public ArrayList<Deck> getDecks() {
+        return decks;
+    }
 
     public User(User user) {
         this.username = user.username;
@@ -63,6 +70,38 @@ public class User implements Serializable {
         this.email = email;
         this.nickname = nickname;
         this.id = App.getUsers().size();
+    }
+    public void makeAllCards(){
+        allCards.addAll(RegularCard.makeCards());
+        allCards.addAll(SpecialCard.makeCards());
+        allCards.addAll(LeaderCard.makeCards());
+    }
+    public void removeCard(Card card){
+        allCards.remove(allCards.indexOf(card));
+    }
+
+    public ArrayList<Card> getCardByFaction(Faction faction){
+        ArrayList<Card> cards = new ArrayList<>();
+        for(Card card: allCards){
+            if(card.getCardType().equals("Regular") && ((RegularCard)card).getFaction().equals(faction)){
+                cards.add(card);
+            }
+        }
+        return cards;
+    }
+
+    public ArrayList<Card> getSpecialCards(){
+        ArrayList<Card> specialCards = new ArrayList<>();
+        for(Card card: allCards){
+            if(card.getCardType().equals("Special")){
+                specialCards.add(card);
+            }
+        }
+        return specialCards;
+    }
+
+    public ArrayList<Card> getAllCards() {
+        return allCards;
     }
 
     public static User getUserByUsername(String username) {

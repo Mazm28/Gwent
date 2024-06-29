@@ -1,12 +1,12 @@
 package model.card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SpecialCard extends Card{
+public class SpecialCard extends Card implements Serializable {
     private String type;
     private int power;
     private int countInGame;
-    private static ArrayList<Card> allCards = new ArrayList<>();
     public SpecialCard(SpecialCardInformation specialCardInformation) {
         this.name = specialCardInformation.name;
         this.type = specialCardInformation.type;
@@ -14,17 +14,15 @@ public class SpecialCard extends Card{
         this.countInGame = specialCardInformation.countInGame;
         this.ability = specialCardInformation.ability;
         this.imageAddress = specialCardInformation.imageAddress;
-        allCards.add(this);
+        this.cardType = "Special";
     }
 
-    public static ArrayList<Card> getAllCards() {
-        return allCards;
-    }
-
-    public static void makeCards(){
+    public static ArrayList<Card> makeCards(){
+        ArrayList<Card> allCards = new ArrayList<>();
         for(SpecialCardInformation specialCardInformation: SpecialCardInformation.values()){
-            SpecialCard specialCard = new SpecialCard(specialCardInformation);
+           allCards.add( new SpecialCard(specialCardInformation));
         }
+        return allCards;
     }
 
     public String getType() {
