@@ -17,6 +17,15 @@ public class LeaderCard extends Card {
         this.cardType = "Leader";
     }
 
+    public static LeaderCard findCardByName(String name){
+        for(Card card: makeCards()){
+            if(card.getName().equals(name)){
+                return (LeaderCard) card;
+            }
+        }
+        return null;
+    }
+
 
     public static ArrayList<Card> makeCards(){
         ArrayList<Card> allCards = new ArrayList<>();

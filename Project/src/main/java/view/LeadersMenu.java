@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import model.Game;
 import model.Player;
 import model.PreGame;
+import model.card.Card;
 import model.card.LeaderCard;
 import model.card.LeaderCardInformation;
 
@@ -151,7 +152,6 @@ public class LeadersMenu implements Initializable {
 
     public void bringerOfDeath(MouseEvent mouseEvent) {
         notify.setText("You chose \"Bringer Of Death\" as your leader");
-        //player.setLeader();
     }
 
     public void kingOfTheWildHunt(MouseEvent mouseEvent) {
@@ -211,7 +211,8 @@ public class LeadersMenu implements Initializable {
 
     public void theSiegmaster(MouseEvent mouseEvent) {
         notify.setText("You chose \"The Siegmaster\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.The_Siegemaster.name()));
+
     }
 
     public void sonOfMedell(MouseEvent mouseEvent) {
