@@ -80,6 +80,10 @@ public class User implements Serializable {
         allCards.remove(allCards.indexOf(card));
     }
 
+    public void addToAllCards(Card card){
+        allCards.add(card);
+    }
+
     public ArrayList<Card> getCardByFaction(Faction faction){
         ArrayList<Card> cards = new ArrayList<>();
         for(Card card: allCards){
