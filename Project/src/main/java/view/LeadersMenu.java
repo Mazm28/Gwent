@@ -260,40 +260,40 @@ public class LeadersMenu implements Initializable {
     }
 
     private void disableMonsters(){
-        theTracherous.setDisable(true);
-        commanderOfTheRedRiders.setDisable(true);
-        destroyerOfWorlds.setDisable(true);
-        kingOfTheWildHunt.setDisable(true);
-        bringerOfDeath.setDisable(true);
+        theTracherous.setVisible(false);
+        commanderOfTheRedRiders.setVisible(false);
+        destroyerOfWorlds.setVisible(false);
+        kingOfTheWildHunt.setVisible(false);
+        bringerOfDeath.setVisible(false);
     }
 
     private void disableNorthernRealms(){
-        kingOfTemeria.setDisable(true);
-        lordCommanderOfTheNorth.setDisable(true);
-        theSteelForged.setDisable(true);
-        theSiegmaster.setDisable(true);
-        sonOfMedell.setDisable(true);
+        kingOfTemeria.setVisible(false);
+        lordCommanderOfTheNorth.setVisible(false);
+        theSteelForged.setVisible(false);
+        theSiegmaster.setVisible(false);
+        sonOfMedell.setVisible(false);
     }
 
     private void disableNilfgaard(){
-        theRelentless.setDisable(true);
-        theWhiteFlame.setDisable(true);
-        invaderOfTheNorth.setDisable(true);
-        hisImperialMajesty.setDisable(true);
-        emperorOfNilfgaard.setDisable(true);
+        theRelentless.setVisible(false);
+        theWhiteFlame.setVisible(false);
+        invaderOfTheNorth.setVisible(false);
+        hisImperialMajesty.setVisible(false);
+        emperorOfNilfgaard.setVisible(false);
     }
 
     private void disableScoiatael(){
-        theBeautiful.setDisable(true);
-        pureBloodElf.setDisable(true);
-        daisyOfTheValley.setDisable(true);
-        queenOfDolBlathanna.setDisable(true);
-        hopeOfTheAenSeidhe.setDisable(true);
+        theBeautiful.setVisible(false);
+        pureBloodElf.setVisible(false);
+        daisyOfTheValley.setVisible(false);
+        queenOfDolBlathanna.setVisible(false);
+        hopeOfTheAenSeidhe.setVisible(false);
     }
 
     public void disableSkellige(){
-        crachAnCraite.setDisable(true);
-        kingBran.setDisable(true);
+        crachAnCraite.setVisible(false);
+        kingBran.setVisible(false);
     }
 
     public void back(MouseEvent mouseEvent) {
