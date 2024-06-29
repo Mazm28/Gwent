@@ -28,141 +28,141 @@
             </font>
         </Button>
         <!--        MonstersLeaders-->
-        <ImageView fx:id="bringerOfDeath" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#bringerOfDeath" styleClass="button-image">
+        <ImageView fx:id="bringerOfDeath" fitHeight="110" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#bringerOfDeath" styleClass="button-image">
             <Image url="@../IMAGES/leaders/monsters/BringerOfDeath.jpg" />
 
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="kingOfTheWildHunt" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#kingOfTheWildHunt" styleClass="button-image">
+        <ImageView fx:id="kingOfTheWildHunt" fitHeight="110.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#kingOfTheWildHunt" styleClass="button-image">
             <Image url="@../IMAGES/leaders/monsters/KingOfTheWildHunt.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="destroyerOfWorlds" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#destroyerOfWorlds" styleClass="button-image">
+        <ImageView fx:id="destroyerOfWorlds" fitHeight="110.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#destroyerOfWorlds" styleClass="button-image">
             <Image url="@../IMAGES/leaders/monsters/DestroyerOfWorlds.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="commanderOfTheRedRiders" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#commanderOfTheRedRiders" styleClass="button-image">
+        <ImageView fx:id="commanderOfTheRedRiders" fitHeight="110.0" fitWidth="91.0" layoutX="387.5" layoutY="370.0" onMouseClicked="#commanderOfTheRedRiders" styleClass="button-image">
             <Image url="@../IMAGES/leaders/monsters/CommanderOfTheRedRiders.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="theTracherous" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#theTracherous" styleClass="button-image">
+        <ImageView fx:id="theTracherous" fitHeight="110.0" fitWidth="91.0" layoutX="512.5" layoutY="370.0" onMouseClicked="#theTracherous" styleClass="button-image">
             <Image url="@../IMAGES/leaders/monsters/TheTracherous.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
         <!--        ScoiataelLeaders-->
-        <ImageView fx:id="theBeautiful" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#theBeautiful" styleClass="button-image">
+        <ImageView fx:id="theBeautiful" fitHeight="110.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#theBeautiful" styleClass="button-image">
             <Image url="@../IMAGES/leaders/scoiatael/TheBeautiful.jpg" />
 
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="daisyOfTheValley" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#daisyOfTheValley" styleClass="button-image">
+        <ImageView fx:id="daisyOfTheValley" fitHeight="110.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#daisyOfTheValley" styleClass="button-image">
             <Image url="@../IMAGES/leaders/scoiatael/DaisyOfTheValley.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="hopeOfTheAenSeidhe" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#hopeOfTheAenSeidhe" styleClass="button-image">
+        <ImageView fx:id="hopeOfTheAenSeidhe" fitHeight="110.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#hopeOfTheAenSeidhe" styleClass="button-image">
             <Image url="@../IMAGES/leaders/scoiatael/HopeOfTheAenSeidhe.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="queenOfDolBlathanna" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#queenOfDolBlathanna" styleClass="button-image">
+        <ImageView fx:id="queenOfDolBlathanna" fitHeight="110.0" fitWidth="91.0" layoutX="387.5" layoutY="370.0" onMouseClicked="#queenOfDolBlathanna" styleClass="button-image">
             <Image url="@../IMAGES/leaders/scoiatael/QueenOfDolBlathanna.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="pureBloodElf" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#pureBloodElf" styleClass="button-image">
+        <ImageView fx:id="pureBloodElf" fitHeight="110.0" fitWidth="91.0" layoutX="512.5" layoutY="370.0" onMouseClicked="#pureBloodElf" styleClass="button-image">
             <Image url="@../IMAGES/leaders/scoiatael/PurebloodElf.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
         <!--        NilfgaardLeaders-->
-        <ImageView fx:id="theRelentless" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#theRelentless" styleClass="button-image">
+        <ImageView fx:id="theRelentless" fitHeight="110.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#theRelentless" styleClass="button-image">
             <Image url="@../IMAGES/leaders/nilfgaard/TheRelentless.jpg" />
 
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="theWhiteFlame" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#theWhiteFlame" styleClass="button-image">
+        <ImageView fx:id="theWhiteFlame" fitHeight="110.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#theWhiteFlame" styleClass="button-image">
             <Image url="@../IMAGES/leaders/nilfgaard/TheWhiteFlame.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="invaderOfTheNorth" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#invaderOfTheNorth" styleClass="button-image">
+        <ImageView fx:id="invaderOfTheNorth" fitHeight="110.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#invaderOfTheNorth" styleClass="button-image">
             <Image url="@../IMAGES/leaders/nilfgaard/InvaderOfTheNorth.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="emperorOfNilfgaard" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#emperorOfNilfgaard" styleClass="button-image">
+        <ImageView fx:id="emperorOfNilfgaard" fitHeight="110.0" fitWidth="91.0" layoutX="387.5" layoutY="370.0" onMouseClicked="#emperorOfNilfgaard" styleClass="button-image">
             <Image url="@../IMAGES/leaders/nilfgaard/EmperorOfNilfgaard.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="hisImperialMajesty" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#hisImperialMajesty" styleClass="button-image">
+        <ImageView fx:id="hisImperialMajesty" fitHeight="110.0" fitWidth="91.0" layoutX="512.5" layoutY="370.0" onMouseClicked="#hisImperialMajesty" styleClass="button-image">
             <Image url="@../IMAGES/leaders/nilfgaard/HisImperialMajesty.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
         <!--        NorthernRealmsLeaders-->
-        <ImageView fx:id="sonOfMedell" fitHeight="95.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#sonOfMedell" styleClass="button-image">
+        <ImageView fx:id="sonOfMedell" fitHeight="110.0" fitWidth="91.0" layoutX="325.0" layoutY="240.0" onMouseClicked="#sonOfMedell" styleClass="button-image">
             <Image url="@../IMAGES/leaders/northernRealms/SonOfMedell.jpg" />
 
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="theSiegmaster" fitHeight="95.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#theSiegmaster" styleClass="button-image">
+        <ImageView fx:id="theSiegmaster" fitHeight="110.0" fitWidth="91.0" layoutX="450.0" layoutY="240.0" onMouseClicked="#theSiegmaster" styleClass="button-image">
             <Image url="@../IMAGES/leaders/northernRealms/TheSiegemaster.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="theSteelForged" fitHeight="95.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#theSteelForged" styleClass="button-image">
+        <ImageView fx:id="theSteelForged" fitHeight="110.0" fitWidth="91.0" layoutX="575.0" layoutY="240.0" onMouseClicked="#theSteelForged" styleClass="button-image">
             <Image url="@../IMAGES/leaders/northernRealms/TheSteelForged.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="lordCommanderOfTheNorth" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="350.0" onMouseClicked="#lordCommanderOfTheNorth" styleClass="button-image">
+        <ImageView fx:id="lordCommanderOfTheNorth" fitHeight="110.0" fitWidth="91.0" layoutX="387.5" layoutY="370.0" onMouseClicked="#lordCommanderOfTheNorth" styleClass="button-image">
             <Image url="@../IMAGES/leaders/northernRealms/LordCommanderOfTheNorth.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="kingOfTemeria" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="350.0" onMouseClicked="#kingOfTemeria" styleClass="button-image">
+        <ImageView fx:id="kingOfTemeria" fitHeight="110.0" fitWidth="91.0" layoutX="512.5" layoutY="370.0" onMouseClicked="#kingOfTemeria" styleClass="button-image">
             <Image url="@../IMAGES/leaders/northernRealms/KingOfTemeria.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
         <!--        SkelligeLeaders-->
-        <ImageView fx:id="kingBran" fitHeight="95.0" fitWidth="91.0" layoutX="387.5" layoutY="295.0" onMouseClicked="#kingBran" styleClass="button-image">
+        <ImageView fx:id="kingBran" fitHeight="110.0" fitWidth="91.0" layoutX="387.5" layoutY="305.0" onMouseClicked="#kingBran" styleClass="button-image">
             <Image url="@../IMAGES/leaders/skellige/KingBran.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </ImageView>
-        <ImageView fx:id="crachAnCraite" fitHeight="95.0" fitWidth="91.0" layoutX="512.5" layoutY="295.0" onMouseClicked="#crachAnCraite" styleClass="button-image">
+        <ImageView fx:id="crachAnCraite" fitHeight="110.0" fitWidth="91.0" layoutX="512.5" layoutY="305.0" onMouseClicked="#crachAnCraite" styleClass="button-image">
             <Image url="@../IMAGES/leaders/skellige/CrachAnCraite.jpg" />
             <cursor>
                 <Cursor fx:constant="HAND" />
