@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.PreGame;
 import model.card.Card;
@@ -27,6 +28,8 @@ public class CardMenu {
     private final HashMap<ImageView, Card> images = new HashMap<>();
     VBox cardVBox;
     VBox deckVBox;
+    HBox hBox;
+    int cardInRow = 0;
     public void initialize() {
         cardVBox = new VBox();
         cardVBox.setSpacing(45);
@@ -54,17 +57,24 @@ public class CardMenu {
 
     public void showCards(VBox vBox, ArrayList<Card> cards) {
         vBox.getChildren().remove(0,vBox.getChildren().size());
-        System.out.println(cards.size());
+        cardInRow = 0;
         for (Card card : cards) {
             try {
+                if (cardInRow % 3 == 0) {
+                    hBox = new HBox();
+                    hBox.setSpacing(15);
+                    hBox.setMaxWidth(400);
+                }
+                cardInRow++;
                 Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
                 ImageView imageView = new ImageView(image);
-                imageView.setFitHeight(300);
-                imageView.setFitWidth(210);
+                imageView.setFitHeight(150);
+                imageView.setFitWidth(70);
                 imageView.getStyleClass().add("image");
                 imageView.setOnMouseClicked(selectCard(imageView));
                 images.put(imageView, card);
-                vBox.getChildren().add(imageView);
+                hBox.getChildren().add(imageView);
+                if (cardInRow % 3 == 1) vBox.getChildren().add(hBox);
             }
             catch (Exception ignored){
             }
