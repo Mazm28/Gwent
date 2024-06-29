@@ -100,6 +100,27 @@ public enum RegularCardInformation {
     Vidkaarl("Vidkaarl", 14, 1, "Close", ActionController.MoralBoost(), false, Faction.SKELLIGE, "/IMAGES/sm/skellige_vildkaarl.png"),
     Svanrige("Svanrige", 4, 1, "Close", null, false, Faction.SKELLIGE, "/IMAGES/sm/skellige_svanrige.png"),
     Udalryk("Udalryk", 4, 1, "Close", null, false, Faction.SKELLIGE, "/IMAGES/sm/skellige_udalryk.png"),
+    DONAR_AN_HINDAR("Donar an Hindar", 4, 1, "Close", null, false, Faction.SKELLIGE, ""),
+    CLAN_AN_CRAITE("Clan An Craite", 6,3, "Close", ActionController.TightBond(), false, Faction.SKELLIGE, ""),
+    BLUEBOY_LUGOS("Blueboy Lugos", 6, 1, "Close", null, false, Faction.SKELLIGE, ""),
+    MADMAN_LUGOS("Madman Lugos", 6,1,"Close", null, false,Faction.SKELLIGE, ""),
+    CERYS("Cerys", 10,1,"Close", ActionController.Muster(), true, Faction.SKELLIGE, ""),
+    KAMBI("Kambi", 11,1,"Close", ActionController.Transformers(), true, Faction.SKELLIGE, ""),
+    BIRNA_BRAN("Birna Bran", 2,1,"Close", ActionController.Medic(), false, Faction.SKELLIGE, ""),
+    CLAN_Drummond_Shieldmaiden("Clan Drummond Shieldmaiden", 4,3,"Close", ActionController.TightBond(), false, Faction.SKELLIGE, ""),
+    CLAN_TORDARROCH_ARMORSMITH("Clan Tordarroch Armorsmith", 4,1,"Close", null, false, Faction.SKELLIGE, ""),
+    CLAN_DIMUN_PIRATE("Clan Dimun Pirate", 6,1,"Ranged", ActionController.Scorch(), false, Faction.SKELLIGE, ""),
+    CLAN_BROKVAR_ARCHER("Clan Brokvar Archer", 6,3, "Ranged", null , false, Faction.SKELLIGE, ""),
+    ERMION("Ermion", 8,1,"Ranged", ActionController.Mardroeme(), true, Faction.SKELLIGE, ""),
+    HJALMAR("Hjalmar", 10,1,"Ranged", null, true, Faction.SKELLIGE, ""),
+    YOUNG_BERSERKER("Young Berserker", 2,3, "Ranged", ActionController.Berserker(), false, Faction.SKELLIGE, ""),
+    YOUNG_VIDKAARL("Young Vidkaarl", 8, 1,"Ranged", ActionController.TightBond(), false, Faction.SKELLIGE, ""),
+    LIGHT_LONGSHIP("Light Longship", 4,3,"Ranged", ActionController.Muster(), false, Faction.SKELLIGE, ""),
+    HOLGER_BLACKHAND("Holger Blackhand", 4,1,"Siege", null, false, Faction.SKELLIGE, ""),
+    WAR_LONGSHIP("War Longship", 6,3, "Siege", ActionController.TightBond(), false, Faction.SKELLIGE, ""),
+    DRAIG_BON_DHU("Draig Bon-Dhu", 2,1,"Siege", ActionController.CommanderHorn(), false, Faction.SKELLIGE, ""),
+    OLAF("Olaf", 12,1,"Agile", ActionController.MoralBoost(), false, Faction.SKELLIGE, "")
+
     ;
     final String name;
     final int power;
