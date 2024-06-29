@@ -94,7 +94,12 @@ public enum RegularCardInformation {
     Trebuchet("Trebuchet", 6, 2, "Siege", null, false, Faction.NORTHERN_REALMS, ""),
     Vernon_Roche("Vernon_Roche", 10, 1, "Close", null, true, Faction.NORTHERN_REALMS, ""),
     Ves("Ves", 5, 1, "Close", null, false, Faction.NORTHERN_REALMS, ""),
-    Yarpen_Zirgrin("Yarpen_Zirgrin", 2, 1, "Close", null, false, Faction.NORTHERN_REALMS, "")
+    Yarpen_Zirgrin("Yarpen_Zirgrin", 2, 1, "Close", null, false, Faction.NORTHERN_REALMS, ""),
+    Mardoeme("Mardoeme", 0, 3, "Spell", ActionController.Mardroeme(), false, Faction.SKELLIGE, ""),
+    Berserker("Berserker", 4, 1, "Close", ActionController.Berserker(), false, Faction.SKELLIGE, ""),
+    Vidkaarl("Vidkaarl", 14, 1, "Close", ActionController.MoralBoost(), false, Faction.SKELLIGE, ""),
+    Svanrige("Svanrige", 4, 1, "Close", null, false, Faction.SKELLIGE, ""),
+    Udalryk("Udalryk", 4, 1, "Close", null, false, Faction.SKELLIGE, ""),
     ;
     final String name;
     final int power;
