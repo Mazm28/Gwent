@@ -17,7 +17,7 @@
         </ImageView>
       <VBox fx:id="mainBox" alignment="TOP_CENTER" layoutX="33.0" layoutY="22.0" prefHeight="612.0" prefWidth="511.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="167.0" prefWidth="511.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="167.0" prefWidth="511.0" spacing="40.0">
                <children>
                   <ImageView fx:id="faction" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="leader" fitHeight="201.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true" />

@@ -3,7 +3,7 @@ module project {
     requires javafx.fxml;
     requires javafx.media;
     requires jdk.compiler;
-
+    exports model.card;
     exports view;
     opens view to javafx.fxml;
     exports controller;

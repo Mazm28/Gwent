@@ -30,9 +30,11 @@ public class ChoosingOpponent {
             User user = User.getLoggedInUser();
             User opponent = User.getUserByUsername(username.getText());
             Player player1 = new Player(user);
+            player1.makeAllCards();
             PreGame.setPlayer1(player1);
             PreGame.setTurn(player1);
             Player player2 = new Player(opponent);
+            player2.makeAllCards();
             PreGame.setPlayer2(player2);
             try {
                 Launcher.changeScene(FXMLAddresses.PRE_GAME_MENU.getAddress());

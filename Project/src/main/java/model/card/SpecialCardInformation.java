@@ -2,10 +2,11 @@ package model.card;
 
 import controller.ActionController;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.function.Function;
 
-public enum SpecialCardInformation {
+public enum SpecialCardInformation implements Serializable {
     Biting_Frost("Biting_Frost",0,3,"Weather", ActionController.BitingFrost(), false, "/IMAGES/sm/weather_frost.png"),
     Impenetrable_Fog("Impenetrable_Fog", 0, 3, "Weather", ActionController.Impenetrablefog(), false, "/IMAGES/sm/weather_fog.png"),
     Torrential_Rain("Torrential_Rain", 0, 3, "Weather", ActionController.TorrentialRain(), false, "/IMAGES/sm/weather_rain.png"),
