@@ -24,6 +24,9 @@ public class Player extends User{
         }
         return deck;
     }
+    public void removeCardFromDeck(Card card){
+        deck.getCards().remove(deck.getCards().indexOf(card));
+    }
 
     public ArrayList<Card> getBurnedCards() {
         return burnedCards;

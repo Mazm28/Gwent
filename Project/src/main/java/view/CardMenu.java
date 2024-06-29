@@ -73,8 +73,13 @@ public class CardMenu {
     }
     private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
         return (EventHandler<MouseEvent>) event -> {
-            PreGame.getTurn().getDeck().addToCards(images.get(imageView));
-            PreGame.getTurn().removeCard(images.get(imageView));
+            if(deckVBox.getChildren().contains(imageView)){
+                PreGame.getTurn().removeCardFromDeck(images.get(imageView));
+                PreGame.getTurn().addToAllCards(images.get(imageView));
+            } else {
+                PreGame.getTurn().getDeck().addToCards(images.get(imageView));
+                PreGame.getTurn().removeCard(images.get(imageView));
+            }
             ArrayList<Card> cardsToShow = new ArrayList<>(PreGame.getTurn().getCardByFaction(PreGame.getTurn().getFaction()));
             cardsToShow.addAll(PreGame.getTurn().getSpecialCards());
             showCards(cardVBox, cardsToShow);
