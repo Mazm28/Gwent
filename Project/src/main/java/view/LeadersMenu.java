@@ -15,6 +15,7 @@ import model.PreGame;
 import model.card.Card;
 import model.card.LeaderCard;
 import model.card.LeaderCardInformation;
+import model.card.RegularCardInformation;
 
 import java.io.IOException;
 import java.net.URL;
@@ -152,112 +153,113 @@ public class LeadersMenu implements Initializable {
 
     public void bringerOfDeath(MouseEvent mouseEvent) {
         notify.setText("You chose \"Bringer Of Death\" as your leader");
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.BRINGER_OF_DEATH.getName()));
     }
 
     public void kingOfTheWildHunt(MouseEvent mouseEvent) {
         notify.setText("You chose \"King Of The Wild Hunt\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.KING_OF_THE_WILD_HUNT.getName()));
     }
 
     public void destroyerOfWorlds(MouseEvent mouseEvent) {
         notify.setText("You chose \"Destroyer Of Worlds\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.DESTROYER_OF_WORLDS.getName()));
     }
 
     public void commanderOfTheRedRiders(MouseEvent mouseEvent) {
         notify.setText("You chose \"Commander Of The Red Riders\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.COMMANDER_OF_THE_RED_RIDERS.getName()));
     }
 
     public void theTracherous(MouseEvent mouseEvent) {
         notify.setText("You chose \"The Tracherous\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.THE_TRACHEROUS.getName()));
     }
 
     public void theRelentless(MouseEvent mouseEvent) {
         notify.setText("You chose \"The Relentless\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.THE_RELENTLESS.getName()));
     }
 
     public void theWhiteFlame(MouseEvent mouseEvent) {
         notify.setText("You chose \"The White Flame\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.THE_WHITE_FLAME.getName()));
     }
 
     public void invaderOfTheNorth(MouseEvent mouseEvent) {
         notify.setText("You chose \"Invader Of The North\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.INVADOR_OF_THE_NORTH.getName()));
     }
 
     public void hisImperialMajesty(MouseEvent mouseEvent) {
         notify.setText("You chose \"His Imperial Majesty\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.HIS_IMPERIAL_MAJESTY.getName()));
     }
 
     public void emperorOfNilfgaard(MouseEvent mouseEvent) {
         notify.setText("You chose \"Emperor Of Nilfgaard\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.EMPEROR_OF_NILFGAARD.getName()));
     }
 
     public void lordCommanderOfTheNorth(MouseEvent mouseEvent) {
         notify.setText("You chose \"Lord Of The North\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.LORD_COMMANDER_OF_THE_NORTH.getName()));
     }
 
     public void theSteelForged(MouseEvent mouseEvent) {
         notify.setText("You chose \"The Steel-Forged\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.THE_STEEL_FORGED.getName()));
     }
 
     public void theSiegmaster(MouseEvent mouseEvent) {
         notify.setText("You chose \"The Siegmaster\" as your leader");
-        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.The_Siegemaster.name()));
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.THE_SIEGMASTER.name()));
 
     }
 
     public void sonOfMedell(MouseEvent mouseEvent) {
         notify.setText("You chose \"Son Of Medell\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.SON_OF_MEDELL.getName()));
     }
 
     public void kingOfTemeria(MouseEvent mouseEvent) {
         notify.setText("You chose \"King Of Temeria\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.KING_OF_TEMERIA.getName()));
     }
 
     public void pureBloodElf(MouseEvent mouseEvent) {
         notify.setText("You chose \"Pureblood Elf\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.PUREBLOOD_ELF.getName()));
     }
 
     public void queenOfDolBlathanna(MouseEvent mouseEvent) {
         notify.setText("You chose \"Queen Of Dol Blathanna\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.QUEEN_OF_DOL_BLATHANNA.getName()));
     }
 
     public void hopeOfTheAenSeidhe(MouseEvent mouseEvent) {
         notify.setText("You chose \"Hope Of The Aen Seidhe\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.HOPE_OF_THE_AEN_SEIDHE.getName()));
     }
 
     public void daisyOfTheValley(MouseEvent mouseEvent) {
         notify.setText("You chose \"Daisy Of The Valley\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.DAISY_OF_THE_VALLEY.getName()));
     }
 
     public void theBeautiful(MouseEvent mouseEvent) {
         notify.setText("You chose \"The Beautiful\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.THE_BEAUTIFUL.getName()));
     }
 
     public void crachAnCraite(MouseEvent mouseEvent) {
         notify.setText("You chose \"Crach An Craite\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.CRACH_AN_CRAITE.getName()));
     }
 
     public void kingBran(MouseEvent mouseEvent) {
         notify.setText("You chose \"King Bran\" as your leader");
-        //player.setLeader();
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.KING_BRAN.getName()));
     }
 
     private void disableMonsters(){
