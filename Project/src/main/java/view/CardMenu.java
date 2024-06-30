@@ -68,7 +68,7 @@ public class CardMenu {
                 cardInRow++;
                 Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
                 ImageView imageView = new ImageView(image);
-                imageView.setFitHeight(150);
+                imageView.setFitHeight(120);
                 imageView.setFitWidth(70);
                 imageView.getStyleClass().add("image");
                 imageView.setOnMouseClicked(selectCard(imageView));
