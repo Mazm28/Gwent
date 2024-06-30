@@ -24,7 +24,7 @@ public enum RegularCardInformation implements Serializable {
     BOTCHLING("Botchling",4,1,"Close",null,false,Faction.MONSTERS,"/IMAGES/lg/monsters_ghoul_1.jpg"),
     CELAENO_HARPY("Celaeno Harpy",2,1,"Agile",null,false,Faction.MONSTERS,"/IMAGES/lg/monsters_celaeno_harpy.jpg"),
     COCKATRICE("Cockatrice",2,1,"Ranged",null,false,Faction.MONSTERS,"/IMAGES/lg/monsters_cockatrice.jpg"),
-    DRAUG("DRAUG",10,1,"Close",null,true,Faction.MONSTERS,"/IMAGES/lg/monsters_draug.jpg"),
+    DRAUG("Draug",10,1,"Close",null,true,Faction.MONSTERS,"/IMAGES/lg/monsters_draug.jpg"),
     EARTH_ELEMENTAL("Earth Elemental",6,1,"Siege",null,false,Faction.MONSTERS,"/IMAGES/lg/monsters_earth_elemental.jpg"),
     ENDREGA("Endrega",2,1,"Ranged",null,false,Faction.MONSTERS,"/IMAGES/lg/monsters_endrega.jpg"),
     FIEND("Fiend",6,1,"Close",null,false,Faction.MONSTERS,"/IMAGES/lg/monsters_fiend.jpg"),
