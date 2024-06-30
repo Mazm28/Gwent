@@ -84,15 +84,6 @@ public class User implements Serializable {
         allCards.add(card);
     }
 
-    public ArrayList<Card> getCardByFaction(Faction faction){
-        ArrayList<Card> cards = new ArrayList<>();
-        for(Card card: allCards){
-            if(card.getCardType().equals("Regular") && ((RegularCard)card).getFaction().equals(faction)){
-                cards.add(card);
-            }
-        }
-        return cards;
-    }
 
     public ArrayList<Card> getSpecialCards(){
         ArrayList<Card> specialCards = new ArrayList<>();

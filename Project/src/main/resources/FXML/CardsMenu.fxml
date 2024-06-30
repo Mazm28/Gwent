@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CardMenu">
     <children>
@@ -14,7 +17,107 @@
                 <GaussianBlur radius="25" />
             </effect>
         </ImageView>
-        <VBox fx:id="cards" alignment="TOP_CENTER" layoutX="33.0" layoutY="22.0" prefHeight="612.0" prefWidth="419.0" />
-      <VBox fx:id="deck" alignment="TOP_CENTER" layoutX="532.0" layoutY="22.0" prefHeight="612.0" prefWidth="454.0" />
+        <VBox fx:id="cards" alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="612.0" prefWidth="419.0" styleClass="login-menu-vbox" />
+      <VBox fx:id="deck" alignment="TOP_CENTER" layoutX="567.0" layoutY="14.0" prefHeight="612.0" prefWidth="419.0" styleClass="login-menu-vbox" />
+      <VBox layoutX="450.0" layoutY="80.0" prefHeight="63.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.63" prefHeight="18.0" prefWidth="113.0" style="-fx-background-color: BLACK; -fx-background-radius: 30;" text="Cards In Deck" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="48.0" prefWidth="100.0" spacing="15.0">
+               <children>
+                  <Circle fx:id="cardsInDeckCircle" fill="#0079eb" radius="21.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Label fx:id="cardsInDeck" opacity="0.69" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: Black; -fx-alignment: Center; -fx-background-radius: 100;" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="450.0" layoutY="175.0" prefHeight="63.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.63" prefHeight="18.0" prefWidth="113.0" style="-fx-background-color: BLACK; -fx-background-radius: 30;" text="Unit Cards" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="48.0" prefWidth="100.0" spacing="15.0">
+               <children>
+                  <Circle fx:id="unitCardsCircle" fill="#0079eb" radius="21.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Label fx:id="unitCards" opacity="0.69" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: Black; -fx-alignment: Center; -fx-background-radius: 100;" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="450.0" layoutY="273.0" prefHeight="63.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.63" prefHeight="18.0" prefWidth="113.0" style="-fx-background-color: BLACK; -fx-background-radius: 30;" text="Special Cards" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="48.0" prefWidth="100.0" spacing="15.0">
+               <children>
+                  <Circle fx:id="specialCardsCircle" fill="#0079eb" radius="21.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Label fx:id="specialCards" opacity="0.69" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: Black; -fx-alignment: Center; -fx-background-radius: 100;" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="450.0" layoutY="371.0" prefHeight="68.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.63" prefHeight="16.0" prefWidth="123.0" style="-fx-background-color: BLACK; -fx-background-radius: 30;" text="Unit Strength" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="48.0" prefWidth="100.0" spacing="15.0">
+               <children>
+                  <Circle fx:id="unitStrengthCircle" fill="#0079eb" radius="21.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Label fx:id="unitStrength" opacity="0.69" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: Black; -fx-alignment: Center; -fx-background-radius: 100;" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="450.0" layoutY="469.0" prefHeight="63.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.63" prefHeight="18.0" prefWidth="113.0" style="-fx-background-color: BLACK; -fx-background-radius: 30;" text="Hero Cards" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="48.0" prefWidth="100.0" spacing="15.0">
+               <children>
+                  <Circle fx:id="heroCardsCircle" fill="#0079eb" radius="21.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Label fx:id="heroCards" opacity="0.69" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: Black; -fx-alignment: Center; -fx-background-radius: 100;" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button onMouseClicked="#BackToPreGame" layoutX="450.0" layoutY="578.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 10;" styleClass="button-52" text="Back" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
