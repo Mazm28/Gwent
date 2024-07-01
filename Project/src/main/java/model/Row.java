@@ -2,10 +2,11 @@ package model;
 
 import model.card.Card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Row {
-    private ArrayList<Card> cards = new ArrayList<>();
+public class Row implements Serializable {
+    private final ArrayList<Card> cards = new ArrayList<>();
     private Card improveCard;
 
     public ArrayList<Card> getCards() {

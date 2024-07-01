@@ -4,9 +4,10 @@ package model;
 import javafx.scene.Parent;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
+import com.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class App {
@@ -56,6 +57,7 @@ public class App {
 
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("Users.ser");
         if (file.exists()) {
             try (FileInputStream fileInputStream = new FileInputStream(file);

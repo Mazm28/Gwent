@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 public class User implements Serializable {
     private static User loggedInUser;
-    private ArrayList<GameRecord> gameRecords = new ArrayList<>();
+    private final ArrayList<GameRecord> gameRecords = new ArrayList<>();
     private String username;
     private String password;
-    private ArrayList<Deck> decks = new ArrayList<>();
+    private final ArrayList<Deck> decks = new ArrayList<>();
     private String email;
     private String nickname;
     private SelectQuestionTexts selectQuestionTexts;
@@ -23,7 +23,7 @@ public class User implements Serializable {
     private final int id;
     private static User tempUser;
     private boolean remembered = false;
-    private ArrayList<Card> allCards = new ArrayList<>();
+    private final ArrayList<Card> allCards = new ArrayList<>();
     public ArrayList<Deck> getDecks() {
         return decks;
     }
@@ -71,11 +71,13 @@ public class User implements Serializable {
         this.nickname = nickname;
         this.id = App.getUsers().size();
     }
+
     public void makeAllCards(){
         allCards.addAll(RegularCard.makeCards());
         allCards.addAll(SpecialCard.makeCards());
         allCards.addAll(LeaderCard.makeCards());
     }
+
     public void removeCard(Card card){
         allCards.remove(allCards.indexOf(card));
     }
@@ -84,15 +86,6 @@ public class User implements Serializable {
         allCards.add(card);
     }
 
-    public ArrayList<Card> getCardByFaction(Faction faction){
-        ArrayList<Card> cards = new ArrayList<>();
-        for(Card card: allCards){
-            if(card.getCardType().equals("Regular") && ((RegularCard)card).getFaction().equals(faction)){
-                cards.add(card);
-            }
-        }
-        return cards;
-    }
 
     public ArrayList<Card> getSpecialCards(){
         ArrayList<Card> specialCards = new ArrayList<>();

@@ -4,6 +4,11 @@ public enum ImageAddresses {
     ICON("/IMAGES/icon.png"),
     SHOW("/IMAGES/show.png"),
     HIDE("/IMAGES/hide.png"),
+    UNIT("/IMAGES/icons/deck_stats_unit.png"),
+    STRENGTH("/IMAGES/icons/deck_stats_strength.png"),
+    HERO("/IMAGES/icons/deck_stats_hero.png"),
+    SPECIAL("/IMAGES/icons/deck_stats_special.png"),
+    COUNT("/IMAGES/icons/deck_stats_count.png")
     ;
     private final String address;
     ImageAddresses(String address) {

@@ -9,6 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.App;
+import model.CardCollection;
 import model.Game;
 import model.PreGame;
 
@@ -38,9 +39,8 @@ public class PreGameMenu {
         else
             turnText.setText(PreGame.getPlayer2().getUsername() + "'s turn\n\n" + PreGame.getPlayer1().getUsername() + " is ready\n" + PreGame.getPlayer2().getUsername() + " is not ready");
         if(PreGame.getTurn().getFaction() != null) showLeadersButton.setDisable(false);
-//        if(PreGame.getTurn().getLeader() != null)
-            showCardsButton.setDisable(false);
-        if(PreGame.getTurn().getDeck().getCards().size() == 22) readyButton.setDisable(false);
+        if(PreGame.getTurn().getLeader() != null) showCardsButton.setDisable(false);
+        if(CardCollection.getUnitCards(PreGame.getTurn().getDeck().getCards()).size() >= 22) readyButton.setDisable(false);
     }
 
     public void ready(MouseEvent mouseEvent) {
@@ -59,7 +59,11 @@ public class PreGameMenu {
             }
         } else {
             PreGame.setTurn(PreGame.getPlayer2());
-            turnText.setText(PreGame.getPlayer2().getUsername() + "'s turn\n\n" + PreGame.getPlayer1().getUsername() + " is ready\n" + PreGame.getPlayer2().getUsername() + " is not ready");
+            try {
+                Launcher.changeScene(FXMLAddresses.PRE_GAME_MENU.getAddress());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
