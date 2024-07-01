@@ -56,7 +56,6 @@ public class CardMenu {
     VBox deckVBox;
     HBox hBox;
     int cardInRow = 0;
-    int totalUnitStrength = 0;
     public void initialize() {
         heroCardsCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.HERO.getAddress())))));
         unitCardsCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.UNIT.getAddress())))));
@@ -65,12 +64,10 @@ public class CardMenu {
         unitStrengthCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.STRENGTH.getAddress())))));
         setTexts();
         cardVBox = new VBox();
-        cardVBox.setSpacing(45);
         cardVBox.setAlignment(Pos.CENTER);
         ScrollPane cardsScrollPane = new ScrollPane(cardVBox);
         cardsScrollPane.getStyleClass().add("scroll-pane");
         cardsScrollPane.setPrefSize(510, 620);
-        cardVBox.setPadding(new Insets(0,0,0,90));
         cards.setAlignment(Pos.TOP_CENTER);
         cards.getChildren().add(cardsScrollPane);
         ArrayList<Card> cardsToShow = new ArrayList<>(CardCollection.getCardByFaction(PreGame.getTurn().getFaction(),PreGame.getTurn().getAllCards()));
@@ -78,8 +75,6 @@ public class CardMenu {
         showCards(cardVBox, cardsToShow);
         deckVBox = new VBox();
         deckVBox.setAlignment(Pos.CENTER);
-        deckVBox.setSpacing(45);
-        deckVBox.setPadding(new Insets(0,0,0,90));
         ScrollPane deckScrollPane = new ScrollPane(deckVBox);
         deckScrollPane.getStyleClass().add("scroll-pane");
         deckScrollPane.setPrefSize(510, 620);
@@ -89,7 +84,7 @@ public class CardMenu {
     }
 
     public void showCards(VBox vBox, ArrayList<Card> cards) {
-        vBox.getChildren().remove(0,vBox.getChildren().size());
+        vBox.getChildren().clear();
         cardInRow = 0;
         for (Card card : cards) {
             try {
@@ -101,8 +96,8 @@ public class CardMenu {
                 cardInRow++;
                 Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
                 ImageView imageView = new ImageView(image);
-                imageView.setFitHeight(150);
-                imageView.setFitWidth(70);
+                imageView.setFitHeight(220);
+                imageView.setFitWidth(121);
                 imageView.getStyleClass().add("image");
                 imageView.setOnMouseClicked(selectCard(imageView));
                 images.put(imageView, card);
@@ -116,33 +111,13 @@ public class CardMenu {
     }
     private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
         return (EventHandler<MouseEvent>) event -> {
-            if(deckVBox.getChildren().contains(imageView)){
+            if(PreGame.getTurn().getDeck().getCards().contains(images.get(imageView))){
                 PreGame.getTurn().removeCardFromDeck(images.get(imageView));
                 PreGame.getTurn().addToAllCards(images.get(imageView));
-                try {
-                    totalUnitStrength -= ((RegularCard) images.get(imageView)).getPower();
-                } catch (ClassCastException ignored){
-
-                }
-                try {
-                    totalUnitStrength -= ((SpecialCard) images.get(imageView)).getPower();
-                } catch (ClassCastException ignored){
-
-                }
             } else {
                 if(!(CardCollection.isSpecial(images.get(imageView)) && specialCards.getText().equals("10/10"))) {
                     PreGame.getTurn().getDeck().addToCards(images.get(imageView));
                     PreGame.getTurn().removeCard(images.get(imageView));
-                    try {
-                        totalUnitStrength += ((RegularCard) images.get(imageView)).getPower();
-                    } catch (ClassCastException ignored){
-
-                    }
-                    try {
-                        totalUnitStrength += ((SpecialCard) images.get(imageView)).getPower();
-                    } catch (ClassCastException ignored){
-
-                    }
                 }
             }
             ArrayList<Card> cardsToShow = new ArrayList<>(CardCollection.getCardByFaction(PreGame.getTurn().getFaction(),PreGame.getTurn().getAllCards()));
@@ -154,7 +129,7 @@ public class CardMenu {
     }
 
     private void setTexts() {
-        unitStrength.setText(Integer.toString(totalUnitStrength));
+        unitStrength.setText(Integer.toString(CardCollection.getCardsTotalStrength(PreGame.getTurn().getDeck().getCards())));
         cardsInDeck.setText(Integer.toString(PreGame.getTurn().getDeck().getCards().size()));
         specialCards.setText(CardCollection.getSpecials(PreGame.getTurn().getDeck().getCards()).size() + "/10");
         unitCards.setText(Integer.toString(CardCollection.getUnitCards(PreGame.getTurn().getDeck().getCards()).size()));

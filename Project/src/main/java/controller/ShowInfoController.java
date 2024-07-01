@@ -8,9 +8,6 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import model.GameRecord;
 import model.User;
-import view.ShowInformation;
-
-import java.util.Timer;
 
 public class ShowInfoController {
     public void showBox(VBox box, Label label) {
@@ -33,8 +30,8 @@ public class ShowInfoController {
         int loses = 0;
         int draws = 0;
         for (GameRecord gameRecord: User.getLoggedInUser().getGameRecords()){
-            if(gameRecord.getWinner().equals(User.getLoggedInUser())) wins++;
-            else if(gameRecord.getWinner().equals(gameRecord.getOpponent())) loses++;
+            if(gameRecord.winner().equals(User.getLoggedInUser())) wins++;
+            else if(gameRecord.winner().equals(gameRecord.opponent())) loses++;
             else draws++;
         }
         StringBuilder text = new StringBuilder();
@@ -43,7 +40,7 @@ public class ShowInfoController {
         text.append("\nNickname: ");
         text.append(User.getLoggedInUser().getNickname());
         text.append("\nHighest Score: ");
-        text.append(User.getLoggedInUser().getHighestScore());
+        text.append(User.getLoggedInUser().usersHighestScore());
         text.append("\nRank: ");
         text.append(User.getLoggedInUser().getRank());
         text.append("\nCount Of Games: ");

@@ -32,6 +32,9 @@ public class ChoosingOpponent {
             Player player1 = new Player(user);
             player1.makeAllCards();
             PreGame.setPlayer1(player1);
+            PreGame.setUser1(user);
+            PreGame.setUser2(opponent);
+            PreGame.setUserTurn(user);
             PreGame.setTurn(player1);
             Player player2 = new Player(opponent);
             player2.makeAllCards();

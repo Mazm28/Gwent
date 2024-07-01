@@ -16,8 +16,8 @@ public class Player extends User{
     private final int[] points = new int[3];
     private final ArrayList<Card> burnedCards = new ArrayList<>();
     private final Row[] rows = new Row[3];
-    private boolean ready = false;
 
+    private boolean ready = false;
     public Deck getDeck() {
         return deck;
     }

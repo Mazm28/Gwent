@@ -58,6 +58,7 @@ public class PreGameMenu {
                 }
             }
         } else {
+            PreGame.setUserTurn(PreGame.getUser2());
             PreGame.setTurn(PreGame.getPlayer2());
             try {
                 Launcher.changeScene(FXMLAddresses.PRE_GAME_MENU.getAddress());

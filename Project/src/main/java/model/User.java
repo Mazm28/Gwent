@@ -1,7 +1,7 @@
 package model;
 
-import Enums.Faction;
 import Enums.SelectQuestionTexts;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import model.card.Card;
 import model.card.LeaderCard;
 import model.card.RegularCard;
@@ -10,23 +10,22 @@ import model.card.SpecialCard;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
     private static User loggedInUser;
+    private static User tempUser;
     private final ArrayList<GameRecord> gameRecords = new ArrayList<>();
+    private final ArrayList<Deck> decks = new ArrayList<>();
+    private final ArrayList<Card> allCards = new ArrayList<>();
     private String username;
     private String password;
-    private final ArrayList<Deck> decks = new ArrayList<>();
+    private int rank = 0;
     private String email;
     private String nickname;
     private SelectQuestionTexts selectQuestionTexts;
     private String answer;
-    private final int id;
-    private static User tempUser;
+    private int id;
     private boolean remembered = false;
-    private final ArrayList<Card> allCards = new ArrayList<>();
-    public ArrayList<Deck> getDecks() {
-        return decks;
-    }
 
     public User(User user) {
         this.username = user.username;
@@ -36,32 +35,7 @@ public class User implements Serializable {
         this.id = user.id;
     }
 
-    public boolean isRemembered() {
-        return remembered;
-    }
-
-    public void setRemembered(boolean remembered) {
-        this.remembered = remembered;
-    }
-
-    public int getHighestScore() {
-        int point = 0;
-        for (GameRecord gameRecord : gameRecords) {
-            if (gameRecord.getFinalPoints()[0] > point) point = gameRecord.getFinalPoints()[0];
-        }
-        return point;
-    }
-
-    public static User getTempUser() {
-        return tempUser;
-    }
-
-    public static void setTempUser(User tempUser) {
-        User.tempUser = tempUser;
-    }
-
-    public int getId() {
-        return id;
+    public User() {
     }
 
     public User(String username, String password, String email, String nickname) {
@@ -72,33 +46,12 @@ public class User implements Serializable {
         this.id = App.getUsers().size();
     }
 
-    public void makeAllCards(){
-        allCards.addAll(RegularCard.makeCards());
-        allCards.addAll(SpecialCard.makeCards());
-        allCards.addAll(LeaderCard.makeCards());
+    public static User getTempUser() {
+        return tempUser;
     }
 
-    public void removeCard(Card card){
-        allCards.remove(allCards.indexOf(card));
-    }
-
-    public void addToAllCards(Card card){
-        allCards.add(card);
-    }
-
-
-    public ArrayList<Card> getSpecialCards(){
-        ArrayList<Card> specialCards = new ArrayList<>();
-        for(Card card: allCards){
-            if(card.getCardType().equals("Special")){
-                specialCards.add(card);
-            }
-        }
-        return specialCards;
-    }
-
-    public ArrayList<Card> getAllCards() {
-        return allCards;
+    public static void setTempUser(User tempUser) {
+        User.tempUser = tempUser;
     }
 
     public static User getUserByUsername(String username) {
@@ -118,20 +71,56 @@ public class User implements Serializable {
         User.loggedInUser = loggedInUser;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public ArrayList<Deck> getDecks() {
+        return decks;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public boolean isRemembered() {
+        return remembered;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRemembered(boolean remembered) {
+        this.remembered = remembered;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public int usersHighestScore() {
+        int point = 0;
+        for (GameRecord gameRecord : gameRecords) {
+            if (gameRecord.finalPoints()[0] > point) point = gameRecord.finalPoints()[0];
+        }
+        return point;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void makeAllCards() {
+        allCards.addAll(RegularCard.makeCards());
+        allCards.addAll(SpecialCard.makeCards());
+        allCards.addAll(LeaderCard.makeCards());
+    }
+
+    public void removeCard(Card card) {
+        allCards.remove(allCards.indexOf(card));
+    }
+
+    public void addToAllCards(Card card) {
+        allCards.add(card);
+    }
+
+    public ArrayList<Card> getSpecialCards() {
+        ArrayList<Card> specialCards = new ArrayList<>();
+        for (Card card : allCards) {
+            if (card.getCardType().equals("Special")) {
+                specialCards.add(card);
+            }
+        }
+        return specialCards;
+    }
+
+    public ArrayList<Card> getAllCards() {
+        return allCards;
     }
 
     public void addToGameRecords(GameRecord gameRecord) {
@@ -142,52 +131,75 @@ public class User implements Serializable {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getNickname() {
         return nickname;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getAnswer() {
         return answer;
     }
 
-    public void setSelectQuestionTexts(SelectQuestionTexts selectQuestionTexts) {
-        this.selectQuestionTexts = selectQuestionTexts;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public SelectQuestionTexts getSelectQuestionTexts() {
         return selectQuestionTexts;
     }
 
+    public void setSelectQuestionTexts(SelectQuestionTexts selectQuestionTexts) {
+        this.selectQuestionTexts = selectQuestionTexts;
+    }
+
     public int getRank() {
-        return 0;
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public ArrayList<GameRecord> getGameRecords() {
         return gameRecords;
     }
 
-    public void addToDeck(Deck deck) {
+    public void addToDecks(Deck deck) {
         this.decks.add(deck);
     }
 
     public Deck getDeckByName(String deckName) {
         for (Deck deck : decks) {
             if (deck.getName().equals(deckName)) {
+                System.out.println(deck.getName());
+                System.out.println(deckName);
                 return deck;
             }
         }
+        System.out.println("KIR");
         return null;
     }
 }

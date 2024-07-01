@@ -15,7 +15,7 @@
                 <GaussianBlur radius="25" />
             </effect>
         </ImageView>
-      <VBox fx:id="mainBox" alignment="TOP_CENTER" layoutX="33.0" layoutY="22.0" prefHeight="612.0" prefWidth="370.0" />
+      <VBox fx:id="mainBox" alignment="TOP_CENTER" layoutX="13.0" layoutY="22.0" prefHeight="612.0" prefWidth="429.0" />
       <VBox layoutX="651.0" layoutY="200.0" prefHeight="255.0" prefWidth="235.0" styleClass="login-menu-vbox" />
         <VBox alignment="CENTER" layoutX="651.0" layoutY="200.0" prefHeight="255.0" prefWidth="235.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
         <children>
@@ -26,7 +26,7 @@
             <Button fx:id="backButton1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#preGameMenu" prefHeight="35.0" prefWidth="130.0" styleClass="button-52" text="Back" textFill="WHITE" />
             </children>
         </VBox>
-      <ImageView fx:id="faction" fitHeight="150.0" fitWidth="183.0" layoutX="419.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="leader" fitHeight="202.0" fitWidth="183.0" layoutX="419.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="faction" fitHeight="150.0" fitWidth="183.0" layoutX="454.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="leader" fitHeight="202.0" fitWidth="183.0" layoutX="454.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>

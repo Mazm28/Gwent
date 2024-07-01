@@ -213,8 +213,7 @@ public class LeadersMenu implements Initializable {
 
     public void theSiegmaster(MouseEvent mouseEvent) {
         notify.setText("You chose \"The Siegmaster\" as your leader");
-        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.THE_SIEGMASTER.name()));
-
+        player.setLeader(LeaderCard.findCardByName(LeaderCardInformation.THE_SIEGMASTER.getName()));
     }
 
     public void sonOfMedell(MouseEvent mouseEvent) {

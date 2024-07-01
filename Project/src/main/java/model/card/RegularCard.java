@@ -1,10 +1,11 @@
 package model.card;
 
 import Enums.Faction;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import model.User;
 
 import java.util.ArrayList;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RegularCard extends Card {
     private int power;
     private int countInGame;
@@ -22,6 +23,9 @@ public class RegularCard extends Card {
         this.faction = regularCardInformation.faction;
         this.imageAddress = regularCardInformation.imageAddress;
         this.cardType = "Regular";
+    }
+
+    public RegularCard() {
     }
 
     public static ArrayList<Card> makeCards() {

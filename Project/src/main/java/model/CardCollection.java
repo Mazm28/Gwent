@@ -62,7 +62,24 @@ public class CardCollection {
         }
         return cards;
     }
+    public static int getCardsTotalStrength(ArrayList<Card> cards){
+        int ans = 0;
+        for(Card card: cards){
+            if(isUnit(card) || isSpecial(card)) {
+                try {
+                    ans += ((RegularCard) card).getPower();
+                } catch (ClassCastException ignored){
 
+                }
+                try {
+                    ans += ((SpecialCard) card).getPower();
+                } catch (ClassCastException ignored){
+
+                }
+            }
+        }
+        return ans;
+    }
     public static ArrayList<Card> getUnitCards(ArrayList<Card> allCards) {
         ArrayList<Card> answer = new ArrayList<>();
         for (Card card : allCards) {
