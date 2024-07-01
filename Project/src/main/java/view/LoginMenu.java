@@ -38,7 +38,7 @@ public class LoginMenu {
         else {
             try {
                 if(rememberMe.isSelected()) {
-                    if(App.isAnyRemembered() != null) App.isAnyRemembered().setRemembered(false);
+                    if(App.isAnyRemembered() != null) Objects.requireNonNull(App.isAnyRemembered()).setRemembered(false);
                     user.setRemembered(true);
                     App.SaveInfo(user);
                 }

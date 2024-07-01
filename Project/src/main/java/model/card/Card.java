@@ -1,12 +1,18 @@
 package model.card;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 public abstract class Card implements Serializable {
     protected String name;
+    @JsonIgnore
     protected Runnable ability;
     protected String imageAddress;
     protected String cardType;
+
+    public Card() {
+    }
 
     public String getCardType() {
         return cardType;

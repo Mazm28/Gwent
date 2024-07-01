@@ -7,6 +7,34 @@ public class PreGame {
     private static Player player1;
     private static Player player2;
     private static Player turn;
+    private static User user1;
+    private static User user2;
+    private static User userTurn;
+
+    public static User getUser1() {
+        return user1;
+    }
+
+    public static void setUser1(User user1) {
+        PreGame.user1 = user1;
+    }
+
+    public static User getUser2() {
+        return user2;
+    }
+
+    public static void setUser2(User user2) {
+        PreGame.user2 = user2;
+    }
+
+    public static User getUserTurn() {
+        return userTurn;
+    }
+
+    public static void setUserTurn(User userTurn) {
+        PreGame.userTurn = userTurn;
+    }
+
     public static Player getPlayer1() {
         return player1;
     }

@@ -8,11 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import model.Deck;
 import model.PreGame;
 import Enums.Faction;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class FactionsMenu implements Initializable {
@@ -35,43 +37,53 @@ public class FactionsMenu implements Initializable {
 
     public void monsters(MouseEvent mouseEvent) {
         notify.setText("You chose \"Monsters\" as your faction");
-        if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.MONSTERS);
-        else
-            PreGame.getPlayer2().setFaction(Faction.MONSTERS);
+        PreGame.getTurn().setFaction(Faction.MONSTERS);
+        PreGame.getTurn().setDeck(new Deck());
+        PreGame.getTurn().getDeck().setFaction(Faction.MONSTERS);
+        PreGame.getTurn().getDeck().setLeaderCard(null);
+        PreGame.getTurn().setLeader(null);
+        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
     }
 
     public void scoiatael(MouseEvent mouseEvent) {
         notify.setText("You chose \"Scoia'tael\" as your faction");
-        if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.SCOIATAEL);
-        else
-            PreGame.getPlayer2().setFaction(Faction.SCOIATAEL);
+        PreGame.getTurn().setFaction(Faction.SCOIATAEL);
+        PreGame.getTurn().setLeader(null);
+        PreGame.getTurn().setDeck(new Deck());
+        PreGame.getTurn().getDeck().setFaction(Faction.SCOIATAEL);
+        PreGame.getTurn().getDeck().setLeaderCard(null);
+        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
 
     }
 
     public void skellige(MouseEvent mouseEvent) {
         notify.setText("You chose \"Skellige\" as your faction");
-        if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.SKELLIGE);
-        else
-            PreGame.getPlayer2().setFaction(Faction.SKELLIGE);
+        PreGame.getTurn().setFaction(Faction.SKELLIGE);
+        PreGame.getTurn().setDeck(new Deck());
+        PreGame.getTurn().setLeader(null);
+        PreGame.getTurn().getDeck().setFaction(Faction.SKELLIGE);
+        PreGame.getTurn().getDeck().setLeaderCard(null);
+        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
     }
 
     public void norhernRealms(MouseEvent mouseEvent) {
         notify.setText("You chose \"Northern Realms\" as your faction");
-        if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.NORTHERN_REALMS);
-        else
-            PreGame.getPlayer2().setFaction(Faction.NORTHERN_REALMS);
+        PreGame.getTurn().setFaction(Faction.NORTHERN_REALMS);
+        PreGame.getTurn().setDeck(new Deck());
+        PreGame.getTurn().getDeck().setFaction(Faction.NORTHERN_REALMS);
+        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
+        PreGame.getTurn().setLeader(null);
+        PreGame.getTurn().getDeck().setLeaderCard(null);
     }
 
     public void nilfgaard(MouseEvent mouseEvent) {
         notify.setText("You chose \"Nilfgaard\" as your faction");
-        if(PreGame.getTurn().equals(PreGame.getPlayer1()))
-            PreGame.getPlayer1().setFaction(Faction.NILFGAARD);
-        else
-            PreGame.getPlayer2().setFaction(Faction.NILFGAARD);
+        PreGame.getTurn().setFaction(Faction.NILFGAARD);
+        PreGame.getTurn().setDeck(new Deck());
+        PreGame.getTurn().getDeck().setFaction(Faction.NILFGAARD);
+        PreGame.getTurn().getDeck().setLeaderCard(null);
+        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
+        PreGame.getTurn().setLeader(null);
     }
 
     public void back(MouseEvent mouseEvent) {

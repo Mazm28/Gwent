@@ -3,40 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class GameRecord implements Serializable {
-    private int[][] pointsInEachRound = new int[2][3];
-    private int[] finalPoints = new int[2];
-    private Date date;
-    private Player winner;
-    private Player opponent;
-
-    public GameRecord(int[][] pointsInEachRound, int[] finalPoints, Date date, Player winner, Player opponent) {
-        this.pointsInEachRound = pointsInEachRound;
-        this.finalPoints = finalPoints;
-        this.date = date;
-        this.winner = winner;
-        this.opponent = opponent;
-    }
-
-    public int[][] getPointsInEachRound() {
-        return pointsInEachRound;
-    }
-
-    public int[] getFinalPoints() {
-        return finalPoints;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public Player getWinner() {
-        return winner;
-    }
-
-    public Player getOpponent() {
-        return opponent;
-    }
+public record GameRecord(int[][] pointsInEachRound, int[] finalPoints, Date date, Player winner,
+                         Player opponent) implements Serializable {
 
     @Override
     public String toString() {

@@ -1,10 +1,11 @@
 package model.card;
 
 import Enums.Faction;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LeaderCard extends Card {
     private Faction faction;
     private boolean actionUsed;
@@ -17,12 +18,16 @@ public class LeaderCard extends Card {
         this.cardType = "Leader";
     }
 
+    public LeaderCard() {
+    }
+
     public static LeaderCard findCardByName(String name){
-        for(Card card: makeCards()){
-            if(card.getName().equals(name)){
+        for(Card card: makeCards()) {
+            if(card.name.equals(name)) {
                 return (LeaderCard) card;
             }
         }
+        System.out.println("KOON");
         return null;
     }
 
