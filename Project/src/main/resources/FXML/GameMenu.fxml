@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameMenu">
     <children>
         <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
-                <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
+                <Image url="@../IMAGES/board.jpg" />
             </image>
         </ImageView>
-        <VBox layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
-        <VBox alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" spacing="15.0" stylesheets="@../CSS/MainStyle.css">
-            <children>
-                <Label fx:id="turnText" styleClass="tf_box" />
-                <Button fx:id="readyButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#ready" prefHeight="35.0" prefWidth="166.0" styleClass="button-52" stylesheets="@../CSS/MainStyle.css" text="Ready" textFill="WHITE">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Button>
-                <Button fx:id="showFactionsButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showFactions" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Factions" textFill="WHITE" />
-                <Button fx:id="showCardsButton" alignment="TOP_CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showCards" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Cards" textFill="WHITE" />
-                <Button fx:id="showDeckButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showDeck" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Deck" textFill="WHITE" />
-                <Button fx:id="showLeadersButton" alignment="TOP_CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#showLeaders" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Show Leaders" textFill="WHITE" />
-                <Button fx:id="backButton" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#mainMenu" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" />
-            </children>
-        </VBox>
+      <Label fx:id="eSiegePowerLabel" alignment="CENTER" layoutX="265.0" layoutY="39.0" prefHeight="18.0" prefWidth="30.0" />
+      <Label fx:id="eRangedPowerLabel" alignment="CENTER" layoutX="264.0" layoutY="124.0" prefHeight="18.0" prefWidth="30.0" />
+      <Label fx:id="eClosePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="213.0" prefHeight="18.0" prefWidth="30.0" />
+      <Label fx:id="tClosePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="309.0" prefHeight="18.0" prefWidth="30.0" />
+      <Label fx:id="tRangedPowerLabel" alignment="CENTER" layoutX="264.0" layoutY="396.0" prefHeight="18.0" prefWidth="30.0" />
+      <Label fx:id="tSiegePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="485.0" prefHeight="18.0" prefWidth="30.0" />
+      <Label fx:id="tTotalPowerLabel" alignment="CENTER" layoutX="221.0" layoutY="467.0" prefHeight="18.0" prefWidth="30.0" />
+      <Label fx:id="eTotalPowerLabel" contentDisplay="CENTER" layoutX="221.0" layoutY="207.0" prefHeight="18.0" prefWidth="30.0" />
+      <HBox fx:id="mainTableHBox" layoutX="301.0" layoutY="544.0" prefHeight="82.0" prefWidth="487.0" />
+      <ImageView fx:id="eLeaderImageView" fitHeight="88.0" fitWidth="54.0" layoutX="72.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="tLeaderImageView" fitHeight="88.0" fitWidth="54.0" layoutX="72.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eRemainDeckImageView" fitHeight="93.0" fitWidth="57.0" layoutX="899.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eDeadCardImageView" fitHeight="93.0" fitWidth="57.0" layoutX="805.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="tDeadCardImageView" fitHeight="93.0" fitWidth="57.0" layoutX="804.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="tRemainDeckImageView" fitHeight="93.0" fitWidth="57.0" layoutX="898.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox fx:id="tSiegeHBox" layoutX="370.0" layoutY="459.0" prefHeight="73.0" prefWidth="419.0" />
+      <HBox fx:id="tRangedHBox" layoutX="370.0" layoutY="373.0" prefHeight="73.0" prefWidth="419.0" />
+      <HBox fx:id="tCloseHBox" layoutX="370.0" layoutY="286.0" prefHeight="73.0" prefWidth="419.0" />
+      <HBox fx:id="eCloseHBox" layoutX="370.0" layoutY="186.0" prefHeight="73.0" prefWidth="419.0" />
+      <HBox fx:id="eRangedHBox" layoutX="369.0" layoutY="100.0" prefHeight="73.0" prefWidth="419.0" />
+      <HBox fx:id="eSiegeHBox" layoutX="371.0" layoutY="15.0" prefHeight="73.0" prefWidth="419.0" />
+      <HBox fx:id="specialCardHBox" layoutX="76.0" layoutY="292.0" prefHeight="93.0" prefWidth="144.0" />
+      <ImageView fx:id="eLeaderUsedIcon" fitHeight="26.0" fitWidth="23.0" layoutX="132.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="tLeaderUsedIcon" fitHeight="26.0" fitWidth="21.0" layoutX="134.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>
