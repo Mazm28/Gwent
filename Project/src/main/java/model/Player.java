@@ -10,18 +10,15 @@ public class Player extends User{
     private boolean passed;
     private Faction faction;
     private LeaderCard leader;
-    private Deck deck;
-    private ArrayList<Card> inGameHand = new ArrayList<>();
+    private Deck deck = new Deck();
+    private final ArrayList<Card> inGameHand = new ArrayList<>();
     private int totalPoints;
-    private int[] points = new int[3];
-    private ArrayList<Card> burnedCards;
-    private Row[] rows = new Row[3];
+    private final int[] points = new int[3];
+    private final ArrayList<Card> burnedCards = new ArrayList<>();
+    private final Row[] rows = new Row[3];
     private boolean ready = false;
 
     public Deck getDeck() {
-        if (deck == null) {
-            deck = new Deck();
-        }
         return deck;
     }
     public void removeCardFromDeck(Card card){

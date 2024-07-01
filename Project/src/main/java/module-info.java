@@ -10,4 +10,6 @@ module project {
     opens controller to javafx.fxml;
     exports model;
     opens model to javafx.fxml;
+    exports Enums;
+
 }

@@ -3,6 +3,7 @@ package view;
 import Enums.FXMLAddresses;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -33,12 +34,13 @@ public class DeckMenu {
     private VBox mainBox;
     private VBox vBox;
     private HBox hBox;
-    private int cardInRow;
 
     public void initialize() {
         error.setText("Please enter a deck name");
         vBox = new VBox();
         hBox = new HBox();
+        vBox.setSpacing(45);
+        vBox.setPadding(new Insets(0,0,0,45));
         showFactionAndLeader();
         showDeck();
         ScrollPane scrollPane = new ScrollPane(vBox);
@@ -97,15 +99,21 @@ public class DeckMenu {
     }
 
     public void showDeck() {
+        int cardInRow = 0;
         for (Card card : PreGame.getTurn().getDeck().getCards()) {
+            if (cardInRow % 3 == 0) {
+                hBox = new HBox();
+                hBox.setSpacing(15);
+                hBox.setMaxWidth(400);
+            }
             cardInRow++;
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
             ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(150);
+            imageView.setFitWidth(70);
+            imageView.getStyleClass().add("image");
             hBox.getChildren().add(imageView);
-            if (cardInRow % 3 == 0) {
-                vBox.getChildren().add(hBox);
-                hBox = new HBox();
-            }
+            if (cardInRow % 3 == 1) vBox.getChildren().add(hBox);
         }
     }
 }

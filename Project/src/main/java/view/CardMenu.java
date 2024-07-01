@@ -1,7 +1,6 @@
 package view;
 
 import Enums.FXMLAddresses;
-import Enums.Faction;
 import Enums.ImageAddresses;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -120,12 +119,30 @@ public class CardMenu {
             if(deckVBox.getChildren().contains(imageView)){
                 PreGame.getTurn().removeCardFromDeck(images.get(imageView));
                 PreGame.getTurn().addToAllCards(images.get(imageView));
-                if(CardCollection.isUnit(images.get(imageView))) totalUnitStrength -= ((RegularCard) images.get(imageView)).getPower();
+                try {
+                    totalUnitStrength -= ((RegularCard) images.get(imageView)).getPower();
+                } catch (ClassCastException ignored){
+
+                }
+                try {
+                    totalUnitStrength -= ((SpecialCard) images.get(imageView)).getPower();
+                } catch (ClassCastException ignored){
+
+                }
             } else {
                 if(!(CardCollection.isSpecial(images.get(imageView)) && specialCards.getText().equals("10/10"))) {
                     PreGame.getTurn().getDeck().addToCards(images.get(imageView));
                     PreGame.getTurn().removeCard(images.get(imageView));
-                    if(CardCollection.isUnit(images.get(imageView))) totalUnitStrength += ((RegularCard) images.get(imageView)).getPower();
+                    try {
+                        totalUnitStrength += ((RegularCard) images.get(imageView)).getPower();
+                    } catch (ClassCastException ignored){
+
+                    }
+                    try {
+                        totalUnitStrength += ((SpecialCard) images.get(imageView)).getPower();
+                    } catch (ClassCastException ignored){
+
+                    }
                 }
             }
             ArrayList<Card> cardsToShow = new ArrayList<>(CardCollection.getCardByFaction(PreGame.getTurn().getFaction(),PreGame.getTurn().getAllCards()));

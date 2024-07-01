@@ -11,7 +11,7 @@ public class CardCollection {
     public static ArrayList<Card> getSpecials(ArrayList<Card> cards) {
         ArrayList<Card> answer = new ArrayList<>();
         for (Card card : cards) {
-            if (card.getCardType().equals("Special") || ((SpecialCard) card).getType().equals("Weather") && ((SpecialCard) card).getType().equals("Spell")) {
+            if (isSpecial(card)) {
                 answer.add(card);
             }
         }
@@ -19,7 +19,7 @@ public class CardCollection {
     }
 
     public static boolean isUnit(Card card) {
-        return card.getCardType().equals("Regular") || (card.getCardType().equals("Special") && !((SpecialCard) card).getType().equals("Weather") && !((SpecialCard) card).getType().equals("Spell"));
+        return card.getCardType().equals("Regular") || !isSpecial(card);
     }
 
 
@@ -66,7 +66,7 @@ public class CardCollection {
     public static ArrayList<Card> getUnitCards(ArrayList<Card> allCards) {
         ArrayList<Card> answer = new ArrayList<>();
         for (Card card : allCards) {
-            if (card.getCardType().equals("Regular") || (card.getCardType().equals("Special") && !((SpecialCard) card).getType().equals("Weather") && !((SpecialCard) card).getType().equals("Spell"))) {
+            if (isUnit(card)) {
                 answer.add(card);
             }
         }
@@ -74,6 +74,6 @@ public class CardCollection {
     }
 
     public static boolean isSpecial(Card card){
-        return card.getCardType().equals("Special") || ((SpecialCard) card).getType().equals("Weather") && ((SpecialCard) card).getType().equals("Spell");
+        return card.getCardType().equals("Special") && (((SpecialCard) card).getType().equals("Weather") || ((SpecialCard) card).getType().equals("Spell"));
     }
 }
