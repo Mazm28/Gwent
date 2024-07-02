@@ -105,6 +105,7 @@ public class DeckMenu {
                 PreGame.getTurn().setFaction(deck.getFaction());
                 PreGame.getTurn().setLeader(deck.getLeaderCard());
                 vBox.getChildren().clear();
+                showFactionAndLeader();
                 showDeck();
                 error.setText("Deck loaded successfully!");
             }
