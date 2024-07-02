@@ -102,7 +102,7 @@ public class StartingGameMenu {
             rightImageView.setVisible(true);
             try {
                 Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
-                        game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress())));
+                        game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress())));
                 rightImageView.setImage(image);
             } catch (Exception e) {
                 e.printStackTrace();
