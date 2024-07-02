@@ -9,6 +9,7 @@ import model.App;
 import model.Game;
 import model.card.Card;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class GameMenu {
@@ -42,6 +43,7 @@ public class GameMenu {
     @FXML public ImageView tLeaderUsedIcon;
 
     private Game game;
+    private HashMap<ImageView, Card> imageViewCardHashMap;
 
     public void initialize() {
         game = App.getGame();
