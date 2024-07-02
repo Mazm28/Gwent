@@ -13,6 +13,7 @@ import model.card.Card;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class StartingGameMenu {
     @FXML public ImageView middleImageView;
@@ -39,10 +40,10 @@ public class StartingGameMenu {
         Collections.shuffle(cards);
         for (int i = 0; i < 10; i++) {
             if (i < cards.size()) {
-                currentPlayer.addToRemainCard(cards.get(i));
+                currentPlayer.addToInGameHand(cards.get(i));
             }
         }
-        for (Card card : cards) {
+        for (Card card : currentPlayer.getInGameHand()) {
             currentPlayer.removeFromRemainCard(card);
         }
     }
@@ -88,14 +89,23 @@ public class StartingGameMenu {
 
     public void loadImages() {
         try {
-            middleImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress()));
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                    game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress())));
+            middleImageView = new ImageView(image);
         } catch (Exception e) {
             System.out.println(game.getCurrentPlayer().getInGameHand().size());
         }
         if (iterator + 1 < game.getCurrentPlayer().getInGameHand().size()) {
             rightImageView.setDisable(false);
             rightImageView.setVisible(true);
-            rightImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress()));
+            try {
+                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                        game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress())));
+                rightImageView = new ImageView(image);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress());
+            }
         } else {
             rightImageView.setDisable(true);
             rightImageView.setVisible(false);
@@ -103,7 +113,14 @@ public class StartingGameMenu {
         if (iterator - 1 >= 0) {
             leftImageView.setDisable(false);
             leftImageView.setVisible(true);
-            leftImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress()));
+            try {
+                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                        game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress())));
+                leftImageView = new ImageView(image);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress());
+            }
         } else {
             leftImageView.setDisable(true);
             leftImageView.setVisible(false);
