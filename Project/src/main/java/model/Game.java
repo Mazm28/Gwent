@@ -52,4 +52,10 @@ public class Game {
     public void setOpponent(Player opponent) {
         this.opponent = opponent;
     }
+
+    public void changeTurn() {
+        Player temp = currentPlayer;
+        this.currentPlayer = this.opponent;
+        this.opponent = temp;
+    }
 }
