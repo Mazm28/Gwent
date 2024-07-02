@@ -58,6 +58,7 @@ public class StartingGameMenu {
             }
         } else {
             game.getOpponent().setChoosedHand(true);
+            game.getCurrentPlayer().setRemainCard(game.getCurrentPlayer().getDeck().getCards());
             choosingDeck();
             iterator = 0;
             loadImages();
@@ -91,8 +92,9 @@ public class StartingGameMenu {
         try {
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
                     game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress())));
-            middleImageView = new ImageView(image);
+            middleImageView.setImage(image);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(game.getCurrentPlayer().getInGameHand().size());
         }
         if (iterator + 1 < game.getCurrentPlayer().getInGameHand().size()) {
@@ -101,7 +103,7 @@ public class StartingGameMenu {
             try {
                 Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
                         game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress())));
-                rightImageView = new ImageView(image);
+                rightImageView.setImage(image);
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println(game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress());
@@ -116,7 +118,7 @@ public class StartingGameMenu {
             try {
                 Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
                         game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress())));
-                leftImageView = new ImageView(image);
+                leftImageView.setImage(image);
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println(game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress());
