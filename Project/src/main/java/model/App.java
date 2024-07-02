@@ -112,7 +112,6 @@ public class App {
         ArrayList<User> users = getUsers();
         for (User user1 : users) {
             if (user1.getId() == user.getId()) {
-                System.out.println(user1.getDecks().size());
                 users.remove(user1);
                 users.add(user);
                 SaveUsers(users);

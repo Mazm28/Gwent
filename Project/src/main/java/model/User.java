@@ -194,12 +194,9 @@ public class User implements Serializable {
     public Deck getDeckByName(String deckName) {
         for (Deck deck : decks) {
             if (deck.getName().equals(deckName)) {
-                System.out.println(deck.getName());
-                System.out.println(deckName);
                 return deck;
             }
         }
-        System.out.println("KIR");
         return null;
     }
 }

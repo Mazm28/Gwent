@@ -11,7 +11,7 @@ public class Player extends User{
     private Faction faction;
     private LeaderCard leader;
     private Deck deck = new Deck();
-    private final ArrayList<Card> inGameHand = new ArrayList<>();
+    private ArrayList<Card> inGameHand = new ArrayList<>();
     private ArrayList<Card> remainCard = new ArrayList<>();
     private int totalPoints;
     private final int[] points = new int[3];
@@ -101,12 +101,20 @@ public class Player extends User{
         return inGameHand;
     }
 
+    public void setInGameHand(ArrayList<Card> inGameHand) {
+        this.inGameHand = inGameHand;
+    }
+
     public void setDeck(Deck deck) {
         this.deck = deck;
     }
 
     public ArrayList<Card> getRemainCard() {
         return remainCard;
+    }
+
+    public void setRemainCard(ArrayList<Card> remainCard) {
+        this.remainCard = remainCard;
     }
 
     public void addToRemainCard(Card card){

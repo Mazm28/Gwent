@@ -3,10 +3,8 @@ package view;
 import Enums.FXMLAddresses;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import model.App;
 import model.Game;
 import model.Player;
@@ -27,12 +25,13 @@ public class StartingGameMenu {
 
     public void initialize() {
         game = App.getGame();
+        game.getCurrentPlayer().setRemainCard(game.getCurrentPlayer().getDeck().getCards());
         choosingDeck();
     }
 
     private void choosingDeck() {
         makeHand(game.getCurrentPlayer());
-        replaceDeck(game.getCurrentPlayer());
+        loadImages();
     }
 
     private void makeHand(Player currentPlayer) {
@@ -48,12 +47,6 @@ public class StartingGameMenu {
         }
     }
 
-    private void replaceDeck(Player currentPlayer) {
-        leftImageView.setVisible(false);
-        middleImageView.setImage(new Image(currentPlayer.getInGameHand().get(iterator).getImageAddress()));
-        rightImageView.setImage(new Image(currentPlayer.getInGameHand().get(iterator + 1).getImageAddress()));
-    }
-
     public void finishChoosingDeck() {
         game.changeTurn();
         if (game.getCurrentPlayer().isChoosedHand()) {
@@ -64,8 +57,9 @@ public class StartingGameMenu {
             }
         } else {
             game.getOpponent().setChoosedHand(true);
-            makeHand(game.getCurrentPlayer());
-            replaceDeck(game.getCurrentPlayer());
+            choosingDeck();
+            iterator = 0;
+            loadImages();
         }
     }
 
@@ -78,24 +72,41 @@ public class StartingGameMenu {
         changedCards++;
         if (changedCards == 2) finishChoosingDeck();
         else {
-            middleImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress()));
-            if (iterator + 1 < game.getCurrentPlayer().getInGameHand().size()) {
-                rightImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress()));
-                rightImageView.setVisible(true);
-            } else {
-                rightImageView.setVisible(false);
-            }
-            if (iterator - 1 >= 0) {
-                leftImageView.setVisible(true);
-                leftImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress()));
-            } else {
-                leftImageView.setVisible(false);
-            }
+            loadImages();
         }
+    }
+
+    public void moveLeft() {
+        iterator--;
+        loadImages();
     }
 
     public void moveRight() {
         iterator++;
-        //you were here
+        loadImages();
+    }
+
+    public void loadImages() {
+        try {
+            middleImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress()));
+        } catch (Exception e) {
+            System.out.println(game.getCurrentPlayer().getInGameHand().size());
+        }
+        if (iterator + 1 < game.getCurrentPlayer().getInGameHand().size()) {
+            rightImageView.setDisable(false);
+            rightImageView.setVisible(true);
+            rightImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress()));
+        } else {
+            rightImageView.setDisable(true);
+            rightImageView.setVisible(false);
+        }
+        if (iterator - 1 >= 0) {
+            leftImageView.setDisable(false);
+            leftImageView.setVisible(true);
+            leftImageView.setImage(new Image(game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress()));
+        } else {
+            leftImageView.setDisable(true);
+            leftImageView.setVisible(false);
+        }
     }
 }

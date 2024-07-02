@@ -113,7 +113,6 @@ public class DeckMenu {
     }
 
     public void showDeck() {
-        System.out.println(PreGame.getTurn().getDeck().getCards().size());
         int cardInRow = 0;
         for (Card card : PreGame.getTurn().getDeck().getCards()) {
             if (cardInRow % 3 == 0) {
