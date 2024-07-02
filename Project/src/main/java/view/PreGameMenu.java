@@ -52,7 +52,7 @@ public class PreGameMenu {
                 try {
                     Game game = new Game(PreGame.getPlayer1(), PreGame.getPlayer2());
                     App.setGame(game);
-                    Launcher.changeScene(FXMLAddresses.GAME_MENU.getAddress());
+                    Launcher.changeScene(FXMLAddresses.STARTING_GAME_MENU.getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
