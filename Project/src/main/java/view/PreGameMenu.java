@@ -45,10 +45,6 @@ public class PreGameMenu {
 
     public void ready(MouseEvent mouseEvent) {
         if (PreGame.getTurn().equals(PreGame.getPlayer2())) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setContentText("Are you sure you want to start the game?");
-            Optional<ButtonType> buttonType = alert.showAndWait();
-            if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
                 try {
                     Game game = new Game(PreGame.getPlayer1(), PreGame.getPlayer2());
                     App.setGame(game);
@@ -56,7 +52,6 @@ public class PreGameMenu {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
         } else {
             PreGame.setUserTurn(PreGame.getUser2());
             PreGame.setTurn(PreGame.getPlayer2());

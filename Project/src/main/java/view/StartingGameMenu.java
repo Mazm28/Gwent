@@ -61,6 +61,7 @@ public class StartingGameMenu {
                 e.printStackTrace();
             }
         } else {
+            changedCards = 0;
             game.getOpponent().setChoosedHand(true);
             game.getCurrentPlayer().setRemainCard(game.getCurrentPlayer().getDeck().getCards());
             choosingDeck();
@@ -96,6 +97,8 @@ public class StartingGameMenu {
         Image middleImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
                 game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress())));
         middleImageView.setImage(middleImage);
+        middleImageView.setFitHeight(400);
+        middleImageView.setFitWidth(310);
         middleImageView.getStyleClass().add("image");
 
         if (iterator + 1 < game.getCurrentPlayer().getInGameHand().size()) {
@@ -104,6 +107,8 @@ public class StartingGameMenu {
             Image rightImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
                     game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress())));
             rightImageView.setImage(rightImage);
+            rightImageView.setFitHeight(150);
+            rightImageView.setFitWidth(110);
             rightImageView.getStyleClass().add("image");
         } else {
             rightImageView.setDisable(true);
@@ -115,6 +120,8 @@ public class StartingGameMenu {
             Image leftImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
                     game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress())));
             leftImageView.setImage(leftImage);
+            leftImageView.setFitHeight(150);
+            leftImageView.setFitWidth(110);
             leftImageView.getStyleClass().add("image");
         } else {
             leftImageView.setDisable(true);
