@@ -16,10 +16,14 @@ import java.util.Collections;
 import java.util.Objects;
 
 public class StartingGameMenu {
-    @FXML public ImageView middleImageView;
-    @FXML public ImageView rightImageView;
-    @FXML public ImageView leftImageView;
-    @FXML public Button finishBtn;
+    @FXML
+    public ImageView middleImageView;
+    @FXML
+    public ImageView rightImageView;
+    @FXML
+    public ImageView leftImageView;
+    @FXML
+    public Button finishBtn;
     private int iterator = 0;
     private Game game;
     private int changedCards = 0;
@@ -89,25 +93,18 @@ public class StartingGameMenu {
     }
 
     public void loadImages() {
-        try {
-            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
-                    game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress())));
-            middleImageView.setImage(image);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(game.getCurrentPlayer().getInGameHand().size());
-        }
+        Image middleImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                game.getCurrentPlayer().getInGameHand().get(iterator).getImageAddress())));
+        middleImageView.setImage(middleImage);
+        middleImageView.getStyleClass().add("image");
+
         if (iterator + 1 < game.getCurrentPlayer().getInGameHand().size()) {
             rightImageView.setDisable(false);
             rightImageView.setVisible(true);
-            try {
-                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
-                        game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress())));
-                rightImageView.setImage(image);
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println(game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress());
-            }
+            Image rightImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                    game.getCurrentPlayer().getInGameHand().get(iterator + 1).getImageAddress())));
+            rightImageView.setImage(rightImage);
+            rightImageView.getStyleClass().add("image");
         } else {
             rightImageView.setDisable(true);
             rightImageView.setVisible(false);
@@ -115,14 +112,10 @@ public class StartingGameMenu {
         if (iterator - 1 >= 0) {
             leftImageView.setDisable(false);
             leftImageView.setVisible(true);
-            try {
-                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
-                        game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress())));
-                leftImageView.setImage(image);
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println(game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress());
-            }
+            Image leftImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                    game.getCurrentPlayer().getInGameHand().get(iterator - 1).getImageAddress())));
+            leftImageView.setImage(leftImage);
+            leftImageView.getStyleClass().add("image");
         } else {
             leftImageView.setDisable(true);
             leftImageView.setVisible(false);
