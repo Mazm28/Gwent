@@ -1,20 +1,29 @@
 package view;
 
+import controller.ActionController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import model.App;
 import model.CardCollection;
 import model.Game;
 import model.PreGame;
 import model.card.Card;
+import model.card.RegularCard;
+import model.card.SpecialCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class GameMenu {
@@ -51,11 +60,17 @@ public class GameMenu {
     private Game game;
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
     private Card selectedCard;
+    private final ArrayList<HBox> positions = new ArrayList<>();
 
     public void initialize() {
         game = App.getGame();
+        addPositions();
         prepareLabels();
         prepareTable();
+    }
+
+    private void addPositions() {
+        positions.addAll(List.of(new HBox[]{eCloseHBox, eRangedHBox, eSiegeHBox, tSiegeHBox, tCloseHBox, tRangedHBox}));
     }
 
     private void prepareTable() {
@@ -80,11 +95,70 @@ public class GameMenu {
 
     private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
         return (EventHandler<MouseEvent>) event -> {
+            removeFilters();
             selectedCard = imageViewCardHashMap.get(imageView);
+            filterForCard(selectedCard);
             Image image = new Image(Objects.requireNonNull(
                     getClass().getResourceAsStream(selectedCard.getImageAddress())));
             bigCard.setImage(image);
         };
+    }
+
+    private void filterForCard(Card card) {
+        String type;
+        if (CardCollection.isUnit(card)) {
+            if (card instanceof RegularCard) type = ((RegularCard) card).getType();
+            else type = ((SpecialCard) card).getType();
+            if (card.getAbility() != null && card.getAbility().equals(ActionController.Spy())) {
+                switch (type) {
+                    case "Close" :
+                        makeFilterOnHBox(eCloseHBox);
+                        break;
+                    case "Siege" :
+                        makeFilterOnHBox(eSiegeHBox);
+                        break;
+                    case "Ranged" :
+                        makeFilterOnHBox(eRangedHBox);
+                        break;
+                    case "Agile" :
+                        makeFilterOnHBox(eCloseHBox);
+                        makeFilterOnHBox(eRangedHBox);
+                        break;
+                    default :
+                        System.out.println("sag");
+                }
+            } else {
+                System.out.println("not");
+                switch (type) {
+                    case "Close" :
+                        makeFilterOnHBox(tCloseHBox);
+                        break;
+                    case "Siege" :
+                        makeFilterOnHBox(tSiegeHBox);
+                        break;
+                    case "Ranged" :
+                        makeFilterOnHBox(tRangedHBox);
+                        break;
+                    case "Agile" :
+                        makeFilterOnHBox(tCloseHBox);
+                        makeFilterOnHBox(tRangedHBox);
+                        break;
+                    default : System.out.println("sag");
+                }
+            }
+        }
+    }
+
+    private void makeFilterOnHBox(HBox hBox) {
+        hBox.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
+        hBox.setOpacity(0.05);
+    }
+
+    private void removeFilters() {
+        for (HBox hBox : positions) {
+            hBox.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+            hBox.setOpacity(1);
+        }
     }
 
     private void prepareLabels() {
