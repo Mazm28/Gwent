@@ -10,7 +10,7 @@ module project {
     exports controller;
     opens controller to javafx.fxml;
     exports model;
-//    opens model to javafx.fxml;
+    //opens model to javafx.fxml;
     exports Enums;
     opens model.card to com.fasterxml.jackson.databind;
     opens model to com.fasterxml.jackson.databind;

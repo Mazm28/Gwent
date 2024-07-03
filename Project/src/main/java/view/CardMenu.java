@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -100,6 +101,8 @@ public class CardMenu {
                 imageView.setFitWidth(121);
                 imageView.getStyleClass().add("image");
                 imageView.setOnMouseClicked(selectCard(imageView));
+                Tooltip tooltip = new Tooltip(card.getName());
+                Tooltip.install(imageView, tooltip);
                 images.put(imageView, card);
                 hBox.getChildren().add(imageView);
                 if (cardInRow % 3 == 1) vBox.getChildren().add(hBox);
