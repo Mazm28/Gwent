@@ -109,6 +109,7 @@ public class CardMenu {
 
         }
     }
+
     private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
         return (EventHandler<MouseEvent>) event -> {
             if(PreGame.getTurn().getDeck().getCards().contains(images.get(imageView))){

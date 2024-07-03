@@ -18,6 +18,7 @@ public class Player extends User{
     private final ArrayList<Card> burnedCards = new ArrayList<>();
     private final Row[] rows = new Row[3];
     private boolean choosedHand;
+    private boolean passedTheTurn = false;
 
     private boolean ready = false;
     public Deck getDeck() {
@@ -139,5 +140,13 @@ public class Player extends User{
 
     public void setChoosedHand(boolean choosedHand) {
         this.choosedHand = choosedHand;
+    }
+
+    public void setPassedTheTurn(boolean passedTheTurn) {
+        this.passedTheTurn = passedTheTurn;
+    }
+
+    public boolean isPassedTheTurn() {
+        return passedTheTurn;
     }
 }
