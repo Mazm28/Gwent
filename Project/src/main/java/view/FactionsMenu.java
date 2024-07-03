@@ -19,8 +19,6 @@ import java.util.ResourceBundle;
 
 public class FactionsMenu implements Initializable {
     @FXML
-    private Label hoverLabel;
-    @FXML
     private Label notify;
     @FXML
     private Button back;
@@ -48,10 +46,10 @@ public class FactionsMenu implements Initializable {
     public void scoiatael(MouseEvent mouseEvent) {
         notify.setText("You chose \"Scoia'tael\" as your faction");
         PreGame.getTurn().setFaction(Faction.SCOIATAEL);
-        PreGame.getTurn().setLeader(null);
         PreGame.getTurn().setDeck(new Deck());
         PreGame.getTurn().getDeck().setFaction(Faction.SCOIATAEL);
         PreGame.getTurn().getDeck().setLeaderCard(null);
+        PreGame.getTurn().setLeader(null);
         PreGame.getTurn().getDeck().setCards(new ArrayList<>());
 
     }
@@ -60,9 +58,9 @@ public class FactionsMenu implements Initializable {
         notify.setText("You chose \"Skellige\" as your faction");
         PreGame.getTurn().setFaction(Faction.SKELLIGE);
         PreGame.getTurn().setDeck(new Deck());
-        PreGame.getTurn().setLeader(null);
         PreGame.getTurn().getDeck().setFaction(Faction.SKELLIGE);
         PreGame.getTurn().getDeck().setLeaderCard(null);
+        PreGame.getTurn().setLeader(null);
         PreGame.getTurn().getDeck().setCards(new ArrayList<>());
     }
 
@@ -71,9 +69,9 @@ public class FactionsMenu implements Initializable {
         PreGame.getTurn().setFaction(Faction.NORTHERN_REALMS);
         PreGame.getTurn().setDeck(new Deck());
         PreGame.getTurn().getDeck().setFaction(Faction.NORTHERN_REALMS);
-        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
-        PreGame.getTurn().setLeader(null);
         PreGame.getTurn().getDeck().setLeaderCard(null);
+        PreGame.getTurn().setLeader(null);
+        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
     }
 
     public void nilfgaard(MouseEvent mouseEvent) {
@@ -82,8 +80,8 @@ public class FactionsMenu implements Initializable {
         PreGame.getTurn().setDeck(new Deck());
         PreGame.getTurn().getDeck().setFaction(Faction.NILFGAARD);
         PreGame.getTurn().getDeck().setLeaderCard(null);
-        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
         PreGame.getTurn().setLeader(null);
+        PreGame.getTurn().getDeck().setCards(new ArrayList<>());
     }
 
     public void back(MouseEvent mouseEvent) {

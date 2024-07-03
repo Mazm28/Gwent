@@ -35,6 +35,11 @@ public enum SpecialCardInformation implements Serializable {
     final Runnable ability;
     final boolean hero;
     final String imageAddress;
+
+    public String getName() {
+        return name;
+    }
+
     SpecialCardInformation(String name, int power, int countInGame, String type, Runnable ability, boolean hero, String imageAddress) {
         this.name = name;
         this.power = power;

@@ -108,15 +108,8 @@ public class User implements Serializable {
     public void addToAllCards(Card card) {
         allCards.add(card);
     }
-
-    public ArrayList<Card> getSpecialCards() {
-        ArrayList<Card> specialCards = new ArrayList<>();
-        for (Card card : allCards) {
-            if (card.getCardType().equals("Special")) {
-                specialCards.add(card);
-            }
-        }
-        return specialCards;
+    public void addToAllCards(int place,Card card) {
+        allCards.add(place,card);
     }
 
     public ArrayList<Card> getAllCards() {

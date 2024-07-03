@@ -20,6 +20,7 @@ import model.PreGame;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
+import model.card.SpecialCardInformation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,11 +53,20 @@ public class CardMenu {
     @FXML
     private VBox cards;
     private final HashMap<ImageView, Card> images = new HashMap<>();
+    private final HashMap<Card, Integer> indexes = new HashMap<>();
     VBox cardVBox;
     VBox deckVBox;
     HBox hBox;
     int cardInRow = 0;
     public void initialize() {
+        for (Card card: PreGame.getTurn().getDeck().getCards()){
+            for(Card card1: PreGame.getTurn().getAllCards()){
+                if(card1.getName().equals(card.getName())){
+                    PreGame.getTurn().removeCard(card1);
+                    break;
+                }
+            }
+        }
         heroCardsCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.HERO.getAddress())))));
         unitCardsCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.UNIT.getAddress())))));
         specialCardsCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.SPECIAL.getAddress())))));
@@ -71,7 +81,7 @@ public class CardMenu {
         cards.setAlignment(Pos.TOP_CENTER);
         cards.getChildren().add(cardsScrollPane);
         ArrayList<Card> cardsToShow = new ArrayList<>(CardCollection.getCardByFaction(PreGame.getTurn().getFaction(),PreGame.getTurn().getAllCards()));
-        cardsToShow.addAll(PreGame.getTurn().getSpecialCards());
+        cardsToShow.addAll(CardCollection.getNeutralCards(PreGame.getTurn().getAllCards()));
         showCards(cardVBox, cardsToShow);
         deckVBox = new VBox();
         deckVBox.setAlignment(Pos.CENTER);
@@ -87,6 +97,7 @@ public class CardMenu {
         vBox.getChildren().clear();
         cardInRow = 0;
         for (Card card : cards) {
+            if(card.getName().equals(SpecialCardInformation.Geralt_Of_Rivia.getName())) System.out.print("1");
             try {
                 if (cardInRow % 3 == 0) {
                     hBox = new HBox();
@@ -101,6 +112,7 @@ public class CardMenu {
                 imageView.getStyleClass().add("image");
                 imageView.setOnMouseClicked(selectCard(imageView));
                 images.put(imageView, card);
+                indexes.put(card,cards.indexOf(card));
                 hBox.getChildren().add(imageView);
                 if (cardInRow % 3 == 1) vBox.getChildren().add(hBox);
             }
@@ -114,7 +126,7 @@ public class CardMenu {
         return (EventHandler<MouseEvent>) event -> {
             if(PreGame.getTurn().getDeck().getCards().contains(images.get(imageView))){
                 PreGame.getTurn().removeCardFromDeck(images.get(imageView));
-                PreGame.getTurn().addToAllCards(images.get(imageView));
+                PreGame.getTurn().addToAllCards(indexes.get(images.get(imageView)),images.get(imageView));
             } else {
                 if(!(CardCollection.isSpecial(images.get(imageView)) && specialCards.getText().equals("10/10"))) {
                     PreGame.getTurn().getDeck().addToCards(images.get(imageView));
@@ -122,7 +134,7 @@ public class CardMenu {
                 }
             }
             ArrayList<Card> cardsToShow = new ArrayList<>(CardCollection.getCardByFaction(PreGame.getTurn().getFaction(),PreGame.getTurn().getAllCards()));
-            cardsToShow.addAll(PreGame.getTurn().getSpecialCards());
+            cardsToShow.addAll(CardCollection.getNeutralCards(PreGame.getTurn().getAllCards()));
             showCards(cardVBox, cardsToShow);
             showCards(deckVBox,PreGame.getTurn().getDeck().getCards());
             setTexts();
