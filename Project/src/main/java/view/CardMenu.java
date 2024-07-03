@@ -8,7 +8,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -53,7 +52,6 @@ public class CardMenu {
     private VBox deck;
     @FXML
     private VBox cards;
-    private final HashMap<ImageView, Card> images = new HashMap<>();
     private final HashMap<Card, Integer> indexes = new HashMap<>();
     VBox cardVBox;
     VBox deckVBox;
@@ -82,7 +80,9 @@ public class CardMenu {
         cards.setAlignment(Pos.TOP_CENTER);
         cards.getChildren().add(cardsScrollPane);
         ArrayList<Card> cardsToShow = new ArrayList<>(CardCollection.getCardByFaction(PreGame.getTurn().getFaction(),PreGame.getTurn().getAllCards()));
+        System.out.println(CardCollection.getNeutralCards(PreGame.getTurn().getAllCards()).size());
         cardsToShow.addAll(CardCollection.getNeutralCards(PreGame.getTurn().getAllCards()));
+
         showCards(cardVBox, cardsToShow);
         deckVBox = new VBox();
         deckVBox.setAlignment(Pos.CENTER);
@@ -98,7 +98,6 @@ public class CardMenu {
         vBox.getChildren().clear();
         cardInRow = 0;
         for (Card card : cards) {
-            if(card.getName().equals(SpecialCardInformation.Geralt_Of_Rivia.getName())) System.out.print("1");
             try {
                 if (cardInRow % 3 == 0) {
                     hBox = new HBox();
@@ -108,32 +107,29 @@ public class CardMenu {
                 cardInRow++;
                 Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
                 ImageView imageView = new ImageView(image);
+                imageView.getStyleClass().add("image");
                 imageView.setFitHeight(220);
                 imageView.setFitWidth(121);
-                imageView.getStyleClass().add("image");
-                imageView.setOnMouseClicked(selectCard(imageView));
-                Tooltip tooltip = new Tooltip(card.getName());
-                Tooltip.install(imageView, tooltip);
-                images.put(imageView, card);
-                indexes.put(card,cards.indexOf(card));
+                imageView.setOnMouseClicked(selectCard(card));
                 hBox.getChildren().add(imageView);
                 if (cardInRow % 3 == 1) vBox.getChildren().add(hBox);
             }
-            catch (Exception ignored){
+            catch (Exception e) {
+                System.out.println(card.getName());
             }
-
         }
     }
 
-    private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
+    private EventHandler<? super MouseEvent> selectCard(Card card) {
         return (EventHandler<MouseEvent>) event -> {
-            if(PreGame.getTurn().getDeck().getCards().contains(images.get(imageView))){
-                PreGame.getTurn().removeCardFromDeck(images.get(imageView));
-                PreGame.getTurn().addToAllCards(indexes.get(images.get(imageView)),images.get(imageView));
+            if(PreGame.getTurn().getDeck().getCards().contains(card)){
+                PreGame.getTurn().removeCardFromDeck(card);
+                PreGame.getTurn().addToAllCards(indexes.get(card),card);
             } else {
-                if(!(CardCollection.isSpecial(images.get(imageView)) && specialCards.getText().equals("10/10"))) {
-                    PreGame.getTurn().getDeck().addToCards(images.get(imageView));
-                    PreGame.getTurn().removeCard(images.get(imageView));
+                if(!(CardCollection.isSpecial(card) && specialCards.getText().equals("10/10"))) {
+                    PreGame.getTurn().getDeck().addToCards(card);
+                    indexes.put(card,PreGame.getTurn().getAllCards().indexOf(card));
+                    PreGame.getTurn().removeCard(card);
                 }
             }
             ArrayList<Card> cardsToShow = new ArrayList<>(CardCollection.getCardByFaction(PreGame.getTurn().getFaction(),PreGame.getTurn().getAllCards()));

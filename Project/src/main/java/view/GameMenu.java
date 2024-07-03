@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import model.App;
 import model.CardCollection;
 import model.Game;
+import model.PreGame;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
@@ -65,7 +66,6 @@ public class GameMenu {
 
     public void initialize() {
         game = App.getGame();
-        addPositions();
         prepareLabels();
         prepareTable();
     }
@@ -125,6 +125,7 @@ public class GameMenu {
             selectedCard = imageViewCardHashMap.get(imageView);
             selectedCardImage = imageView;
             filterForCard(selectedCard);
+            selectedCard = imageViewCardHashMap.get(imageView);
             Image image = new Image(Objects.requireNonNull(
                     getClass().getResourceAsStream(selectedCard.getImageAddress())));
             bigCard.setImage(image);

@@ -60,9 +60,11 @@ public class CardCollection {
     }
 
     public static ArrayList<Card> getCardByFaction(Faction faction, ArrayList<Card> allCards) {
+        System.out.println(PreGame.getTurn().getFaction().getName());
         ArrayList<Card> cards = new ArrayList<>();
+        System.out.println(allCards.size());
         for (Card card : allCards) {
-            if (card instanceof RegularCard && ((RegularCard) card).getFaction().equals(faction)) {
+            if (card.getCardType().equals("Regular") && ((RegularCard) card).getFaction().equals(faction)) {
                 cards.add(card);
             }
         }
@@ -71,17 +73,10 @@ public class CardCollection {
     public static int getCardsTotalStrength(ArrayList<Card> cards){
         int ans = 0;
         for(Card card: cards){
-            if(isUnit(card) || isSpecial(card)) {
-                try {
-                    ans += ((RegularCard) card).getPower();
-                } catch (ClassCastException ignored){
-
-                }
-                try {
-                    ans += ((SpecialCard) card).getPower();
-                } catch (ClassCastException ignored){
-
-                }
+            if(card instanceof RegularCard) {
+                ans += ((RegularCard) card).getPower();
+            } else if(card instanceof SpecialCard) {
+                ans += ((SpecialCard) card).getPower();
             }
         }
         return ans;
@@ -103,7 +98,7 @@ public class CardCollection {
     public static ArrayList<Card> getNeutralCards(ArrayList<Card> cards){
         ArrayList<Card> neutralCards = new ArrayList<>();
         for(Card card: cards){
-            if(card instanceof SpecialCard){
+            if(card.getCardType().equals("Special")){
                 neutralCards.add(card);
             }
         }

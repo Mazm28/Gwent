@@ -121,7 +121,7 @@ public enum RegularCardInformation implements Serializable {
     HOLGER_BLACKHAND("Holger Blackhand", 4,1,"Siege", null, false, Faction.SKELLIGE, "/IMAGES/lg/skellige_holger.jpg"),
     WAR_LONGSHIP("War Longship", 6,3, "Siege", ActionController.TightBond(), false, Faction.SKELLIGE, "/IMAGES/lg/skellige_war_longship.jpg"),
     DRAIG_BON_DHU("Draig Bon-Dhu", 2,1,"Siege", ActionController.CommanderHorn(), false, Faction.SKELLIGE, "/IMAGES/lg/skellige_draig.jpg"),
-    OLAF("Olaf", 12,1,"Agile", ActionController.MoralBoost(), false, Faction.SKELLIGE, "/IMAGES/lg/skellige_olaf.jpg")
+    OLAF("Olaf", 12,1,"Agile", ActionController.MoralBoost(), false, Faction.SKELLIGE, "/IMAGES/lg/skellige_olaf.jpg"),
     ;
     final String name;
     final int power;
