@@ -110,7 +110,6 @@ public class CardMenu {
                 imageView.getStyleClass().add("image");
                 imageView.setFitHeight(220);
                 imageView.setFitWidth(121);
-                indexes.put(card,cards.indexOf(card));
                 imageView.setOnMouseClicked(selectCard(card));
                 hBox.getChildren().add(imageView);
                 if (cardInRow % 3 == 1) vBox.getChildren().add(hBox);
@@ -129,6 +128,7 @@ public class CardMenu {
             } else {
                 if(!(CardCollection.isSpecial(card) && specialCards.getText().equals("10/10"))) {
                     PreGame.getTurn().getDeck().addToCards(card);
+                    indexes.put(card,PreGame.getTurn().getAllCards().indexOf(card));
                     PreGame.getTurn().removeCard(card);
                 }
             }
