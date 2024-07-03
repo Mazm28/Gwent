@@ -51,7 +51,6 @@ public class FactionsMenu implements Initializable {
         PreGame.getTurn().getDeck().setLeaderCard(null);
         PreGame.getTurn().setLeader(null);
         PreGame.getTurn().getDeck().setCards(new ArrayList<>());
-
     }
 
     public void skellige(MouseEvent mouseEvent) {

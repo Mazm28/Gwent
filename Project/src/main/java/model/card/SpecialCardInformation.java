@@ -19,7 +19,7 @@ public enum SpecialCardInformation implements Serializable {
     Cow("Cow", 0, 1, "Ranged", ActionController.Transformers(), false, "/IMAGES/lg/neutral_cow.jpg"),
     Emiel_Regis("Emiel_Regis", 5, 1, "Close", null, false, "/IMAGES/lg/neutral_emiel.jpg"),
     Gaunter_ODimm("Gaunter_ODimm", 2, 1, "Siege", ActionController.Muster(), false, "/IMAGES/lg/neutral_gaunter_odimm.jpg"),
-    Gaunter_ODImm_Darkness("Gaunter_ODImm_Darkness", 4, 3, "Ranged", ActionController.Muster(), false, "IMAGES/lg/neutral_gaunter_odimm_darkness.jpg"),
+    Gaunter_ODImm_Darkness("Gaunter_ODImm_Darkness", 4, 3, "Ranged", ActionController.Muster(), false, "/IMAGES/lg/neutral_gaunter_odimm_darkness.jpg"),
     Geralt_Of_Rivia("Geralt_Of_Rivia", 15, 1, "Close", null, true, "/IMAGES/lg/neutral_geralt.jpg"),
     Mysterious_Elf("Mysterious_Elf", 0, 1, "Close", ActionController.Spy(), true, "/IMAGES/lg/neutral_mysterious_elf.jpg"),
     Olgierd_Von_Everc("Olgierd_Von_Everc", 6, 1, "Agile", ActionController.MoralBoost(), false, "/IMAGES/lg/neutral_olgierd.jpg"),
