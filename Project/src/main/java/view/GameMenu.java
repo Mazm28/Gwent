@@ -1,20 +1,26 @@
 package view;
 
+import controller.ActionController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import model.App;
 import model.CardCollection;
 import model.Game;
 import model.PreGame;
 import model.card.Card;
+import model.card.RegularCard;
+import model.card.SpecialCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class GameMenu {
@@ -40,6 +46,13 @@ public class GameMenu {
     @FXML public HBox eCloseHBox;
     @FXML public HBox specialCardHBox;
 
+    private HBox siegePlayHBox;
+    private HBox rangedPlayHBox;
+    private HBox closePlayHBox;
+    private HBox siegePlayHBox2;
+    private HBox rangedPlayHBox2;
+    private HBox closePlayHBox2;
+
     @FXML public ImageView eRemainCardsImageView;
     @FXML public ImageView tRemainCardsImageView;
     @FXML public ImageView eDeadCardImageView;
@@ -50,15 +63,55 @@ public class GameMenu {
 
     private Game game;
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
+    private final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();
     private Card selectedCard;
+    private ImageView selectedCardImage;
+    private final ArrayList<HBox> positions = new ArrayList<>();
 
     public void initialize() {
         game = App.getGame();
+        addPositions();
         prepareLabels();
         prepareTable();
     }
 
+    private void addPositions() {
+        positions.addAll(List.of(new HBox[]{eCloseHBox, eRangedHBox, eSiegeHBox, tSiegeHBox, tCloseHBox, tRangedHBox}));
+        for (HBox hBox : positions) {
+            hBox.setSpacing(7);
+            hBox.setDisable(true);
+            hBox.setOnMouseClicked(moveUnitCardToPosition(hBox));
+        }
+        siegePlayHBox = tSiegeHBox;
+        rangedPlayHBox = tRangedHBox;
+        closePlayHBox = tCloseHBox;
+        siegePlayHBox2 = eSiegeHBox;
+        rangedPlayHBox2 = eRangedHBox;
+        closePlayHBox2 = eCloseHBox;
+    }
+
+    private EventHandler<? super MouseEvent> moveUnitCardToPosition(HBox hBox) {
+        return (EventHandler<MouseEvent>) event -> {
+            Image image = new Image(Objects.requireNonNull(
+                    getClass().getResourceAsStream(selectedCard.getImageAddress())));
+            ImageView imageView = new ImageView(image);
+            imageViewOnBoard.put(imageView, selectedCard);
+            imageView.setFitHeight(60);
+            imageView.setFitWidth(40);
+            imageView.getStyleClass().add("image");
+            hBox.getChildren().add(imageView);
+            removeFilters();
+            bigCard.setVisible(false);
+            if (selectedCard.getAbility() != null)
+                selectedCard.getAbility().run();
+            mainTableHBox.getChildren().remove(selectedCardImage);
+            game.getCurrentPlayer().removeFromInGameHand(selectedCard);
+            changeTurn();
+        };
+    }
+
     private void prepareTable() {
+        mainTableHBox.getChildren().clear();
         for (Card card : game.getCurrentPlayer().getInGameHand()) {
             mainTableHBox.setSpacing(3);
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
@@ -80,11 +133,72 @@ public class GameMenu {
 
     private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
         return (EventHandler<MouseEvent>) event -> {
+            bigCard.setVisible(true);
+            removeFilters();
+            selectedCard = imageViewCardHashMap.get(imageView);
+            selectedCardImage = imageView;
+            filterForCard(selectedCard);
             selectedCard = imageViewCardHashMap.get(imageView);
             Image image = new Image(Objects.requireNonNull(
                     getClass().getResourceAsStream(selectedCard.getImageAddress())));
             bigCard.setImage(image);
         };
+    }
+
+    private void filterForCard(Card card) {
+        String type;
+        if (CardCollection.isUnit(card)) {
+            if (card instanceof RegularCard) type = ((RegularCard) card).getType();
+            else type = ((SpecialCard) card).getType();
+            if (card.getAbility() != null && card.getAbility().equals(ActionController.Spy())) {
+                switch (type) {
+                    case "Close" :
+                        makeFilterOnHBox(closePlayHBox2);
+                        break;
+                    case "Siege" :
+                        makeFilterOnHBox(siegePlayHBox2);
+                        break;
+                    case "Ranged" :
+                        makeFilterOnHBox(rangedPlayHBox2);
+                        break;
+                    case "Agile" :
+                        makeFilterOnHBox(closePlayHBox2);
+                        makeFilterOnHBox(rangedPlayHBox2);
+                        break;
+                    default :
+                        System.out.println("sag");
+                }
+            } else {
+                switch (type) {
+                    case "Close" :
+                        makeFilterOnHBox(closePlayHBox);
+                        break;
+                    case "Siege" :
+                        makeFilterOnHBox(siegePlayHBox);
+                        break;
+                    case "Ranged" :
+                        makeFilterOnHBox(rangedPlayHBox);
+                        break;
+                    case "Agile" :
+                        makeFilterOnHBox(closePlayHBox);
+                        makeFilterOnHBox(rangedPlayHBox);
+                        break;
+                    default : System.out.println("sag");
+                }
+            }
+        }
+    }
+
+    private void makeFilterOnHBox(HBox hBox) {
+        hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null , BorderStroke.THIN)));
+        hBox.setDisable(false);
+    }
+
+    private void removeFilters() {
+        for (HBox hBox : positions) {
+            hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
+            hBox.setDisable(true);
+        }
     }
 
     private void prepareLabels() {
@@ -105,8 +219,60 @@ public class GameMenu {
             game.getOpponent().setPassedTheTurn(false);
             finishRound();
         }
+        changeTurn();
     }
 
     private void finishRound() {
+    }
+
+    private void changeTurn() {
+        if (game.getOpponent().isPassedTheTurn()) return;
+        game.changeTurn();
+        prepareTable();
+        changeHBoxesPosition();
+    }
+
+    private void changeHBoxesPosition() {
+        double temp = eCloseHBox.getLayoutY();
+        eCloseHBox.setLayoutY(tCloseHBox.getLayoutY());
+        tCloseHBox.setLayoutY(temp);
+        temp = eRangedHBox.getLayoutY();
+        eRangedHBox.setLayoutY(tRangedHBox.getLayoutY());
+        tRangedHBox.setLayoutY(temp);
+        temp = eSiegeHBox.getLayoutY();
+        eSiegeHBox.setLayoutY(tSiegeHBox.getLayoutY());
+        tSiegeHBox.setLayoutY(temp);
+
+        if (siegePlayHBox.equals(tSiegeHBox)) {
+            siegePlayHBox = eSiegeHBox;
+            siegePlayHBox2 = tSiegeHBox;
+        } else {
+            siegePlayHBox = tSiegeHBox;
+            siegePlayHBox2 = eSiegeHBox;
+        }
+        if (rangedPlayHBox.equals(tRangedHBox)) {
+            rangedPlayHBox = eRangedHBox;
+            rangedPlayHBox2 = tRangedHBox;
+        } else {
+            rangedPlayHBox = tRangedHBox;
+            rangedPlayHBox2 = eRangedHBox;
+        }
+        if (closePlayHBox.equals(tCloseHBox)) {
+            closePlayHBox = eCloseHBox;
+            closePlayHBox2 = tCloseHBox;
+        } else {
+            closePlayHBox = tCloseHBox;
+            closePlayHBox2 = eCloseHBox;
+        }
+
+        temp = eClosePowerLabel.getLayoutY();
+        eClosePowerLabel.setLayoutY(tClosePowerLabel.getLayoutY());
+        tClosePowerLabel.setLayoutY(temp);
+        temp = eRangedPowerLabel.getLayoutY();
+        eRangedPowerLabel.setLayoutY(tRangedPowerLabel.getLayoutY());
+        tRangedPowerLabel.setLayoutY(temp);
+        temp = eSiegePowerLabel.getLayoutY();
+        eSiegePowerLabel.setLayoutY(tSiegePowerLabel.getLayoutY());
+        tSiegePowerLabel.setLayoutY(temp);
     }
 }
