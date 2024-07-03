@@ -60,6 +60,7 @@ public class GameMenu {
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
     private final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();
     private Card selectedCard;
+    private ImageView selectedCardImage;
     private final ArrayList<HBox> positions = new ArrayList<>();
 
     public void initialize() {
@@ -90,6 +91,10 @@ public class GameMenu {
             hBox.getChildren().add(imageView);
             removeFilters();
             bigCard.setVisible(false);
+            if (selectedCard.getAbility() != null)
+                selectedCard.getAbility().run();
+            mainTableHBox.getChildren().remove(selectedCardImage);
+            changeTurn();
         };
     }
 
@@ -115,8 +120,10 @@ public class GameMenu {
 
     private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
         return (EventHandler<MouseEvent>) event -> {
+            bigCard.setVisible(true);
             removeFilters();
             selectedCard = imageViewCardHashMap.get(imageView);
+            selectedCardImage = imageView;
             filterForCard(selectedCard);
             Image image = new Image(Objects.requireNonNull(
                     getClass().getResourceAsStream(selectedCard.getImageAddress())));
@@ -148,7 +155,6 @@ public class GameMenu {
                         System.out.println("sag");
                 }
             } else {
-                System.out.println("not");
                 switch (type) {
                     case "Close" :
                         makeFilterOnHBox(tCloseHBox);
@@ -201,8 +207,19 @@ public class GameMenu {
             game.getOpponent().setPassedTheTurn(false);
             finishRound();
         }
+        changeTurn();
     }
 
     private void finishRound() {
+    }
+
+    private void changeTurn() {
+        if (game.getOpponent().isPassedTheTurn()) return;
+        game.changeTurn();
+        prepareTable();
+        changeHBoxesPosition();
+    }
+
+    private void changeHBoxesPosition() {
     }
 }
