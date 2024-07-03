@@ -108,15 +108,8 @@ public class User implements Serializable {
     public void addToAllCards(Card card) {
         allCards.add(card);
     }
-
-    public ArrayList<Card> getSpecialCards() {
-        ArrayList<Card> specialCards = new ArrayList<>();
-        for (Card card : allCards) {
-            if (card.getCardType().equals("Special")) {
-                specialCards.add(card);
-            }
-        }
-        return specialCards;
+    public void addToAllCards(int place,Card card) {
+        allCards.add(place,card);
     }
 
     public ArrayList<Card> getAllCards() {
@@ -194,12 +187,9 @@ public class User implements Serializable {
     public Deck getDeckByName(String deckName) {
         for (Deck deck : decks) {
             if (deck.getName().equals(deckName)) {
-                System.out.println(deck.getName());
-                System.out.println(deckName);
                 return deck;
             }
         }
-        System.out.println("KIR");
         return null;
     }
 }

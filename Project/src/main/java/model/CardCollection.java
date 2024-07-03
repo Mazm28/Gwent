@@ -46,7 +46,13 @@ public class CardCollection {
     public static ArrayList<Card> getHero(ArrayList<Card> cards) {
         ArrayList<Card> answer = new ArrayList<>();
         for (Card card : cards) {
-            if (card.getCardType().equals("Regular") && ((RegularCard) card).isHero()) {
+            boolean isHero = false;
+            try {
+                isHero = ((RegularCard) card).isHero();
+            } catch (ClassCastException ignored){
+
+            }
+            if (isHero) {
                 answer.add(card);
             }
         }
@@ -56,7 +62,7 @@ public class CardCollection {
     public static ArrayList<Card> getCardByFaction(Faction faction, ArrayList<Card> allCards) {
         ArrayList<Card> cards = new ArrayList<>();
         for (Card card : allCards) {
-            if (card.getCardType().equals("Regular") && ((RegularCard) card).getFaction().equals(faction)) {
+            if (card instanceof RegularCard && ((RegularCard) card).getFaction().equals(faction)) {
                 cards.add(card);
             }
         }
@@ -92,5 +98,15 @@ public class CardCollection {
 
     public static boolean isSpecial(Card card){
         return card.getCardType().equals("Special") && (((SpecialCard) card).getType().equals("Weather") || ((SpecialCard) card).getType().equals("Spell"));
+    }
+
+    public static ArrayList<Card> getNeutralCards(ArrayList<Card> cards){
+        ArrayList<Card> neutralCards = new ArrayList<>();
+        for(Card card: cards){
+            if(card instanceof SpecialCard){
+                neutralCards.add(card);
+            }
+        }
+        return neutralCards;
     }
 }

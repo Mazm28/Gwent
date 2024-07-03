@@ -11,11 +11,14 @@ public class Player extends User{
     private Faction faction;
     private LeaderCard leader;
     private Deck deck = new Deck();
-    private final ArrayList<Card> inGameHand = new ArrayList<>();
+    private ArrayList<Card> inGameHand = new ArrayList<>();
+    private ArrayList<Card> remainCard = new ArrayList<>();
     private int totalPoints;
     private final int[] points = new int[3];
     private final ArrayList<Card> burnedCards = new ArrayList<>();
     private final Row[] rows = new Row[3];
+    private boolean choosedHand;
+    private boolean passedTheTurn = false;
 
     private boolean ready = false;
     public Deck getDeck() {
@@ -44,6 +47,8 @@ public class Player extends User{
     public Player(User user) {
         super(user);
         this.faction = Faction.MONSTERS;
+        this.remainCard = this.deck.getCards();
+        this.choosedHand = false;
     }
 
     public void addToDeck(Card card){
@@ -97,7 +102,51 @@ public class Player extends User{
         return inGameHand;
     }
 
+    public void setInGameHand(ArrayList<Card> inGameHand) {
+        this.inGameHand = inGameHand;
+    }
+
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+
+    public ArrayList<Card> getRemainCard() {
+        return remainCard;
+    }
+
+    public void setRemainCard(ArrayList<Card> remainCard) {
+        this.remainCard = remainCard;
+    }
+
+    public void addToRemainCard(Card card){
+        remainCard.add(card);
+    }
+
+    public void removeFromRemainCard(Card card){
+        remainCard.remove(card);
+    }
+
+    public void removeFromInGameHand(Card card) {
+        inGameHand.remove(card);
+    }
+
+    public void addToInGameHand(Card card){
+        inGameHand.add(card);
+    }
+
+    public boolean isChoosedHand() {
+        return choosedHand;
+    }
+
+    public void setChoosedHand(boolean choosedHand) {
+        this.choosedHand = choosedHand;
+    }
+
+    public void setPassedTheTurn(boolean passedTheTurn) {
+        this.passedTheTurn = passedTheTurn;
+    }
+
+    public boolean isPassedTheTurn() {
+        return passedTheTurn;
     }
 }

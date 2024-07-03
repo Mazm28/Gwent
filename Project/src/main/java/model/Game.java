@@ -12,6 +12,8 @@ public class Game {
     private Round round1;
     private Round round2;
     private Round round3;
+    private Round currentRound;
+
     public Round round(int roundNumber){
         return switch (roundNumber) {
             case 1 -> round1;
@@ -51,5 +53,19 @@ public class Game {
 
     public void setOpponent(Player opponent) {
         this.opponent = opponent;
+    }
+
+    public void changeTurn() {
+        Player temp = currentPlayer;
+        this.currentPlayer = this.opponent;
+        this.opponent = temp;
+    }
+
+    public Round getCurrentRound() {
+        return currentRound;
+    }
+
+    public void setCurrentRound(Round currentRound) {
+        this.currentRound = currentRound;
     }
 }

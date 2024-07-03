@@ -4,6 +4,7 @@ package model;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ public class App {
     private static Stage stage;
     private static Game game;
     private static MediaPlayer mediaPlayer;
+    private static Group ingredient = new Group();
 
     public static MediaPlayer getMediaPlayer() {
         return mediaPlayer;
@@ -110,7 +112,6 @@ public class App {
         ArrayList<User> users = getUsers();
         for (User user1 : users) {
             if (user1.getId() == user.getId()) {
-                System.out.println(user1.getDecks().size());
                 users.remove(user1);
                 users.add(user);
                 SaveUsers(users);
@@ -143,5 +144,9 @@ public class App {
 
     public static void setRoot(Parent root) {
         App.root = root;
+    }
+
+    public static Group getIngredient() {
+        return ingredient;
     }
 }

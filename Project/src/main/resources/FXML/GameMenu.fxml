@@ -1,41 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameMenu">
     <children>
         <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
                 <Image url="@../IMAGES/board.jpg" />
             </image>
         </ImageView>
-      <Label fx:id="eSiegePowerLabel" alignment="CENTER" layoutX="265.0" layoutY="39.0" prefHeight="18.0" prefWidth="30.0" />
-      <Label fx:id="eRangedPowerLabel" alignment="CENTER" layoutX="264.0" layoutY="124.0" prefHeight="18.0" prefWidth="30.0" />
-      <Label fx:id="eClosePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="213.0" prefHeight="18.0" prefWidth="30.0" />
-      <Label fx:id="tClosePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="309.0" prefHeight="18.0" prefWidth="30.0" />
-      <Label fx:id="tRangedPowerLabel" alignment="CENTER" layoutX="264.0" layoutY="396.0" prefHeight="18.0" prefWidth="30.0" />
-      <Label fx:id="tSiegePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="485.0" prefHeight="18.0" prefWidth="30.0" />
-      <Label fx:id="tTotalPowerLabel" alignment="CENTER" layoutX="221.0" layoutY="467.0" prefHeight="18.0" prefWidth="30.0" />
-      <Label fx:id="eTotalPowerLabel" contentDisplay="CENTER" layoutX="221.0" layoutY="207.0" prefHeight="18.0" prefWidth="30.0" />
-      <HBox fx:id="mainTableHBox" layoutX="301.0" layoutY="544.0" prefHeight="82.0" prefWidth="487.0" />
-      <ImageView fx:id="eLeaderImageView" fitHeight="88.0" fitWidth="54.0" layoutX="72.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="tLeaderImageView" fitHeight="88.0" fitWidth="54.0" layoutX="72.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eRemainDeckImageView" fitHeight="93.0" fitWidth="57.0" layoutX="899.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eDeadCardImageView" fitHeight="93.0" fitWidth="57.0" layoutX="805.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="tDeadCardImageView" fitHeight="93.0" fitWidth="57.0" layoutX="804.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="tRemainDeckImageView" fitHeight="93.0" fitWidth="57.0" layoutX="898.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true" />
-      <HBox fx:id="tSiegeHBox" layoutX="370.0" layoutY="459.0" prefHeight="73.0" prefWidth="419.0" />
-      <HBox fx:id="tRangedHBox" layoutX="370.0" layoutY="373.0" prefHeight="73.0" prefWidth="419.0" />
-      <HBox fx:id="tCloseHBox" layoutX="370.0" layoutY="286.0" prefHeight="73.0" prefWidth="419.0" />
-      <HBox fx:id="eCloseHBox" layoutX="370.0" layoutY="186.0" prefHeight="73.0" prefWidth="419.0" />
-      <HBox fx:id="eRangedHBox" layoutX="369.0" layoutY="100.0" prefHeight="73.0" prefWidth="419.0" />
-      <HBox fx:id="eSiegeHBox" layoutX="371.0" layoutY="15.0" prefHeight="73.0" prefWidth="419.0" />
-      <HBox fx:id="specialCardHBox" layoutX="76.0" layoutY="292.0" prefHeight="93.0" prefWidth="144.0" />
-      <ImageView fx:id="eLeaderUsedIcon" fitHeight="26.0" fitWidth="23.0" layoutX="132.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="tLeaderUsedIcon" fitHeight="26.0" fitWidth="21.0" layoutX="134.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="eSiegePowerLabel" alignment="CENTER" layoutX="265.0" layoutY="39.0" prefHeight="18.0" prefWidth="30.0" />
+        <Label fx:id="eRangedPowerLabel" alignment="CENTER" layoutX="264.0" layoutY="124.0" prefHeight="18.0" prefWidth="30.0" />
+        <Label fx:id="eClosePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="213.0" prefHeight="18.0" prefWidth="30.0" />
+        <Label fx:id="tClosePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="309.0" prefHeight="18.0" prefWidth="30.0" />
+        <Label fx:id="tRangedPowerLabel" alignment="CENTER" layoutX="264.0" layoutY="396.0" prefHeight="18.0" prefWidth="30.0" />
+        <Label fx:id="tSiegePowerLabel" alignment="CENTER" layoutX="264.0" layoutY="485.0" prefHeight="18.0" prefWidth="30.0" />
+        <Label fx:id="tTotalPowerLabel" alignment="CENTER" layoutX="221.0" layoutY="467.0" prefHeight="18.0" prefWidth="30.0" />
+        <Label fx:id="eTotalPowerLabel" alignment="CENTER" layoutX="221.0" layoutY="207.0" prefHeight="18.0" prefWidth="30.0" />
+        <HBox fx:id="mainTableHBox" alignment="CENTER" layoutX="301.0" layoutY="544.0" prefHeight="82.0" prefWidth="487.0" />
+        <ImageView fx:id="eRemainCardsImageView" fitHeight="93.0" fitWidth="57.0" layoutX="899.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="eDeadCardImageView" fitHeight="93.0" fitWidth="57.0" layoutX="805.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="tDeadCardImageView" fitHeight="93.0" fitWidth="57.0" layoutX="804.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="tRemainCardsImageView" fitHeight="93.0" fitWidth="57.0" layoutX="898.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true" />
+        <HBox fx:id="tSiegeHBox" layoutX="370.0" layoutY="459.0" prefHeight="73.0" prefWidth="419.0" />
+        <HBox fx:id="tRangedHBox" layoutX="370.0" layoutY="373.0" prefHeight="73.0" prefWidth="419.0" />
+        <HBox fx:id="tCloseHBox" layoutX="370.0" layoutY="286.0" prefHeight="73.0" prefWidth="419.0" />
+        <HBox fx:id="eCloseHBox" layoutX="370.0" layoutY="186.0" prefHeight="73.0" prefWidth="419.0" />
+        <HBox fx:id="eRangedHBox" layoutX="369.0" layoutY="100.0" prefHeight="73.0" prefWidth="419.0" />
+        <HBox fx:id="eSiegeHBox" layoutX="371.0" layoutY="15.0" prefHeight="73.0" prefWidth="419.0" />
+        <HBox fx:id="specialCardHBox" layoutX="76.0" layoutY="292.0" prefHeight="93.0" prefWidth="144.0" />
+        <ImageView fx:id="eLeaderUsedIcon" fitHeight="26.0" fitWidth="23.0" layoutX="132.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="tLeaderUsedIcon" fitHeight="26.0" fitWidth="21.0" layoutX="134.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox alignment="CENTER" layoutX="70.0" layoutY="50.0" prefHeight="93.0" prefWidth="57.0">
+         <children>
+              <ImageView fx:id="eLeaderImageView" fitHeight="88.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="70.0" layoutY="539.0" prefHeight="93.0" prefWidth="57.0">
+         <children>
+              <ImageView fx:id="tLeaderImageView" fitHeight="88.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+      <Button layoutX="164.0" layoutY="565.0" mnemonicParsing="false" onMouseClicked="#pass" prefHeight="20.0" prefWidth="66.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 10;" styleClass="button-52" text="pass" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="bigCard" fitHeight="242.0" fitWidth="169.0" layoutX="807.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>
