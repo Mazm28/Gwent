@@ -8,10 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import model.App;
 import model.CardCollection;
@@ -49,6 +46,13 @@ public class GameMenu {
     @FXML public HBox eCloseHBox;
     @FXML public HBox specialCardHBox;
 
+    private HBox siegePlayHBox;
+    private HBox rangedPlayHBox;
+    private HBox closePlayHBox;
+    private HBox siegePlayHBox2;
+    private HBox rangedPlayHBox2;
+    private HBox closePlayHBox2;
+
     @FXML public ImageView eRemainCardsImageView;
     @FXML public ImageView tRemainCardsImageView;
     @FXML public ImageView eDeadCardImageView;
@@ -66,6 +70,7 @@ public class GameMenu {
 
     public void initialize() {
         game = App.getGame();
+        addPositions();
         prepareLabels();
         prepareTable();
     }
@@ -77,6 +82,12 @@ public class GameMenu {
             hBox.setDisable(true);
             hBox.setOnMouseClicked(moveUnitCardToPosition(hBox));
         }
+        siegePlayHBox = tSiegeHBox;
+        rangedPlayHBox = tRangedHBox;
+        closePlayHBox = tCloseHBox;
+        siegePlayHBox2 = eSiegeHBox;
+        rangedPlayHBox2 = eRangedHBox;
+        closePlayHBox2 = eCloseHBox;
     }
 
     private EventHandler<? super MouseEvent> moveUnitCardToPosition(HBox hBox) {
@@ -94,11 +105,13 @@ public class GameMenu {
             if (selectedCard.getAbility() != null)
                 selectedCard.getAbility().run();
             mainTableHBox.getChildren().remove(selectedCardImage);
+            game.getCurrentPlayer().removeFromInGameHand(selectedCard);
             changeTurn();
         };
     }
 
     private void prepareTable() {
+        mainTableHBox.getChildren().clear();
         for (Card card : game.getCurrentPlayer().getInGameHand()) {
             mainTableHBox.setSpacing(3);
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(card.getImageAddress())));
@@ -140,17 +153,17 @@ public class GameMenu {
             if (card.getAbility() != null && card.getAbility().equals(ActionController.Spy())) {
                 switch (type) {
                     case "Close" :
-                        makeFilterOnHBox(eCloseHBox);
+                        makeFilterOnHBox(closePlayHBox2);
                         break;
                     case "Siege" :
-                        makeFilterOnHBox(eSiegeHBox);
+                        makeFilterOnHBox(siegePlayHBox2);
                         break;
                     case "Ranged" :
-                        makeFilterOnHBox(eRangedHBox);
+                        makeFilterOnHBox(rangedPlayHBox2);
                         break;
                     case "Agile" :
-                        makeFilterOnHBox(eCloseHBox);
-                        makeFilterOnHBox(eRangedHBox);
+                        makeFilterOnHBox(closePlayHBox2);
+                        makeFilterOnHBox(rangedPlayHBox2);
                         break;
                     default :
                         System.out.println("sag");
@@ -158,17 +171,17 @@ public class GameMenu {
             } else {
                 switch (type) {
                     case "Close" :
-                        makeFilterOnHBox(tCloseHBox);
+                        makeFilterOnHBox(closePlayHBox);
                         break;
                     case "Siege" :
-                        makeFilterOnHBox(tSiegeHBox);
+                        makeFilterOnHBox(siegePlayHBox);
                         break;
                     case "Ranged" :
-                        makeFilterOnHBox(tRangedHBox);
+                        makeFilterOnHBox(rangedPlayHBox);
                         break;
                     case "Agile" :
-                        makeFilterOnHBox(tCloseHBox);
-                        makeFilterOnHBox(tRangedHBox);
+                        makeFilterOnHBox(closePlayHBox);
+                        makeFilterOnHBox(rangedPlayHBox);
                         break;
                     default : System.out.println("sag");
                 }
@@ -177,15 +190,13 @@ public class GameMenu {
     }
 
     private void makeFilterOnHBox(HBox hBox) {
-        hBox.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
-        hBox.setOpacity(0.05);
+        hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null , BorderStroke.THIN)));
         hBox.setDisable(false);
     }
 
     private void removeFilters() {
         for (HBox hBox : positions) {
-            hBox.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
-            hBox.setOpacity(1);
+            hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
             hBox.setDisable(true);
         }
     }
@@ -222,5 +233,46 @@ public class GameMenu {
     }
 
     private void changeHBoxesPosition() {
+        double temp = eCloseHBox.getLayoutY();
+        eCloseHBox.setLayoutY(tCloseHBox.getLayoutY());
+        tCloseHBox.setLayoutY(temp);
+        temp = eRangedHBox.getLayoutY();
+        eRangedHBox.setLayoutY(tRangedHBox.getLayoutY());
+        tRangedHBox.setLayoutY(temp);
+        temp = eSiegeHBox.getLayoutY();
+        eSiegeHBox.setLayoutY(tSiegeHBox.getLayoutY());
+        tSiegeHBox.setLayoutY(temp);
+
+        if (siegePlayHBox.equals(tSiegeHBox)) {
+            siegePlayHBox = eSiegeHBox;
+            siegePlayHBox2 = tSiegeHBox;
+        } else {
+            siegePlayHBox = tSiegeHBox;
+            siegePlayHBox2 = eSiegeHBox;
+        }
+        if (rangedPlayHBox.equals(tRangedHBox)) {
+            rangedPlayHBox = eRangedHBox;
+            rangedPlayHBox2 = tRangedHBox;
+        } else {
+            rangedPlayHBox = tRangedHBox;
+            rangedPlayHBox2 = eRangedHBox;
+        }
+        if (closePlayHBox.equals(tCloseHBox)) {
+            closePlayHBox = eCloseHBox;
+            closePlayHBox2 = tCloseHBox;
+        } else {
+            closePlayHBox = tCloseHBox;
+            closePlayHBox2 = eCloseHBox;
+        }
+
+        temp = eClosePowerLabel.getLayoutY();
+        eClosePowerLabel.setLayoutY(tClosePowerLabel.getLayoutY());
+        tClosePowerLabel.setLayoutY(temp);
+        temp = eRangedPowerLabel.getLayoutY();
+        eRangedPowerLabel.setLayoutY(tRangedPowerLabel.getLayoutY());
+        tRangedPowerLabel.setLayoutY(temp);
+        temp = eSiegePowerLabel.getLayoutY();
+        eSiegePowerLabel.setLayoutY(tSiegePowerLabel.getLayoutY());
+        tSiegePowerLabel.setLayoutY(temp);
     }
 }
