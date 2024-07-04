@@ -1,13 +1,36 @@
 package controller;
 
+import model.App;
+import model.Game;
+import model.Row;
 import model.card.Card;
+import model.card.SpecialCardInformation;
 
 public class ActionController {
+    static Game game = App.getGame();
+
     public static Runnable CommanderHorn() {
         return new Runnable() {
             @Override
             public void run() {
+                for (Row row : game.getCurrentPlayer().getRows()) {
+                    if (row.getImproveCard().getName().equals(SpecialCardInformation.Commander_Horn.getName())) {
+                        for (Card card : row.getCards()) {
+                            card.setPower(card.getPower() * 2);
+                        }
+                    }
+                    for (Card card : row.getCards()) {
+                        if (card.getAbility().equals(ActionController.CommanderHorn())) {
+                            for(Card card1: row.getCards()){
+                                if(!card.equals(card1)) {
+                                    card1.setPower(card.getPower() * 2);
+                                }
+                            }
+                            break;
+                        }
+                    }
 
+                }
             }
         };
     }

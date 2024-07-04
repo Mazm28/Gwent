@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.effect.GaussianBlur?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StartingGameMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StartingGameMenu">
     <children>
         <ImageView fitHeight="700.0" fitWidth="1000.0">
             <image>
@@ -19,13 +16,18 @@
                 <GaussianBlur radius="25" />
             </effect>
         </ImageView>
-      <ImageView fx:id="middleImageView" fitHeight="406.0" fitWidth="314.0" layoutX="379.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#chooseCard"/>
-      <ImageView fx:id="rightImageView" fitHeight="157.0" fitWidth="123.0" layoutX="819.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#moveRight"/>
-      <ImageView fx:id="leftImageView" fitHeight="157.0" fitWidth="123.0" layoutX="48.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#moveLeft"/>
+      <ImageView fx:id="middleImageView" fitHeight="406.0" fitWidth="314.0" layoutX="379.0" layoutY="104.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="rightImageView" fitHeight="157.0" fitWidth="123.0" layoutX="819.0" layoutY="209.0" onMouseClicked="#moveRight" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="leftImageView" fitHeight="157.0" fitWidth="123.0" layoutX="48.0" layoutY="209.0" onMouseClicked="#moveLeft" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="finishBtn" layoutX="482.0" layoutY="559.0" mnemonicParsing="false" onMouseClicked="#finishChoosingDeck" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 10;" styleClass="button-52" text="Finished" textFill="WHITE">
+         <font>
+            <Font name="Droid Sans Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="turn" alignment="CENTER" layoutX="482.0" layoutY="612.0" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="DejaVu Serif Condensed Bold" size="13.0" />
          </font>
-      </Button>
+      </Label>
     </children>
 </AnchorPane>

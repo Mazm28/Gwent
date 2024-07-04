@@ -7,7 +7,6 @@ import model.User;
 import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RegularCard extends Card {
-    private int power;
     private int countInGame;
     private String type;
     private boolean hero;

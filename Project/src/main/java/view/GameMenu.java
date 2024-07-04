@@ -84,7 +84,7 @@ public class GameMenu {
     }
 
     private void addPositions() {
-        positions.addAll(List.of(new HBox[]{eCloseHBox, eRangedHBox, eSiegeHBox, tSiegeHBox, tCloseHBox, tRangedHBox}));
+        positions.addAll(List.of(new HBox[]{tSiegeHBox,tRangedHBox,tCloseHBox,eCloseHBox, eRangedHBox, eSiegeHBox}));
         for (HBox hBox : positions) {
             hBox.setSpacing(7);
             hBox.setDisable(true);
@@ -136,6 +136,7 @@ public class GameMenu {
             label.setText(String.valueOf(newPower));
             mainTableHBox.getChildren().remove(selectedCardImage);
             game.getCurrentPlayer().removeFromInGameHand(selectedCard);
+            game.getCurrentPlayer().getRows()[positions.indexOf(hBox)].addCardToCards(selectedCard);
             changeTurn();
             updateTotalPower();
         };
@@ -147,10 +148,6 @@ public class GameMenu {
                 Integer.parseInt(tRangedPowerLabel.getText()) +
                 Integer.parseInt(tClosePowerLabel.getText());
         tTotalPowerLabel.setText(String.valueOf(power));
-
-//        System.out.println(eSiegePowerLabel.getText());
-//        System.out.println(eRangedPowerLabel.getText());
-//        System.out.println(eClosePowerLabel.getText());
         power = Integer.parseInt(eSiegePowerLabel.getText()) +
                 Integer.parseInt(eRangedPowerLabel.getText()) +
                 Integer.parseInt(eClosePowerLabel.getText());
@@ -237,7 +234,7 @@ public class GameMenu {
     }
 
     private void makeFilterOnHBox(HBox hBox) {
-        hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null , BorderStroke.THIN)));
+        hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null , BorderStroke.THICK)));
         hBox.setDisable(false);
     }
 

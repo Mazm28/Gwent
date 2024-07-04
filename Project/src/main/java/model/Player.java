@@ -6,7 +6,10 @@ import model.card.LeaderCard;
 
 import java.util.ArrayList;
 
-public class Player extends User{
+public class Player extends User {
+    private final int[] points = new int[3];
+    private final ArrayList<Card> burnedCards = new ArrayList<>();
+    private final Row[] rows = new Row[6];
     private boolean passed;
     private Faction faction;
     private LeaderCard leader;
@@ -14,17 +17,35 @@ public class Player extends User{
     private ArrayList<Card> inGameHand = new ArrayList<>();
     private ArrayList<Card> remainCard = new ArrayList<>();
     private int totalPoints;
-    private final int[] points = new int[3];
-    private final ArrayList<Card> burnedCards = new ArrayList<>();
-    private final Row[] rows = new Row[3];
     private boolean choosedHand;
     private boolean passedTheTurn = false;
-
+    private Card selectedCard;
     private boolean ready = false;
+
+    public Player(User user) {
+        super(user);
+        this.faction = Faction.MONSTERS;
+        this.remainCard = this.deck.getCards();
+        this.choosedHand = false;
+    }
+
+    public Card getSelectedCard() {
+        return selectedCard;
+    }
+
+    public void setSelectedCard(Card selectedCard) {
+        this.selectedCard = selectedCard;
+    }
+
     public Deck getDeck() {
         return deck;
     }
-    public void removeCardFromDeck(Card card){
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+    public void removeCardFromDeck(Card card) {
         deck.getCards().remove(deck.getCards().indexOf(card));
     }
 
@@ -36,7 +57,7 @@ public class Player extends User{
         return rows;
     }
 
-    public void setReady(){
+    public void setReady() {
         ready = true;
     }
 
@@ -44,17 +65,11 @@ public class Player extends User{
         return ready;
     }
 
-    public Player(User user) {
-        super(user);
-        this.faction = Faction.MONSTERS;
-        this.remainCard = this.deck.getCards();
-        this.choosedHand = false;
-    }
-
-    public void addToDeck(Card card){
+    public void addToDeck(Card card) {
         this.deck.addToCards(card);
     }
-    public void setHand(){
+
+    public void setHand() {
         return;
     }
 
@@ -94,7 +109,7 @@ public class Player extends User{
         return points;
     }
 
-    public void setPoints(int round,int points) {
+    public void setPoints(int round, int points) {
         this.points[round] = points;
     }
 
@@ -106,10 +121,6 @@ public class Player extends User{
         this.inGameHand = inGameHand;
     }
 
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
-
     public ArrayList<Card> getRemainCard() {
         return remainCard;
     }
@@ -118,11 +129,11 @@ public class Player extends User{
         this.remainCard = remainCard;
     }
 
-    public void addToRemainCard(Card card){
+    public void addToRemainCard(Card card) {
         remainCard.add(card);
     }
 
-    public void removeFromRemainCard(Card card){
+    public void removeFromRemainCard(Card card) {
         remainCard.remove(card);
     }
 
@@ -130,7 +141,7 @@ public class Player extends User{
         inGameHand.remove(card);
     }
 
-    public void addToInGameHand(Card card){
+    public void addToInGameHand(Card card) {
         inGameHand.add(card);
     }
 
@@ -142,11 +153,11 @@ public class Player extends User{
         this.choosedHand = choosedHand;
     }
 
-    public void setPassedTheTurn(boolean passedTheTurn) {
-        this.passedTheTurn = passedTheTurn;
-    }
-
     public boolean isPassedTheTurn() {
         return passedTheTurn;
+    }
+
+    public void setPassedTheTurn(boolean passedTheTurn) {
+        this.passedTheTurn = passedTheTurn;
     }
 }

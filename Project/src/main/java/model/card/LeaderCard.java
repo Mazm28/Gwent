@@ -16,6 +16,7 @@ public class LeaderCard extends Card {
         this.ability = leaderCardInformation.ability;
         this.imageAddress = leaderCardInformation.imageAddress;
         this.cardType = "Leader";
+        this.power = 0;
     }
 
     public LeaderCard() {
