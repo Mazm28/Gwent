@@ -31,6 +31,13 @@ public class GameMenu {
     @FXML public Label eClosePowerLabel;
     @FXML public Label tClosePowerLabel;
 
+    private Label siegePowerLabel;
+    private Label rangedPowerLabel;
+    private Label closePowerLabel;
+    private Label siegePowerLabel1;
+    private Label rangedPowerLabel1;
+    private Label closePowerLabel1;
+
     @FXML public Label eTotalPowerLabel;
     @FXML public Label tTotalPowerLabel;
 
@@ -64,6 +71,7 @@ public class GameMenu {
     private Game game;
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
     private final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();
+    private final HashMap<HBox, Label> positionToLabel = new HashMap<>();
     private Card selectedCard;
     private ImageView selectedCardImage;
     private final ArrayList<HBox> positions = new ArrayList<>();
@@ -88,6 +96,20 @@ public class GameMenu {
         siegePlayHBox2 = eSiegeHBox;
         rangedPlayHBox2 = eRangedHBox;
         closePlayHBox2 = eCloseHBox;
+
+        siegePowerLabel = tSiegePowerLabel;
+        rangedPowerLabel = tRangedPowerLabel;
+        closePowerLabel = tClosePowerLabel;
+        siegePowerLabel1 = eSiegePowerLabel;
+        rangedPowerLabel1 = eRangedPowerLabel;
+        closePowerLabel1 = eClosePowerLabel;
+
+        positionToLabel.put(siegePlayHBox, siegePowerLabel);
+        positionToLabel.put(rangedPlayHBox, rangedPowerLabel);
+        positionToLabel.put(closePlayHBox, closePowerLabel);
+        positionToLabel.put(siegePlayHBox2, siegePowerLabel1);
+        positionToLabel.put(rangedPlayHBox2, rangedPowerLabel1);
+        positionToLabel.put(closePlayHBox2, closePowerLabel1);
     }
 
     private EventHandler<? super MouseEvent> moveUnitCardToPosition(HBox hBox) {
@@ -104,10 +126,35 @@ public class GameMenu {
             bigCard.setVisible(false);
             if (selectedCard.getAbility() != null)
                 selectedCard.getAbility().run();
+            Label label = positionToLabel.get(hBox);
+            int newPower;
+            if (selectedCard instanceof RegularCard) {
+                newPower = Integer.parseInt(label.getText()) + ((RegularCard) selectedCard).getPower();
+            } else {
+                newPower = Integer.parseInt(label.getText()) + ((SpecialCard) selectedCard).getPower();
+            }
+            label.setText(String.valueOf(newPower));
             mainTableHBox.getChildren().remove(selectedCardImage);
             game.getCurrentPlayer().removeFromInGameHand(selectedCard);
             changeTurn();
+            updateTotalPower();
         };
+    }
+
+    private void updateTotalPower() {
+        int power;
+        power = Integer.parseInt(tSiegePowerLabel.getText()) +
+                Integer.parseInt(tRangedPowerLabel.getText()) +
+                Integer.parseInt(tClosePowerLabel.getText());
+        tTotalPowerLabel.setText(String.valueOf(power));
+
+//        System.out.println(eSiegePowerLabel.getText());
+//        System.out.println(eRangedPowerLabel.getText());
+//        System.out.println(eClosePowerLabel.getText());
+        power = Integer.parseInt(eSiegePowerLabel.getText()) +
+                Integer.parseInt(eRangedPowerLabel.getText()) +
+                Integer.parseInt(eClosePowerLabel.getText());
+        eTotalPowerLabel.setText(String.valueOf(power));
     }
 
     private void prepareTable() {
@@ -233,7 +280,9 @@ public class GameMenu {
     }
 
     private void changeHBoxesPosition() {
-        double temp = eCloseHBox.getLayoutY();
+        double temp;
+
+        temp = eCloseHBox.getLayoutY();
         eCloseHBox.setLayoutY(tCloseHBox.getLayoutY());
         tCloseHBox.setLayoutY(temp);
         temp = eRangedHBox.getLayoutY();
@@ -274,5 +323,31 @@ public class GameMenu {
         temp = eSiegePowerLabel.getLayoutY();
         eSiegePowerLabel.setLayoutY(tSiegePowerLabel.getLayoutY());
         tSiegePowerLabel.setLayoutY(temp);
+
+        if (siegePowerLabel.equals(tSiegePowerLabel)) {
+            siegePowerLabel = eSiegePowerLabel;
+            siegePowerLabel1 = tSiegePowerLabel;
+        } else {
+            siegePowerLabel = tSiegePowerLabel;
+            siegePowerLabel1 = eSiegePowerLabel;
+        }
+        if (rangedPowerLabel.equals(tRangedPowerLabel)) {
+            rangedPowerLabel = eRangedPowerLabel;
+            rangedPowerLabel1 = tRangedPowerLabel;
+        } else {
+            rangedPowerLabel = tRangedPowerLabel;
+            rangedPowerLabel1 = eRangedPowerLabel;
+        }
+        if (closePowerLabel.equals(tClosePowerLabel)) {
+            closePowerLabel = eClosePowerLabel;
+            closePowerLabel1 = tClosePowerLabel;
+        } else {
+            closePowerLabel = tClosePowerLabel;
+            closePowerLabel1 = eClosePowerLabel;
+        }
+
+        temp = eTotalPowerLabel.getLayoutY();
+        eTotalPowerLabel.setLayoutY(tTotalPowerLabel.getLayoutY());
+        tTotalPowerLabel.setLayoutY(temp);
     }
 }
