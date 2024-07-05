@@ -10,6 +10,15 @@ public abstract class Card implements Serializable {
     protected Runnable ability;
     protected String imageAddress;
     protected String cardType;
+    protected int power;
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
 
     public Card() {
     }

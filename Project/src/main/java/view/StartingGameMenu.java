@@ -3,6 +3,7 @@ package view;
 import Enums.FXMLAddresses;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.App;
@@ -17,19 +18,20 @@ import java.util.Objects;
 
 public class StartingGameMenu {
     @FXML
-    public ImageView middleImageView;
+    private ImageView middleImageView;
     @FXML
-    public ImageView rightImageView;
+    private ImageView rightImageView;
     @FXML
-    public ImageView leftImageView;
+    private ImageView leftImageView;
     @FXML
-    public Button finishBtn;
+    private Label turn;
     private int iterator = 0;
     private Game game;
     private int changedCards = 0;
 
     public void initialize() {
         game = App.getGame();
+        turn.setText(game.getCurrentPlayer().getUsername() + "'s turn!");
         game.getCurrentPlayer().setRemainCard(game.getCurrentPlayer().getDeck().getCards());
         choosingDeck();
     }
@@ -54,6 +56,7 @@ public class StartingGameMenu {
 
     public void finishChoosingDeck() {
         game.changeTurn();
+        turn.setText(game.getCurrentPlayer().getUsername() + "'s turn!");
         if (game.getCurrentPlayer().isChoosedHand()) {
             try {
                 Launcher.changeScene(FXMLAddresses.GAME_MENU.getAddress());

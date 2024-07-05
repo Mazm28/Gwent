@@ -8,7 +8,6 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SpecialCard extends Card implements Serializable {
     private String type;
-    private int power;
     private int countInGame;
     private boolean hero;
 
