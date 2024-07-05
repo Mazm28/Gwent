@@ -3,7 +3,7 @@ package view;
 import controller.ActionController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import model.App;
 import model.CardCollection;
 import model.Game;
-import model.PreGame;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
@@ -114,31 +113,39 @@ public class GameMenu {
 
     private EventHandler<? super MouseEvent> moveUnitCardToPosition(HBox hBox) {
         return (EventHandler<MouseEvent>) event -> {
-            Image image = new Image(Objects.requireNonNull(
-                    getClass().getResourceAsStream(selectedCard.getImageAddress())));
-            ImageView imageView = new ImageView(image);
-            imageViewOnBoard.put(imageView, selectedCard);
-            imageView.setFitHeight(60);
-            imageView.setFitWidth(40);
-            imageView.getStyleClass().add("image");
-            hBox.getChildren().add(imageView);
-            removeFilters();
-            bigCard.setVisible(false);
-            if (selectedCard.getAbility() != null)
-                selectedCard.getAbility().run();
-            Label label = positionToLabel.get(hBox);
-            int newPower;
-            if (selectedCard instanceof RegularCard) {
-                newPower = Integer.parseInt(label.getText()) + ((RegularCard) selectedCard).getPower();
-            } else {
-                newPower = Integer.parseInt(label.getText()) + ((SpecialCard) selectedCard).getPower();
-            }
-            label.setText(String.valueOf(newPower));
-            mainTableHBox.getChildren().remove(selectedCardImage);
-            game.getCurrentPlayer().removeFromInGameHand(selectedCard);
-            changeTurn();
-            updateTotalPower();
+            moveCardToPosition(hBox);
         };
+    }
+
+    private void moveCardToPosition(HBox hBox) {
+        Image image = new Image(Objects.requireNonNull(
+                getClass().getResourceAsStream(selectedCard.getImageAddress())));
+        ImageView imageView = new ImageView(image);
+        imageViewOnBoard.put(imageView, selectedCard);
+        imageView.setFitHeight(60);
+        imageView.setFitWidth(40);
+        imageView.getStyleClass().add("image");
+        hBox.getChildren().add(imageView);
+        removeFilters();
+        bigCard.setVisible(false);
+        if (selectedCard.getAbility() != null)
+            selectedCard.getAbility().run();
+        updateLabel(hBox);
+        mainTableHBox.getChildren().remove(selectedCardImage);
+        game.getCurrentPlayer().removeFromInGameHand(selectedCard);
+        changeTurn();
+        updateTotalPower();
+    }
+
+    private void updateLabel(HBox hBox) {
+        Label label = positionToLabel.get(hBox);
+        int newPower;
+        if (selectedCard instanceof RegularCard) {
+            newPower = Integer.parseInt(label.getText()) + ((RegularCard) selectedCard).getPower();
+        } else {
+            newPower = Integer.parseInt(label.getText()) + ((SpecialCard) selectedCard).getPower();
+        }
+        label.setText(String.valueOf(newPower));
     }
 
     private void updateTotalPower() {
@@ -148,9 +155,6 @@ public class GameMenu {
                 Integer.parseInt(tClosePowerLabel.getText());
         tTotalPowerLabel.setText(String.valueOf(power));
 
-//        System.out.println(eSiegePowerLabel.getText());
-//        System.out.println(eRangedPowerLabel.getText());
-//        System.out.println(eClosePowerLabel.getText());
         power = Integer.parseInt(eSiegePowerLabel.getText()) +
                 Integer.parseInt(eRangedPowerLabel.getText()) +
                 Integer.parseInt(eClosePowerLabel.getText());
@@ -194,7 +198,9 @@ public class GameMenu {
 
     private void filterForCard(Card card) {
         String type;
-        if (CardCollection.isUnit(card)) {
+        if (card.getName().equals("Decoy")) {
+            filterForDecoy();
+        } else if (CardCollection.isUnit(card)) {
             if (card instanceof RegularCard) type = ((RegularCard) card).getType();
             else type = ((SpecialCard) card).getType();
             if (card.getAbility() != null && card.getAbility().equals(ActionController.Spy())) {
@@ -236,8 +242,28 @@ public class GameMenu {
         }
     }
 
+    private void filterForDecoy() {
+        for(HBox hBox : positions) {
+            for (Node node : hBox.getChildren()) {
+                ImageView imageView = (ImageView) node;
+                imageView.getStyleClass().add("button-image");
+                imageView.setDisable(false);
+                imageView.setOnMouseClicked(selectedCardFromBoard(imageView, hBox));
+            }
+        }
+    }
+
+    private EventHandler<? super MouseEvent> selectedCardFromBoard(ImageView imageView, HBox hBox) {
+        return (EventHandler<MouseEvent>) event -> {
+            hBox.getChildren().remove(imageView);
+            updateLabel(hBox);
+            moveCardToPosition(hBox);
+            removeFilters();
+        };
+    }
+
     private void makeFilterOnHBox(HBox hBox) {
-        hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null , BorderStroke.THIN)));
+        hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null , BorderStroke.THICK)));
         hBox.setDisable(false);
     }
 
@@ -245,6 +271,13 @@ public class GameMenu {
         for (HBox hBox : positions) {
             hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
             hBox.setDisable(true);
+        }
+        for(HBox hBox : positions) {
+            for (Node node : hBox.getChildren()) {
+                ImageView imageView = (ImageView) node;
+                imageView.getStyleClass().add("image");
+                imageView.setDisable(true);
+            }
         }
     }
 
