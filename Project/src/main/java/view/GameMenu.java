@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import model.App;
 import model.CardCollection;
 import model.Game;
+import model.Row;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
@@ -57,7 +58,6 @@ public class GameMenu {
     private Game game;
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
     private final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();
-    private final HashMap<HBox, Label> positionToLabel = new HashMap<>();
     private Card selectedCard;
     private ImageView selectedCardImage;
     private final ArrayList<HBox> positions = new ArrayList<>();
@@ -93,6 +93,8 @@ public class GameMenu {
         for (Label label : labels) {
             label.setText("0");
         }
+        game.setPlayer1(game.getCurrentPlayer());
+        game.setPlayer2(game.getOpponent());
     }
 
     private EventHandler<? super MouseEvent> moveUnitCardToPosition(HBox hBox) {
@@ -119,7 +121,12 @@ public class GameMenu {
         updateLabel(positions.indexOf(hBox));
         mainTableHBox.getChildren().remove(selectedCardImage);
         game.getCurrentPlayer().removeFromInGameHand(selectedCard);
-        game.getCurrentPlayer().getRows()[positions.indexOf(hBox)].addCardToCards(selectedCard);
+        game.getRows()[positions.indexOf(hBox)].addCardToCards(selectedCard);
+        if (positions.indexOf(hBox) > 2) {
+            game.getPlayer2().getRows()[positions.indexOf(hBox) - 3].addCardToCards(selectedCard);
+        } else {
+            game.getPlayer1().getRows()[positions.indexOf(hBox)].addCardToCards(selectedCard);
+        }
         changeTurn();
         updateTotalPower();
     }

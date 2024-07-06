@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class Game {
     private Player currentPlayer;
     private Player opponent;
+    private Player player1;
+    private Player player2;
     private int turn = 1;
     private int roundNumber = 1;
     private ArrayList<Card> SpecialCards;
@@ -28,6 +30,9 @@ public class Game {
     public Game(Player player_one, Player player_two) {
         this.currentPlayer = player_one;
         this.opponent = player_two;
+        for(int i=0;i<6;i++){
+            rows[i] = new Row();
+        }
     }
 
     public void nextRound(){
@@ -64,6 +69,10 @@ public class Game {
         turn++;
     }
 
+    public Row[] getRows() {
+        return rows;
+    }
+
     public Round getCurrentRound() {
         return currentRound;
     }
@@ -74,5 +83,21 @@ public class Game {
 
     public int getTurn() {
         return turn;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
     }
 }
