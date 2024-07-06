@@ -116,8 +116,11 @@ public class GameMenu {
         hBox.getChildren().add(imageView);
         removeFilters();
         bigCard.setVisible(false);
-        if (selectedCard.getAbility() != null)
+        if (selectedCard.getAbility() != null){
+            game.setAction(selectedCard);
             selectedCard.getAbility().run();
+        }
+
         updateLabel(positions.indexOf(hBox));
         mainTableHBox.getChildren().remove(selectedCardImage);
         game.getCurrentPlayer().removeFromInGameHand(selectedCard);

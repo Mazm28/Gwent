@@ -1,6 +1,9 @@
 package model;
 
+import controller.ActionController;
 import model.card.Card;
+import model.card.SpecialCard;
+import model.card.SpecialCardInformation;
 
 import java.util.ArrayList;
 
@@ -17,6 +20,15 @@ public class Game {
     private Round round3;
     private Round currentRound;
     private final Row[] rows = new Row[6];
+    private Card action;
+
+    public Card getAction() {
+        return action;
+    }
+
+    public void setAction(Card action) {
+        this.action = action;
+    }
 
     public Round round(int roundNumber){
         return switch (roundNumber) {
@@ -67,6 +79,13 @@ public class Game {
         this.currentPlayer = this.opponent;
         this.opponent = temp;
         turn++;
+        for(Row row: currentPlayer.getRows()){
+            for(Card card: row.getCards()){
+                if(card.getName().equals(SpecialCardInformation.Cow.getName())){
+                    ActionController.cowTransform((SpecialCard)card);
+                }
+            }
+        }
     }
 
     public Row[] getRows() {

@@ -28,6 +28,8 @@ public class SpecialCard extends Card implements Serializable {
         this.cardType = "Special";
     }
 
+
+
     public SpecialCard() {
     }
 

@@ -37,15 +37,6 @@ public class ActionController {
         };
     }
 
-    public static Runnable Decoy() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        };
-    }
-
     public static Runnable Medic() {
         return new Runnable() {
             @Override
@@ -68,8 +59,27 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-
+                int index = getIndex(((SpecialCard)game.getAction()).getType());
+                for(Card card: game.getCurrentPlayer().getInGameHand()){
+                    if(card.getName().equals(game.getAction().getName())) {
+                        game.getCurrentPlayer().getRows()[index].addCardToCards(card);
+                    }
+                }
+                for(Card card: game.getCurrentPlayer().getRemainCard()){
+                    if(card.getName().equals(game.getAction().getName())) {
+                        game.getCurrentPlayer().getRows()[index].addCardToCards(card);
+                    }
+                }
             }
+        };
+    }
+
+    private static int getIndex(String type){
+        return switch (type) {
+            case "Close" -> 2;
+            case "Ranged" -> 1;
+            case "Siege" -> 0;
+            default -> -1;
         };
     }
 
@@ -77,7 +87,8 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-
+                game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(0));
+                game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(1));
             }
         };
     }
@@ -427,4 +438,8 @@ public class ActionController {
     }
 
 
+    public static void cowTransform(SpecialCard card) {
+        card.setImageAddress("/IMAGES/lg/scoiatael_schirru.jpg");
+        card.setPower(8);
+    }
 }
