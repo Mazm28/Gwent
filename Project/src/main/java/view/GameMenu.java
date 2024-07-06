@@ -16,6 +16,7 @@ import model.Game;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
+import model.card.SpecialCardInformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -118,13 +119,15 @@ public class GameMenu {
     }
 
     private void moveCardToPosition(HBox hBox) {
+        if(selectedCard.getName().equals(SpecialCardInformation.Decoy.getName())) return;
         Image image = new Image(Objects.requireNonNull(
                 getClass().getResourceAsStream(selectedCard.getImageAddress())));
         ImageView imageView = new ImageView(image);
         imageViewOnBoard.put(imageView, selectedCard);
         imageView.setFitHeight(60);
         imageView.setFitWidth(40);
-        imageView.getStyleClass().add("image");
+        imageView.getStyleClass().add("button-image");
+        imageView.setOnMouseClicked(selectedCardFromBoard(imageView, hBox));
         hBox.getChildren().add(imageView);
         removeFilters();
         bigCard.setVisible(false);
@@ -246,19 +249,21 @@ public class GameMenu {
         for(HBox hBox : positions) {
             for (Node node : hBox.getChildren()) {
                 ImageView imageView = (ImageView) node;
-                imageView.getStyleClass().add("button-image");
                 imageView.setDisable(false);
-                imageView.setOnMouseClicked(selectedCardFromBoard(imageView, hBox));
             }
         }
     }
 
     private EventHandler<? super MouseEvent> selectedCardFromBoard(ImageView imageView, HBox hBox) {
         return (EventHandler<MouseEvent>) event -> {
-            hBox.getChildren().remove(imageView);
-            updateLabel(hBox);
-            moveCardToPosition(hBox);
-            removeFilters();
+            if(!bigCard.isVisible()) return;
+            if(selectedCard.getName().equals(SpecialCardInformation.Decoy.getName())) {
+                System.out.println("sag");
+                hBox.getChildren().remove(imageView);
+                updateLabel(hBox);
+                moveCardToPosition(hBox);
+                removeFilters();
+            }
         };
     }
 
@@ -270,15 +275,15 @@ public class GameMenu {
     private void removeFilters() {
         for (HBox hBox : positions) {
             hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
-            hBox.setDisable(true);
+//            hBox.setDisable(true);
         }
-        for(HBox hBox : positions) {
-            for (Node node : hBox.getChildren()) {
-                ImageView imageView = (ImageView) node;
-                imageView.getStyleClass().add("image");
-                imageView.setDisable(true);
-            }
-        }
+//        for(HBox hBox : positions) {
+//            for (Node node : hBox.getChildren()) {
+//                ImageView imageView = (ImageView) node;
+////                imageView.getStyleClass().add("image");
+////                imageView.setDisable(true);
+//            }
+//        }
     }
 
     private void prepareLabels() {
@@ -293,6 +298,7 @@ public class GameMenu {
     }
 
     public void pass() {
+        bigCard.setVisible(false);
         game.getCurrentPlayer().setPassedTheTurn(true);
         if (game.getOpponent().isPassedTheTurn()) {
             game.getCurrentPlayer().setPassedTheTurn(false);
