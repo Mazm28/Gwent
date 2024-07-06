@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public enum SpecialCardInformation implements Serializable {
     Biting_Frost("Biting_Frost",0,3,"Weather", ActionController.BitingFrost(), false, "/IMAGES/lg/weather_frost.jpg"),
-    Impenetrable_Fog("Impenetrable_Fog", 0, 3, "Weather", ActionController.Impenetrablefog(), false, "/IMAGES/lg/weather_fog.jpg"),
+    Impenetrable_Fog("Impenetrable_Fog", 0, 3, "Weather", ActionController.ImpenetrableFog(), false, "/IMAGES/lg/weather_fog.jpg"),
     Torrential_Rain("Torrential_Rain", 0, 3, "Weather", ActionController.TorrentialRain(), false, "/IMAGES/lg/weather_rain.jpg"),
     Skellige_Storm("Skellige_Storm", 0, 3, "Weather", ActionController.SkelligeStorm(), false, "/IMAGES/lg/weather_storm.jpg"),
     Clear_Weather("Clear_Weather", 0, 3, "Weather", ActionController.ClearWeather(), false, "/IMAGES/lg/weather_clear.jpg"),
@@ -35,6 +35,10 @@ public enum SpecialCardInformation implements Serializable {
     final Runnable ability;
     final boolean hero;
     final String imageAddress;
+
+    public int getPower() {
+        return power;
+    }
 
     public String getName() {
         return name;

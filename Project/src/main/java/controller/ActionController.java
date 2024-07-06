@@ -1,36 +1,38 @@
 package controller;
 
 import model.App;
+import model.CardCollection;
 import model.Game;
 import model.Row;
 import model.card.Card;
+import model.card.RegularCard;
+import model.card.SpecialCard;
 import model.card.SpecialCardInformation;
+
+import java.util.ArrayList;
 
 public class ActionController {
     static Game game = App.getGame();
 
     public static Runnable CommanderHorn() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                for (Row row : game.getCurrentPlayer().getRows()) {
-                    if (row.getImproveCard().getName().equals(SpecialCardInformation.Commander_Horn.getName())) {
-                        for (Card card : row.getCards()) {
-                            card.setPower(card.getPower() * 2);
-                        }
-                    }
+        return () -> {
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                if (row.getImproveCard().getName().equals(SpecialCardInformation.Commander_Horn.getName())) {
                     for (Card card : row.getCards()) {
-                        if (card.getAbility().equals(ActionController.CommanderHorn())) {
-                            for(Card card1: row.getCards()){
-                                if(!card.equals(card1)) {
-                                    card1.setPower(card.getPower() * 2);
-                                }
-                            }
-                            break;
-                        }
+                        card.setPower(card.getPower() * 2);
                     }
-
                 }
+                for (Card card : row.getCards()) {
+                    if (card.getAbility().equals(ActionController.CommanderHorn())) {
+                        for(Card card1: row.getCards()){
+                            if(!card.equals(card1)) {
+                                card1.setPower(card.getPower() * 2);
+                            }
+                        }
+                        break;
+                    }
+                }
+
             }
         };
     }
@@ -102,7 +104,14 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-
+                ArrayList<Card> cards = new ArrayList<>();
+                for (Row row: game.getRows()) {
+                    cards.addAll(row.getCards());
+                }
+                Card mostPowered = CardCollection.getMostPowered(cards);
+                for (Row row: game.getRows()){
+                    row.getCards().removeIf(card -> card.getPower() == mostPowered.getPower());
+                }
             }
         };
     }
@@ -135,19 +144,36 @@ public class ActionController {
     }
 
     public static Runnable BitingFrost() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
+        return () -> {
+            fuckRow(2);
+            fuckRow(3);
         };
     }
 
-    public static Runnable Impenetrablefog() {
+    private static void fuckRow(int index){
+        for(Card card: game.getRows()[index].getCards()){
+            if(card instanceof RegularCard){
+                if(!((RegularCard) card).isHero()){
+                    card.setPower(1);
+                }
+            }
+        }
+
+        for(Card card: game.getRows()[index].getCards()){
+            if(card instanceof SpecialCard){
+                if(!((SpecialCard) card).isHero() && !((SpecialCard) card).getType().equals("Spell") && !((SpecialCard) card).getType().equals("Weather")){
+                    card.setPower(1);
+                }
+            }
+        }
+    }
+
+    public static Runnable ImpenetrableFog() {
         return new Runnable() {
             @Override
             public void run() {
-
+                fuckRow(1);
+                fuckRow(4);
             }
         };
     }
@@ -156,7 +182,8 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-
+                fuckRow(0);
+                fuckRow(5);
             }
         };
     }
@@ -165,16 +192,29 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-
+                TorrentialRain().run();
+                ImpenetrableFog().run();
             }
         };
     }
 
     public static Runnable ClearWeather() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            for(Row row: game.getRows()){
+                for(Card card: row.getCards()){
+                    if(card instanceof RegularCard){
+                        if(!((RegularCard) card).isHero()){
+                            card.setPower(((RegularCard) card).getRegularCardInformation().getPower());
+                        }
+                    }
+                }
+                for(Card card: row.getCards()){
+                    if(card instanceof SpecialCard){
+                        if(!((SpecialCard) card).isHero() && !((SpecialCard) card).getType().equals("Spell") && !((SpecialCard) card).getType().equals("Weather")){
+                            card.setPower(((SpecialCard) card).getSpecialCardInformation().getPower());
+                        }
+                    }
+                }
             }
         };
     }
