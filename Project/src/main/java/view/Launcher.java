@@ -3,6 +3,7 @@ package view;
 import Enums.FXMLAddresses;
 import Enums.ImageAddresses;
 import Enums.MusicAddresses;
+import com.sun.source.tree.SwitchExpressionTree;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
-public class Launcher extends Application{
+public class Launcher extends Application {
     private static Stage primaryStage;
     private static MediaPlayer mediaPlayer;
 
