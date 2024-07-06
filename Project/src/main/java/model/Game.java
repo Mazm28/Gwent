@@ -7,12 +7,14 @@ import java.util.ArrayList;
 public class Game {
     private Player currentPlayer;
     private Player opponent;
+    private int turn = 1;
     private int roundNumber = 1;
     private ArrayList<Card> SpecialCards;
     private Round round1;
     private Round round2;
     private Round round3;
     private Round currentRound;
+    private final Row[] rows = new Row[6];
 
     public Round round(int roundNumber){
         return switch (roundNumber) {
@@ -59,6 +61,7 @@ public class Game {
         Player temp = currentPlayer;
         this.currentPlayer = this.opponent;
         this.opponent = temp;
+        turn++;
     }
 
     public Round getCurrentRound() {
@@ -67,5 +70,9 @@ public class Game {
 
     public void setCurrentRound(Round currentRound) {
         this.currentRound = currentRound;
+    }
+
+    public int getTurn() {
+        return turn;
     }
 }
