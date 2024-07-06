@@ -4,12 +4,11 @@ import model.App;
 import model.CardCollection;
 import model.Game;
 import model.Row;
-import model.card.Card;
-import model.card.RegularCard;
-import model.card.SpecialCard;
-import model.card.SpecialCardInformation;
+import model.card.*;
+import view.GameMenu;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ActionController {
     static Game game = App.getGame();
@@ -24,8 +23,8 @@ public class ActionController {
                 }
                 for (Card card : row.getCards()) {
                     if (card.getAbility().equals(ActionController.CommanderHorn())) {
-                        for(Card card1: row.getCards()){
-                            if(!card.equals(card1)) {
+                        for (Card card1 : row.getCards()) {
+                            if (!card.equals(card1)) {
                                 card1.setPower(card.getPower() * 2);
                             }
                         }
@@ -38,20 +37,35 @@ public class ActionController {
     }
 
     public static Runnable Medic() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
+        return () -> {
+            ArrayList<Card> buriedCards = game.getCurrentPlayer().getBurnedCards();
+            Random rand = new Random();
+            int randomIndex = rand.nextInt(buriedCards.size());
+            Card newCard = buriedCards.get(randomIndex);
+            ArrayList<Card> newHand = game.getCurrentPlayer().getInGameHand();
+            newHand.add(newCard);
+            game.getCurrentPlayer().setInGameHand(newHand);
+            buriedCards.remove(newCard);
+            game.getCurrentPlayer().setBuriedCards(buriedCards);
         };
     }
 
     public static Runnable MoralBoost() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getAbility().equals(ActionController.CommanderHorn())) {
+                        for (Card card1 : row.getCards()) {
+                            if (!card.equals(card1)) {
+                                card1.setPower(card.getPower() * 2);
+                            }
+                        }
+                        break;
+                    }
+                }
             }
+
+
         };
     }
 
@@ -59,14 +73,14 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-                int index = getIndex(((SpecialCard)game.getAction()).getType());
-                for(Card card: game.getCurrentPlayer().getInGameHand()){
-                    if(card.getName().equals(game.getAction().getName())) {
+                int index = getIndex(((SpecialCard) game.getAction()).getType());
+                for (Card card : game.getCurrentPlayer().getInGameHand()) {
+                    if (card.getName().equals(game.getAction().getName())) {
                         game.getCurrentPlayer().getRows()[index].addCardToCards(card);
                     }
                 }
-                for(Card card: game.getCurrentPlayer().getRemainCard()){
-                    if(card.getName().equals(game.getAction().getName())) {
+                for (Card card : game.getCurrentPlayer().getRemainCard()) {
+                    if (card.getName().equals(game.getAction().getName())) {
                         game.getCurrentPlayer().getRows()[index].addCardToCards(card);
                     }
                 }
@@ -74,7 +88,7 @@ public class ActionController {
         };
     }
 
-    private static int getIndex(String type){
+    private static int getIndex(String type) {
         return switch (type) {
             case "Close" -> 2;
             case "Ranged" -> 1;
@@ -87,18 +101,36 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-                game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(0));
-                game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(1));
+                Random rand = new Random();
+                int index = rand.nextInt(game.getCurrentPlayer().getRemainCard().size());
+                game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(index));
+                index = rand.nextInt(game.getCurrentPlayer().getRemainCard().size());
+                game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(index));
             }
         };
     }
 
     public static Runnable TightBond() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            int numOfCards = 0;
+            Row row = new Row();
+            for(Row row1 : game.getRows()){
+                for(Card card : row1.getCards()){
+                    if(card.getAbility().equals(ActionController.TightBond())) {
+                        row = row1;
+                        break;
+                    }
+                }
             }
+            for(Card card : row.getCards()){
+                if(card.getAbility().equals(ActionController.TightBond()))
+                    numOfCards ++;
+            }
+            for(Card card : row.getCards()){
+                if(card.getAbility().equals(ActionController.TightBond()))
+                    card.setPower(card.getPower() * numOfCards);
+            }
+
         };
     }
 
@@ -116,11 +148,11 @@ public class ActionController {
             @Override
             public void run() {
                 ArrayList<Card> cards = new ArrayList<>();
-                for (Row row: game.getRows()) {
+                for (Row row : game.getRows()) {
                     cards.addAll(row.getCards());
                 }
                 Card mostPowered = CardCollection.getMostPowered(cards);
-                for (Row row: game.getRows()){
+                for (Row row : game.getRows()) {
                     row.getCards().removeIf(card -> card.getPower() == mostPowered.getPower());
                 }
             }
@@ -161,18 +193,18 @@ public class ActionController {
         };
     }
 
-    private static void fuckRow(int index){
-        for(Card card: game.getRows()[index].getCards()){
-            if(card instanceof RegularCard){
-                if(!((RegularCard) card).isHero()){
+    private static void fuckRow(int index) {
+        for (Card card : game.getRows()[index].getCards()) {
+            if (card instanceof RegularCard) {
+                if (!((RegularCard) card).isHero()) {
                     card.setPower(1);
                 }
             }
         }
 
-        for(Card card: game.getRows()[index].getCards()){
-            if(card instanceof SpecialCard){
-                if(!((SpecialCard) card).isHero() && !((SpecialCard) card).getType().equals("Spell") && !((SpecialCard) card).getType().equals("Weather")){
+        for (Card card : game.getRows()[index].getCards()) {
+            if (card instanceof SpecialCard) {
+                if (!((SpecialCard) card).isHero() && !((SpecialCard) card).getType().equals("Spell") && !((SpecialCard) card).getType().equals("Weather")) {
                     card.setPower(1);
                 }
             }
@@ -211,17 +243,17 @@ public class ActionController {
 
     public static Runnable ClearWeather() {
         return () -> {
-            for(Row row: game.getRows()){
-                for(Card card: row.getCards()){
-                    if(card instanceof RegularCard){
-                        if(!((RegularCard) card).isHero()){
+            for (Row row : game.getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card instanceof RegularCard) {
+                        if (!((RegularCard) card).isHero()) {
                             card.setPower(((RegularCard) card).getRegularCardInformation().getPower());
                         }
                     }
                 }
-                for(Card card: row.getCards()){
-                    if(card instanceof SpecialCard){
-                        if(!((SpecialCard) card).isHero() && !((SpecialCard) card).getType().equals("Spell") && !((SpecialCard) card).getType().equals("Weather")){
+                for (Card card : row.getCards()) {
+                    if (card instanceof SpecialCard) {
+                        if (!((SpecialCard) card).isHero() && !((SpecialCard) card).getType().equals("Spell") && !((SpecialCard) card).getType().equals("Weather")) {
                             card.setPower(((SpecialCard) card).getSpecialCardInformation().getPower());
                         }
                     }

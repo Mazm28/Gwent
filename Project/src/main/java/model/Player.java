@@ -16,6 +16,7 @@ public class Player extends User {
     private Deck deck = new Deck();
     private ArrayList<Card> inGameHand = new ArrayList<>();
     private ArrayList<Card> remainCard = new ArrayList<>();
+    private ArrayList<Card> buriedCards = new ArrayList<>();
     private int totalPoints;
     private boolean choosedHand;
     private boolean passedTheTurn = false;
@@ -156,6 +157,14 @@ public class Player extends User {
 
     public boolean isPassedTheTurn() {
         return passedTheTurn;
+    }
+
+    public ArrayList<Card> getBuriedCards() {
+        return buriedCards;
+    }
+
+    public void setBuriedCards(ArrayList<Card> buriedCards) {
+        this.buriedCards = buriedCards;
     }
 
     public void setPassedTheTurn(boolean passedTheTurn) {
