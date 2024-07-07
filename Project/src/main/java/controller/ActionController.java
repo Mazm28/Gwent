@@ -1,10 +1,12 @@
 package controller;
 
+import Enums.Faction;
 import model.App;
 import model.CardCollection;
 import model.Game;
 import model.Row;
 import model.card.*;
+import view.FactionsMenu;
 import view.GameMenu;
 
 import java.util.ArrayList;
@@ -115,20 +117,20 @@ public class ActionController {
         return () -> {
             int numOfCards = 0;
             Row row = new Row();
-            for(Row row1 : game.getRows()){
-                for(Card card : row1.getCards()){
-                    if(card.getAbility().equals(ActionController.TightBond())) {
+            for (Row row1 : game.getRows()) {
+                for (Card card : row1.getCards()) {
+                    if (card.getAbility().equals(ActionController.TightBond())) {
                         row = row1;
                         break;
                     }
                 }
             }
-            for(Card card : row.getCards()){
-                if(card.getAbility().equals(ActionController.TightBond()))
-                    numOfCards ++;
+            for (Card card : row.getCards()) {
+                if (card.getAbility().equals(ActionController.TightBond()))
+                    numOfCards++;
             }
-            for(Card card : row.getCards()){
-                if(card.getAbility().equals(ActionController.TightBond()))
+            for (Card card : row.getCards()) {
+                if (card.getAbility().equals(ActionController.TightBond()))
                     card.setPower(card.getPower() * numOfCards);
             }
 
@@ -180,9 +182,9 @@ public class ActionController {
 
     public static Runnable Transformers() {
         return () -> {
-            for(Row row: game.getCurrentPlayer().getRows()){
-                for(Card card : row.getCards()){
-                    if(card.getAbility().equals(ActionController.Transformers()))
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getAbility().equals(ActionController.Transformers()))
                         card.setPower(8);
                 }
             }
@@ -287,22 +289,23 @@ public class ActionController {
         return () -> {
             boolean isThereCommandersHorn = false;
             Row row = new Row();
-            for(Row row1 : game.getCurrentPlayer().getRows()){
-                for(Card card : row1.getCards()){
-                    if(card.getAbility().equals(ActionController.KingofTemeria()))
+            for (Row row1 : game.getCurrentPlayer().getRows()) {
+                for (Card card : row1.getCards()) {
+                    if (card.getAbility().equals(ActionController.KingofTemeria())) {
                         row = row1;
-                        for(Card card1: row1.getCards()){
-                            if(card1.getAbility().equals(ActionController.CommanderHorn())) {
+                        for (Card card1 : row1.getCards()) {
+                            if (card1.getAbility().equals(ActionController.CommanderHorn())) {
                                 isThereCommandersHorn = true;
                                 break;
                             }
                         }
+                    }
                 }
             }
-            if(!isThereCommandersHorn){
-                for(Card card : row.getCards()){
-                   if(card.getCardType().equals("Siege"))
-                       card.setPower(card.getPower() * 2);
+            if (!isThereCommandersHorn) {
+                for (Card card : row.getCards()) {
+                    if (card.getCardType().equals("Siege"))
+                        card.setPower(card.getPower() * 2);
                 }
             }
         };
@@ -310,7 +313,27 @@ public class ActionController {
 
     public static Runnable SonOfMedell() {
         return () -> {
-            
+            int powerOfRangedCards = 0;
+            ArrayList<Card> cards = new ArrayList<>();
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getCardType().equals("Ranged")) {
+                        powerOfRangedCards += card.getPower();
+                        cards.add(card);
+                    }
+                }
+            }
+            Card mostPowered = CardCollection.getMostPowered(cards);
+            if (powerOfRangedCards > 10) {
+                for (Row row : game.getCurrentPlayer().getRows()) {
+                    for (Card card : row.getCards()) {
+                        if (card.getPower() == mostPowered.getPower()) {
+                            row.getCards().remove(card);
+                            game.getCurrentPlayer().getBurnedCards().add(card);
+                        }
+                    }
+                }
+            }
         };
     }
 
@@ -333,20 +356,34 @@ public class ActionController {
     }
 
     public static Runnable LordCommanderoftheNorth() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            int powerOfSiegeCards = 0;
+            ArrayList<Card> cards = new ArrayList<>();
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getCardType().equals("Siege")) {
+                        powerOfSiegeCards += card.getPower();
+                        cards.add(card);
+                    }
+                }
+            }
+            Card mostPowered = CardCollection.getMostPowered(cards);
+            if (powerOfSiegeCards > 10) {
+                for (Row row : game.getCurrentPlayer().getRows()) {
+                    for (Card card : row.getCards()) {
+                        if (card.getPower() == mostPowered.getPower()) {
+                            row.getCards().remove(card);
+                            game.getCurrentPlayer().getBurnedCards().add(card);
+                        }
+                    }
+                }
             }
         };
     }
 
     public static Runnable EmperorOfNilfgaard() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
+        return () -> {
+            game.getOpponent().getLeader().setAbility(null);
         };
     }
 
@@ -360,19 +397,40 @@ public class ActionController {
     }
 
     public static Runnable InvaderoftheNorth() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
+        return () -> {
+            ArrayList<Card> myBurned = game.getCurrentPlayer().getBurnedCards();
+            ArrayList<Card> opponentBurned = game.getOpponent().getBurnedCards();
+            Collections.shuffle(myBurned);
+            Collections.shuffle(opponentBurned);
+            game.getCurrentPlayer().getInGameHand().add(myBurned.get(0));
+            game.getOpponent().getInGameHand().add(opponentBurned.get(0));
+            game.getCurrentPlayer().getBurnedCards().remove(myBurned.get(0));
+            game.getOpponent().getBurnedCards().remove(opponentBurned.get(0));
         };
     }
 
     public static Runnable BringerOfDeath() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            boolean isThereCommandersHorn = false;
+            Row goalRow = new Row();
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getAbility().equals(ActionController.BringerOfDeath())) {
+                        goalRow = row;
+                        for (Card card1 : row.getCards()) {
+                            if (card1.getAbility().equals(ActionController.CommanderHorn()))
+                                isThereCommandersHorn = true;
+                            break;
+                        }
+                        break;
+                    }
+                }
+            }
+            if (!isThereCommandersHorn) {
+                for (Card card : goalRow.getCards()) {
+                    if (card.getCardType().equals("Close"))
+                        card.setPower(card.getPower() * 2);
+                }
             }
         };
     }
@@ -390,7 +448,6 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-
             }
         };
     }
@@ -399,44 +456,84 @@ public class ActionController {
         return new Runnable() {
             @Override
             public void run() {
-
             }
         };
     }
 
     public static Runnable Treacherous() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getAbility().equals(ActionController.Spy()))
+                        card.setPower(card.getPower() * 2);
+                }
+            }
+            for (Row row : game.getOpponent().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getAbility().equals(ActionController.Spy()))
+                        card.setPower(card.getPower() * 2);
+                }
             }
         };
     }
 
     public static Runnable QueenOfDolBlathanna() {
-        return new Runnable() {
-            @Override
-            public void run() {
+        return () -> {
+            int powerOfRangedCards = 0;
+            ArrayList<Card> cards = new ArrayList<>();
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getCardType().equals("Close"))
+                        powerOfRangedCards += card.getPower();
+                    if (card.getCardType().equals("Ranged"))
+                        cards.add(card);
 
+                }
+            }
+            Card mostPowered = CardCollection.getMostPowered(cards);
+            if (powerOfRangedCards > 10) {
+                for (Row row : game.getCurrentPlayer().getRows()) {
+                    for (Card card : row.getCards()) {
+                        if (card.getPower() == mostPowered.getPower()) {
+                            row.getCards().remove(card);
+                            game.getCurrentPlayer().getBurnedCards().add(card);
+                        }
+                    }
+                }
             }
         };
     }
 
     public static Runnable Beautiful() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            boolean isThereCommandersHorn = false;
+            Row goalRow = new Row();
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if (card.getAbility().equals(ActionController.BringerOfDeath())) {
+                        goalRow = row;
+                        for (Card card1 : row.getCards()) {
+                            if (card1.getAbility().equals(ActionController.CommanderHorn()))
+                                isThereCommandersHorn = true;
+                            break;
+                        }
+                        break;
+                    }
+                }
+            }
+            if (!isThereCommandersHorn) {
+                for (Card card : goalRow.getCards()) {
+                    if (card.getCardType().equals("Ranged"))
+                        card.setPower(card.getPower() * 2);
+                }
             }
         };
     }
 
     public static Runnable DaisyOfTheValley() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
+        return () -> {
+            Card card = new RegularCard(RegularCardInformation.IORVETH);
+            game.getCurrentPlayer().getRemainCard().add(card);
         };
     }
 
@@ -459,11 +556,11 @@ public class ActionController {
     }
 
     public static Runnable CrachanCraite() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
+        return () -> {
+            Collections.shuffle(game.getCurrentPlayer().getBurnedCards());
+            game.getCurrentPlayer().getInGameHand().addAll(game.getCurrentPlayer().getBurnedCards());
+            Collections.shuffle(game.getOpponent().getBurnedCards());
+            game.getOpponent().getInGameHand().addAll(game.getOpponent().getBurnedCards());
         };
     }
 
@@ -479,8 +576,8 @@ public class ActionController {
     public static Runnable Monsters() {
         return () -> {
             ArrayList<Card> onTableCards = new ArrayList<>();
-            for(Row row : game.getCurrentPlayer().getRows()){
-                for(Card card : row.getCards()){
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
                     onTableCards.add(card);
                 }
             }
