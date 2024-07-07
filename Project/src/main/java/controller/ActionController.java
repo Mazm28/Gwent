@@ -8,6 +8,7 @@ import model.card.*;
 import view.GameMenu;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class ActionController {
@@ -64,8 +65,6 @@ public class ActionController {
                     }
                 }
             }
-
-
         };
     }
 
@@ -104,8 +103,10 @@ public class ActionController {
                 Random rand = new Random();
                 int index = rand.nextInt(game.getCurrentPlayer().getRemainCard().size());
                 game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(index));
+                game.getCurrentPlayer().getRemainCard().remove(index);
                 index = rand.nextInt(game.getCurrentPlayer().getRemainCard().size());
                 game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(index));
+                game.getCurrentPlayer().getRemainCard().remove(index);
             }
         };
     }
@@ -178,10 +179,12 @@ public class ActionController {
     }
 
     public static Runnable Transformers() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            for(Row row: game.getCurrentPlayer().getRows()){
+                for(Card card : row.getCards()){
+                    if(card.getAbility().equals(ActionController.Transformers()))
+                        card.setPower(8);
+                }
             }
         };
     }
@@ -281,20 +284,33 @@ public class ActionController {
     }
 
     public static Runnable KingofTemeria() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            boolean isThereCommandersHorn = false;
+            Row row = new Row();
+            for(Row row1 : game.getCurrentPlayer().getRows()){
+                for(Card card : row1.getCards()){
+                    if(card.getAbility().equals(ActionController.KingofTemeria()))
+                        row = row1;
+                        for(Card card1: row1.getCards()){
+                            if(card1.getAbility().equals(ActionController.CommanderHorn())) {
+                                isThereCommandersHorn = true;
+                                break;
+                            }
+                        }
+                }
+            }
+            if(!isThereCommandersHorn){
+                for(Card card : row.getCards()){
+                   if(card.getCardType().equals("Siege"))
+                       card.setPower(card.getPower() * 2);
+                }
             }
         };
     }
 
     public static Runnable SonOfMedell() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
-            }
+        return () -> {
+            
         };
     }
 
@@ -461,11 +477,16 @@ public class ActionController {
     }
 
     public static Runnable Monsters() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return () -> {
+            ArrayList<Card> onTableCards = new ArrayList<>();
+            for(Row row : game.getCurrentPlayer().getRows()){
+                for(Card card : row.getCards()){
+                    onTableCards.add(card);
+                }
             }
+            Collections.shuffle(onTableCards);
+            Card card = onTableCards.get(0);
+            game.getCurrentPlayer().getRemainCard().add(card);
         };
     }
 
