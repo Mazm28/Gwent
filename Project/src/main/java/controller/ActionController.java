@@ -480,12 +480,10 @@ public class ActionController {
         return () -> {
             ArrayList<Card> onTableCards = new ArrayList<>();
             for(Row row : game.getCurrentPlayer().getRows()){
-                for(Card card : row.getCards()){
-                    onTableCards.add(card);
-                }
+                onTableCards.addAll(row.getCards());
             }
             Collections.shuffle(onTableCards);
-            Card card = onTableCards.get(0);
+            Card card = onTableCards.getFirst();
             game.getCurrentPlayer().getRemainCard().add(card);
         };
     }
