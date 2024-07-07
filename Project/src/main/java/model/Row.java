@@ -24,4 +24,8 @@ public class Row implements Serializable {
     public void setImproveCard(Card improveCard) {
         this.improveCard = improveCard;
     }
+
+    public void removeCardFromCards(Card card){
+        this.cards.remove(card);
+    }
 }

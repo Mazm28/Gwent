@@ -28,7 +28,9 @@ public class Player extends User {
         this.faction = Faction.MONSTERS;
         this.remainCard = this.deck.getCards();
         this.choosedHand = false;
-
+        for(int i=0;i<6;i++){
+            rows[i] = new Row();
+        }
     }
 
     public Card getSelectedCard() {

@@ -10,10 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import model.App;
-import model.CardCollection;
-import model.Game;
-import model.Row;
+import model.*;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
@@ -104,7 +101,7 @@ public class GameMenu {
     }
 
     private void moveCardToPosition(HBox hBox) {
-        if(selectedCard.getName().equals(SpecialCardInformation.Decoy.getName())) return;
+//        if(selectedCard.getName().equals(SpecialCardInformation.Decoy.getName())) return;
         Image image = new Image(Objects.requireNonNull(
                 getClass().getResourceAsStream(selectedCard.getImageAddress())));
         ImageView imageView = new ImageView(image);
@@ -114,12 +111,12 @@ public class GameMenu {
         imageView.getStyleClass().add("button-image");
         imageView.setOnMouseClicked(selectedCardFromBoard(imageView, hBox));
         hBox.getChildren().add(imageView);
-        removeFilters();
         bigCard.setImage(null);
         if (selectedCard.getAbility() != null) {
             game.setAction(selectedCard);
             selectedCard.getAbility().run();
         }
+        removeFilters();
         updateLabel(positions.indexOf(hBox));
         mainTableHBox.getChildren().remove(selectedCardImage);
         game.getCurrentPlayer().removeFromInGameHand(selectedCard);
@@ -277,17 +274,43 @@ public class GameMenu {
             if (selectedCard == null) return;
             if (selectedCard.getName().equals("Decoy")) {
                 Card card = imageViewOnBoard.get(imageView);
-                if (game.getCurrentPlayer().equals(game.getPlayer1())) {
-                    
-                } else {
-
+                int x = -1;
+                Player player = game.getPlayer1();
+                if (hBox.equals(tSiegeHBox)) {
+                    x = 0;
+                    player = game.getPlayer1();
+                } else if (hBox.equals(tRangedHBox)) {
+                    x = 1;
+                    player = game.getPlayer1();
+                } else if (hBox.equals(tCloseHBox)) {
+                    x = 2;
+                    player = game.getPlayer1();
+                } else if (hBox.equals(eCloseHBox)) {
+                    x = 3;
+                    player = game.getPlayer2();
+                } else if (hBox.equals(eRangedHBox)) {
+                    x = 4;
+                    player = game.getPlayer2();
+                } else if (hBox.equals(eSiegeHBox)) {
+                    x = 5;
+                    player = game.getPlayer2();
                 }
+                game.getRows()[x].addCardToCards(selectedCard);
+                game.getRows()[x].removeCardFromCards(card);
+
+                int y;
+                if (x == 0 || x == 5) y = 0;
+                else if (x == 1 || x == 4) y = 1;
+                else y = 2;
+                player.getRows()[y].addCardToCards(selectedCard);
+                player.getRows()[y].removeCardFromCards(card);
+
                 hBox.getChildren().remove(imageView);
+
                 mainTableHBox.getChildren().add(imageView);
                 game.getCurrentPlayer().addToInGameHand(card);
                 int index = positions.indexOf(hBox);
                 updateLabel(index);
-                moveCardToPosition(hBox);
                 removeFilters();
             }
         };
@@ -300,7 +323,6 @@ public class GameMenu {
 
     private void removeFilters() {
         bigCard.setImage(null);
-        selectedCard = null;
         for (HBox hBox : positions) {
             hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
             hBox.setDisable(true);

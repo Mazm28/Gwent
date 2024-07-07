@@ -81,7 +81,7 @@ public class Game {
         turn++;
         for(Row row: currentPlayer.getRows()){
             for(Card card: row.getCards()){
-                if(card.getName().equals(SpecialCardInformation.Cow.getName())){
+                if(card != null && card.getName().equals(SpecialCardInformation.Cow.getName())){
                     ActionController.cowTransform((SpecialCard)card);
                 }
             }
