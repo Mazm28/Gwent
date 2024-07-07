@@ -52,6 +52,13 @@ public class GameMenu {
     @FXML public ImageView tLeaderUsedIcon;
     @FXML public ImageView bigCard;
 
+    @FXML public HBox specialHBox0;
+    @FXML public HBox specialHBox1;
+    @FXML public HBox specialHBox2;
+    @FXML public HBox specialHBox3;
+    @FXML public HBox specialHBox4;
+    @FXML public HBox specialHBox5;
+
     private Game game;
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
     private final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();

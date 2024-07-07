@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97f97f72-6862-42a1-9f68-bc761669172c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/model/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/model/Row.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/view/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/FXML/GameMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/FXML/GameMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +98,7 @@
       <workItem from="1719239566359" duration="10391000" />
       <workItem from="1719593038929" duration="28000" />
       <workItem from="1720258134745" duration="23927000" />
-      <workItem from="1720348877081" duration="10500000" />
+      <workItem from="1720348877081" duration="10859000" />
     </task>
     <servers />
   </component>
