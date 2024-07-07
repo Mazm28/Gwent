@@ -115,9 +115,10 @@ public class GameMenu {
         imageView.setOnMouseClicked(selectedCardFromBoard(imageView, hBox));
         hBox.getChildren().add(imageView);
         removeFilters();
-        bigCard.setVisible(false);
-        if (selectedCard.getAbility() != null)
+        bigCard.setImage(null);
+        if (selectedCard.getAbility() != null) {
             selectedCard.getAbility().run();
+        }
         updateLabel(positions.indexOf(hBox));
         mainTableHBox.getChildren().remove(selectedCardImage);
         game.getCurrentPlayer().removeFromInGameHand(selectedCard);
@@ -175,11 +176,12 @@ public class GameMenu {
             removeFilters();
             selectedCard = imageViewCardHashMap.get(imageView);
             selectedCardImage = imageView;
-            filterForCard(selectedCard);
             selectedCard = imageViewCardHashMap.get(imageView);
             Image image = new Image(Objects.requireNonNull(
                     getClass().getResourceAsStream(selectedCard.getImageAddress())));
             bigCard.setImage(image);
+            bigCard.setVisible(true);
+            filterForCard(selectedCard);
         };
     }
 
@@ -271,9 +273,17 @@ public class GameMenu {
 
     private EventHandler<? super MouseEvent> selectedCardFromBoard(ImageView imageView, HBox hBox) {
         return (EventHandler<MouseEvent>) event -> {
-            if(!bigCard.isVisible()) return;
-            if(selectedCard.getName().equals("Decoy")) {
+            if (selectedCard == null) return;
+            if (selectedCard.getName().equals("Decoy")) {
+                Card card = imageViewOnBoard.get(imageView);
+                if (game.getCurrentPlayer().equals(game.getPlayer1())) {
+                    
+                } else {
+
+                }
                 hBox.getChildren().remove(imageView);
+                mainTableHBox.getChildren().add(imageView);
+                game.getCurrentPlayer().addToInGameHand(card);
                 int index = positions.indexOf(hBox);
                 updateLabel(index);
                 moveCardToPosition(hBox);
@@ -289,6 +299,7 @@ public class GameMenu {
 
     private void removeFilters() {
         bigCard.setImage(null);
+        selectedCard = null;
         for (HBox hBox : positions) {
             hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
             hBox.setDisable(true);
