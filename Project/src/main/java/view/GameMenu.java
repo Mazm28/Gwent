@@ -117,6 +117,7 @@ public class GameMenu {
         removeFilters();
         bigCard.setImage(null);
         if (selectedCard.getAbility() != null) {
+            game.setAction(selectedCard);
             selectedCard.getAbility().run();
         }
         updateLabel(positions.indexOf(hBox));

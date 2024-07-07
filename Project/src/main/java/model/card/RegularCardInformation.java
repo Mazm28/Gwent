@@ -154,6 +154,10 @@ public enum RegularCardInformation implements Serializable {
     final Faction faction;
     final String imageAddress;
 
+    public int getPower() {
+        return power;
+    }
+
     RegularCardInformation(String name, int power, int countInGame, String type, Runnable ability, boolean hero, Faction faction, String imageAddress) {
         this.name = name;
         this.power = power;

@@ -11,6 +11,11 @@ public class RegularCard extends Card {
     private String type;
     private boolean hero;
     private Faction faction;
+    private RegularCardInformation regularCardInformation;
+
+    public RegularCardInformation getRegularCardInformation() {
+        return regularCardInformation;
+    }
 
     public RegularCard(RegularCardInformation regularCardInformation) {
         this.name = regularCardInformation.name;
@@ -21,6 +26,7 @@ public class RegularCard extends Card {
         this.hero = regularCardInformation.hero;
         this.faction = regularCardInformation.faction;
         this.imageAddress = regularCardInformation.imageAddress;
+        this.regularCardInformation = regularCardInformation;
         this.cardType = "Regular";
     }
 

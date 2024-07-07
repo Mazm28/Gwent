@@ -43,6 +43,14 @@ public class CardCollection {
         return answer;
     }
 
+    public static Card getMostPowered(ArrayList<Card> cards){
+        Card card = cards.get(0);
+        for(int i=1;i<cards.size();i++){
+            if(cards.get(i).getPower() > card.getPower()) card = cards.get(i);
+        }
+        return card;
+    }
+
     public static ArrayList<Card> getHero(ArrayList<Card> cards) {
         ArrayList<Card> answer = new ArrayList<>();
         for (Card card : cards) {

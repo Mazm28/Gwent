@@ -10,6 +10,11 @@ public class SpecialCard extends Card implements Serializable {
     private String type;
     private int countInGame;
     private boolean hero;
+    private SpecialCardInformation specialCardInformation;
+
+    public SpecialCardInformation getSpecialCardInformation() {
+        return specialCardInformation;
+    }
 
     public SpecialCard(SpecialCardInformation specialCardInformation) {
         this.name = specialCardInformation.name;
@@ -19,8 +24,11 @@ public class SpecialCard extends Card implements Serializable {
         this.ability = specialCardInformation.ability;
         this.imageAddress = specialCardInformation.imageAddress;
         this.hero = specialCardInformation.hero;
+        this.specialCardInformation = specialCardInformation;
         this.cardType = "Special";
     }
+
+
 
     public SpecialCard() {
     }

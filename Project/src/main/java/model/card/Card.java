@@ -16,6 +16,22 @@ public abstract class Card implements Serializable {
         return power;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAbility(Runnable ability) {
+        this.ability = ability;
+    }
+
+    public void setImageAddress(String imageAddress) {
+        this.imageAddress = imageAddress;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
     public void setPower(int power) {
         this.power = power;
     }

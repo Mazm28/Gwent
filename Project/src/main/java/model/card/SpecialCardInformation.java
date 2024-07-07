@@ -8,15 +8,15 @@ import java.util.function.Function;
 
 public enum SpecialCardInformation implements Serializable {
     Biting_Frost("Biting_Frost",0,3,"Weather", ActionController.BitingFrost(), false, "/IMAGES/lg/weather_frost.jpg"),
-    Impenetrable_Fog("Impenetrable_Fog", 0, 3, "Weather", ActionController.Impenetrablefog(), false, "/IMAGES/lg/weather_fog.jpg"),
+    Impenetrable_Fog("Impenetrable_Fog", 0, 3, "Weather", ActionController.ImpenetrableFog(), false, "/IMAGES/lg/weather_fog.jpg"),
     Torrential_Rain("Torrential_Rain", 0, 3, "Weather", ActionController.TorrentialRain(), false, "/IMAGES/lg/weather_rain.jpg"),
     Skellige_Storm("Skellige_Storm", 0, 3, "Weather", ActionController.SkelligeStorm(), false, "/IMAGES/lg/weather_storm.jpg"),
     Clear_Weather("Clear_Weather", 0, 3, "Weather", ActionController.ClearWeather(), false, "/IMAGES/lg/weather_clear.jpg"),
     Scorch("Scorch", 0, 3, "Spell", ActionController.Scorch(), false, "/IMAGES/lg/special_scorch.jpg"),
     Commander_Horn("Commander_Horn", 0, 3, "Spell", ActionController.CommanderHorn(), false, "/IMAGES/lg/special_horn.jpg"),
-    Decoy("Decoy", 0, 3, "Spell", ActionController.Decoy(), false, "/IMAGES/lg/special_decoy.jpg"),
+    Decoy("Decoy", 0, 3, "Spell", null, false, "/IMAGES/lg/special_decoy.jpg"),
     Dandelion("Dandelion", 2, 1, "Close", ActionController.CommanderHorn(), false, "/IMAGES/lg/neutral_dandelion.jpg"),
-    Cow("Cow", 0, 1, "Ranged", ActionController.Transformers(), false, "/IMAGES/lg/neutral_cow.jpg"),
+    Cow("Cow", 0, 1, "Ranged", null, false, "/IMAGES/lg/neutral_cow.jpg"),
     Emiel_Regis("Emiel_Regis", 5, 1, "Close", null, false, "/IMAGES/lg/neutral_emiel.jpg"),
     Gaunter_ODimm("Gaunter_ODimm", 2, 1, "Siege", ActionController.Muster(), false, "/IMAGES/lg/neutral_gaunter_odimm.jpg"),
     Gaunter_ODImm_Darkness("Gaunter_ODImm_Darkness", 4, 3, "Ranged", ActionController.Muster(), false, "/IMAGES/lg/neutral_gaunter_odimm_darkness.jpg"),
@@ -35,6 +35,10 @@ public enum SpecialCardInformation implements Serializable {
     final Runnable ability;
     final boolean hero;
     final String imageAddress;
+
+    public int getPower() {
+        return power;
+    }
 
     public String getName() {
         return name;
