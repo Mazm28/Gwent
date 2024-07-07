@@ -1,7 +1,7 @@
 package model;
 
 public class Round {
-    private int[] point;
+    private int[] point = new int[2];
     private Player winner;
     private boolean draw;
 
