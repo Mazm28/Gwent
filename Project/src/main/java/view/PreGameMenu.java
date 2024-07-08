@@ -1,6 +1,7 @@
 package view;
 
 import Enums.FXMLAddresses;
+import Enums.Faction;
 import controller.ActionController;
 import controller.MainMenuController;
 import javafx.fxml.FXML;
@@ -47,8 +48,16 @@ public class PreGameMenu {
     public void ready(MouseEvent mouseEvent) {
         if (PreGame.getTurn().equals(PreGame.getPlayer2())) {
                 try {
-                    App.setGame(new Game(PreGame.getPlayer1(), PreGame.getPlayer2()));
-                    Launcher.changeScene(FXMLAddresses.STARTING_GAME_MENU.getAddress());
+                    if(PreGame.getPlayer1().getFaction().equals(Faction.SCOIATAEL) && PreGame.getPlayer2().getFaction().equals(Faction.SCOIATAEL)){
+                        App.setGame(new Game(PreGame.getPlayer1(), PreGame.getPlayer2()));
+                        Launcher.changeScene(FXMLAddresses.STARTING_GAME_MENU.getAddress());
+                    }
+                    else if(PreGame.getPlayer1().getFaction().equals(Faction.SCOIATAEL) || PreGame.getPlayer2().getFaction().equals(Faction.SCOIATAEL)){
+                        Launcher.changeScene(FXMLAddresses.CHOOSE_FIRST_PLAYER.getAddress());
+                    } else {
+                        App.setGame(new Game(PreGame.getPlayer1(), PreGame.getPlayer2()));
+                        Launcher.changeScene(FXMLAddresses.STARTING_GAME_MENU.getAddress());
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

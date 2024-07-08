@@ -1,6 +1,7 @@
 package view;
 
 import Enums.FXMLAddresses;
+import Enums.Faction;
 import controller.ActionController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -359,17 +360,36 @@ public class GameMenu {
     private void finishRound() {
         int player1Point = game.getPlayer1().getPoints()[game.getRoundNumber()];
         int player2Point = game.getPlayer2().getPoints()[game.getRoundNumber()];
-        Player winner = null;
-        if(player1Point > player2Point) winner = game.getPlayer1();
-        if(player1Point < player2Point) winner = game.getPlayer2();
-        Round round = new Round(new int[]{player1Point, player2Point},winner);
+        Round round = getRound(player1Point, player2Point);
         game.setRound(round);
+        if(game.getRoundNumber() == 3){
+            try {
+                Launcher.changeScene(FXMLAddresses.FINISH_GAME.getAddress());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         game.setRoundNumber(game.getRoundNumber() + 1);
         try {
             Launcher.changeScene(FXMLAddresses.FINISH_ROUND.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Round getRound(int player1Point, int player2Point) {
+        Player winner = null;
+        if(player1Point > player2Point) winner = game.getPlayer1();
+        else if(player1Point < player2Point) winner = game.getPlayer2();
+        else if (game.getPlayer1().getFaction().equals(Faction.NILFGAARD)){
+            winner = game.getPlayer1();
+        } else if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD)){
+            winner = game.getPlayer2();
+        }
+        if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD) && game.getPlayer1().getFaction().equals(Faction.NILFGAARD)){
+            winner = null;
+        }
+        return new Round(new int[]{player1Point, player2Point},winner);
     }
 
     private void changeTurn() {

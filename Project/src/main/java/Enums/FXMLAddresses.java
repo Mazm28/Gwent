@@ -20,7 +20,8 @@ public enum FXMLAddresses {
     SHOW_PASSWORD("/FXML/ShowPassword.fxml"),
     GAME_MENU("/FXML/GameMenu.fxml"),
     FINISH_ROUND("/FXML/FinishRound.fxml"),
-    ;
+    FINISH_GAME("/FXML/FinishGame.fxml"),
+    CHOOSE_FIRST_PLAYER("/FXML/ChooseFirstPlayer.fxml");
     private final String address;
 
     FXMLAddresses(String address) {

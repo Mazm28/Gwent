@@ -46,4 +46,12 @@ public class FinishRound {
             e.printStackTrace();
         }
     }
+
+    public void backToLobby() {
+        try {
+            Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
