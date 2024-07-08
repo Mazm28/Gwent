@@ -172,10 +172,18 @@ public class ActionController {
     }
 
     public static Runnable Mardroeme() {
-        return new Runnable() {
-            @Override
-            public void run() {
-
+        return() -> {
+            for (Row row : game.getCurrentPlayer().getRows()) {
+                for (Card card : row.getCards()) {
+                    if(card.getName().equals(RegularCardInformation.BERSERKER.name())){
+                        Card card1 = new RegularCard(RegularCardInformation.VIDKAARL);
+                        row.getCards().set(row.getCards().indexOf(card), card1);
+                    }
+                    if(card.getName().equals(RegularCardInformation.YOUNG_BERSERKER.name())){
+                        Card card1 = new RegularCard(RegularCardInformation.YOUNG_VIDKAARL);
+                        row.getCards().set(row.getCards().indexOf(card), card1);
+                    }
+                }
             }
         };
     }
