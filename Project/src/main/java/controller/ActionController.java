@@ -71,19 +71,16 @@ public class ActionController {
     }
 
     public static Runnable Muster() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                int index = getIndex(((SpecialCard) game.getAction()).getType());
-                for (Card card : game.getCurrentPlayer().getInGameHand()) {
-                    if (card.getName().equals(game.getAction().getName())) {
-                        game.getCurrentPlayer().getRows()[index].addCardToCards(card);
-                    }
+        return () -> {
+            int index = getIndex(((SpecialCard) game.getAction()).getType());
+            for (Card card : game.getCurrentPlayer().getInGameHand()) {
+                if (card.getName().equals(game.getAction().getName())) {
+                    game.getCurrentPlayer().getRows()[index].addCardToCards(card);
                 }
-                for (Card card : game.getCurrentPlayer().getRemainCard()) {
-                    if (card.getName().equals(game.getAction().getName())) {
-                        game.getCurrentPlayer().getRows()[index].addCardToCards(card);
-                    }
+            }
+            for (Card card : game.getCurrentPlayer().getRemainCard()) {
+                if (card.getName().equals(game.getAction().getName())) {
+                    game.getCurrentPlayer().getRows()[index].addCardToCards(card);
                 }
             }
         };
@@ -99,17 +96,14 @@ public class ActionController {
     }
 
     public static Runnable Spy() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                Random rand = new Random();
-                int index = rand.nextInt(game.getCurrentPlayer().getRemainCard().size());
-                game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(index));
-                game.getCurrentPlayer().getRemainCard().remove(index);
-                index = rand.nextInt(game.getCurrentPlayer().getRemainCard().size());
-                game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(index));
-                game.getCurrentPlayer().getRemainCard().remove(index);
-            }
+        return () -> {
+            Random rand = new Random();
+            int index = rand.nextInt(game.getCurrentPlayer().getRemainCard().size());
+            game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(index));
+            game.getCurrentPlayer().getRemainCard().remove(index);
+            index = rand.nextInt(game.getCurrentPlayer().getRemainCard().size());
+            game.getCurrentPlayer().addToInGameHand(game.getCurrentPlayer().getRemainCard().get(index));
+            game.getCurrentPlayer().getRemainCard().remove(index);
         };
     }
 
@@ -212,11 +206,7 @@ public class ActionController {
                 if (!((RegularCard) card).isHero()) {
                     card.setPower(1);
                 }
-            }
-        }
-
-        for (Card card : game.getRows()[index].getCards()) {
-            if (card instanceof SpecialCard) {
+            } else if (card instanceof SpecialCard) {
                 if (!((SpecialCard) card).isHero() && !((SpecialCard) card).getType().equals("Spell") && !((SpecialCard) card).getType().equals("Weather")) {
                     card.setPower(1);
                 }
@@ -225,32 +215,23 @@ public class ActionController {
     }
 
     public static Runnable ImpenetrableFog() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                fuckRow(1);
-                fuckRow(4);
-            }
+        return () -> {
+            fuckRow(1);
+            fuckRow(4);
         };
     }
 
     public static Runnable TorrentialRain() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                fuckRow(0);
-                fuckRow(5);
-            }
+        return () -> {
+            fuckRow(0);
+            fuckRow(5);
         };
     }
 
     public static Runnable SkelligeStorm() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                TorrentialRain().run();
-                ImpenetrableFog().run();
-            }
+        return () -> {
+            TorrentialRain().run();
+            ImpenetrableFog().run();
         };
     }
 
@@ -262,10 +243,7 @@ public class ActionController {
                         if (!((RegularCard) card).isHero()) {
                             card.setPower(((RegularCard) card).getRegularCardInformation().getPower());
                         }
-                    }
-                }
-                for (Card card : row.getCards()) {
-                    if (card instanceof SpecialCard) {
+                    } else if (card instanceof SpecialCard) {
                         if (!((SpecialCard) card).isHero() && !((SpecialCard) card).getType().equals("Spell") && !((SpecialCard) card).getType().equals("Weather")) {
                             card.setPower(((SpecialCard) card).getSpecialCardInformation().getPower());
                         }
