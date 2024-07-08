@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FinishRound">
+    <children>
+        <ImageView fitHeight="700.0" fitWidth="1000.0">
+            <image>
+                <Image url="@../IMAGES/board.jpg" />
+            </image>
+            <effect>
+                <GaussianBlur radius="25" />
+            </effect>
+        </ImageView>
+        <Circle fx:id="winOrLose" fill="DODGERBLUE" layoutX="500.0" layoutY="190.0" radius="125.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <HBox fx:id="yHBOX" alignment="CENTER" layoutX="199.0" layoutY="360.0" prefHeight="100.0" prefWidth="602.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 50;">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="120.0" text="Your Points" textFill="WHITE">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="---------------" textFill="WHITE">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="---------------" textFill="WHITE">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="---------------" textFill="WHITE">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <HBox fx:id="eHBOX" alignment="CENTER" layoutX="199.0" layoutY="531.0" prefHeight="100.0" prefWidth="602.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 50;">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="120.0" text="Your Points" textFill="WHITE">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="---------------" textFill="WHITE">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="---------------" textFill="WHITE">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="---------------" textFill="WHITE">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+      <Button layoutX="430.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#nextRound" prefHeight="34.0" prefWidth="140.0" styleClass="button-52" text="Next Round" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+         </font>
+      </Button>
+
+    </children>
+</AnchorPane>

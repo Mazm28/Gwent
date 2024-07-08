@@ -2,6 +2,7 @@ package model;
 
 import controller.ActionController;
 import model.card.Card;
+import model.card.RegularCardInformation;
 import model.card.SpecialCard;
 import model.card.SpecialCardInformation;
 
@@ -15,12 +16,18 @@ public class Game {
     private int turn = 1;
     private int roundNumber = 1;
     private ArrayList<Card> SpecialCards;
-    private Round round1;
-    private Round round2;
-    private Round round3;
+    private Round[] rounds = new Round[3];
     private Round currentRound;
     private final Row[] rows = new Row[6];
     private Card action;
+
+    public void setRound(Round round){
+        rounds[roundNumber] = round;
+    }
+
+    public Round[] getRounds() {
+        return rounds;
+    }
 
     public Card getAction() {
         return action;
@@ -29,14 +36,8 @@ public class Game {
     public void setAction(Card action) {
         this.action = action;
     }
-
-    public Round round(int roundNumber){
-        return switch (roundNumber) {
-            case 1 -> round1;
-            case 2 -> round2;
-            case 3 -> round3;
-            default -> null;
-        };
+    public void setRoundNumber(int roundNumber) {
+        this.roundNumber = roundNumber;
     }
 
     public Game(Player player_one, Player player_two) {
@@ -45,14 +46,9 @@ public class Game {
         for(int i=0;i<6;i++){
             rows[i] = new Row();
         }
+        ActionController.setGame(this);
     }
 
-    public void nextRound(){
-        Player temp = currentPlayer;
-        currentPlayer = opponent;
-        opponent = temp;
-        roundNumber++;
-    }
 
     public int getRoundNumber() {
         return roundNumber;

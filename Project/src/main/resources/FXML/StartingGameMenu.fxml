@@ -19,12 +19,12 @@
       <ImageView fx:id="middleImageView" fitHeight="406.0" fitWidth="314.0" layoutX="379.0" layoutY="104.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="rightImageView" fitHeight="157.0" fitWidth="123.0" layoutX="819.0" layoutY="209.0" onMouseClicked="#moveRight" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="leftImageView" fitHeight="157.0" fitWidth="123.0" layoutX="48.0" layoutY="209.0" onMouseClicked="#moveLeft" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="finishBtn" layoutX="482.0" layoutY="559.0" mnemonicParsing="false" onMouseClicked="#finishChoosingDeck" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 10;" styleClass="button-52" text="Finished" textFill="WHITE">
+      <Button fx:id="finishBtn" layoutX="486.0" layoutY="555.0" mnemonicParsing="false" onMouseClicked="#finishChoosingDeck" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 10;" styleClass="button-52" text="Finished" textFill="WHITE">
          <font>
             <Font name="Droid Sans Bold" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="turn" alignment="CENTER" layoutX="482.0" layoutY="612.0" prefHeight="34.0" prefWidth="109.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30;" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="turn" alignment="CENTER" layoutX="454.0" layoutY="612.0" prefHeight="34.0" prefWidth="165.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="DejaVu Serif Condensed Bold" size="13.0" />
          </font>

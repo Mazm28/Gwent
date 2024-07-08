@@ -14,7 +14,11 @@ import java.util.Collections;
 import java.util.Random;
 
 public class ActionController {
-    static Game game = App.getGame();
+    private static Game game;
+
+    public static void setGame(Game game) {
+        ActionController.game = game;
+    }
 
     public static Runnable CommanderHorn() {
         return () -> {
@@ -113,7 +117,7 @@ public class ActionController {
             Row row = new Row();
             for (Row row1 : game.getRows()) {
                 for (Card card : row1.getCards()) {
-                    if (card.getAbility().equals(ActionController.TightBond())) {
+                    if (card.getAbility() != null && card.getAbility().equals(ActionController.TightBond())) {
                         row = row1;
                         break;
                     }

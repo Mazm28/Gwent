@@ -1,6 +1,7 @@
 package view;
 
 import Enums.FXMLAddresses;
+import controller.ActionController;
 import controller.MainMenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -46,8 +47,7 @@ public class PreGameMenu {
     public void ready(MouseEvent mouseEvent) {
         if (PreGame.getTurn().equals(PreGame.getPlayer2())) {
                 try {
-                    Game game = new Game(PreGame.getPlayer1(), PreGame.getPlayer2());
-                    App.setGame(game);
+                    App.setGame(new Game(PreGame.getPlayer1(), PreGame.getPlayer2()));
                     Launcher.changeScene(FXMLAddresses.STARTING_GAME_MENU.getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();

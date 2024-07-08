@@ -1,5 +1,6 @@
 package view;
 
+import Enums.FXMLAddresses;
 import controller.ActionController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import model.card.RegularCard;
 import model.card.SpecialCard;
 import model.card.SpecialCardInformation;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,7 +110,6 @@ public class GameMenu {
     }
 
     private void moveCardToPosition(HBox hBox) {
-//        if(selectedCard.getName().equals(SpecialCardInformation.Decoy.getName())) return;
         Image image = new Image(Objects.requireNonNull(
                 getClass().getResourceAsStream(selectedCard.getImageAddress())));
         ImageView imageView = new ImageView(image);
@@ -153,11 +154,12 @@ public class GameMenu {
                 Integer.parseInt(tRangedPowerLabel.getText()) +
                 Integer.parseInt(tClosePowerLabel.getText());
         tTotalPowerLabel.setText(String.valueOf(power));
-
+        game.getPlayer1().setPoints(game.getRoundNumber(),power);
         power = Integer.parseInt(eSiegePowerLabel.getText()) +
                 Integer.parseInt(eRangedPowerLabel.getText()) +
                 Integer.parseInt(eClosePowerLabel.getText());
         eTotalPowerLabel.setText(String.valueOf(power));
+        game.getPlayer2().setPoints(game.getRoundNumber(),power);
     }
 
     private void prepareTable() {
@@ -355,6 +357,19 @@ public class GameMenu {
     }
 
     private void finishRound() {
+        int player1Point = game.getPlayer1().getPoints()[game.getRoundNumber()];
+        int player2Point = game.getPlayer2().getPoints()[game.getRoundNumber()];
+        Player winner = null;
+        if(player1Point > player2Point) winner = game.getPlayer1();
+        if(player1Point < player2Point) winner = game.getPlayer2();
+        Round round = new Round(new int[]{player1Point, player2Point},winner);
+        game.setRound(round);
+        game.setRoundNumber(game.getRoundNumber() + 1);
+        try {
+            Launcher.changeScene(FXMLAddresses.FINISH_ROUND.getAddress());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void changeTurn() {
