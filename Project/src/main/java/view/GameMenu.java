@@ -276,7 +276,7 @@ public class GameMenu {
                         System.out.println("sag");
                 }
             }
-        } else if (card.getName().equals("Commander_Horn")) {
+        } else if (card.getName().equals("Commander_Horn") || card.getName().equals("Mardoeme")) {
             if (x) {
                 makeFilterOnHBox(specialHBox0);
                 makeFilterOnHBox(specialHBox1);
