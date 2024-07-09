@@ -130,8 +130,13 @@ public class GameMenu {
                 getClass().getResourceAsStream(selectedCard.getImageAddress())));
         ImageView imageView = new ImageView(image);
         imageViewOnBoard.put(imageView, selectedCard);
-        imageView.setFitHeight(60);
-        imageView.setFitWidth(40);
+        if (positions.contains(hBox)) {
+            imageView.setFitHeight(60);
+            imageView.setFitWidth(40);
+        } else {
+            imageView.setFitWidth(20);
+            imageView.setFitHeight(30);
+        }
         imageView.getStyleClass().add("button-image");
         imageView.setOnMouseClicked(selectedCardFromBoard(imageView, hBox));
         hBox.getChildren().add(imageView);
@@ -368,6 +373,13 @@ public class GameMenu {
             hBox.setDisable(true);
         }
         for(HBox hBox : positions) {
+            for (Node node : hBox.getChildren()) {
+                ImageView imageView = (ImageView) node;
+                imageView.getStyleClass().add("image");
+                imageView.setDisable(true);
+            }
+        }
+        for(HBox hBox : specialPositions) {
             for (Node node : hBox.getChildren()) {
                 ImageView imageView = (ImageView) node;
                 imageView.getStyleClass().add("image");
