@@ -68,6 +68,7 @@ public class GameMenu {
     private Card selectedCard;
     private ImageView selectedCardImage;
     private final ArrayList<HBox> positions = new ArrayList<>();
+    private final ArrayList<HBox> specialPositions = new ArrayList<>();
     private final ArrayList<Label> labels = new ArrayList<>();
 
     public void initialize() {
@@ -90,6 +91,14 @@ public class GameMenu {
         positions.addAll(List.of(new HBox[]{tSiegeHBox, tRangedHBox, tCloseHBox,
                 eCloseHBox, eRangedHBox, eSiegeHBox}));
         for (HBox hBox : positions) {
+            hBox.setSpacing(7);
+            hBox.setDisable(true);
+            hBox.setOnMouseClicked(moveUnitCardToPosition(hBox));
+        }
+
+        specialPositions.addAll(List.of(new HBox[]{specialHBox0, specialHBox1, specialHBox2,
+                specialHBox3, specialHBox4, specialHBox5}));
+        for (HBox hBox : specialPositions) {
             hBox.setSpacing(7);
             hBox.setDisable(true);
             hBox.setOnMouseClicked(moveUnitCardToPosition(hBox));
@@ -194,14 +203,14 @@ public class GameMenu {
     }
 
     private void filterForCard(Card card) {
+        int turn = game.getTurn();
+        boolean x = (turn % 2 == 1);
         String type;
         if (card.getName().equals("Decoy")) {
             filterForDecoy();
         } else if (CardCollection.isUnit(card)) {
             if (card instanceof RegularCard) type = ((RegularCard) card).getType();
             else type = ((SpecialCard) card).getType();
-            int turn = game.getTurn();
-            boolean x = (turn % 2 == 1);
             if (card.getAbility() != null && card.getAbility().equals(ActionController.Spy())) {
                 switch (type) {
                     case "Close" :
@@ -254,6 +263,16 @@ public class GameMenu {
                     default :
                         System.out.println("sag");
                 }
+            }
+        } else if (card.getName().equals("Commander Horn")) {
+            if (x) {
+                makeFilterOnHBox(specialHBox0);
+                makeFilterOnHBox(specialHBox1);
+                makeFilterOnHBox(specialHBox2);
+            } else {
+                makeFilterOnHBox(specialHBox3);
+                makeFilterOnHBox(specialHBox4);
+                makeFilterOnHBox(specialHBox5);
             }
         }
     }

@@ -100,6 +100,10 @@ public class Game {
         return turn;
     }
 
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
     public Player getPlayer1() {
         return player1;
     }
