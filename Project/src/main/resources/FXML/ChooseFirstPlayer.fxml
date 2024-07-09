@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -17,5 +19,36 @@
                 <GaussianBlur radius="25" />
             </effect>
         </ImageView>
+      <Circle onMouseClicked="#player1" fx:id="player1Circle" fill="DODGERBLUE" layoutX="271.0" layoutY="350.0" radius="100.0" stroke="TRANSPARENT" strokeType="INSIDE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Circle>
+      <Circle onMouseClicked="#player2" fx:id="player2Circle" fill="DODGERBLUE" layoutX="712.0" layoutY="350.0" radius="100.0" stroke="TRANSPARENT" strokeType="INSIDE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Circle>
+      <Label fx:id="player1Label" alignment="CENTER" layoutX="141.0" layoutY="493.0" prefHeight="36.0" prefWidth="260.0">
+         <styleClass>
+            <String fx:value="tf_box" />
+            <String fx:value="button-52" />
+         </styleClass>
+         <font>
+            <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="player2Label" alignment="CENTER" layoutX="582.0" layoutY="493.0" prefHeight="36.0" prefWidth="260.0">
+         <styleClass>
+            <String fx:value="tf_box" />
+            <String fx:value="button-52" />
+         </styleClass>
+         <font>
+            <Font name="DejaVu Serif Condensed Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="193.0" layoutY="122.0" prefHeight="81.0" prefWidth="614.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 30;" text="Choose who starts first" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Serif Condensed Bold" size="41.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
