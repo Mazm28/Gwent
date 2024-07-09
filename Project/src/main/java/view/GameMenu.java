@@ -120,6 +120,12 @@ public class GameMenu {
     }
 
     private void moveCardToPosition(HBox hBox) {
+        ArrayList<HBox> hboxArrayList = new ArrayList<>();
+        if (positions.contains(hBox)) {
+            hboxArrayList = positions;
+        } else {
+            hboxArrayList = specialPositions;
+        }
         Image image = new Image(Objects.requireNonNull(
                 getClass().getResourceAsStream(selectedCard.getImageAddress())));
         ImageView imageView = new ImageView(image);
@@ -135,14 +141,15 @@ public class GameMenu {
             selectedCard.getAbility().run();
         }
         removeFilters();
-        updateLabel(positions.indexOf(hBox));
+        if (positions.contains(hBox)) updateLabel(hboxArrayList.indexOf(hBox));
+        else updateLabel(specialPositions.indexOf(hBox));
         mainTableHBox.getChildren().remove(selectedCardImage);
         game.getCurrentPlayer().removeFromInGameHand(selectedCard);
-        game.getRows()[positions.indexOf(hBox)].addCardToCards(selectedCard);
+        game.getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
         if (positions.indexOf(hBox) > 2) {
-            game.getPlayer2().getRows()[positions.indexOf(hBox) - 3].addCardToCards(selectedCard);
+            game.getPlayer2().getRows()[hboxArrayList.indexOf(hBox) - 3].addCardToCards(selectedCard);
         } else {
-            game.getPlayer1().getRows()[positions.indexOf(hBox)].addCardToCards(selectedCard);
+            game.getPlayer1().getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
         }
         changeTurn();
         updateTotalPower();
@@ -264,7 +271,7 @@ public class GameMenu {
                         System.out.println("sag");
                 }
             }
-        } else if (card.getName().equals("Commander Horn")) {
+        } else if (card.getName().equals("Commander_Horn")) {
             if (x) {
                 makeFilterOnHBox(specialHBox0);
                 makeFilterOnHBox(specialHBox1);
@@ -353,6 +360,10 @@ public class GameMenu {
     private void removeFilters() {
         bigCard.setImage(null);
         for (HBox hBox : positions) {
+            hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
+            hBox.setDisable(true);
+        }
+        for (HBox hBox : specialPositions) {
             hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
             hBox.setDisable(true);
         }
