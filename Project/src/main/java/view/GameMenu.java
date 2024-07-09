@@ -62,6 +62,8 @@ public class GameMenu {
     @FXML public HBox specialHBox4;
     @FXML public HBox specialHBox5;
 
+    @FXML public HBox weatherHBox;
+
     private Game game;
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
     private final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();
@@ -104,6 +106,8 @@ public class GameMenu {
             hBox.setOnMouseClicked(moveUnitCardToPosition(hBox));
         }
 
+        weatherHBox.setOnMouseClicked(moveUnitCardToPosition(weatherHBox));
+
         labels.addAll(List.of(new Label[]{tSiegePowerLabel, tRangedPowerLabel, tClosePowerLabel,
                 eClosePowerLabel, eRangedPowerLabel, eSiegePowerLabel}));
         for (Label label : labels) {
@@ -120,10 +124,10 @@ public class GameMenu {
     }
 
     private void moveCardToPosition(HBox hBox) {
-        ArrayList<HBox> hboxArrayList = new ArrayList<>();
+        ArrayList<HBox> hboxArrayList = null;
         if (positions.contains(hBox)) {
             hboxArrayList = positions;
-        } else {
+        } else if (specialPositions.contains(hBox)){
             hboxArrayList = specialPositions;
         }
         Image image = new Image(Objects.requireNonNull(
@@ -147,14 +151,16 @@ public class GameMenu {
         }
         removeFilters();
         if (positions.contains(hBox)) updateLabel(hboxArrayList.indexOf(hBox));
-        else updateLabel(specialPositions.indexOf(hBox));
+        else if (specialPositions.contains(hBox)) updateLabel(specialPositions.indexOf(hBox));
         mainTableHBox.getChildren().remove(selectedCardImage);
         game.getCurrentPlayer().removeFromInGameHand(selectedCard);
-        game.getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
-        if (positions.indexOf(hBox) > 2) {
-            game.getPlayer2().getRows()[hboxArrayList.indexOf(hBox) - 3].addCardToCards(selectedCard);
-        } else {
-            game.getPlayer1().getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
+        if (hboxArrayList != null) {
+            game.getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
+            if (hboxArrayList.indexOf(hBox) > 2) {
+                game.getPlayer2().getRows()[hboxArrayList.indexOf(hBox) - 3].addCardToCards(selectedCard);
+            } else {
+                game.getPlayer1().getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
+            }
         }
         changeTurn();
         updateTotalPower();
@@ -286,6 +292,10 @@ public class GameMenu {
                 makeFilterOnHBox(specialHBox4);
                 makeFilterOnHBox(specialHBox5);
             }
+        } else if (card instanceof SpecialCard) {
+            if (((SpecialCard) card).getType().equals("Weather")) {
+                makeFilterOnHBox(weatherHBox);
+            }
         }
     }
 
@@ -386,6 +396,9 @@ public class GameMenu {
                 imageView.setDisable(true);
             }
         }
+
+        weatherHBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
+        weatherHBox.setDisable(true);
     }
 
     public void pass() {

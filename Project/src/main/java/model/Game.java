@@ -20,6 +20,7 @@ public class Game {
     private Round currentRound;
     private final Row[] rows = new Row[6];
     private Card action;
+    private final ArrayList<Card> weathersCards = new ArrayList<>();
 
     public void setRound(Round round){
         rounds[roundNumber] = round;
@@ -118,5 +119,21 @@ public class Game {
 
     public void setPlayer2(Player player2) {
         this.player2 = player2;
+    }
+
+    public void addToWeathersCards(Card card){
+        weathersCards.add(card);
+    }
+
+    public void removeFromWeathersCards(Card card){
+        weathersCards.remove(card);
+    }
+
+    public void setSpecialCards(ArrayList<Card> specialCards) {
+        SpecialCards = specialCards;
+    }
+
+    public ArrayList<Card> getSpecialCards() {
+        return SpecialCards;
     }
 }
