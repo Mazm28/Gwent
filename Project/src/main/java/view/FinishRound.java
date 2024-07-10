@@ -26,30 +26,22 @@ public class FinishRound {
 
     public void initialize(){
         Game game = App.getGame();
-        if(game.getRounds()[game.getRoundNumber() - 1].winner() == null){
+        if(game.getRounds()[game.getRoundNumber() - 2].winner() == null){
             winOrLose.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.DRAW.getAddress())))));
-        } else if(game.getRounds()[game.getRoundNumber() - 1].winner().equals(game.getPlayer1())){
+        } else if(game.getRounds()[game.getRoundNumber() - 2].winner().equals(game.getPlayer1())){
             winOrLose.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.WIN.getAddress())))));
         } else {
             winOrLose.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.LOSE.getAddress())))));
         }
         for(int i=1;i<game.getRoundNumber();i++){
-            ((Label)yHBOX.getChildren().get(i)).setText(String.valueOf(game.getPlayer1().getPoints()[game.getRoundNumber()-1]));
-            ((Label)eHBOX.getChildren().get(i)).setText(String.valueOf(game.getPlayer2().getPoints()[game.getRoundNumber()-1]));
+            ((Label)yHBOX.getChildren().get(i)).setText(String.valueOf(game.getPlayer1().getPoints()[i-1]));
+            ((Label)eHBOX.getChildren().get(i)).setText(String.valueOf(game.getPlayer2().getPoints()[i-1]));
         }
     }
 
     public void nextRound() {
         try {
-            Launcher.changeScene(FXMLAddresses.STARTING_GAME_MENU.getAddress());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void backToLobby() {
-        try {
-            Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
+            Launcher.changeScene(FXMLAddresses.GAME_MENU.getAddress());
         } catch (IOException e) {
             e.printStackTrace();
         }

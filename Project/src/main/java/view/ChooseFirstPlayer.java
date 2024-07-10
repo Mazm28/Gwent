@@ -2,6 +2,7 @@ package view;
 
 import Enums.FXMLAddresses;
 import Enums.ImageAddresses;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -15,10 +16,14 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ChooseFirstPlayer {
-    public Circle player2Circle;
-    public Circle player1Circle;
-    public Label player1Label;
-    public Label player2Label;
+    @FXML
+    private Circle player2Circle;
+    @FXML
+    private Circle player1Circle;
+    @FXML
+    private Label player1Label;
+    @FXML
+    private Label player2Label;
 
     public void initialize(){
         player1Circle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(PreGame.getPlayer1().getLeader().getImageAddress())))));
@@ -27,12 +32,12 @@ public class ChooseFirstPlayer {
         player2Label.setText(PreGame.getPlayer2().getUsername());
     }
 
-    public void player1(MouseEvent mouseEvent) throws IOException {
+    public void player1() throws IOException {
         App.setGame(new Game(PreGame.getPlayer1(), PreGame.getPlayer2()));
         Launcher.changeScene(FXMLAddresses.STARTING_GAME_MENU.getAddress());
     }
 
-    public void player2(MouseEvent mouseEvent) throws IOException {
+    public void player2() throws IOException {
         App.setGame(new Game(PreGame.getPlayer2(), PreGame.getPlayer1()));
         Launcher.changeScene(FXMLAddresses.STARTING_GAME_MENU.getAddress());
     }

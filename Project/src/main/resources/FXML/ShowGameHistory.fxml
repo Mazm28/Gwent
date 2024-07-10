@@ -12,12 +12,12 @@
                 <Image url="@../IMAGES/RegisterMenuBackGround.JPG" />
             </image>
         </ImageView>
-        <VBox fx:id="box" layoutX="320.0" layoutY="130.0" prefHeight="460.0" prefWidth="369.0" styleClass="login-menu-vbox" />
-        <Label fx:id="label" alignment="CENTER" layoutX="331.0" layoutY="147.0" prefHeight="448.0" prefWidth="339.0" textFill="WHITE">
+        <VBox fx:id="box" layoutX="122.0" layoutY="130.0" prefHeight="469.0" prefWidth="747.0" styleClass="login-menu-vbox" />
+        <Label fx:id="label" alignment="CENTER" layoutX="123.0" layoutY="147.0" prefHeight="375.0" prefWidth="735.0" textFill="WHITE">
             <font>
                 <Font name="DejaVu Serif Condensed Bold" size="20.0" />
             </font></Label>
-        <Button alignment="TOP_CENTER" layoutX="421.0" layoutY="536.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#profileMenu" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" />
+        <Button alignment="TOP_CENTER" layoutX="412.0" layoutY="542.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#profileMenu" prefHeight="35.0" prefWidth="168.0" styleClass="button-52" text="Back" textFill="WHITE" />
       <TextField fx:id="number" alignment="CENTER" layoutX="340.0" layoutY="93.0" onKeyPressed="#show" prefHeight="27.0" prefWidth="209.0" promptText="Enter game number" styleClass="tf_box" />
       <Button layoutX="577.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#show2" styleClass="button-52" text="Show" textFill="WHITE" />
     </children>

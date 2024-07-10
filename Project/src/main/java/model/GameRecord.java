@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
-public record GameRecord(int[][] pointsInEachRound, int[] finalPoints, Date date, Player winner,
+public record GameRecord(int[][] pointsInEachRound,int [] finalPoints, String date, Player winner,
                          Player opponent) implements Serializable {
 
     @Override

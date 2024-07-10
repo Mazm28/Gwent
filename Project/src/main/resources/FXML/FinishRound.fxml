@@ -44,7 +44,7 @@
         </HBox>
         <HBox fx:id="eHBOX" alignment="CENTER" layoutX="199.0" layoutY="531.0" prefHeight="100.0" prefWidth="602.0" style="-fx-background-color: rgb(0,0,0,0.7); -fx-background-radius: 50;">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="120.0" text="Your Points" textFill="WHITE">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="99.0" prefWidth="127.0" text="Opponents Points" textFill="WHITE">
                     <font>
                         <Font name="DejaVu Serif Condensed Bold" size="13.0" />
                     </font>

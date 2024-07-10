@@ -8,18 +8,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import model.User;
 
 import java.io.IOException;
 
 public class ShowGameHistory {
     @FXML
-    private static Label label;
+    private Label label;
     @FXML
     private TextField number;
     @FXML
     private VBox box;
 
-    public static Label getLabel() {
+    public Label getLabel() {
         return label;
     }
 
@@ -29,7 +30,7 @@ public class ShowGameHistory {
     }
     public void show(KeyEvent keyEvent){
         if(keyEvent.getCode().equals(KeyCode.ENTER)) {
-            showGameHistoryController.setLabel(label, Integer.parseInt(number.getText())-1);
+            show2();
         }
     }
     public void profileMenu() {
@@ -41,6 +42,12 @@ public class ShowGameHistory {
     }
 
     public void show2() {
-        showGameHistoryController.setLabel(label, Integer.parseInt(number.getText())-1);
+        int index = Integer.parseInt(number.getText())-1;
+        if(index >= User.getLoggedInUser().getGameRecords().size() || index < 0) {
+            System.out.println("dwawdadawdawdaw");
+            return;
+        }
+        String s = "Game " + index + "\n" + User.getLoggedInUser().getGameRecords().get(index).toString();
+        label.setText(s);
     }
 }

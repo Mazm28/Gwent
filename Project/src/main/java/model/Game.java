@@ -23,7 +23,7 @@ public class Game {
     private final ArrayList<Card> weathersCards = new ArrayList<>();
 
     public void setRound(Round round){
-        rounds[roundNumber] = round;
+        rounds[roundNumber - 1] = round;
     }
 
     public Round[] getRounds() {

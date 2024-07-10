@@ -10,13 +10,15 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import model.*;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
-import model.card.SpecialCardInformation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,53 +27,86 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameMenu {
-    @FXML public Label eSiegePowerLabel;
-    @FXML public Label eRangedPowerLabel;
-    @FXML public Label tSiegePowerLabel;
-    @FXML public Label tRangedPowerLabel;
-    @FXML public Label eClosePowerLabel;
-    @FXML public Label tClosePowerLabel;
-
-    @FXML public Label eTotalPowerLabel;
-    @FXML public Label tTotalPowerLabel;
-
-    @FXML public ImageView eLeaderImageView;
-    @FXML public ImageView tLeaderImageView;
-
-    @FXML public HBox mainTableHBox;
-    @FXML public HBox tSiegeHBox;
-    @FXML public HBox tRangedHBox;
-    @FXML public HBox tCloseHBox;
-    @FXML public HBox eSiegeHBox;
-    @FXML public HBox eRangedHBox;
-    @FXML public HBox eCloseHBox;
-    @FXML public HBox specialCardHBox;
-
-    @FXML public ImageView eRemainCardsImageView;
-    @FXML public ImageView tRemainCardsImageView;
-    @FXML public ImageView eDeadCardImageView;
-    @FXML public ImageView tDeadCardImageView;
-    @FXML public ImageView eLeaderUsedIcon;
-    @FXML public ImageView tLeaderUsedIcon;
-    @FXML public ImageView bigCard;
-
-    @FXML public HBox specialHBox0;
-    @FXML public HBox specialHBox1;
-    @FXML public HBox specialHBox2;
-    @FXML public HBox specialHBox3;
-    @FXML public HBox specialHBox4;
-    @FXML public HBox specialHBox5;
-
-    @FXML public HBox weatherHBox;
-
-    private Game game;
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
     private final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();
-    private Card selectedCard;
-    private ImageView selectedCardImage;
     private final ArrayList<HBox> positions = new ArrayList<>();
     private final ArrayList<HBox> specialPositions = new ArrayList<>();
     private final ArrayList<Label> labels = new ArrayList<>();
+    @FXML
+    public Label eSiegePowerLabel;
+    @FXML
+    public Label eRangedPowerLabel;
+    @FXML
+    public Label tSiegePowerLabel;
+    @FXML
+    public Label tRangedPowerLabel;
+    @FXML
+    public Label eClosePowerLabel;
+    @FXML
+    public Label tClosePowerLabel;
+    @FXML
+    public Label eTotalPowerLabel;
+    @FXML
+    public Label tTotalPowerLabel;
+    @FXML
+    public ImageView eLeaderImageView;
+    @FXML
+    public ImageView tLeaderImageView;
+    @FXML
+    public HBox mainTableHBox;
+    @FXML
+    public HBox tSiegeHBox;
+    @FXML
+    public HBox tRangedHBox;
+    @FXML
+    public HBox tCloseHBox;
+    @FXML
+    public HBox eSiegeHBox;
+    @FXML
+    public HBox eRangedHBox;
+    @FXML
+    public HBox eCloseHBox;
+    @FXML
+    public HBox specialCardHBox;
+    @FXML
+    public ImageView eRemainCardsImageView;
+    @FXML
+    public ImageView tRemainCardsImageView;
+    @FXML
+    public ImageView eDeadCardImageView;
+    @FXML
+    public ImageView tDeadCardImageView;
+    @FXML
+    public ImageView eLeaderUsedIcon;
+    @FXML
+    public ImageView tLeaderUsedIcon;
+    @FXML
+    public ImageView bigCard;
+    @FXML
+    public HBox specialHBox0;
+    @FXML
+    public HBox specialHBox1;
+    @FXML
+    public HBox specialHBox2;
+    @FXML
+    public HBox specialHBox3;
+    @FXML
+    public HBox specialHBox4;
+    @FXML
+    public HBox specialHBox5;
+    @FXML
+    public HBox weatherHBox;
+    private Game game;
+    private Card selectedCard;
+    private ImageView selectedCardImage;
+
+    public Card getSelectedCard() {
+        return selectedCard;
+    }
+
+    public void setSelectedCard(Card selectedCard) {
+        this.selectedCard = selectedCard;
+    }
 
     public void initialize() {
         game = App.getGame();
@@ -118,16 +153,14 @@ public class GameMenu {
     }
 
     private EventHandler<? super MouseEvent> moveUnitCardToPosition(HBox hBox) {
-        return (EventHandler<MouseEvent>) event -> {
-            moveCardToPosition(hBox);
-        };
+        return (EventHandler<MouseEvent>) event -> moveCardToPosition(hBox);
     }
 
-    private void moveCardToPosition(HBox hBox) {
+    public void moveCardToPosition(HBox hBox) {
         ArrayList<HBox> hboxArrayList = null;
         if (positions.contains(hBox)) {
             hboxArrayList = positions;
-        } else if (specialPositions.contains(hBox)){
+        } else if (specialPositions.contains(hBox)) {
             hboxArrayList = specialPositions;
         }
         Image image = new Image(Objects.requireNonNull(
@@ -145,6 +178,7 @@ public class GameMenu {
         imageView.setOnMouseClicked(selectedCardFromBoard(imageView, hBox));
         hBox.getChildren().add(imageView);
         bigCard.setImage(null);
+        game.getCurrentPlayer().removeFromInGameHand(selectedCard);
         if (selectedCard.getAbility() != null) {
             game.setAction(selectedCard);
             selectedCard.getAbility().run();
@@ -153,7 +187,6 @@ public class GameMenu {
         if (positions.contains(hBox)) updateLabel(hboxArrayList.indexOf(hBox));
         else if (specialPositions.contains(hBox)) updateLabel(specialPositions.indexOf(hBox));
         mainTableHBox.getChildren().remove(selectedCardImage);
-        game.getCurrentPlayer().removeFromInGameHand(selectedCard);
         if (hboxArrayList != null) {
             game.getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
             if (hboxArrayList.indexOf(hBox) > 2) {
@@ -182,12 +215,12 @@ public class GameMenu {
                 Integer.parseInt(tRangedPowerLabel.getText()) +
                 Integer.parseInt(tClosePowerLabel.getText());
         tTotalPowerLabel.setText(String.valueOf(power));
-        game.getPlayer1().setPoints(game.getRoundNumber(),power);
+        game.getPlayer1().setPoints(game.getRoundNumber(), power);
         power = Integer.parseInt(eSiegePowerLabel.getText()) +
                 Integer.parseInt(eRangedPowerLabel.getText()) +
                 Integer.parseInt(eClosePowerLabel.getText());
         eTotalPowerLabel.setText(String.valueOf(power));
-        game.getPlayer2().setPoints(game.getRoundNumber(),power);
+        game.getPlayer2().setPoints(game.getRoundNumber(), power);
     }
 
     private void prepareTable() {
@@ -231,19 +264,19 @@ public class GameMenu {
             else type = ((SpecialCard) card).getType();
             if (card.getAbility() != null && card.getAbility().equals(ActionController.Spy())) {
                 switch (type) {
-                    case "Close" :
+                    case "Close":
                         if (x) makeFilterOnHBox(eCloseHBox);
                         else makeFilterOnHBox(tCloseHBox);
                         break;
-                    case "Siege" :
+                    case "Siege":
                         if (x) makeFilterOnHBox(eSiegeHBox);
                         else makeFilterOnHBox(tSiegeHBox);
                         break;
-                    case "Ranged" :
+                    case "Ranged":
                         if (x) makeFilterOnHBox(eRangedHBox);
                         else makeFilterOnHBox(tRangedHBox);
                         break;
-                    case "Agile" :
+                    case "Agile":
                         if (x) {
                             makeFilterOnHBox(eCloseHBox);
                             makeFilterOnHBox(eRangedHBox);
@@ -252,24 +285,24 @@ public class GameMenu {
                             makeFilterOnHBox(tRangedHBox);
                         }
                         break;
-                    default :
+                    default:
                         System.out.println("sag");
                 }
             } else {
                 switch (type) {
-                    case "Close" :
+                    case "Close":
                         if (!x) makeFilterOnHBox(eCloseHBox);
                         else makeFilterOnHBox(tCloseHBox);
                         break;
-                    case "Siege" :
+                    case "Siege":
                         if (!x) makeFilterOnHBox(eSiegeHBox);
                         else makeFilterOnHBox(tSiegeHBox);
                         break;
-                    case "Ranged" :
+                    case "Ranged":
                         if (!x) makeFilterOnHBox(eRangedHBox);
                         else makeFilterOnHBox(tRangedHBox);
                         break;
-                    case "Agile" :
+                    case "Agile":
                         if (!x) {
                             makeFilterOnHBox(eCloseHBox);
                             makeFilterOnHBox(eRangedHBox);
@@ -278,7 +311,7 @@ public class GameMenu {
                             makeFilterOnHBox(tRangedHBox);
                         }
                         break;
-                    default :
+                    default:
                         System.out.println("sag");
                 }
             }
@@ -368,40 +401,39 @@ public class GameMenu {
     }
 
     private void makeFilterOnHBox(HBox hBox) {
-        hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null , BorderStroke.THICK)));
+        hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null, BorderStroke.THICK)));
         hBox.setDisable(false);
     }
 
     private void removeFilters() {
         bigCard.setImage(null);
         for (HBox hBox : positions) {
-            hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
+            hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
             hBox.setDisable(true);
         }
         for (HBox hBox : specialPositions) {
-            hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
+            hBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
             hBox.setDisable(true);
         }
-        for(HBox hBox : positions) {
+        for (HBox hBox : positions) {
             for (Node node : hBox.getChildren()) {
                 ImageView imageView = (ImageView) node;
                 imageView.getStyleClass().add("image");
                 imageView.setDisable(true);
             }
         }
-        for(HBox hBox : specialPositions) {
+        for (HBox hBox : specialPositions) {
             for (Node node : hBox.getChildren()) {
                 ImageView imageView = (ImageView) node;
                 imageView.getStyleClass().add("image");
                 imageView.setDisable(true);
             }
         }
-
-        weatherHBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null , null)));
+        weatherHBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
         weatherHBox.setDisable(true);
     }
 
-    public void pass() {
+    public void pass() throws IOException {
         removeFilters();
         game.getCurrentPlayer().setPassedTheTurn(true);
         if (game.getOpponent().isPassedTheTurn()) {
@@ -412,39 +444,37 @@ public class GameMenu {
         changeTurn();
     }
 
-    private void finishRound() {
-        int player1Point = game.getPlayer1().getPoints()[game.getRoundNumber()];
-        int player2Point = game.getPlayer2().getPoints()[game.getRoundNumber()];
+    private void finishRound() throws IOException {
+        int player1Point = game.getPlayer1().getPoints()[game.getRoundNumber() - 1];
+        int player2Point = game.getPlayer2().getPoints()[game.getRoundNumber() - 1];
         Round round = getRound(player1Point, player2Point);
         game.setRound(round);
-        if(game.getRoundNumber() == 3){
+        if (game.getRoundNumber() == 3) {
+            Launcher.changeScene(FXMLAddresses.FINISH_GAME.getAddress());
+        } else {
+            game.setRoundNumber(game.getRoundNumber() + 1);
             try {
-                Launcher.changeScene(FXMLAddresses.FINISH_GAME.getAddress());
+                System.out.println(game.getRoundNumber());
+                Launcher.changeScene(FXMLAddresses.FINISH_ROUND.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        game.setRoundNumber(game.getRoundNumber() + 1);
-        try {
-            Launcher.changeScene(FXMLAddresses.FINISH_ROUND.getAddress());
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     private Round getRound(int player1Point, int player2Point) {
         Player winner = null;
-        if(player1Point > player2Point) winner = game.getPlayer1();
-        else if(player1Point < player2Point) winner = game.getPlayer2();
-        else if (game.getPlayer1().getFaction().equals(Faction.NILFGAARD)){
+        if (player1Point > player2Point) winner = game.getPlayer1();
+        else if (player1Point < player2Point) winner = game.getPlayer2();
+        else if (game.getPlayer1().getFaction().equals(Faction.NILFGAARD)) {
             winner = game.getPlayer1();
-        } else if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD)){
+        } else if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD)) {
             winner = game.getPlayer2();
         }
-        if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD) && game.getPlayer1().getFaction().equals(Faction.NILFGAARD)){
+        if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD) && game.getPlayer1().getFaction().equals(Faction.NILFGAARD)) {
             winner = null;
         }
-        return new Round(new int[]{player1Point, player2Point},winner);
+        return new Round(new int[]{player1Point, player2Point}, winner);
     }
 
     private void changeTurn() {

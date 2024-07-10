@@ -1,6 +1,7 @@
 package controller;
 
 import Enums.Faction;
+import javafx.scene.layout.HBox;
 import model.App;
 import model.CardCollection;
 import model.Game;
@@ -76,27 +77,40 @@ public class ActionController {
 
     public static Runnable Muster() {
         return () -> {
-            int index = getIndex(((SpecialCard) game.getAction()).getType());
+            HBox hBox;
+            if(game.getAction() instanceof SpecialCard) hBox = getHBOX(((SpecialCard) game.getAction()).getType());
+            else hBox = getHBOX(((RegularCard) game.getAction()).getType());
             for (Card card : game.getCurrentPlayer().getInGameHand()) {
                 if (card.getName().equals(game.getAction().getName())) {
-                    game.getCurrentPlayer().getRows()[index].addCardToCards(card);
+                    (new GameMenu()).setSelectedCard(card);
+                    (new GameMenu()).moveCardToPosition(hBox);
                 }
             }
             for (Card card : game.getCurrentPlayer().getRemainCard()) {
                 if (card.getName().equals(game.getAction().getName())) {
-                    game.getCurrentPlayer().getRows()[index].addCardToCards(card);
+                    (new GameMenu()).setSelectedCard(card);
+                    (new GameMenu()).moveCardToPosition(hBox);
                 }
             }
         };
     }
 
-    private static int getIndex(String type) {
-        return switch (type) {
-            case "Close" -> 2;
-            case "Ranged" -> 1;
-            case "Siege" -> 0;
-            default -> -1;
-        };
+    private static HBox getHBOX(String type) {
+        if(game.getCurrentPlayer().equals(game.getPlayer1())){
+            return switch (type) {
+                case "Close" -> (new GameMenu()).tCloseHBox;
+                case "Ranged" -> (new GameMenu()).tRangedHBox;
+                case "Siege" -> (new GameMenu()).tSiegeHBox;
+                default -> null;
+            };
+        } else {
+            return switch (type) {
+                case "Close" -> (new GameMenu()).eCloseHBox;
+                case "Ranged" -> (new GameMenu()).eRangedHBox;
+                case "Siege" -> (new GameMenu()).eSiegeHBox;
+                default -> null;
+            };
+        }
     }
 
     public static Runnable Spy() {

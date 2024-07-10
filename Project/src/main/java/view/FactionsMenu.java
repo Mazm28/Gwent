@@ -21,8 +21,6 @@ public class FactionsMenu implements Initializable {
     @FXML
     private Label notify;
     @FXML
-    private Button back;
-    @FXML
     private ImageView monsters;
     @FXML
     private ImageView scoiatael;

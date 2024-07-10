@@ -27,7 +27,7 @@ public class App {
     private static Stage stage;
     private static Game game;
     private static MediaPlayer mediaPlayer;
-    private static Group ingredient = new Group();
+    private static final Group ingredient = new Group();
 
     public static MediaPlayer getMediaPlayer() {
         return mediaPlayer;

@@ -115,7 +115,7 @@ public class Player extends User {
     }
 
     public void setPoints(int round, int points) {
-        this.points[round] = points;
+        this.points[round - 1] = points;
     }
 
     public ArrayList<Card> getInGameHand() {
