@@ -13,7 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
 import model.App;
-import model.User;
+import server.User;
 import java.io.IOException;
 import java.util.Objects;
 

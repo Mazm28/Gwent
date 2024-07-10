@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import model.GameRecord;
-import model.User;
+import server.User;
 
 public class ShowInfoController {
     public void showBox(VBox box, Label label) {

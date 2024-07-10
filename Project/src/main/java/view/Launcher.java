@@ -3,7 +3,6 @@ package view;
 import Enums.FXMLAddresses;
 import Enums.ImageAddresses;
 import Enums.MusicAddresses;
-import com.sun.source.tree.SwitchExpressionTree;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.App;
-import model.User;
+import server.User;
 
 import java.io.IOException;
 import java.net.URL;

@@ -5,7 +5,7 @@ import Enums.SelectQuestionTexts;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.App;
-import model.User;
+import server.User;
 
 import java.io.IOException;
 

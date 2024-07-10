@@ -1,7 +1,10 @@
-package model;
+package server;
 
 import Enums.SelectQuestionTexts;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import model.App;
+import model.Deck;
+import model.GameRecord;
 import model.card.Card;
 import model.card.LeaderCard;
 import model.card.RegularCard;
@@ -26,6 +29,7 @@ public class User implements Serializable {
     private String answer;
     private int id;
     private boolean remembered = false;
+    private String token;
 
     public User(User user) {
         this.username = user.username;
@@ -33,9 +37,6 @@ public class User implements Serializable {
         this.email = user.email;
         this.nickname = user.nickname;
         this.id = user.id;
-    }
-
-    public User() {
     }
 
     public User(String username, String password, String email, String nickname) {
@@ -191,5 +192,13 @@ public class User implements Serializable {
             }
         }
         return null;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

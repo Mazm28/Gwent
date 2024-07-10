@@ -4,7 +4,7 @@ import Enums.FXMLAddresses;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import model.User;
+import server.User;
 
 import java.io.IOException;
 

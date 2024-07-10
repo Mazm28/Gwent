@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import model.App;
-import model.User;
+import server.User;
 
 import java.io.IOException;
 import java.util.Optional;

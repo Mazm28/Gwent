@@ -1,5 +1,6 @@
 package model;
 
+import server.User;
 import Enums.Faction;
 import model.card.Card;
 import model.card.LeaderCard;

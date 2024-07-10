@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 import model.App;
 import model.Deck;
 import model.PreGame;
-import model.User;
 import model.card.Card;
 import model.card.LeaderCard;
 

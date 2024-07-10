@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import model.App;
-import model.User;
+import server.User;
 
 import java.io.IOException;
 

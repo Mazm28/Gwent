@@ -2,7 +2,6 @@ package model.card;
 
 import Enums.Faction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import model.User;
 
 import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)

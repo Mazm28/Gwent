@@ -4,6 +4,7 @@ module project {
     requires javafx.media;
     requires jdk.compiler;
     requires com.fasterxml.jackson.databind;
+    requires gson;
     exports model.card;
     exports view;
     opens view to javafx.fxml;
@@ -14,5 +15,9 @@ module project {
     exports Enums;
     opens model.card to com.fasterxml.jackson.databind;
     opens model to com.fasterxml.jackson.databind;
+    exports Client;
+    opens Client to com.fasterxml.jackson.databind;
+    exports server;
+    opens server to com.fasterxml.jackson.databind;
 
 }

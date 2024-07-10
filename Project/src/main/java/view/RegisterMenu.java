@@ -12,10 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
 import model.App;
-import model.User;
-import model.card.LeaderCard;
-import model.card.RegularCard;
-import model.card.SpecialCard;
+import server.User;
 
 import java.io.IOException;
 import java.security.SecureRandom;

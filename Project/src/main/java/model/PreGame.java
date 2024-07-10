@@ -1,6 +1,6 @@
 package model;
 
-import view.PreGameMenu;
+import server.User;
 
 public class PreGame {
     private static Game game;

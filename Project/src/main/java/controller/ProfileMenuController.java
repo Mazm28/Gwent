@@ -1,10 +1,5 @@
 package controller;
 
-import model.User;
-import view.ProfileMenu;
-
-import java.util.regex.Matcher;
-
 public class ProfileMenuController{
     private static String whatToChange;
 
