@@ -36,14 +36,16 @@ public class GameMenu {
     private final ArrayList<HBox> positions = new ArrayList<>();
     private final ArrayList<HBox> specialPositions = new ArrayList<>();
     private final ArrayList<Label> labels = new ArrayList<>();
-    private final HashMap<Card, ImageView> cardsHashMap = new HashMap<>();
+    private static final HashMap<Card, ImageView> cardsOnBoard = new HashMap<>();
     public TextField cheat;
     public Button cheatButton;
 
     public static HashMap<ImageView, Card> getImageViewOnBoardHashMap() {
         return imageViewOnBoard;
     }
-
+    public static HashMap<Card, ImageView> getCardsOnBoard() {
+        return cardsOnBoard;
+    }
     @FXML
     public Label eSiegePowerLabel;
     @FXML
@@ -175,6 +177,7 @@ public class GameMenu {
                 getClass().getResourceAsStream(selectedCard.getImageAddress())));
         ImageView imageView = new ImageView(image);
         imageViewOnBoard.put(imageView, selectedCard);
+        cardsOnBoard.put(selectedCard,imageView);
         imageView.setFitHeight(60);
         imageView.setFitWidth(40);
         imageView.getStyleClass().add("button-image");
@@ -183,7 +186,6 @@ public class GameMenu {
         game.getCurrentPlayer().removeFromInGameHand(selectedCard);
         bigCard.setImage(null);
         if (selectedCard.getAbility() != null) {
-            game.setActionNode(imageView);
             game.setAction(selectedCard);
             selectedCard.getAbility().run();
         }
@@ -243,7 +245,6 @@ public class GameMenu {
                     getClass().getResourceAsStream(card.getImageAddress())));
             ImageView imageView = new ImageView(image);
             imageViewCardHashMap.put(imageView, card);
-            cardsHashMap.put(card, imageView);
             imageView.setFitHeight(60);
             imageView.setFitWidth(40);
             imageView.getStyleClass().add("button-image");
@@ -255,7 +256,6 @@ public class GameMenu {
             Image image = new Image(Objects.requireNonNull(
                     getClass().getResourceAsStream(card.getImageAddress())));
             ImageView imageView = new ImageView(image);
-            cardsHashMap.put(card, imageView);
             imageView.setFitHeight(60);
             imageView.setFitWidth(40);
             weatherHBox.getChildren().add(imageView);
@@ -561,6 +561,13 @@ public class GameMenu {
     private void changeTurn() {
         if (game.getOpponent().isPassedTheTurn()) return;
         game.changeTurn();
+        for(Row row: game.getCurrentPlayer().getRows()){
+            for(Card card: row.getCards()){
+                if(card != null && card.getName().equals(SpecialCardInformation.Cow.getName())){
+                    ActionController.cowTransform((SpecialCard)card);
+                }
+            }
+        }
         prepareTable();
     }
 
