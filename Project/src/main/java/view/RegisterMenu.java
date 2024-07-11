@@ -42,6 +42,8 @@ public class RegisterMenu{
     private PasswordField password;
     @FXML
     private PasswordField repeatPassword;
+    @FXML
+    private Button signUp;
     private static final SecureRandom random = new SecureRandom();
     public void signIn() {
         try {
@@ -149,5 +151,29 @@ public class RegisterMenu{
     }
     public void signUp2(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)) signUp();
+    }
+
+    public TextField getUsername() {
+        return username;
+    }
+
+    public PasswordField getPassword() {
+        return password;
+    }
+
+    public PasswordField getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public TextField getEmail() {
+        return email;
+    }
+
+    public TextField getNickname() {
+        return nickname;
+    }
+
+    public Button getSignUp() {
+        return signUp;
     }
 }

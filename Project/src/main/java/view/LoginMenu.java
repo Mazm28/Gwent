@@ -97,4 +97,12 @@ public class LoginMenu {
             showCircle.setFill(new ImagePattern(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ImageAddresses.SHOW.getAddress())))));
         }
     }
+
+    public TextField getUsername() {
+        return username;
+    }
+
+    public TextField getPassword() {
+        return password;
+    }
 }
