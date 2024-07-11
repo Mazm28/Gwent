@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
+import messages.Result;
 import model.App;
 import server.User;
 
@@ -43,6 +44,7 @@ public class RegisterMenu{
     @FXML
     private PasswordField repeatPassword;
     private static final SecureRandom random = new SecureRandom();
+
     public void signIn() {
         try {
             Launcher.changeScene(FXMLAddresses.LOGIN_MENU.getAddress());
@@ -147,6 +149,7 @@ public class RegisterMenu{
     public void showPassword(MouseEvent mouseEvent){
         (new LoginMenu()).showPassword(password,username1,showCircle);
     }
+
     public void signUp2(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)) signUp();
     }
