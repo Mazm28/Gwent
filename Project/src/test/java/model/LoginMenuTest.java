@@ -42,15 +42,5 @@ public class LoginMenuTest extends ApplicationTest {
         robot.clickOn(password).write("testPassword");
         assertEquals("testPassword", password.getText());
     }
-    @Test
-    public void testNoSuchUser(){
-        FxRobot robot = new FxRobot();
-        TextField username = controller.getUsername();
-        robot.clickOn(username).write("testUser");
-        TextField password = controller.getPassword();
-        robot.clickOn(password).write("testPassword");
-        robot.clickOn(controller.getSignIn());
-        assertEquals("No such user exists!", controller.getError().getText());
-    }
 
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -87,15 +88,6 @@ public class ActionController {
         }
     }
 
-    private static int getIndex(String type) {
-        return switch (type) {
-            case "Close" -> 2;
-            case "Ranged" -> 1;
-            case "Siege" -> 0;
-            default -> -1;
-        };
-    }
-
     public static Runnable Spy() {
         return () -> {
             Random rand = new Random();
@@ -149,10 +141,11 @@ public class ActionController {
                     cards.addAll(row.getCards());
                 }
                 Card mostPowered = CardCollection.getMostPowered(cards);
+                if(mostPowered == null) return;
                 for (Row row : game.getRows()) {
                     for (Card card : row.getCards()) {
                         if (card.getPower() == mostPowered.getPower()) {
-                            row.getCards().remove(card);
+                            removeCardFromBoard(card);
                             game.getCurrentPlayer().getBurnedCards().add(card);
                         }
                     }
@@ -170,6 +163,14 @@ public class ActionController {
         };
     }
 
+    public static void removeCardFromBoard(Card card){
+        try {
+            ((HBox) GameMenu.getCardsOnBoard().get(card).getParent()).getChildren().remove(GameMenu.getCardsOnBoard().get(card));
+        } catch (Exception ignored){
+
+        }
+    }
+
     public static Runnable Mardroeme() {
         return () -> {
             for (Row row : game.getCurrentPlayer().getRows()) {
@@ -177,9 +178,13 @@ public class ActionController {
                     if (card.getName().equals(RegularCardInformation.BERSERKER.name())) {
                         Card card1 = new RegularCard(RegularCardInformation.VIDKAARL);
                         row.getCards().set(row.getCards().indexOf(card), card1);
+                        removeCardFromBoard(card);
+                        addCardToBoard(card1);
                     }
                     if (card.getName().equals(RegularCardInformation.YOUNG_BERSERKER.name())) {
                         Card card1 = new RegularCard(RegularCardInformation.YOUNG_VIDKAARL);
+                        removeCardFromBoard(card);
+                        addCardToBoard(card1);
                         row.getCards().set(row.getCards().indexOf(card), card1);
                     }
                 }
@@ -316,11 +321,12 @@ public class ActionController {
                 }
             }
             Card mostPowered = CardCollection.getMostPowered(cards);
+            if(mostPowered == null) return;
             if (powerOfRangedCards > 10) {
                 for (Row row : game.getCurrentPlayer().getRows()) {
                     for (Card card : row.getCards()) {
                         if (card.getPower() == mostPowered.getPower()) {
-                            row.getCards().remove(card);
+                            removeCardFromBoard(card);
                             game.getCurrentPlayer().getBurnedCards().add(card);
                         }
                     }
@@ -360,11 +366,12 @@ public class ActionController {
                 }
             }
             Card mostPowered = CardCollection.getMostPowered(cards);
+            if(mostPowered == null) return;
             if (powerOfSiegeCards > 10) {
                 for (Row row : game.getCurrentPlayer().getRows()) {
                     for (Card card : row.getCards()) {
                         if (card.getPower() == mostPowered.getPower()) {
-                            row.getCards().remove(card);
+                            removeCardFromBoard(card);
                             game.getCurrentPlayer().getBurnedCards().add(card);
                         }
                     }
@@ -483,11 +490,12 @@ public class ActionController {
                 }
             }
             Card mostPowered = CardCollection.getMostPowered(cards);
+            if(mostPowered == null) return;
             if (powerOfRangedCards > 10) {
                 for (Row row : game.getCurrentPlayer().getRows()) {
                     for (Card card : row.getCards()) {
                         if (card.getPower() == mostPowered.getPower()) {
-                            row.getCards().remove(card);
+                            removeCardFromBoard(card);
                             game.getCurrentPlayer().getBurnedCards().add(card);
                         }
                     }
@@ -580,7 +588,6 @@ public class ActionController {
 
 
     public static void cowTransform(SpecialCard card) {
-        card.setImageAddress("/IMAGES/lg/scoiatael_schirru.jpg");
         card.setPower(8);
     }
 }

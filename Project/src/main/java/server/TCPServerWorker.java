@@ -84,19 +84,19 @@ public class TCPServerWorker extends Thread {
         return sb.toString();
     }
 
-    private ClientMessage extractClientMessage(String clientStr) {
-        try {
-            ClientMessage clientMessage = gsonAgent.fromJson(clientStr, ClientMessage.class);
-            return switch (clientMessage.getType()) {
-                case LOGIN -> gsonAgent.fromJson(clientStr, LoginMessage.class);
-                case LOGOUT -> gsonAgent.fromJson(clientStr, LogoutMessage.class);
-                case SAVE_USER -> gsonAgent.fromJson(clientStr, SaveUserMessage.class);
-                case GET_ALL_USERS -> gsonAgent.fromJson(clientStr, GetAllUsersMessage.class);
-            };
-        } catch (Exception e) {
-            return null;
-        }
-    }
+//    private ClientMessage extractClientMessage(String clientStr) {
+//        try {
+//            ClientMessage clientMessage = gsonAgent.fromJson(clientStr, ClientMessage.class);
+//            return switch (clientMessage.getType()) {
+//                case LOGIN -> gsonAgent.fromJson(clientStr, LoginMessage.class);
+//                case LOGOUT -> gsonAgent.fromJson(clientStr, LogoutMessage.class);
+//                case SAVE_USER -> gsonAgent.fromJson(clientStr, SaveUserMessage.class);
+//                case GET_ALL_USERS -> gsonAgent.fromJson(clientStr, GetAllUsersMessage.class);
+//            };
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 
     private synchronized void sendMessage(boolean success, String problem) {
         ServerMessage failureMessage = new ServerMessage(success, problem);
