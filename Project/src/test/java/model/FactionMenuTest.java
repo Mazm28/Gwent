@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
-import server.User;
 import view.FactionsMenu;
 
 import java.io.IOException;
@@ -22,10 +21,6 @@ public class FactionMenuTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws IOException {
-        User user = new User();
-        User.setLoggedInUser(user);
-        Player player = new Player();
-        PreGame.setTurn(player);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLAddresses.FACTION_MENU.getAddress()));
         Parent root = loader.load();
         controller = loader.getController();
