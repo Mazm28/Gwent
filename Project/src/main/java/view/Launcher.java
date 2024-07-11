@@ -29,7 +29,6 @@ public class Launcher extends Application {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
         mediaPlayer.play();
-        App.makeClient();
         App.setMediaPlayer(mediaPlayer);
         launch(args);
     }

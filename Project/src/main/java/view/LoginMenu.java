@@ -2,8 +2,6 @@ package view;
 
 import Enums.FXMLAddresses;
 import Enums.ImageAddresses;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -14,11 +12,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
-import messages.Result;
 import model.App;
 import server.User;
-
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -35,7 +30,6 @@ public class LoginMenu {
     private PasswordField password;
     @FXML
     private Label error;
-
     public void signIn() {
         User user = User.getUserByUsername(username.getText());
         if(username.getText().isEmpty() || password.getText().isEmpty()) error.setText("You should fill all of the fields!");
@@ -86,7 +80,6 @@ public class LoginMenu {
     public void showPassword() {
         showPassword(password,username1,showCircle);
     }
-
     public void showPassword(PasswordField password, TextField username1, Ellipse showCircle){
         if(!password.isDisable()){
             username1.setVisible(true);

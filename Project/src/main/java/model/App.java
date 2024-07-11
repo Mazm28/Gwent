@@ -1,7 +1,6 @@
 package model;
 
 
-import Client.TCPClient;
 import server.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +28,6 @@ public class App {
     private static Game game;
     private static MediaPlayer mediaPlayer;
     private static Group ingredient = new Group();
-    private static TCPClient client;
 
     public static MediaPlayer getMediaPlayer() {
         return mediaPlayer;
@@ -151,9 +149,5 @@ public class App {
 
     public static Group getIngredient() {
         return ingredient;
-    }
-
-    public static void makeClient() {
-        client = new TCPClient("localhost", 5001);
     }
 }
