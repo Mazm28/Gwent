@@ -306,5 +306,27 @@ public class LeadersMenu implements Initializable {
         }
     }
 
+    public ImageView getTheTracherous() {
+        return theTracherous;
+    }
 
+    public ImageView getCommanderOfTheRedRiders() {
+        return commanderOfTheRedRiders;
+    }
+
+    public ImageView getDestroyerOfWorlds() {
+        return destroyerOfWorlds;
+    }
+
+    public ImageView getKingOfTheWildHunt() {
+        return kingOfTheWildHunt;
+    }
+
+    public ImageView getBringerOfDeath() {
+        return bringerOfDeath;
+    }
+
+    public Label getNotify() {
+        return notify;
+    }
 }

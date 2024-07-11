@@ -56,4 +56,8 @@ public class ChoosingOpponent {
     public void confirm2(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)) confirm();
     }
+
+    public TextField getAnswer() {
+        return username;
+    }
 }

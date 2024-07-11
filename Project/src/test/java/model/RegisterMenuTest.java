@@ -1,7 +1,6 @@
 package model;
 
 import Enums.FXMLAddresses;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,10 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 import view.RegisterMenu;
-
 import java.io.IOException;
-
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegisterMenuTest extends ApplicationTest {

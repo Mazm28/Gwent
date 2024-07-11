@@ -104,4 +104,28 @@ public class FactionsMenu implements Initializable {
         Tooltip.install(northernRealms, northernRealmsTooltip);
         Tooltip.install(nilfgaard, nilfgaardTooltip);
     }
+
+    public ImageView getMonsters() {
+        return monsters;
+    }
+
+    public ImageView getNilfgaard() {
+        return nilfgaard;
+    }
+
+    public ImageView getNorthernRealms() {
+        return northernRealms;
+    }
+
+    public ImageView getScoiatael() {
+        return scoiatael;
+    }
+
+    public ImageView getSkellige() {
+        return skellige;
+    }
+
+    public Label getNotify() {
+        return notify;
+    }
 }

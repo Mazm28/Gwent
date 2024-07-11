@@ -50,4 +50,8 @@ public class AnswerQuestion implements Initializable {
     public void answer(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)) checkAnswer();
     }
+
+    public TextField getAnswer() {
+        return answer;
+    }
 }
