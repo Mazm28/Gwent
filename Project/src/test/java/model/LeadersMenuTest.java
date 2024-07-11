@@ -1,6 +1,7 @@
 package model;
 
 import Enums.FXMLAddresses;
+import Enums.Faction;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
+import server.User;
 import view.LeadersMenu;
 
 import java.io.IOException;
@@ -21,16 +23,22 @@ public class LeadersMenuTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws IOException {
+        User user = new User();
+        User.setLoggedInUser(user);
+        Player player = new Player();
+        PreGame.setTurn(player);
+        player.setFaction(Faction.MONSTERS);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLAddresses.LEADER_MENU.getAddress()));
         Parent root = loader.load();
         controller = loader.getController();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
 
     @Test
-    public void test() {
+    public void tracherous() {
         FxRobot robot = new FxRobot();
         ImageView tracherous = controller.getTheTracherous();
         robot.clickOn(tracherous);

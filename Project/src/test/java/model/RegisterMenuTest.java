@@ -60,7 +60,156 @@ public class RegisterMenuTest extends ApplicationTest {
         TextField repeatPassword = controller.getRepeatPassword();
         robot.clickOn(repeatPassword).write("testPassword");
         assertEquals("testPassword", repeatPassword.getText());
+    }
+
+    @Test
+    public void testUsernameFormat() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("@testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail@gmail.com");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("testPassword");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("testPassword");
         robot.clickOn(controller.getSignUp());
+        assertEquals("Invalid Username format!", controller.getError().getText());
+    }
+    @Test
+    public void testNicknameFormat() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail@gmail.com");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("@testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("testPassword");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("testPassword");
+        robot.clickOn(controller.getSignUp());
+        assertEquals("Invalid nickname format!", controller.getError().getText());
+    }
+    @Test
+    public void testUppercase() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail@gmail.com");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("testpassword");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("testpassword");
+        robot.clickOn(controller.getSignUp());
+        assertEquals("Your password must contain an uppercase letter!", controller.getError().getText());
+    }
+    @Test
+    public void testLowercase() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail@gmail.com");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("TESTPASSWORD123@");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("TESTPASSWORD123@");
+        robot.clickOn(controller.getSignUp());
+        assertEquals("Your password must contain a lowercase letter!", controller.getError().getText());
+    }
+
+    @Test
+    public void testSpecialLetter() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail@gmail.com");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("testPassword123");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("testPassword123");
+        robot.clickOn(controller.getSignUp());
+        assertEquals("Your password must contain a special letter!", controller.getError().getText());
+    }
+
+    @Test
+    public void testNumber() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail@gmail.com");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("testPassword@");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("testPassword@");
+        robot.clickOn(controller.getSignUp());
+        assertEquals("Your password must contain a number!", controller.getError().getText());
+    }
+
+    @Test
+    public void testLength() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail@gmail.com");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("tP1@");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("tP1@");
+        robot.clickOn(controller.getSignUp());
+        assertEquals("Your password is too short!", controller.getError().getText());
+    }
+
+    @Test
+    public void testEmailFormat() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("testPassword123@");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("testPassword123@");
+        robot.clickOn(controller.getSignUp());
+        assertEquals("Wrong email format!", controller.getError().getText());
+    }
+
+    @Test
+    public void testRepeatingCorrectly() {
+        FxRobot robot = new FxRobot();
+        TextField username = controller.getUsername();
+        robot.clickOn(username).write("testUsername");
+        TextField email = controller.getEmail();
+        robot.clickOn(email).write("testEmail@gmail.com");
+        TextField nickname = controller.getNickname();
+        robot.clickOn(nickname).write("testNickname");
+        TextField password = controller.getPassword();
+        robot.clickOn(password).write("testPassword123@");
+        TextField repeatPassword = controller.getRepeatPassword();
+        robot.clickOn(repeatPassword).write("testPassword1234@");
+        robot.clickOn(controller.getSignUp());
+        assertEquals("Repeat your password correctly!", controller.getError().getText());
     }
 
 }

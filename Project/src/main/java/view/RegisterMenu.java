@@ -176,4 +176,8 @@ public class RegisterMenu{
     public Button getSignUp() {
         return signUp;
     }
+
+    public Label getError() {
+        return error;
+    }
 }

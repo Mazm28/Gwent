@@ -3,10 +3,7 @@ package view;
 import Enums.FXMLAddresses;
 import Enums.ImageAddresses;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +15,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class LoginMenu {
+    @FXML
+    private Button signIn;
     @FXML
     private TextField username1;
     @FXML
@@ -104,5 +103,13 @@ public class LoginMenu {
 
     public TextField getPassword() {
         return password;
+    }
+
+    public Label getError() {
+        return error;
+    }
+
+    public Button getSignIn() {
+        return signIn;
     }
 }
