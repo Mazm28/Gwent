@@ -53,4 +53,8 @@ public enum SpecialCardInformation implements Serializable {
         this.hero = hero;
         this.imageAddress = imageAddress;
     }
+
+    public Runnable getAbility() {
+        return ability;
+    }
 }

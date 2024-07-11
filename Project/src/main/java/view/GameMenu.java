@@ -19,19 +19,24 @@ import model.*;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
+import model.card.SpecialCardInformation;
 
+import javax.net.ssl.HostnameVerifier;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class GameMenu {
     private final HashMap<ImageView, Card> imageViewCardHashMap = new HashMap<>();
-    private final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();
+    private static final HashMap<ImageView, Card> imageViewOnBoard = new HashMap<>();
     private final ArrayList<HBox> positions = new ArrayList<>();
     private final ArrayList<HBox> specialPositions = new ArrayList<>();
     private final ArrayList<Label> labels = new ArrayList<>();
+    private final HashMap<Card, ImageView> cardsHashMap = new HashMap<>();
+
+    public static HashMap<ImageView, Card> getImageViewOnBoardHashMap() {
+        return imageViewOnBoard;
+    }
+
     @FXML
     public Label eSiegePowerLabel;
     @FXML
@@ -100,14 +105,6 @@ public class GameMenu {
     private Card selectedCard;
     private ImageView selectedCardImage;
 
-    public Card getSelectedCard() {
-        return selectedCard;
-    }
-
-    public void setSelectedCard(Card selectedCard) {
-        this.selectedCard = selectedCard;
-    }
-
     public void initialize() {
         game = App.getGame();
         addPositions();
@@ -125,6 +122,9 @@ public class GameMenu {
     }
 
     private void addPositions() {
+        for(Row row: game.getRows()){
+            row.getCards().clear();
+        }
         positions.addAll(List.of(new HBox[]{tSiegeHBox, tRangedHBox, tCloseHBox,
                 eCloseHBox, eRangedHBox, eSiegeHBox}));
         for (HBox hBox : positions) {
@@ -148,15 +148,16 @@ public class GameMenu {
         for (Label label : labels) {
             label.setText("0");
         }
-        game.setPlayer1(game.getCurrentPlayer());
-        game.setPlayer2(game.getOpponent());
     }
 
     private EventHandler<? super MouseEvent> moveUnitCardToPosition(HBox hBox) {
-        return (EventHandler<MouseEvent>) event -> moveCardToPosition(hBox);
+        return (EventHandler<MouseEvent>) event -> {
+            moveCardToPosition(hBox);
+        };
     }
 
-    public void moveCardToPosition(HBox hBox) {
+
+    private void moveCardToPosition(HBox hBox) {
         ArrayList<HBox> hboxArrayList = null;
         if (positions.contains(hBox)) {
             hboxArrayList = positions;
@@ -167,46 +168,49 @@ public class GameMenu {
                 getClass().getResourceAsStream(selectedCard.getImageAddress())));
         ImageView imageView = new ImageView(image);
         imageViewOnBoard.put(imageView, selectedCard);
-        if (positions.contains(hBox)) {
-            imageView.setFitHeight(60);
-            imageView.setFitWidth(40);
-        } else {
-            imageView.setFitWidth(20);
-            imageView.setFitHeight(30);
-        }
+        imageView.setFitHeight(60);
+        imageView.setFitWidth(40);
         imageView.getStyleClass().add("button-image");
         imageView.setOnMouseClicked(selectedCardFromBoard(imageView, hBox));
         hBox.getChildren().add(imageView);
-        bigCard.setImage(null);
         game.getCurrentPlayer().removeFromInGameHand(selectedCard);
+        bigCard.setImage(null);
         if (selectedCard.getAbility() != null) {
+            game.setActionNode(imageView);
             game.setAction(selectedCard);
             selectedCard.getAbility().run();
         }
         removeFilters();
-        if (positions.contains(hBox)) updateLabel(hboxArrayList.indexOf(hBox));
-        else if (specialPositions.contains(hBox)) updateLabel(specialPositions.indexOf(hBox));
         mainTableHBox.getChildren().remove(selectedCardImage);
-        if (hboxArrayList != null) {
+        if (positions.contains(hBox)) {
             game.getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
             if (hboxArrayList.indexOf(hBox) > 2) {
                 game.getPlayer2().getRows()[hboxArrayList.indexOf(hBox) - 3].addCardToCards(selectedCard);
             } else {
                 game.getPlayer1().getRows()[hboxArrayList.indexOf(hBox)].addCardToCards(selectedCard);
             }
+        } else if (specialPositions.contains(hBox)) {
+            game.getRows()[hboxArrayList.indexOf(hBox)].setImproveCard(selectedCard);
+            if (hboxArrayList.indexOf(hBox) > 2) {
+                game.getPlayer2().getRows()[hboxArrayList.indexOf(hBox) - 3].setImproveCard(selectedCard);
+            } else {
+                game.getPlayer1().getRows()[hboxArrayList.indexOf(hBox)].setImproveCard(selectedCard);
+            }
+        } else {
+            try {
+                if (((SpecialCard) selectedCard).getType().equals("Weather")) {
+                    game.addToWeathersCards(selectedCard);
+                }
+            } catch (Exception ignored) {
+
+            }
         }
+        for (Card card : game.getWeathersCards()) {
+            if (card.getAbility() != null) card.getAbility().run();
+        }
+        updateLabels();
         changeTurn();
         updateTotalPower();
-    }
-
-    private void updateLabel(int index) {
-        Label label = labels.get(index);
-        int newPower = 0;
-        HBox hBox = positions.get(index);
-        for (Node node : hBox.getChildren()) {
-            newPower += imageViewOnBoard.get((ImageView) node).getPower();
-        }
-        label.setText(String.valueOf(newPower));
     }
 
     private void updateTotalPower() {
@@ -231,15 +235,26 @@ public class GameMenu {
                     getClass().getResourceAsStream(card.getImageAddress())));
             ImageView imageView = new ImageView(image);
             imageViewCardHashMap.put(imageView, card);
+            cardsHashMap.put(card, imageView);
             imageView.setFitHeight(60);
             imageView.setFitWidth(40);
             imageView.getStyleClass().add("button-image");
             imageView.setOnMouseClicked(selectCard(imageView));
             mainTableHBox.getChildren().add(imageView);
         }
+        weatherHBox.getChildren().clear();
+        for (Card card : game.getWeathersCards()) {
+            Image image = new Image(Objects.requireNonNull(
+                    getClass().getResourceAsStream(card.getImageAddress())));
+            ImageView imageView = new ImageView(image);
+            cardsHashMap.put(card, imageView);
+            imageView.setFitHeight(60);
+            imageView.setFitWidth(40);
+            weatherHBox.getChildren().add(imageView);
+        }
     }
 
-    private EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
+    public EventHandler<? super MouseEvent> selectCard(ImageView imageView) {
         return (EventHandler<MouseEvent>) event -> {
             removeFilters();
             selectedCard = imageViewCardHashMap.get(imageView);
@@ -328,6 +343,16 @@ public class GameMenu {
         } else if (card instanceof SpecialCard) {
             if (((SpecialCard) card).getType().equals("Weather")) {
                 makeFilterOnHBox(weatherHBox);
+            } else {
+                if (!x) {
+                    makeFilterOnHBox(eCloseHBox);
+                    makeFilterOnHBox(eRangedHBox);
+                    makeFilterOnHBox(eSiegeHBox);
+                } else {
+                    makeFilterOnHBox(tCloseHBox);
+                    makeFilterOnHBox(tRangedHBox);
+                    makeFilterOnHBox(tSiegeHBox);
+                }
             }
         }
     }
@@ -393,8 +418,7 @@ public class GameMenu {
 
                 mainTableHBox.getChildren().add(imageView);
                 game.getCurrentPlayer().addToInGameHand(card);
-                int index = positions.indexOf(hBox);
-                updateLabel(index);
+                updateLabels();
                 removeFilters();
             }
         };
@@ -403,6 +427,38 @@ public class GameMenu {
     private void makeFilterOnHBox(HBox hBox) {
         hBox.setBorder(new Border(new BorderStroke(Color.CYAN, BorderStrokeStyle.SOLID, null, BorderStroke.THICK)));
         hBox.setDisable(false);
+    }
+
+    private void updateLabels() {
+        for (HBox hBox : positions) {
+            int newPower = 0;
+            if (!specialPositions.get(positions.indexOf(hBox)).getChildren().isEmpty()) {
+                ImageView imageView = (ImageView) specialPositions.get(positions.indexOf(hBox)).getChildren().get(0);
+                if (imageViewOnBoard.get(imageView).getName().equals("Commander_Horn")) {
+                    for (Node node : hBox.getChildren()) {
+                        Card card1 = imageViewOnBoard.get((ImageView) node);
+                        if (!(card1 instanceof RegularCard) || !((RegularCard) card1).isHero())
+                            newPower += card1.getPower() * 2;
+                    }
+                    labels.get(positions.indexOf(hBox)).setText(String.valueOf(newPower));
+                    continue;
+                }
+            }
+            for (Node node : hBox.getChildren()) {
+                Card card = imageViewOnBoard.get((ImageView) node);
+                if (card.getName().equals("Crone: Brewess") || card.getName().equals("Draig Bon-Dhu")) {
+                    newPower = 0;
+                    for (Node node1 : hBox.getChildren()) {
+                        Card card1 = imageViewOnBoard.get((ImageView) node1);
+                        if (!(card1 instanceof RegularCard) || !((RegularCard) card1).isHero())
+                            newPower += card1.getPower() * 2;
+                    }
+                    break;
+                }
+                newPower += imageViewOnBoard.get((ImageView) node).getPower();
+            }
+            labels.get(positions.indexOf(hBox)).setText(String.valueOf(newPower));
+        }
     }
 
     private void removeFilters() {
@@ -429,6 +485,7 @@ public class GameMenu {
                 imageView.setDisable(true);
             }
         }
+
         weatherHBox.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
         weatherHBox.setDisable(true);
     }
@@ -449,12 +506,25 @@ public class GameMenu {
         int player2Point = game.getPlayer2().getPoints()[game.getRoundNumber() - 1];
         Round round = getRound(player1Point, player2Point);
         game.setRound(round);
+        if (game.getPlayer1().getFaction().equals(Faction.MONSTERS)) {
+            for (HBox hBox : positions) {
+                if (!hBox.getChildren().isEmpty()) {
+                    game.getPlayer1().addToInGameHand(imageViewOnBoard.get((ImageView) hBox.getChildren().getFirst()));
+                }
+            }
+        }
+        if (game.getPlayer2().getFaction().equals(Faction.MONSTERS)) {
+            for (HBox hBox : positions) {
+                if (!hBox.getChildren().isEmpty()) {
+                    game.getPlayer2().addToInGameHand(imageViewOnBoard.get((ImageView) hBox.getChildren().getFirst()));
+                }
+            }
+        }
         if (game.getRoundNumber() == 3) {
             Launcher.changeScene(FXMLAddresses.FINISH_GAME.getAddress());
         } else {
             game.setRoundNumber(game.getRoundNumber() + 1);
             try {
-                System.out.println(game.getRoundNumber());
                 Launcher.changeScene(FXMLAddresses.FINISH_ROUND.getAddress());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -466,13 +536,16 @@ public class GameMenu {
         Player winner = null;
         if (player1Point > player2Point) winner = game.getPlayer1();
         else if (player1Point < player2Point) winner = game.getPlayer2();
-        else if (game.getPlayer1().getFaction().equals(Faction.NILFGAARD)) {
+        else if (game.getPlayer1().getFaction().equals(Faction.NILFGAARD) && !game.getPlayer2().getFaction().equals(Faction.NILFGAARD)) {
             winner = game.getPlayer1();
-        } else if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD)) {
+        } else if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD) && !game.getPlayer1().getFaction().equals(Faction.NILFGAARD)) {
             winner = game.getPlayer2();
         }
-        if (game.getPlayer2().getFaction().equals(Faction.NILFGAARD) && game.getPlayer1().getFaction().equals(Faction.NILFGAARD)) {
-            winner = null;
+        if (winner != null && winner.getFaction().equals(Faction.NORTHERN_REALMS) && winner.equals(game.getPlayer1())) {
+            game.getPlayer1().addToInGameHand(game.getPlayer1().getRemainCard().get(0));
+        }
+        if (winner != null && winner.getFaction().equals(Faction.NORTHERN_REALMS) && winner.equals(game.getPlayer2())) {
+            game.getPlayer2().addToInGameHand(game.getPlayer1().getRemainCard().get(0));
         }
         return new Round(new int[]{player1Point, player2Point}, winner);
     }

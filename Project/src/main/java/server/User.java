@@ -30,6 +30,33 @@ public class User implements Serializable {
     private int id;
     private boolean remembered = false;
     private String token;
+    private int wins = 0;
+    private int loses = 0;
+    private int draws = 0;
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLoses() {
+        return loses;
+    }
+
+    public void setLoses(int loses) {
+        this.loses = loses;
+    }
+
+    public int getDraws() {
+        return draws;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
 
     public User(User user) {
         this.username = user.username;
@@ -37,6 +64,9 @@ public class User implements Serializable {
         this.email = user.email;
         this.nickname = user.nickname;
         this.id = user.id;
+    }
+
+    public User() {
     }
 
     public User(String username, String password, String email, String nickname) {
@@ -167,6 +197,42 @@ public class User implements Serializable {
 
     public void setSelectQuestionTexts(SelectQuestionTexts selectQuestionTexts) {
         this.selectQuestionTexts = selectQuestionTexts;
+    }
+
+    public void setWinsAndLoses(){
+        int wins = 0;
+        int loses = 0;
+        int draws = 0;
+        for (GameRecord gameRecord: this.getGameRecords()){
+            if(gameRecord.winner() == null) draws++;
+            else if(gameRecord.winner().getUsername().equals(this.username)) wins++;
+            else {
+                loses++;
+            }
+        }
+        this.setWins(wins);
+        this.setLoses(loses);
+        this.setDraws(draws);
+    }
+
+    public void makeRank(){
+        ArrayList<User> users = new ArrayList<>(App.getUsers());
+        System.out.println(users.size());
+        for(int i=0;i<users.size();i++){
+            users.get(i).setWinsAndLoses();
+            for(int j=0;j<i;j++){
+                if(users.get(j).getWins() < users.get(i).getWins()){
+                    User tmp = users.get(i);
+                    users.set(i,users.get(j));
+                    users.set(j,tmp);
+                }
+            }
+        }
+        for(User user: users){
+            if(user.username.equals(this.username)){
+                rank = (users.indexOf(user) + 1);
+            }
+        }
     }
 
     public int getRank() {

@@ -21,7 +21,7 @@ public class SpecialCard extends Card implements Serializable {
         this.type = specialCardInformation.type;
         this.power = specialCardInformation.power;
         this.countInGame = specialCardInformation.countInGame;
-        this.ability = specialCardInformation.ability;
+        this.ability = specialCardInformation.getAbility();
         this.imageAddress = specialCardInformation.imageAddress;
         this.hero = specialCardInformation.hero;
         this.specialCardInformation = specialCardInformation;

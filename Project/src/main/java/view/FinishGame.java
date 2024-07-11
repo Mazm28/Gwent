@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import model.*;
+import server.User;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -62,8 +63,8 @@ public class FinishGame {
             finalPoints[1] += game.getPlayer2().getPoints()[i];
         }
         User user1 = User.getLoggedInUser();
-        User user2 = User.getUserByUsername(game.getPlayer2().getUsername());
         user1.addToGameRecords(new GameRecord(points, finalPoints, formatter.format(localDateTime), winner, game.getPlayer2()));
+        App.SaveInfo(user1);
         finalPoints[0] = 0;
         finalPoints[1] = 0;
         for (int i = 0; i < 3; i++) {
@@ -72,13 +73,16 @@ public class FinishGame {
             points[1][i] = game.getPlayer1().getPoints()[i];
             finalPoints[1] += game.getPlayer1().getPoints()[i];
         }
-        user2.addToGameRecords(new GameRecord(points, finalPoints, formatter.format(localDateTime), winner, game.getPlayer1()));
+        for(User user: App.getUsers()){
+            if(user.getUsername().equals(game.getPlayer2().getUsername())){
+                user.addToGameRecords(new GameRecord(points, finalPoints, formatter.format(localDateTime), winner, game.getPlayer1()));
+                App.SaveInfo(user);
+                break;
+            }
+        }
     }
 
     public void backToLobby() {
-        Game game = App.getGame();
-        App.SaveInfo(User.getLoggedInUser());
-        App.SaveInfo(User.getUserByUsername(game.getPlayer2().getUsername()));
         try {
             Launcher.changeScene(FXMLAddresses.MAIN_MENU.getAddress());
         } catch (IOException e) {

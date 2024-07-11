@@ -19,7 +19,7 @@ public class CardCollection {
     }
 
     public static boolean isUnit(Card card) {
-        return card.getCardType().equals("Regular") || !isSpecial(card);
+        return card instanceof RegularCard || !isSpecial(card);
     }
 
 

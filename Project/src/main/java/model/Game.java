@@ -1,6 +1,7 @@
 package model;
 
 import controller.ActionController;
+import javafx.scene.Node;
 import model.card.Card;
 import model.card.RegularCardInformation;
 import model.card.SpecialCard;
@@ -21,6 +22,19 @@ public class Game {
     private final Row[] rows = new Row[6];
     private Card action;
     private final ArrayList<Card> weathersCards = new ArrayList<>();
+    private Node actionNode;
+
+    public Node getActionNode() {
+        return actionNode;
+    }
+
+    public void setActionNode(Node actionNode) {
+        this.actionNode = actionNode;
+    }
+
+    public ArrayList<Card> getWeathersCards() {
+        return weathersCards;
+    }
 
     public void setRound(Round round){
         rounds[roundNumber - 1] = round;
@@ -44,10 +58,19 @@ public class Game {
     public Game(Player player_one, Player player_two) {
         this.currentPlayer = player_one;
         this.opponent = player_two;
-        for(int i=0;i<6;i++){
-            rows[i] = new Row();
+        this.player1 = player_one;
+        this.player2 = player_two;
+        for(int i=0;i<3;i++){
+            rows[i] = player_one.getRows()[i];
+        }
+        for(int i=3;i<6;i++){
+            rows[i] = player_two.getRows()[i-3];
         }
         ActionController.setGame(this);
+    }
+
+    public void setRows(Row[] rows, Row[] rows1){
+
     }
 
 

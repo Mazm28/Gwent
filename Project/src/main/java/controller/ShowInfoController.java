@@ -26,14 +26,8 @@ public class ShowInfoController {
     }
 
     public void setLabel(Label label) {
-        int wins = 0;
-        int loses = 0;
-        int draws = 0;
-        for (GameRecord gameRecord: User.getLoggedInUser().getGameRecords()){
-            if(gameRecord.winner().equals(User.getLoggedInUser())) wins++;
-            else if(gameRecord.winner().equals(gameRecord.opponent())) loses++;
-            else draws++;
-        }
+        User.getLoggedInUser().setWinsAndLoses();
+        User.getLoggedInUser().makeRank();
         StringBuilder text = new StringBuilder();
         text.append("Username: ");
         text.append(User.getLoggedInUser().getUsername());
@@ -44,13 +38,13 @@ public class ShowInfoController {
         text.append("\nRank: ");
         text.append(User.getLoggedInUser().getRank());
         text.append("\nCount Of Games: ");
-        text.append(wins + draws + loses);
+        text.append(User.getLoggedInUser().getWins() + User.getLoggedInUser().getDraws() + User.getLoggedInUser().getLoses());
         text.append("\nCount Of Wins: ");
-        text.append(wins);
+        text.append(User.getLoggedInUser().getWins());
         text.append("\nCount Of Loses: ");
-        text.append(loses);
+        text.append(User.getLoggedInUser().getLoses());
         text.append("\nCount Of Draws: ");
-        text.append(draws);
+        text.append(User.getLoggedInUser().getDraws());
         label.setText(text.toString());
     }
 }

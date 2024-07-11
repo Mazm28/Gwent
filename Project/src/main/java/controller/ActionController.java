@@ -1,17 +1,20 @@
 package controller;
 
-import Enums.Faction;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import model.App;
 import model.CardCollection;
 import model.Game;
 import model.Row;
-import model.card.*;
-import view.FactionsMenu;
+import model.card.Card;
+import model.card.RegularCard;
+import model.card.RegularCardInformation;
+import model.card.SpecialCard;
 import view.GameMenu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Random;
 
 public class ActionController {
@@ -22,31 +25,13 @@ public class ActionController {
     }
 
     public static Runnable CommanderHorn() {
-        return () -> {
-            for (Row row : game.getCurrentPlayer().getRows()) {
-                if (row.getImproveCard().getName().equals(SpecialCardInformation.Commander_Horn.getName())) {
-                    for (Card card : row.getCards()) {
-                        card.setPower(card.getPower() * 2);
-                    }
-                }
-                for (Card card : row.getCards()) {
-                    if (card.getAbility().equals(ActionController.CommanderHorn())) {
-                        for (Card card1 : row.getCards()) {
-                            if (!card.equals(card1)) {
-                                card1.setPower(card.getPower() * 2);
-                            }
-                        }
-                        break;
-                    }
-                }
-
-            }
-        };
+        return null;
     }
 
     public static Runnable Medic() {
         return () -> {
             ArrayList<Card> buriedCards = game.getCurrentPlayer().getBurnedCards();
+            if (buriedCards.isEmpty()) return;
             Random rand = new Random();
             int randomIndex = rand.nextInt(buriedCards.size());
             Card newCard = buriedCards.get(randomIndex);
@@ -62,7 +47,7 @@ public class ActionController {
         return () -> {
             for (Row row : game.getCurrentPlayer().getRows()) {
                 for (Card card : row.getCards()) {
-                    if (card.getAbility().equals(ActionController.CommanderHorn())) {
+                    if (card.getAbility() != null && card.getAbility().equals(ActionController.CommanderHorn())) {
                         for (Card card1 : row.getCards()) {
                             if (!card.equals(card1)) {
                                 card1.setPower(card.getPower() * 2);
@@ -77,40 +62,38 @@ public class ActionController {
 
     public static Runnable Muster() {
         return () -> {
-            HBox hBox;
-            if(game.getAction() instanceof SpecialCard) hBox = getHBOX(((SpecialCard) game.getAction()).getType());
-            else hBox = getHBOX(((RegularCard) game.getAction()).getType());
             for (Card card : game.getCurrentPlayer().getInGameHand()) {
-                if (card.getName().equals(game.getAction().getName())) {
-                    (new GameMenu()).setSelectedCard(card);
-                    (new GameMenu()).moveCardToPosition(hBox);
-                }
+                addCardToBoard(card);
             }
+            game.getCurrentPlayer().getInGameHand().removeIf(card -> card.getName().equals(game.getAction().getName()));
             for (Card card : game.getCurrentPlayer().getRemainCard()) {
-                if (card.getName().equals(game.getAction().getName())) {
-                    (new GameMenu()).setSelectedCard(card);
-                    (new GameMenu()).moveCardToPosition(hBox);
-                }
+                addCardToBoard(card);
             }
+            game.getCurrentPlayer().getRemainCard().removeIf(card -> card.getName().equals(game.getAction().getName()));
         };
     }
 
-    private static HBox getHBOX(String type) {
-        if(game.getCurrentPlayer().equals(game.getPlayer1())){
-            return switch (type) {
-                case "Close" -> (new GameMenu()).tCloseHBox;
-                case "Ranged" -> (new GameMenu()).tRangedHBox;
-                case "Siege" -> (new GameMenu()).tSiegeHBox;
-                default -> null;
-            };
-        } else {
-            return switch (type) {
-                case "Close" -> (new GameMenu()).eCloseHBox;
-                case "Ranged" -> (new GameMenu()).eRangedHBox;
-                case "Siege" -> (new GameMenu()).eSiegeHBox;
-                default -> null;
-            };
+    private static void addCardToBoard(Card card) {
+        if (card.getName().equals(game.getAction().getName())) {
+            Image image = new Image(Objects.requireNonNull(
+                    ActionController.class.getResourceAsStream(card.getImageAddress())));
+            ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(60);
+            imageView.setFitWidth(40);
+            imageView.getStyleClass().add("button-image");
+            imageView.setOnMouseClicked((new GameMenu()).selectCard(imageView));
+            GameMenu.getImageViewOnBoardHashMap().put(imageView,card);
+            ((HBox) game.getActionNode().getParent()).getChildren().add(imageView);
         }
+    }
+
+    private static int getIndex(String type) {
+        return switch (type) {
+            case "Close" -> 2;
+            case "Ranged" -> 1;
+            case "Siege" -> 0;
+            default -> -1;
+        };
     }
 
     public static Runnable Spy() {
@@ -138,14 +121,13 @@ public class ActionController {
                 }
             }
             for (Card card : row.getCards()) {
-                if (card.getAbility().equals(ActionController.TightBond()))
+                if (card.getAbility() != null && card.getAbility().equals(ActionController.TightBond()))
                     numOfCards++;
             }
             for (Card card : row.getCards()) {
                 if (card.getAbility().equals(ActionController.TightBond()))
                     card.setPower(card.getPower() * numOfCards);
             }
-
         };
     }
 
@@ -168,7 +150,12 @@ public class ActionController {
                 }
                 Card mostPowered = CardCollection.getMostPowered(cards);
                 for (Row row : game.getRows()) {
-                    row.getCards().removeIf(card -> card.getPower() == mostPowered.getPower());
+                    for (Card card : row.getCards()) {
+                        if (card.getPower() == mostPowered.getPower()) {
+                            row.getCards().remove(card);
+                            game.getCurrentPlayer().getBurnedCards().add(card);
+                        }
+                    }
                 }
             }
         };
@@ -184,14 +171,14 @@ public class ActionController {
     }
 
     public static Runnable Mardroeme() {
-        return() -> {
+        return () -> {
             for (Row row : game.getCurrentPlayer().getRows()) {
                 for (Card card : row.getCards()) {
-                    if(card.getName().equals(RegularCardInformation.BERSERKER.name())){
+                    if (card.getName().equals(RegularCardInformation.BERSERKER.name())) {
                         Card card1 = new RegularCard(RegularCardInformation.VIDKAARL);
                         row.getCards().set(row.getCards().indexOf(card), card1);
                     }
-                    if(card.getName().equals(RegularCardInformation.YOUNG_BERSERKER.name())){
+                    if (card.getName().equals(RegularCardInformation.YOUNG_BERSERKER.name())) {
                         Card card1 = new RegularCard(RegularCardInformation.YOUNG_VIDKAARL);
                         row.getCards().set(row.getCards().indexOf(card), card1);
                     }
@@ -219,6 +206,7 @@ public class ActionController {
     }
 
     private static void fuckRow(int index) {
+        System.out.println("salam");
         for (Card card : game.getRows()[index].getCards()) {
             if (card instanceof RegularCard) {
                 if (!((RegularCard) card).isHero()) {
@@ -580,7 +568,7 @@ public class ActionController {
     public static Runnable Monsters() {
         return () -> {
             ArrayList<Card> onTableCards = new ArrayList<>();
-            for(Row row : game.getCurrentPlayer().getRows()){
+            for (Row row : game.getCurrentPlayer().getRows()) {
                 onTableCards.addAll(row.getCards());
 
             }

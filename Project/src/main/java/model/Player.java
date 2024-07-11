@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Player extends User {
     private final int[] points = new int[3];
     private final ArrayList<Card> burnedCards = new ArrayList<>();
-    private final Row[] rows = new Row[6];
+    private final Row[] rows = new Row[3];
     private boolean passed;
     private Faction faction;
     private LeaderCard leader;
@@ -23,15 +23,24 @@ public class Player extends User {
     private boolean passedTheTurn = false;
     private Card selectedCard;
     private boolean ready = false;
+    private final ArrayList<Card> muster = new ArrayList<>();
+
+    public ArrayList<Card> getMuster() {
+        return muster;
+    }
 
     public Player(User user) {
         super(user);
         this.faction = Faction.MONSTERS;
         this.remainCard = this.deck.getCards();
         this.choosedHand = false;
-        for(int i=0;i<6;i++){
+        for(int i=0;i<3;i++){
             rows[i] = new Row();
         }
+    }
+
+    public Player(){
+
     }
 
     public Card getSelectedCard() {
@@ -160,10 +169,6 @@ public class Player extends User {
 
     public boolean isPassedTheTurn() {
         return passedTheTurn;
-    }
-
-    public ArrayList<Card> getBuriedCards() {
-        return buriedCards;
     }
 
     public void setBuriedCards(ArrayList<Card> buriedCards) {

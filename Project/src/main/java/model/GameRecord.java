@@ -1,10 +1,21 @@
 package model;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public record GameRecord(int[][] pointsInEachRound,int [] finalPoints, String date, Player winner,
-                         Player opponent) implements Serializable {
+import java.io.Serializable;
+
+public record GameRecord(int[][] pointsInEachRound, int[] finalPoints, String date, @JsonIgnoreProperties Player winner,
+                         @JsonIgnoreProperties Player opponent) implements Serializable {
+
+    @Override
+    public Player winner() {
+        return winner;
+    }
+
+    @Override
+    public Player opponent() {
+        return opponent;
+    }
 
     @Override
     public String toString() {
