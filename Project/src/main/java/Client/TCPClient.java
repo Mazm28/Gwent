@@ -2,9 +2,7 @@ package Client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import messages.*;
-import model.App;
 import server.User;
 
 import java.io.DataInputStream;
@@ -12,7 +10,6 @@ import java.io.DataOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.List;
 
 public class TCPClient {
     private Socket socket;
@@ -96,55 +93,6 @@ public class TCPClient {
         }
         catch (Exception e) {
             return new Result(false, e.getMessage());
-        }
-    }
-
-    public Result registerCheck(
-            String username,
-            String password,
-            String passwordConfirm,
-            String email,
-            String nickname
-    ) {
-        RegisterCheckMessage registerCheckMessage = new RegisterCheckMessage(
-                username,
-                password,
-                passwordConfirm,
-                email,
-                nickname
-        );
-        try {
-            establishConnection();
-            sendMessage(gsonAgent.toJson(registerCheckMessage));
-            lastServerMessage = gsonAgent.fromJson(receiveResponse(), ServerMessage.class);
-            endConnection();
-            boolean success = lastServerMessage.wasSuccessful();
-            return new Result(success, lastServerMessage.getAdditionalInfo());
-        }
-        catch (Exception e) {
-            return new Result(false, e.getMessage());
-        }
-    }
-
-    public void register() {
-        RegisterMessage registerMessage = new RegisterMessage(
-                gsonAgent.toJson(User.getLoggedInUser())
-        );
-        try {
-            establishConnection();
-            sendMessage(gsonAgent.toJson(registerMessage));
-            lastServerMessage = gsonAgent.fromJson(receiveResponse(), ServerMessage.class);
-            endConnection();
-            boolean success = lastServerMessage.wasSuccessful();
-            if (success) {
-                User.setLoggedInUser(
-                        gsonAgent.fromJson(lastServerMessage.getAdditionalInfo(),
-                                User.class));
-                token = User.getLoggedInUser().getToken();
-            }
-        }
-        catch (Exception e) {
-            System.out.println("error in registration: " + e.getMessage());
         }
     }
 

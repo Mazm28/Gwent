@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import messages.*;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.Random;
 
 public class TCPServerWorker extends Thread {
     private static ServerSocket server;
-    private DataInputStream receiveBuffer;
+    private DataInputStream recieveBuffer;
     private DataOutputStream sendBuffer;
 
     private static Gson gsonAgent;
@@ -92,6 +90,7 @@ public class TCPServerWorker extends Thread {
                 case LOGOUT -> gsonAgent.fromJson(clientStr, LogoutMessage.class);
                 case SAVE_USER -> gsonAgent.fromJson(clientStr, SaveUserMessage.class);
                 case GET_ALL_USERS -> gsonAgent.fromJson(clientStr, GetAllUsersMessage.class);
+                default -> null;
             };
         } catch (Exception e) {
             return null;
@@ -116,4 +115,16 @@ public class TCPServerWorker extends Thread {
         sendMessage(true, info);
     }
 
+    public static void main(String[] args) {
+        try {
+            TCPServerWorker.setupServer(5001, 10);
+            for (int i = 0; i < WORKERS; i++) {
+                new TCPServerWorker().start();
+            }
+            new TCPServerWorker().listen();
+        } catch (Exception e) {
+            System.out.println("Server encountered a problem!");
+            e.printStackTrace();
+        }
+    }
 }
