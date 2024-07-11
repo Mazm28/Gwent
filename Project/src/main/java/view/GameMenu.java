@@ -1,14 +1,19 @@
 package view;
 
+import Enums.CheatCodes;
 import Enums.FXMLAddresses;
 import Enums.Faction;
 import controller.ActionController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -32,6 +37,8 @@ public class GameMenu {
     private final ArrayList<HBox> specialPositions = new ArrayList<>();
     private final ArrayList<Label> labels = new ArrayList<>();
     private final HashMap<Card, ImageView> cardsHashMap = new HashMap<>();
+    public TextField cheat;
+    public Button cheatButton;
 
     public static HashMap<ImageView, Card> getImageViewOnBoardHashMap() {
         return imageViewOnBoard;
@@ -228,6 +235,7 @@ public class GameMenu {
     }
 
     private void prepareTable() {
+        cheatButton.setVisible(game.getCurrentPlayer().equals(game.getPlayer1()));
         mainTableHBox.getChildren().clear();
         for (Card card : game.getCurrentPlayer().getInGameHand()) {
             mainTableHBox.setSpacing(3);
@@ -554,5 +562,36 @@ public class GameMenu {
         if (game.getOpponent().isPassedTheTurn()) return;
         game.changeTurn();
         prepareTable();
+    }
+
+    public void showCheat(MouseEvent mouseEvent) {
+        cheat.setVisible(true);
+    }
+
+    public void cheatUp(KeyEvent keyEvent) throws IOException {
+        if(keyEvent.getCode() == KeyCode.ENTER){
+            String txt = cheat.getText();
+            if(txt.equals(CheatCodes.WIN.getString())){
+                game.getPlayer1().setPoints(game.getRoundNumber(),game.getPlayer2().getPoints()[game.getRoundNumber() - 1] + 1);
+                cheat.setVisible(false);
+                finishRound();
+            } else if(txt.equals(CheatCodes.SUPER_WIN.getString())){
+                game.getPlayer1().setPoints(game.getRoundNumber(), 1000);
+                cheat.setVisible(false);
+                finishRound();
+            } else if (txt.equals(CheatCodes.FUCK_ENEMY.getString())) {
+                game.getPlayer2().setPoints(game.getRoundNumber(), 0);
+                cheat.setVisible(false);
+                finishRound();
+            } else if(txt.equals(CheatCodes.TRIPLE_POWER.getString())){
+                for(int i=0;i<3;i++){
+                    String tmp = labels.get(i).getText();
+                    int power = Integer.parseInt(tmp) * 3;
+                    labels.get(i).setText(String.valueOf(power));
+                }
+                cheat.setVisible(false);
+                updateTotalPower();
+            }
+        }
     }
 }
