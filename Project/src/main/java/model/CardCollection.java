@@ -44,7 +44,6 @@ public class CardCollection {
     }
 
     public static Card getMostPowered(ArrayList<Card> cards){
-        if(cards.isEmpty()) return null;
         Card card = cards.get(0);
         for(int i=1;i<cards.size();i++){
             if(cards.get(i).getPower() > card.getPower()) card = cards.get(i);

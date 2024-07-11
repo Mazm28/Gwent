@@ -2,12 +2,10 @@ package model;
 
 import controller.ActionController;
 import javafx.scene.Node;
-import javafx.scene.layout.HBox;
 import model.card.Card;
 import model.card.RegularCardInformation;
 import model.card.SpecialCard;
 import model.card.SpecialCardInformation;
-import view.GameMenu;
 
 import java.util.ArrayList;
 
@@ -101,6 +99,13 @@ public class Game {
         this.currentPlayer = this.opponent;
         this.opponent = temp;
         turn++;
+        for(Row row: currentPlayer.getRows()){
+            for(Card card: row.getCards()){
+                if(card != null && card.getName().equals(SpecialCardInformation.Cow.getName())){
+                    ActionController.cowTransform((SpecialCard)card);
+                }
+            }
+        }
     }
 
     public Row[] getRows() {
