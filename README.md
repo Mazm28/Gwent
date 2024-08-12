@@ -1,3 +1,4 @@
-Mohammad Ali Meschi : 402106491
-Mohammad BaniAhmadi : 402105751
-Mobin Ravan Nakhjavani : 402106061
+Mohammad Ali Meschi
+Mohammad BaniAhmadi
+Mobin Ravan Nakhjavani
+in this project we tried to create a copy of a game named GWENT
